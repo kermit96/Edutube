@@ -48,8 +48,7 @@ public class Config {
 		     case ORACLE_TYPE:
 		    	  classname = "oracle.jdbc.driver.OracleDriver";
 		    	  if (port == 0) {
-		    		 port=1521;  
-		    		 
+		    		 port=1521;  		    		 
 		    	  }
 		    	  url = String.format("jdbc:oracle:thin:@%s:%d:%s", config.getHost(),port,config.getDbname()) ;
 			   break;  
@@ -74,6 +73,9 @@ public class Config {
 				 
 		   }
 		   
+
+		   System.out.println(userid);
+		   System.out.println(url);
 		   
 	        dataSource.setDriverClassName(classname);
 	        dataSource.setUsername(userid);
@@ -99,7 +101,7 @@ public class Config {
 	  sqlSessionFactory.setDataSource(datasource);
 
 	  
-	  sqlSessionFactory.setConfigLocation(new ClassPathResource("/com/wing/mainApp/myBatis/myBatis-config.xml"));	  
+	  sqlSessionFactory.setConfigLocation(new ClassPathResource("/com/wing/mainApp/mybatis/mybatis-config.xml"));	  
 	  sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:/com/wing/mainApp/sql/*.xml"));
 	  
 	  org.apache.ibatis.mapping.VendorDatabaseIdProvider venderid = new org.apache.ibatis.mapping.VendorDatabaseIdProvider();
@@ -119,6 +121,7 @@ public class Config {
 	   //  return (SqlSessionFactory) ;
 	      return factory;
  	   } catch (Exception ex) { 		   
+ 		   ex.printStackTrace();
  		   return null;
  	   }
 	   	   

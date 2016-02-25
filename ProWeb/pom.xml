@@ -14,16 +14,16 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	
-	<!--  ojdbc 위치 잡아주기 -->
-	 <repositories>
+	
+	<repositories>
     <repository>
         <id>mesir-repo</id>
         <url>http://mesir.googlecode.com/svn/trunk/mavenrepo</url>
     </repository>
+    
+     
   </repositories>
-  <!--  잡아주기 끝 -->
-	
-	<!--  라이브러리 설치 -->
+		
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
@@ -128,45 +128,38 @@
 			<scope>test</scope>
 		</dependency>    
 		
-		<!--  라이브러리 -->
-				<dependency>
+		
+		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
-			<version>3.2.2</version>
+			<version>3.3.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
-			<version>1.2.0</version>
+			<version>1.2.4</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+
+
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.4</version>
 		</dependency>
 		
-		
-		
+
 		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc14</artifactId>
-			<version>10.2.0.4.0</version>
-		</dependency>
-		
-		
-		<dependency>
-	<groupId>commons-codec</groupId>
-	<artifactId>commons-codec</artifactId>
-	<version>1.10</version>
-</dependency>
-		
-		
-		<dependency>
+	<groupId>org.glassfish.external</groupId>
+	<artifactId>commons-codec-repackaged</artifactId>
+	<version>3.0.1</version>
+	</dependency>
+	
+<dependency>
 	<groupId>com.google.code.gson</groupId>
 	<artifactId>gson</artifactId>
 	<version>2.6.1</version>
@@ -177,15 +170,22 @@
 	<artifactId>cglib</artifactId>
 	<version>3.2.0</version>
 </dependency>
+
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc14</artifactId>
+			<version>10.2.0.4.0</version>
+		</dependency>
+				
+	
 	<dependency>
 	<groupId>javax.mail</groupId>
 	<artifactId>mail</artifactId>
 	<version>1.4.7</version>
-</dependency>		 
-		  
+</dependency>
+	
+		
 	</dependencies>
-	 <!--  라이브러리 설치 끝 --> 
-	 
     <build>
         <plugins>
             <plugin>
@@ -201,7 +201,7 @@
                     <downloadSources>true</downloadSources>
                     <downloadJavadocs>true</downloadJavadocs>
                 </configuration>
-            </plugin>
+            </plugin>  
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

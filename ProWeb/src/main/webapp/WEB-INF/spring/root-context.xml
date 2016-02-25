@@ -2,31 +2,28 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+	<!-- 
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url" value="jdbc:oracle:thin:@192.168.56.103:1521:orcl" />
 		<property name="username" value="edutube" />
 		<property name="password" value="1234" />
 	</bean>   
-	
+	 -->
 	<!-- SQL --> 
+	<!-- 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="configLocation" >
 			<value>classpath:/com/wing/mainApp/mybatis/mybatis-config.xml</value>
 		</property>
 		<property name="dataSource" ref="dataSource" />
 	</bean>      
-	  
+	   --> 
 	<!-- SQL을 ??? 방식으로 처리하기 위해 등록해야할 bean-->
+	<!-- 
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
-	</bean>
+	</bean>  -->
 	
-	<!--  우리가 만든 DAO 클래스를 DI 기법으로 사용하기 위해서 등록한다.
-	<bean id="sampleDAO" class="com.show.dol.dao.SampleDAO"> 
-   		<property name="sqlSessionTemplate" ref="sqlSession" />
-	</bean>
-	 -->
 	
 </beans>
