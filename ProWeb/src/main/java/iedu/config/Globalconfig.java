@@ -30,7 +30,7 @@ public class Globalconfig {
     
     private String  smtpsender;
     
-    private int    encryptedmethod; // 0 : �뾾�쓬 1: tls 2: ssl   
+    private int    encryptedmethod; // 0 : 없음 1: tls 2: ssl   
     
     
     
@@ -140,7 +140,7 @@ public class Globalconfig {
 		this.password = password;
 				
 		try {
-			handler. setValue("password",		iedu.util.ase256.AES_Encode(password));
+			handler.setValue("password",		iedu.util.ase256.AES_Encode(password));
 		} catch (InvalidKeyException | UnsupportedEncodingException | NoSuchAlgorithmException | NoSuchPaddingException
 				| InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 			// TODO Auto-generated catch block
