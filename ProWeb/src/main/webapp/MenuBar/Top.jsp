@@ -5,18 +5,18 @@
 <title>에듀 튜브</title>
 
 <!--  파피콘 넣기 -->
-<link rel="shortcut icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
-<link rel="icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
+<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/> 
+<link rel="icon" href="../favicon.ico" type="image/x-icon"/> 
 
 <!--CSS-->
-<link rel="stylesheet" href="/edutube/resources/CSS/menustyles.css">
-<link rel="stylesheet" href="/edutube/resources/CSS/bootstrap.min.css">
+<link rel="stylesheet" href="../resources/CSS/menustyles.css">
+<link rel="stylesheet" href="../resources/CSS/bootstrap.min.css">
 
 
 <!--JS-->	    
- <script src="/edutube/resources/JS/jquery-2.1.4.min.js"></script>
- <script src="/edutube/resources/JS/bootstrap.min.js"></script>
- <script src="/edutube/resources/JS/Link.js"></script>
+ <script src="../resources/JS/jquery-2.1.4.min.js"></script>
+ <script src="../resources/JS/bootstrap.min.js"></script>
+ <script src="../reources/JS/Link.js"></script>
   
 <!--스크립트-->
 <script>
@@ -27,9 +27,9 @@
 <Style>
 	@font-face { 
 	    font-family:'NanumGothic';
-	    src: url('/edutube/resources/fonts/NanumGothic.eot');
-	    src: url('/edutube/resources/fonts/NanumGothic.eot?#iefix') format('embedded-opentype'),
-	         url('/edutube/resources/fonts/NanumGothic.woff') format('woff');     
+	    src: url('../resources/fonts/NanumGothic.eot');
+	    src: url('../resources/fonts/NanumGothic.eot?#iefix') format('embedded-opentype'),
+	         url('../resources/fonts/NanumGothic.woff') format('woff');     
 	    font-weight: normal;
 	    font-style: normal;
 	}
@@ -112,14 +112,14 @@
 
 	<div id="topbar">
 		<div id="logo">
-		<a href="JavaScript:goHome()"><img id="toplogo" src="/edutube/resources/img/logo.png"/></a>
+		<a href="JavaScript:goHome()"><img id="toplogo" src="../resources/img/logo.png"/></a>
 		</div>
 		
 		<div id="searchcontainer">
 			<div id="searchBar" >
 				<form id="searchFrm" name="searchFrm">
 			    <input type="text" id="searchBox">
-			    <a href="JavaScript:goSearch()"><img src="/edutube/resources/img/searchBtn.png"></a>
+			    <a href="JavaScript:goSearch()"><img src="../resources/img/searchBtn.png"></a>
 				</form>
 			</div>
 		</div>
@@ -162,8 +162,8 @@
 
 </div>
 
-<script src="/edutube/resources/JS/classie.js"></script>
-<script src="/edutube/resources/JS/selectFx.js"></script>
+<script src="../resources/JS/classie.js"></script>
+<script src="../resources/JS/selectFx.js"></script>
 <script>
 		(function() {
 			[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {	
