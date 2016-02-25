@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="down">
+	<!-- 게시물 등록 -->
+	<insert id="wdown" parameterType="dwdata">
+		INSERT
+			INTO
+				DownLoad (down_no,mem_id,down_title,down_body)
+			VALUES
+			((SELECT NVL(MAX(down_NO), 0) + 1 FROM DownLoad), #{id}, #{title}, #{body})
+	</insert>
+	<select id="getlist"  resultType="dwdata">
+		SELECT
+				down_NO AS no,
+				down_TITLE AS title,
+				mem_ID AS id,
+				down_DATE AS wdate
+			FROM
+				DownLoad
+			WHERE
+								down_isdeleted ='N'
+			ORDER BY
+					down_NO DESC
+	</select>
+	<select id="gettotal" resultType="java.lang.Integer">
+		SELECT
+			COUNT(*) AS TOTAL
+		FROM
+			DownLoad
+		WHERE
+			down_isdeleted='N'
+	</select>
+</mapper>
