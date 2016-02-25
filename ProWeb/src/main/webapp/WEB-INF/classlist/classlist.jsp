@@ -1,9 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>EduTube</title>
+<title>Insert title here</title>
 <!--CSS-->
 	<link rel="stylesheet" href="/edutube/resources/CSS/bootstrap.min.css">
 	<!--  파피콘 넣기 -->
@@ -39,7 +40,7 @@
 	<div id='top'>	
 		<jsp:include page="/MenuBar/Top.jsp" flush="false" />
 	</div>
-		여기가 메인
+		강의별 목록
 	<div id=nav>
 	<a href="teacherlist.do">강사별 목록</a><br>
 	<a href="classlist.do">강의별 목록</a><br>

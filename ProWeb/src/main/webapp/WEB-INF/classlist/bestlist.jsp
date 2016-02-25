@@ -1,9 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>EduTube</title>
+<title>Insert title here</title>
 <!--CSS-->
 	<link rel="stylesheet" href="/edutube/resources/CSS/bootstrap.min.css">
 	<!--  파피콘 넣기 -->
@@ -39,7 +41,7 @@
 	<div id='top'>	
 		<jsp:include page="/MenuBar/Top.jsp" flush="false" />
 	</div>
-		여기가 메인
+		인기별 목록
 	<div id=nav>
 	<a href="teacherlist.do">강사별 목록</a><br>
 	<a href="classlist.do">강의별 목록</a><br>
@@ -48,6 +50,22 @@
 	<a href="">1234</a><br>
 	<a href="">5678</a><br>
 	</div>
+	<table width="80%" border="1" align="center">
+		<tr>
+			<th>글번호</th>
+			<th>글제목</th>
+			<th>작성자</th>
+			<th>작성일</th>
+		</tr>
+		<c:forEach var="temp" items="${LIST}">
+		<tr>
+			<td>1</td>
+			<td>2</td>
+			<td>3</td>
+			<td>4</td>
+		</tr>
+		</c:forEach>
+	</table>
 </div>
 </body>
 </html>
