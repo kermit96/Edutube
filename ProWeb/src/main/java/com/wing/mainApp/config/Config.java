@@ -97,7 +97,7 @@ public class Config {
 	  sqlSessionFactory.setDataSource(datasource);
 
 	  
-	  sqlSessionFactory.setConfigLocation(new ClassPathResource("/com/wing/mainApp/mybatis/mybatis-config.xml"));	  
+//	  sqlSessionFactory.setConfigLocation(new ClassPathResource("/com/wing/mainApp/mybatis/mybatis-config.xml"));	  
 	  sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:/com/wing/mainApp/sql/*.xml"));
 	  
 	  org.apache.ibatis.mapping.VendorDatabaseIdProvider venderid = new org.apache.ibatis.mapping.VendorDatabaseIdProvider();
