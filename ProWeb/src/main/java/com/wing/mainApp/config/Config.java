@@ -72,11 +72,7 @@ public class Config {
 			    break;
 				 
 		   }
-		   
 
-		   System.out.println(userid);
-		   System.out.println(url);
-		   
 	        dataSource.setDriverClassName(classname);
 	        dataSource.setUsername(userid);
 	        dataSource.setUrl(url);
