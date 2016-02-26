@@ -81,7 +81,7 @@ public class Config {
 	        return dataSource;
 	    }
 	     
-	    @Bean
+	//    @Bean
 	    public DataSourceTransactionManager transactionManager()
 	    {
 	        return new DataSourceTransactionManager(dataSource());
