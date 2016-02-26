@@ -16,10 +16,10 @@ import iedu.config.Globalconfig;
 import iedu.sql.DBTYPE;
 
 
-@Configuration
+// @Configuration
 public class Config {
 		
-	   @Bean
+	//    @Bean
 	    public BasicDataSource dataSource() {		   		   
 		   Globalconfig config =  new Globalconfig();		   		
 		   BasicDataSource dataSource = new BasicDataSource();
@@ -89,7 +89,7 @@ public class Config {
 	     
 
 
-	 @Bean
+	 // @Bean
 	 // public SqlSessionFactory sqlSessionFatory(DataSource datasource,ApplicationContext applicationContext) throws Exception{
 	 public SqlSessionFactory sqlSessionFatory(BasicDataSource datasource) throws Exception{
 	  		 
@@ -123,7 +123,7 @@ public class Config {
 	   	   
 	 } 
 	
-	 @Bean
+	 // @Bean
 	 public SqlSessionTemplate sqlSession(SqlSessionFactory sqlSessionFactory) {
 		 try {
 	    return new SqlSessionTemplate(sqlSessionFactory);
