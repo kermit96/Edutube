@@ -1,14 +1,26 @@
 package com.wing.mainApp.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.wing.mainApp.dao.ClassDAO;
+import com.wing.mainApp.data.ClassListData;
+import com.wing.mainApp.util.PagingUtil;
+import com.wing.mainApp.util.StringUtil;
+
 @Controller
 public class ClassController {
+	
+	@Autowired
+	ClassDAO cDao;
 	/*
 	 	강의목록 메인
 	 */
@@ -50,9 +62,29 @@ public class ClassController {
 		return mv;
 	}
 	/*
+	 	상세보기 요청
+	 */
+	@RequestMapping("/classlist/classview.do")
+	public ModelAndView classview(HttpServletRequest req, HttpSession session){
+		ModelAndView 	mv = new ModelAndView();
+		
+		String strNo = req.getParameter("oriNo");
+		int oriNo = Integer.parseInt(strNo);
+		String strPage = req.getParameter("nowPage");
+		int nowPage = Integer.parseInt(strPage);
+		
+		ClassListData map = cDao.selectView(oriNo);
+		
+		mv.addObject("DATA", map);
+		mv.addObject("NOWPAGE", nowPage);
+			
+		mv.setViewName("classlist/classview");
+		return mv;
+	}
+	/*
 	 * 	검색 요청 처리 함수
 	 */
-	/*@RequestMapping("/classlist/classSearch")
+	@RequestMapping("/classlist/classSearch")
 	public ModelAndView	classSearch(HttpServletRequest req, HttpSession session) {
 		ModelAndView		mv = new ModelAndView();
 		//	할일
@@ -71,13 +103,13 @@ public class ClassController {
 		//	결과가 많으면 페이지 이동 기능이 있을 것이고
 		//	그러면 2개의 데이터는 넘어오지 않는다.
 		//	문제점		페이지 이동기능에 의해서 다른 페이지를 보고자 하면?
-		//	해결 방법		현재 받은 데이터를 세션에 기억해 놓고 사용하자.
+		//	해결 방법	현재 받은 데이터를 세션에 기억해 놓고 사용하자.
 		if(StringUtil.isNull(kind)) {
 			//	이건 보나마나 페이지 이동으로 넘어와서 받지 못한 것이다.
 			//	그래서 이 경우는 세션에서 받도록 하자.
 			kind = (String) session.getAttribute("kind");
 			content = (String) session.getAttribute("content");
-			//	그래도 못받았으면...	다른 곳으로 내보내야 한다.
+			//	그래도 못받았으면	다른 곳으로 내보내야 한다.
 			if(StringUtil.isNull(kind)) {
 				//	Redirect 시킨다.
 			}
@@ -91,19 +123,19 @@ public class ClassController {
 		HashMap	map = new HashMap();
 		map.put("kind", kind);
 		map.put("CONTENT", content);
-		int	count = rDao.getSearchCount(map);
-		PageUtil	pInfo = new PageUtil(nowPage, count, 5, 5);
+		int	count = cDao.getSearchCount(map);
+		PagingUtil	pInfo = new PagingUtil(nowPage, count, 5, 5);
 //		pInfo.calcInfo2();
 		
 		//		검색 데이터를 구한다.
-		ArrayList	list = rDao.getSearch(map);
+		ArrayList	list = cDao.getSearch(map);
 		//	여기는 페이지 기능에 관계없이 모든 데이터를 다 구한것이므로
 		//	그 페이지에서 보여줄 갯수만 꺼내야 한다.
 		ArrayList	result = new ArrayList();
 		if(list.size() != 0) {
 			//	꺼낼 시작위치와 꺼낼 마지막 위치를 구한다.
-			int		start = (pInfo.nowPage - 1) * pInfo.pageList;
-			int		end = start + pInfo.pageList - 1;
+			int		start = (pInfo.nowPage - 1) * pInfo.onePageCount;
+			int		end = start + pInfo.onePageCount - 1;
 			//	마지막 페이지인 경우를 처리한다.
 			if(end >= list.size()) {
 				end = list.size() - 1;
@@ -117,5 +149,5 @@ public class ClassController {
 		mv.addObject("LIST", result);
 		mv.setViewName("classlist/classSearch");
 		return mv;
-	}*/
+	}
 }

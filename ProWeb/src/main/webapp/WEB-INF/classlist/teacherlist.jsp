@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>EduTube</title>
 <!--CSS-->
 	<link rel="stylesheet" href="/edutube/resources/CSS/bootstrap.min.css">
 	<!--  파피콘 넣기 -->
@@ -18,6 +19,18 @@
  	
 	<!--스크립트-->
 	<script>
+//	상세보기 요청을 해줄 함수
+	function goDetail(orino) {
+		//	매개변수	선택한 글의 번호가 기억될 예정이다.
+		$(location).attr("href", "../classlist/classview.do?nowPage=${PINFO.nowPage}&oriNo=" + orino + "&flag=L");
+	}
+	$(document).ready(function(){
+		$("#sBtn").click(function() {
+			//	검색단어가 입력되었는지 무결성 검사하고....
+			$("#sfrm").attr("action", "../classlist/classSearch.do");
+			$("#sfrm").submit();
+		});
+	});
 	</script>
 	
 	<!--  스타일 -->
@@ -33,6 +46,9 @@
     	float:left;
     	padding:5px;	      
 		}
+		tr > th {
+			text-align:center;
+		}
 	</style>
 </head>
 <body>
@@ -45,10 +61,57 @@
 	<a href="teacherlist.do">강사별 목록</a><br>
 	<a href="classlist.do">강의별 목록</a><br>
 	<a href="bestlist.do">인기별 목록</a><br>
-	<a href="">꿈척꿈척</a><br>
-	<a href="">1234</a><br>
-	<a href="">5678</a><br>
 	</div>
+	<form method="POST" id="sfrm">
+	<table width="800" border="1" align="center">
+		<tr>
+			<th>강의번호</th>
+			<th>강의코드</th>
+			<th>제　  목</th>
+			<th>작 성 자</th>
+			<th>작 성 일</th>
+			<th>추 천 수</th>
+		</tr>
+		<c:forEach var="temp" items="${LIST}">
+		<tr>
+			<td>${temp.no}</td>
+			<td>${temp.code}</td>
+			<a href="JavaScript:goDetail(${temp.no})">${temp.title}</a>
+			<td>${temp.id}</td>
+			<td>${temp.date}</td>
+			<td>${temp.good}</td>
+		</tr>
+		</c:forEach>
+	</table>
+	
+<!-- 	페이지 이동 기능 -->
+	<table border="1" align="center" width="800">
+		<tr>
+			<td align="center">
+			<!-- 	[처음][이전][1][2][3][4][5][다음][마지막] -->
+				<a href="../classlist/teacherlist.do?nowPage=1">[처  음]</a>
+				<c:if test="${PINFO.startPage eq 1}">
+					[이 전]
+				</c:if>
+				<c:if test="${PINFO.startPage ne 1}">
+					<a href="../classlist/teacherlist.do?nowPage=${PINFO.startPage - 1}">[이 전]</a>
+				</c:if>
+				<c:forEach var="temp" begin="${PINFO.startPage}" end="${PINFO.endPage}">
+					<a href="../classlist/teacherlist.do?nowPage=${temp}">[ ${temp} ]</a>
+				</c:forEach>
+				<c:if test="${PINFO.endPage eq PINFO.totalPage}">
+					[다 음]
+				</c:if>
+				<c:if test="${PINFO.endPage ne PINFO.totalPage}">
+					<a href="../classlist/teacherlist.do?nowPage=${PINFO.endPage + 1}">[다 음]</a>
+				</c:if>
+				<a href="../classlist/teacherlist.do?nowPage=${PINFO.totalPage}">[마지막]</a>
+			</td>
+		</tr>
+	
+	</table>
+	<input type="button" value="검색" id="sBtn">
+	</form>
 </div>
 </body>
 </html>

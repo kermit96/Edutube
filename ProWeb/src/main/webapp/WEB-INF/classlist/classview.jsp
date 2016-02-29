@@ -1,4 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,6 +34,9 @@
     	float:left;
     	padding:5px;	      
 		}
+		tr > th {
+			text-align:center;
+		}
 	</style>
 </head>
 <body>
@@ -39,12 +44,32 @@
 	<div id='top'>	
 		<jsp:include page="/MenuBar/Top.jsp" flush="false" />
 	</div>
-		여기가 메인
+		상세보기
 	<div id=nav>
 	<a href="teacherlist.do">강사별 목록</a><br>
 	<a href="classlist.do">강의별 목록</a><br>
 	<a href="bestlist.do">인기별 목록</a><br>
 	</div>
+	<table width="800" border="1" align="center">
+		<tr>
+			<th>강의번호</th>
+			<th>강의코드</th>
+			<th>제　  목</th>
+			<th>작 성 자</th>
+			<th>작 성 일</th>
+			<th>추 천 수</th>
+		</tr>
+		<c:forEach var="temp" items="${LIST}">
+		<tr>
+			<td>${DATA.no}</td>
+			<td>${DATA.code}</td>
+			<td>${DATA.title}</td>
+			<td>${DATA.id}</td>
+			<td>${DATA.date}</td>
+			<td>${DATA.good}</td>
+		</tr>
+		</c:forEach>
+	</table>
 </div>
 </body>
 </html>
