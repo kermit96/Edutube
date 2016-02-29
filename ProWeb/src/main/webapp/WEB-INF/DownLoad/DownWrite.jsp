@@ -19,7 +19,7 @@
 		<%
 			session.setAttribute("id", "rewg3");
 		%>
-		<script type="text/javascript" src="/edutube/resources/se2/js/HuskyEZCreator.js" charset="utf-8"></script>
+		<script type="text/javascript" src="/edutube/resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 
 	</head>  
 	<body>
@@ -49,16 +49,16 @@
 		nhn.husky.EZCreator.createInIFrame({
 			oAppRef: oEditors,
 			elPlaceHolder: "body",
-			sSkinURI: "/edutube/resources/se2/SmartEditor2Skin.html",
+			sSkinURI: "/edutube/resources/smarteditor/SmartEditor2Skin.html",
 			fCreator: "createSEditor2"
 		});
 	</script>
 			<script>
 			$(document).ready(function(){
 				$("#write").click(function(){
-					
+					alert("클릭했당1");
 					oEditors.getById["body"].exec("UPDATE_CONTENTS_FIELD", []);
-					
+					alert("클릭했당2");
 					$title = $("#title").val();
 					if($title==""){
 						alert("제목을 입력해 주세요.");
@@ -69,6 +69,7 @@
 						alert("본문을 입력해 주세요.");
 						return;
 					}
+					
 					$frm = $("#wfrm");
 					$frm.attr("action","../DownLoad/DownWriteProc.do");
 					$frm.submit();

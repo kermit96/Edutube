@@ -18,6 +18,9 @@
 		<script src="/edutube/resources/JS/jquery-2.1.4.min.js"></script>
  		<script src="/edutube/resources/JS/bootstrap.min.js"></script>
 		<script>
+		function goDetail(orino){
+			$(location).attr("href","../DownLoad/DownView.do?nowPage=${PINFO.nowPage}&oriNo="+orino);
+		}
 			$(document).ready(function(){
 				$("#lBtn").click(function(){
 					$(location).attr("href","../../edutube");
@@ -29,6 +32,18 @@
 				});
 			}); 
 		</script>
+			<style>
+	
+			#EduContainer{
+				width:1200px;
+				position: absolute;
+				left: 50%;
+				margin-left:-600px;				
+		}	
+		#asd{
+		
+		}
+	</style>
 	</head>
 	<body>
 		<div id='EduContainer'>
@@ -39,6 +54,10 @@
 				a
 			</div>
 			<div id="main">	
+				<div>
+				<!-- sideBar -->
+				</div>
+				<div id="asd">
 				<table width="80%" border="1" align="center">
 					<tr>
 						<th width="10%">번호</th>
@@ -51,7 +70,7 @@
 					<tr align="center">
 						<td>${temp.no}</td>
 						<td>
-							<a href="#">${temp.title}</a>
+							<a href="JavaScript:goDetail(${temp.no}})">${temp.title}</a>
 						</td>
 						<td>${temp.id}</td>
 						<td>${temp.wdate}</td>
@@ -62,6 +81,7 @@
 						<td colspan="5" align="center"><input type="button" value="write" id="wBtn"><input type="button" value="back" id="lBtn"></td>	
 					</tr>
 				</table>
+				</div>
 			</div>
 		</div>
 		

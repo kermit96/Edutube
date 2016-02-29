@@ -68,9 +68,9 @@ public class DownController {
 		return mv;
 	}
 	@RequestMapping("/DownLoad/DownWriteProc")
-	public ModelAndView DownWriteProc(HttpServletRequest req, DownLoadData data, HttpSession session){
+	public ModelAndView DownWriteProc(DownLoadData data){
 		ModelAndView mv = new ModelAndView();
-		
+		System.out.println("writeProc ¿Ô´ç");
 		dDao.insertDown(data);
 		
 		RedirectView rv = new RedirectView("../DownLoad/DownMain.do");
