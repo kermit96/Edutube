@@ -76,23 +76,23 @@
 		<tr>
 			<td align="center">
 			<!-- 	[처음][이전][1][2][3][4][5][다음][마지막] -->
-				<a href="../classlist/classSearch.do?nowPage=1">[처  음]</a>
+				<a href="../classlist/bestlist.do?nowPage=1">[◀◀]</a>
 				<c:if test="${PINFO.startPage eq 1}">
-					[이 전]
+					[◀]
 				</c:if>
 				<c:if test="${PINFO.startPage ne 1}">
-					<a href="../classlist/classSearch.do?nowPage=${PINFO.startPage - 1}">[이 전]</a>
+					<a href="../classlist/bestlist.do?nowPage=${PINFO.startPage - 1}">[◀]</a>
 				</c:if>
 				<c:forEach var="temp" begin="${PINFO.startPage}" end="${PINFO.endPage}">
-					<a href="../classlist/classSearch.do?nowPage=${temp}">[ ${temp} ]</a>
+					<a href="../classlist/bestlist.do?nowPage=${temp}">[ ${temp} ]</a>
 				</c:forEach>
 				<c:if test="${PINFO.endPage eq PINFO.totalPage}">
-					[다 음]
+					[▶]
 				</c:if>
 				<c:if test="${PINFO.endPage ne PINFO.totalPage}">
-					<a href="../classlist/classSearch.do?nowPage=${PINFO.endPage + 1}">[다 음]</a>
+					<a href="../classlist/bestlist.do?nowPage=${PINFO.endPage + 1}">[▶]</a>
 				</c:if>
-				<a href="../classlist/classSearch.do?nowPage=${PINFO.totalPage}">[마지막]</a>
+				<a href="../classlist/bestlist.do?nowPage=${PINFO.totalPage}">[▶▶]</a>
 			</td>
 		</tr>
 	</table>
