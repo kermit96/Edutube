@@ -23,7 +23,7 @@
 
 	</head>  
 	<body>
-		<form method="POST" id="wfrm">
+		<form method="POST" id="wfrm" enctype="multipart/form-data">
 			<table width="70%" border="1" align="center">
 				<tr>
 					<td>id</td>
@@ -36,6 +36,10 @@
 				<tr>
 					<td>본문</td>
 					<td><textarea id="body" name="body"></textarea></td>
+				</tr>
+				<tr>
+					<td>첨부파일</td>
+					<td><input type="file" name="upfile" id="upfile"></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center"><input type="button" value="write" id="write"></td>
@@ -56,9 +60,7 @@
 			<script>
 			$(document).ready(function(){
 				$("#write").click(function(){
-					alert("클릭했당1");
 					oEditors.getById["body"].exec("UPDATE_CONTENTS_FIELD", []);
-					alert("클릭했당2");
 					$title = $("#title").val();
 					if($title==""){
 						alert("제목을 입력해 주세요.");

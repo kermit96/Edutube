@@ -1,5 +1,6 @@
 package com.wing.mainApp.controller;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+
 import com.wing.mainApp.dao.DownDAO;
 import com.wing.mainApp.data.DownLoadData;
+import com.wing.mainApp.util.FileUtil;
 import com.wing.mainApp.util.PageUtil;
 import com.wing.mainApp.util.StringUtil;
 
@@ -70,11 +73,43 @@ public class DownController {
 	@RequestMapping("/DownLoad/DownWriteProc")
 	public ModelAndView DownWriteProc(DownLoadData data){
 		ModelAndView mv = new ModelAndView();
-		System.out.println("writeProc 왔당");
+		
+		String path="E:\\FileUpload";
+		String oriName ="";
+		String saveName = "";
+		long length= 0;
+		if(!data.upfile.isEmpty()){
+			oriName = data.upfile.getOriginalFilename();
+			saveName = FileUtil.rename(path, oriName);
+			length = data.upfile.getSize();
+			File file = new File(path, saveName);
+			try{
+				data.upfile.transferTo(file);
+			}
+			catch(Exception e) {
+				System.out.println("파일 업로드 실패 = " +e);
+			}
+		}
+		data.len = length;
+		data.oriname = oriName;
+		data.savename = saveName;
+		data.path = path;
+		
+		
 		dDao.insertDown(data);
 		
 		RedirectView rv = new RedirectView("../DownLoad/DownMain.do");
 		mv.setView(rv);
 		return mv;
 	}
+	@RequestMapping("/DownLoad/UploadWrite")
+	public ModelAndView UpLoadWrite(){
+	
+		ModelAndView mv = new ModelAndView();
+		
+		
+		return mv;
+	}
+	
+	
 }

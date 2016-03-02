@@ -51,7 +51,7 @@
 				<jsp:include page="/MenuBar/Top.jsp" flush="false" />
 			</div>
 			<div>
-				a
+				<h1>자료실 입니다</h1>
 			</div>
 			<div id="main">	
 				<div>
@@ -61,10 +61,11 @@
 				<table width="80%" border="1" align="center">
 					<tr>
 						<th width="10%">번호</th>
-						<th width="50%">제목</th>
+						<th width="45%">제목</th>
 						<th width="15%">글쓴이</th>
 						<th width="15%">날짜</th>
 						<th width="10%">조회수</th>
+						<th width="5%">첨부파일</th>
 					</tr>
 				<c:forEach var="temp" items="${LIST}">
 					<tr align="center">
@@ -75,10 +76,15 @@
 						<td>${temp.id}</td>
 						<td>${temp.wdate}</td>
 						<td>0</td>
+						<td align="center">
+	<c:if test="${not empty temp.oriname}">
+				<a href="../FileUpload/FileDownload.dol?oriNo=${temp.no}"><img src="../images/down.gif"></a>	
+	</c:if>			
+				</td>
 					</tr>
 				</c:forEach>
 					<tr>
-						<td colspan="5" align="center"><input type="button" value="write" id="wBtn"><input type="button" value="back" id="lBtn"></td>	
+						<td colspan="6" align="center"><input type="button" value="write" id="wBtn"><input type="button" value="back" id="lBtn"></td>	
 					</tr>
 				</table>
 				</div>

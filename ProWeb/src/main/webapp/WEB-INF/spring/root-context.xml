@@ -23,6 +23,7 @@
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
 	
+	
 	<!--  우리가 만든 DAO 클래스를 DI 기법으로 사용하기 위해서 등록한다.
 	<bean id="sampleDAO" class="com.show.dol.dao.SampleDAO"> 
    		<property name="sqlSessionTemplate" ref="sqlSession" />
