@@ -92,7 +92,7 @@
 	}
 	a.logC:active{
 		text-decoration:none;
-		color:black;
+		color:black; 
 	}
 	a.logC:hover{
 		text-decoration:none;

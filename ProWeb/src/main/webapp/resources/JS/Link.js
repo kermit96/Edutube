@@ -67,7 +67,7 @@
 	
 	/*게시판 테스트를 위해..*/
 	function goTest(){
-		alert('테스트 카테고리');
+		location.href="/edutube/Sch/SchList.do";
 	}
 	
 	
