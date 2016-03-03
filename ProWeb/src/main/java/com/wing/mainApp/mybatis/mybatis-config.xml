@@ -19,7 +19,7 @@
 	<mappers>
 		 		
 		<mapper resource="/com/wing/mainApp/sql/SampleSQL.xml" />	
-		<mapper resource="/com/wing/mainApp/sql/ClassListSQL.xml" />
+		<mapper resource="/com/wing/mainApp/sql/cListSQL.xml" />
 				
 	</mappers>
 

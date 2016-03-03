@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,9 +20,10 @@
 	<script>
 	$(document).ready(function(){
 		$("#wBtn").click(function(){
-			$(location).attr("href", "../cList/classWriteForm.do");
-		});
-	});
+			$("#wfrm").attr("action", "../cList/classWrite.do");
+			$("#wfrm").submit();
+		})
+	})
 	</script>
 	
 	<!--  스타일 -->
@@ -44,50 +44,48 @@
 		}
 	</style>
 </head>
-
-</head>
 <body>
 <div id='EduContainer'>
 	<div id='top'>	
 		<jsp:include page="/MenuBar/Top.jsp" flush="false" />
 	</div>
+	<form method="POST" id="wfrm">
 	<table width="800" border="1" align="center">
 		<tr>
-			<th>강의번호</th>	
+			<th>강의번호</th>
+			<td><input type="text" ></td>
+		</tr>
+		<tr>
 			<th>강의코드</th>
-			<th>제     목</th>	
-			<th>작 성 자</th>	
-			<th>작 성 일</th>	
+			<td><input type="text" ></td>
+		</tr>
+		<tr>
+			<th>제    목</th>
+			<td><input type="text" name="title" id="title"></td>
+		</tr>
+		<tr>
+			<th>본　  문</th>
+			<td><textarea name="body" id="body"></textarea></td>
+		</tr>
+		<tr>
+			<th>작 성 자</th>
+			<td><input type="text" ></td>
+		</tr>
+		<tr>
+			<th>작 성 일</th>
+			<td><input type="text" ></td>
+		</tr>
+		<tr>
 			<th>추 천 수</th>
+			<td><input type="text"></td>
 		</tr>
-		<c:forEach var="temp" items="${LIST}">
-			<tr>
-				<td>${temp.no}</td>
-				<td>${temp.code}</td>
-				<td>${temp.title}</td>
-				<td>${temp.id}</td>
-				<td>${temp.date}</td>
-				<td>${temp.good}</td>
-			</tr>
-		</c:forEach>
 		<tr>
-			<td colspan="6" align="center">
+			<td colspan="2" align="center">
 				<input type="button" value="글작성" id="wBtn">
-			</td>
-		</tr>
-		<tr>
-			<td colspan="6" align="center">
-				<select id="kind" name="kind">
-					<option value="title">제목</option>
-					<option value="body">내용</option>
-					<option value="writer">글쓴이</option>
-					<option value="both">제목+내용</oprion>
-				</select>
-				<input type="text" id="content" name="content">
-				<input type="button" value="검색" id="sBtn">
 			</td>
 		</tr>
 	</table>
 </div>
+</form>
 </body>
 </html>

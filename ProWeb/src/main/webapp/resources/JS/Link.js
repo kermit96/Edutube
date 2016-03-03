@@ -34,6 +34,7 @@
 	/*공지사항*/
 	function goNotice(){
 		alert('공지사항');
+		location.href="/edutube/cList/classList.do"
 	}
 
 	/*강사소개*/
