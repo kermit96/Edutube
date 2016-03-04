@@ -19,6 +19,9 @@
 		function goSCH(){
 			location.href="/edutube/Sch/SchList.do";
 		}
+		function goIntro(){
+			location.href="/edutube/Intro/IntroMain.do";
+		}
 	</script>
 	
 	<!--Never Delete "EduContainer" style tag-->
@@ -66,6 +69,7 @@
 		</div>		
 		<div id="centerPage">
 			<a href="JavaScript:goSCH();">스케쥴</a>
+			<a href="JavaScript:goIntro();">강사소개</a>
 		</div>
 	</div>
 	 
