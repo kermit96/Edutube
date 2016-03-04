@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="smart">
+<!-- 	지금 등록할 게시물의 일련번호를 알아내기 -->
+	<select id="selectMax"	resultType="java.lang.Integer">
+		SELECT
+			NVL(MAX(sm_NO), 0) + 1		AS NO
+		FROM
+			SmartBoard
+	</select>
+<!-- 	게시물 등록하기 -->
+	<insert		id="insertBoard"	parameterType="smdata">
+		INSERT
+		INTO
+			SmartBoard
+		VALUES
+			(#{no}, #{id}, #{title}, #{body}, SYSDATE, SYSDATE, 0, #{pw}, 'Y')
+	</insert>
+<!-- 	첨부 파일 등록하기 -->
+	<insert		id="insertFile"		parameterType="smdata">
+		INSERT
+		INTO
+			SBFile
+		VALUES
+			((SELECT NVL(MAX(sf_NO), 0) + 1 FROM SBFile), #{no}, #{path}, 
+			#{oriname}, #{savename}, #{len}, 0)
+	</insert>
+<!-- 	총 데이터 개수 구하기 질의 -->	
+	<select		id="selectTotal"	resultType="java.lang.Integer">
+		SELECT
+			COUNT(*) AS TOTAL
+		FROM
+			SmartBoard
+		WHERE
+			sm_IsShow = 'Y'
+	</select>
+<!-- 	목록 데이터 검색 질의 
+		그 페이지에서 필요한 개수만 구하도록 하는 방식
+-->	
+	<select		id="selectList"	resultType="smdata"		
+									parameterType="java.util.HashMap">
+		SELECT
+			RNO,
+			sm_NO 		AS no,
+			sm_Writer		AS id,
+			sm_Title		AS title,
+			sm_WDate		AS	wdate,
+			sm_Hit			AS hit
+		FROM 
+			(SELECT
+				rownum AS RNO, t1.*
+			FROM
+				(SELECT * FROM SmartBoard WHERE sm_IsShow='Y' ORDER BY sm_NO DESC) t1)
+		WHERE		
+			RNO BETWEEN #{start} AND #{end}		
+	</select>
+<!-- 	상세보기 질의 -->
+	<select		id="selectView"	resultType="smdata" 
+									parameterType="java.lang.Integer">
+		SELECT
+			sm_NO			AS	no,
+			sm_Writer		AS id,
+			sm_Title		AS title, 
+			sm_Body		AS body, 
+			sm_WDate		AS wdate,
+			sm_MDate		AS mdate,
+			sm_Hit			AS hit
+		FROM
+			SmartBoard
+		WHERE
+			sm_NO = #{no}
+	</select>
+<!-- 	첨부파일 질의 -->
+	<select		id="selectFile"		resultType="smdata"	
+									parameterType="java.lang.Integer">
+		SELECT
+			sf_NO			AS	no,
+			sf_Path		AS path,
+			sf_OriName	AS oriname,
+			sf_SaveName	AS	savename,
+			sf_Length		AS len,
+			sf_DownHit	AS hit
+		FROM
+			SBFile
+		WHERE
+			sm_NO	= #{no}
+	</select>
+<!-- 	이전글 다음글 질의 -->
+	<select		id="selectPreNext"	resultType="java.util.HashMap"
+										parameterType="java.lang.Integer">
+		SELECT
+			*
+		FROM	
+			(SELECT
+				sm_NO,
+				LEAD(sm_NO, 1, 0) OVER(ORDER BY sm_NO DESC) AS NEXTNO,
+				LEAD(sm_Title, 1, 0) OVER(ORDER BY sm_NO DESC) AS NEXTTITLE,
+				LAG(sm_NO, 1, 0) OVER(ORDER BY sm_NO DESC) AS PRENO,
+				LAG(sm_Title, 1, 0) OVER(ORDER BY sm_NO DESC) AS PRETITLE
+			FROM
+				SmartBoard)
+		WHERE
+			sm_No = #{no}
+	</select>
+<!-- 	현재 조회수 알아내기 질의	-->
+	<select		id="selectHit"		resultType="java.lang.String"
+									parameterType="java.lang.String">
+		SELECT
+			sh_Hit		AS HIT
+		FROM
+			SmartBoardHit
+		WHERE
+			sh_ID = #{ID}
+	</select>
+<!-- 	조회수 수정 질의 
+		한번 이상 본사람은 테이블에 그 정보가 있으므로 수정을 해주면 된다.
+-->
+	<update		id="updateHit"	parameterType="java.util.HashMap">
+		UPDATE
+			SmartBoardHit
+		SET
+			sh_Hit	 = #{HIT}
+		WHERE
+			sh_ID = #{ID}
+	</update>
+<!-- 	새로운 조회수 입력 질의 
+		처음본 사람은 테이블에 그 사람에 대한 정보가 없으므로 만들어 주어야 한다.
+-->
+	<insert		id="insertHit"		parameterType="java.util.HashMap">
+		INSERT
+		INTO
+			SmartBoardHit
+		VALUES
+			(#{ID}, #{HIT})
+	</insert>
+<!-- 	실제로 조회수를 증가할 질의 -->
+	<update id="updateBoardHit"	parameterType="java.lang.Integer">
+		UPDATE
+			SmartBoard
+		SET
+			sm_Hit = sm_Hit + 1
+		WHERE
+			sm_NO = #{NO}
+	</update>
+<!-- 	다운로드할 파일 정보 검색 
+		resultType에 Map인 경우에는 반드시 대문자로만 키값을 받아야한다.
+-->
+	<select id="selectFileInfo"	resultType="java.util.HashMap"
+									parameterType="java.lang.Integer">
+		SELECT
+			sf_Path		AS PATH,
+			sf_OriName	AS ORINAME,
+			sf_SaveName	AS SAVENAME
+		FROM
+			SBFile
+		WHERE
+			sf_NO	= #{NO}
+	</select>
+<!-- 	수정/삭제를 위한 정보 얻기 -->
+	<select id="selectPwInfo" 	resultType="smdata"
+									parameterType="java.lang.Integer">
+		SELECT
+			sm_Writer		AS id,
+			sm_Password	AS pw
+		FROM
+			SmartBoard
+		WHERE
+			sm_NO	= #{NO}
+	</select>		
+<!-- 	파일 정보 삭제 질의 -->	
+	<delete id="deleteFile" 	parameterType="java.lang.Integer">
+		DELETE
+		FROM
+			SBFile
+		WHERE
+			sf_NO = #{NO}
+	</delete>
+<!-- 	게시판 수정 질의 -->
+	<update id="updateBoard"	parameterType="smdata">
+		UPDATE
+			SmartBoard
+		SET
+			sm_Title = #{title},
+			sm_Body = #{body},
+			sm_MDate = SYSDATE
+		WHERE
+			sm_NO	= #{oriNo}
+	</update>
+<!-- 	검색하기 질의		-->
+	<select id="selectSearch"	resultType="smdata"
+									parameterType="java.util.HashMap">
+		SELECT
+			sm_NO 		AS no,
+			sm_Writer		AS id,
+			sm_Title		AS title,
+			sm_WDate		AS	wdate,
+			sm_Hit			AS hit
+		FROM 
+			SmartBoard
+		WHERE
+			sm_IsShow = 'Y'
+			<if test="kind eq 'title'">
+				AND sm_Title LIKE '%' || #{CONTENT} || '%'
+			</if>
+			<if test="kind eq 'body'">
+				AND sm_Body LIKE '%' || #{CONTENT} || '%'
+			</if>
+			<if test="kind eq 'writer'">
+				AND sm_Writer LIKE  '%' || #{CONTENT} || '%'
+			</if>
+			<if test="kind eq 'all'">
+				AND (sm_Body LIKE  '%' || #{CONTENT} || '%' OR sm_Title LIKE  '%' || #{CONTENT} || '%')
+			</if>
+	</select>	
+</mapper>
+
+
+
+
+
+
+
+

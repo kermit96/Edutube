@@ -5,7 +5,8 @@ import java.sql.Date;
 import org.springframework.web.multipart.MultipartFile;
 
 public class DownLoadData {
-	public int no;
+	public int upno;
+	public int downno;
 	public String id;
 	public String title;
 	public String body;
@@ -68,12 +69,6 @@ public class DownLoadData {
 	public void setWdate(Date wdate) {
 		this.wdate = wdate;
 	}
-	public int getNo() {
-		return no;
-	}
-	public void setNo(int no) {
-		this.no = no;
-	}
 	public String getTitle() {
 		return title;
 	}
@@ -91,5 +86,17 @@ public class DownLoadData {
 	}
 	public void setIsDeleted(String isDeleted) {
 		this.isDeleted = isDeleted;
+	}
+	public int getUpno() {
+		return upno;
+	}
+	public void setUpno(int upno) {
+		this.upno = upno;
+	}
+	public int getDownno() {
+		return downno;
+	}
+	public void setDownno(int downno) {
+		this.downno = downno;
 	}
 }

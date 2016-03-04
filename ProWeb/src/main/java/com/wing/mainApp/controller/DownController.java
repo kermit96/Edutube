@@ -96,7 +96,8 @@ public class DownController {
 		data.path = path;
 		
 		
-		dDao.insertDown(data);
+			dDao.insertDown(data);
+			dDao.insertUpload(data);
 		
 		RedirectView rv = new RedirectView("../DownLoad/DownMain.do");
 		mv.setView(rv);

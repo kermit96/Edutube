@@ -11,7 +11,7 @@
 	</insert>
 	<select id="getlist"  resultType="dwdata">
 		SELECT
-				down_NO AS no,
+				down_NO AS downno,
 				down_TITLE AS title,
 				mem_ID AS id,
 				down_DATE AS wdate
@@ -30,4 +30,11 @@
 		WHERE
 			down_isdeleted='N'
 	</select>
+	<insert id="udown" parameterType="dwdata">
+		INSERT
+			INTO
+				UpLoad (upload_no,down_no,upload_path,upload_oriname,upload_savename,upload_length)
+			VALUES
+				(#{upno},#{downno},#{path},#{oriname},#{savename},#{len})
+	</insert>
 </mapper>

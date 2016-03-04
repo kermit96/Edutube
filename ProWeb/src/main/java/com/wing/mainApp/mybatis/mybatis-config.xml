@@ -14,13 +14,15 @@
 		<typeAlias alias="String" type="java.lang.String" />
 		<typeAlias alias="Alist" type="java.util.ArrayList" />
 		<typeAlias alias="Hmap" type="java.util.HashMap" />
-		<typeAlias alias="dwdata" type="com.wing.mainApp.data.DownLoadData" />			
+		<typeAlias alias="dwdata" type="com.wing.mainApp.data.DownLoadData" />
+		<typeAlias alias="smdata" type="com.wing.mainApp.data.SmartBoardData" />			
 	</typeAliases>
 	
 	<mappers>
 		 		
 		<mapper resource="/com/wing/mainApp/sql/SampleSQL.xml" />	
-		<mapper resource="/com/wing/mainApp/sql/DownSQL.xml" />		
+		<mapper resource="/com/wing/mainApp/sql/DownSQL.xml" />
+		<mapper resource="/com/wing/mainApp/sql/SmartBoardSQL.xml" />		
 	</mappers>
 
 </configuration>

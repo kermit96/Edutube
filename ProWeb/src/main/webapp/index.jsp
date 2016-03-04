@@ -43,6 +43,7 @@
 	
 	<div id="Main">
 		<p>메인 페이지 입니다.</p>
+		<a href="./Smart/BoardList.do">스마트 게시판</a><br>
 	</div>
 	 
 </div>

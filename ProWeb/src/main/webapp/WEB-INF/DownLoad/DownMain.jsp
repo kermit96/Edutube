@@ -69,16 +69,16 @@
 					</tr>
 				<c:forEach var="temp" items="${LIST}">
 					<tr align="center">
-						<td>${temp.no}</td>
+						<td>${temp.downno}</td>
 						<td>
-							<a href="JavaScript:goDetail(${temp.no}})">${temp.title}</a>
+							<a href="JavaScript:goDetail(${temp.downno}})">${temp.title}</a>
 						</td>
 						<td>${temp.id}</td>
 						<td>${temp.wdate}</td>
 						<td>0</td>
 						<td align="center">
 	<c:if test="${not empty temp.oriname}">
-				<a href="../FileUpload/FileDownload.dol?oriNo=${temp.no}"><img src="../images/down.gif"></a>	
+				<a href="../FileUpload/FileDownload.dol?oriNo=${temp.downno}"><img src="../images/down.gif"></a>	
 	</c:if>			
 				</td>
 					</tr>

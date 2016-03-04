@@ -30,4 +30,7 @@ public class DownDAO {
 			return 0;
 		}
 	}
+	public void insertUpload(DownLoadData data){
+		sqlSession.insert("down.udown",data);
+	}
 }
