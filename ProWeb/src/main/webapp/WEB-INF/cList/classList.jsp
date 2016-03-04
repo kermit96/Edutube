@@ -63,11 +63,11 @@
 		<c:forEach var="temp" items="${LIST}">
 			<tr>
 				<td>${temp.no}</td>
-				<td>${temp.code}</td>
+				<td>aaa</td>
 				<td>${temp.title}</td>
-				<td>${temp.id}</td>
-				<td>${temp.date}</td>
-				<td>${temp.good}</td>
+				<td>aaa</td>
+				<td>aaa</td>
+				<td>aaa</td>
 			</tr>
 		</c:forEach>
 		<tr>
@@ -81,7 +81,7 @@
 					<option value="title">제목</option>
 					<option value="body">내용</option>
 					<option value="writer">글쓴이</option>
-					<option value="both">제목+내용</oprion>
+					<option value="both">제목+내용</option>
 				</select>
 				<input type="text" id="content" name="content">
 				<input type="button" value="검색" id="sBtn">

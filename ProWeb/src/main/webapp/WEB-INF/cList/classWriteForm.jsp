@@ -57,7 +57,7 @@
 		</tr>
 		<tr>
 			<th>강의코드</th>
-			<td><input type="text" ></td>
+			<td><input type="text" disabled></td>
 		</tr>
 		<tr>
 			<th>제    목</th>
@@ -69,15 +69,15 @@
 		</tr>
 		<tr>
 			<th>작 성 자</th>
-			<td><input type="text" ></td>
+			<td><input type="text" disabled></td>
 		</tr>
 		<tr>
 			<th>작 성 일</th>
-			<td><input type="text" ></td>
+			<td><input type="text" disabled></td>
 		</tr>
 		<tr>
 			<th>추 천 수</th>
-			<td><input type="text"></td>
+			<td><input type="text" disabled></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center">

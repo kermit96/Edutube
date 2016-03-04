@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="clist">
-	<!-- <insert id="classinsert" parameterType="cListData">
+	<select id="gettotal" resultType="java.lang.Integer">
+		SELECT
+			COUNT(*) AS TOTAL
+		FROM
+			class
+	</select>
+	<insert id="classinsert" parameterType="cListData">
 		INSERT
 		INTO
 			class
 		VALUES
-			((SELECT NVL(MAX(class_no),0)+ 1 FROM class),
-			#{no}, #{code}, #{title}, #{body}, ${id}, SYSDATE, 0)
-	</insert> -->
+			((SELECT NVL(MAX(no), 0) + 1 FROM class),#{title},#{body})
+	</insert>
+	<select id="getlist" resultType="cListData">
+		SELECT
+			no	AS no,
+			title	AS title,
+			body	AS body
+		FROM
+			class
+		ORDER BY
+			no DESC
+	</select>
 </mapper>

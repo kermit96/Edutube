@@ -1,5 +1,7 @@
 package com.wing.mainApp.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +13,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.wing.mainApp.dao.cDAO;
 import com.wing.mainApp.data.cListData;
+import com.wing.mainApp.util.PagingUtil;
 import com.wing.mainApp.util.StringUtil;
 
 @Controller
@@ -32,6 +35,27 @@ public class cListController {
 		else {
 			nowPage = Integer.parseInt(strPage);
 		}
+			
+		int	total = lDao.getTotal(1);
+		PagingUtil	pInfo = new PagingUtil(nowPage, total, 5, 5);
+		pInfo.pagingProc();
+		
+		ArrayList	list = lDao.getClassList();
+		
+		int	start = (pInfo.nowPage -1) * pInfo.onePageCount;
+		int	end = start + pInfo.onePageCount -1;
+		if(end >= list.size()) {
+			end = list.size() -1;
+		}
+		
+		ArrayList	result = new ArrayList();
+		for(int i = start; i <= end; i++) {
+			cListData	temp = (cListData)list.get(i);
+			result.add(temp);
+		}
+		
+		mv.addObject("PINFO", pInfo);
+		mv.addObject("LIST", result);
 		
 		mv.setViewName("cList/classList");
 		return mv;

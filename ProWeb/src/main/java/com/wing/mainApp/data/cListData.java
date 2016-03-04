@@ -12,6 +12,7 @@ public class cListData {
 	public int oriNo;
 	public Date date;
 	public String lang;
+	public String code;
 	public int getNo() {
 		return no;
 	}
@@ -65,6 +66,12 @@ public class cListData {
 	}
 	public void setLang(String lang) {
 		this.lang = lang;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 	
 }
