@@ -153,10 +153,13 @@ Monthly 2.0.5 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 
 			// Events
 			if (options.mode == 'event') {
+				
 				// Remove previous events
 				// Add Events
 				$.get(''+options.xmlUrl+'', function(d){
+					
 					$(d).find('event').each(function(){
+						
 						// Year [0]   Month [1]   Day [2]
 						var fullstartDate = $(this).find('startdate').text(),
 							startArr = fullstartDate.split("-"),

@@ -67,7 +67,7 @@
 	
 	/*게시판 테스트를 위해..*/
 	function goTest(){
-		location.href="/edutube/Sch/SchList.do";
+		location.href="/edutube/Sch/debugList.do";
 	}
 	
 	
