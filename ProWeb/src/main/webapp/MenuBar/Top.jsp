@@ -24,6 +24,17 @@
 	function testLogin() {
 		location.href = "/edutube/testLogin.do";
 	}
+	function SearchOnKey()
+	{
+	     if(event.keyCode == 13)
+	     {
+	          alert('엔터쳐서 검색창 실행됫다');
+	          /* goSearch(); */
+	     }
+	     
+	     
+	}
+	
 </script>
 
 <!--  Style -->
@@ -129,7 +140,7 @@ a.logC:hover {
 
 		<div id="searchcontainer">
 			<div id="searchBar">
-				<form id="searchFrm" name="searchFrm">
+				<form id="searchFrm" name="searchFrm" onKeyDown="JavaScript:SearchOnKey();">
 					<input type="text" id="searchBox"> <a
 						href="JavaScript:goSearch()"><img
 						src="/edutube/resources/img/searchBtn.png"></a>
@@ -150,6 +161,7 @@ a.logC:hover {
 							<option>Kor</option>
 							<option>Eng</option>
 							<option>Japan</option>
+							<option></option>
 						</select>
 					</div>
 				</c:if>

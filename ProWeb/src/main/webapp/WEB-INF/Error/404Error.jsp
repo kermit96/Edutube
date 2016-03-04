@@ -14,8 +14,8 @@
 	<link rel="icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
 	
 	<!--CSS-->
-	<link rel="stylesheet" href="/edutube/resources/CSS/bootstrap.min.css">
-
+	<link rel="stylesheet" href="/edutube/resources/CSS/customB.css">
+	 <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
 	<!--JS-->
 	
 	<!--CustomScript-->
@@ -92,14 +92,14 @@
 					<p>Invalid request or incorrect address.</p>
 				</div>
 				
-				<div id="utilB">
-					<button id="home" name="home" class="btn btn-inverse" onClick="JavaScript:reHome();">MainHome</button>
+				<div id="utilB">		
+					<a class="button button-blue" onClick="JavaScript:reHome();"><i class="fa fa-globe"></i>Main <strong>Home</strong></a>
 				</div>
 							
 			</div>
 		</div>						
 	</div>
-a
+
 </body>
 </html>
 
