@@ -14,12 +14,13 @@
 		<typeAlias alias="String" type="java.lang.String" />
 		<typeAlias alias="Alist" type="java.util.ArrayList" />
 		<typeAlias alias="Hmap" type="java.util.HashMap" />		
+		<typeAlias alias="cListData" type="com.wing.mainApp.data.cListData" />
 	</typeAliases>
 	
 	<mappers>
 		 		
 	<mapper resource="/com/wing/mainApp/sql/SampleSQL.xml" /> 	
-				
+		<mapper resource="/com/wing/mainApp/sql/cListSQL.xml" />
 	</mappers>
 
 </configuration>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="classlist">
+
+<!-- 	<select id="gettotal" resultType="java.lang.Integer">
+		SELECT
+			COUNT(*) AS TOTAL
+		FROM
+			class	
+	</select>
+	
+	
+ <select id="classview" resultType="cdata" parameterType="java.lang.Integer">
+		SELECT
+			class_no			AS NO,
+			sub_code		AS CODE,
+			mem_id		AS ID,
+			class_Title		AS TITLE,
+			class_Body		AS BODY,
+			class_Date		AS DATE,
+			class_good			AS GOOD,
+			class_lang		AS	LANG,
+			class_cDate		AS cDATE
+		FROM
+			class
+		WHERE
+					class_No = #{NO}
+			AND	mem_id = nem_id
+	</select> -->
+</mapper>

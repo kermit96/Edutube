@@ -27,7 +27,8 @@
 	
 	/*홈페이지 소개*/
 	function goHomeIntro(){
-		alert('홈페이지 소개');
+//		alert('홈페이지 소개');
+		location.href="/edutube/Info/infomain.do";
 	}
 	
 	/*공지사항*/
@@ -42,7 +43,8 @@
 	
 	/*강의목록*/
 	function goClasses(){
-		alert('강의목록');
+//		alert('강의목록');
+		location.href="/edutube/cList/classList.do"
 	}
 	
 	/*자료실*/

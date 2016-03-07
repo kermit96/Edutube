@@ -118,13 +118,5 @@ public class PagingUtil {
 		this.pageNum = pageNum;
 	}
 	
-
-	
 	
 }
-
-
-
-
-
-
