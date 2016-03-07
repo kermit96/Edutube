@@ -4,34 +4,28 @@ import javax.servlet.http.HttpSession;
 
 public class SessionUtil {
 	/*
-	 * ������ �ִ��� ���θ� �Ǵ��� �ִ� �Լ�
+	 * 세션이 있는지 여부를 판단해주는 함수
 	 */
-	public static boolean isSession(HttpSession session){
-		if(StringUtil.isNull((String)session.getAttribute("ID"))){
+	public static boolean isSession(HttpSession session) {
+		if (StringUtil.isNull((String) session.getAttribute("ID"))) {
 			return false;
-		}
-		else{
+		} else {
 			return true;
 		}
 	}
-	
-	public static boolean isAdmin(HttpSession session){
-		if(session.getAttribute("NAL").equals("A")){
+
+	/*
+	 * 관리자 인지 여부를 판단해주는 함수
+	 */
+	public static boolean isAdmin(HttpSession session) {
+		if (session.getAttribute("NAL").equals("A")) {
 			return true;
-		}
-		else{
+		} 
+		else {
 			return false;
-		}		
-	}
-	
-	public static boolean isLecturer(HttpSession session){
-		if(session.getAttribute("NAL").equals("L")){
-			return true;
 		}
-		else{
-			return false;
-		}		
+		/*
+		 * N : 그냥 회원 	A : 관리자 	L : 강사
+		 */
 	}
-	
-	
 }
