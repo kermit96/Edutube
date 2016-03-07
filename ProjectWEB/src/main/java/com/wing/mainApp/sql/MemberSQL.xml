@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+	<!-- 	로그인 질의 명령
+				질의 명령의 결과를 어떤 방식으로 받을지
+				질의 명령을 실행할 때 필요한 데이터를 어떤 형태로 제공할지
+	 -->
+	<select id="loginproc" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+		SELECT
+			mem_Id			AS		ID,
+			mem_Name	AS		NAME,
+			mem_Nick		AS		NICK
+		FROM
+			Members
+		WHERE
+				mem_ID = #{ID}
+		AND	mem_Pass = #{PW}
+	</select>
+</mapper>

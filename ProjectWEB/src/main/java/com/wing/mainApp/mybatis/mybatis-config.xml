@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "HTTP://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="false" />
+		<setting name="useGeneratedKeys" value="true" />
+		<setting name="defaultExecutorType" value="REUSE" />
+	</settings>
+
+	<typeAliases>
+		<!-- 이안에는SQL 이사용할데이터타입의별칭을등록한다. -->
+		<typeAlias alias="int" type="java.lang.Integer" />
+		<typeAlias alias="String" type="java.lang.String" />
+		<typeAlias alias="Alist" type="java.util.ArrayList" />
+		<typeAlias alias="Hmap" type="java.util.HashMap" />
+		
+		
+		
+		<typeAlias alias="cbdata" type="com.wing.mainApp.data.BoardData" />
+		
+	</typeAliases>
+
+	<mappers>
+		<!-- 이안에는사용할SQL 의xml 파일을등록한다. <mapper resource="/com/show/dol/sql/~~~.xml" /> -->
+	 	<mapper resource="/com/wing/mainApp/sql/BoardSQL.xml" />
+	 	<mapper resource="/com/wing/mainApp/sql/MemberSQL.xml" />
+		
+	</mappers>
+
+</configuration>
