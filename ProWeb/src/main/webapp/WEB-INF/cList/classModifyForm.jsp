@@ -19,11 +19,11 @@
 	<!--스크립트-->
 	<script>
 	$(document).ready(function(){
-		$("#wBtn").click(function(){
-			$("#wfrm").attr("action", "../cList/classWrite.do");
-			$("#wfrm").submit();
-		})
-	})
+		$("#mBtn").click(function(){
+			$("#mfrm").attr("action", "../cList/classModify.do");
+			$("#mfrm").submit();
+		});
+	});
 	</script>
 	
 	<!--  스타일 -->
@@ -49,11 +49,12 @@
 	<div id='top'>	
 		<jsp:include page="/MenuBar/Top.jsp" flush="false" />
 	</div>
-	<form method="POST" id="wfrm">
+	<form method="POST" id="mfrm">
+	<input type="hidden" name="nowPage" value="${NOWPAGE}">
 	<table width="800" border="1" align="center">
 		<tr>
 			<th>강의번호</th>
-			<td><input type="text" disabled></td>
+			<td><input type="text" value="${DATA.no}" disabled></td>
 		</tr>
 		<tr>
 			<th>강의코드</th>
@@ -61,11 +62,11 @@
 		</tr>
 		<tr>
 			<th>제    목</th>
-			<td><input type="text" name="title" id="title"></td>
+			<td><input type="text" name="title" id="title" value="${DATA.title}"></td>
 		</tr>
 		<tr>
 			<th>본　  문</th>
-			<td><textarea name="body" id="body"></textarea></td>
+			<td><textarea name="body" id="body" value="${DATA.body}"></textarea></td>
 		</tr>
 		<tr>
 			<th>작 성 자</th>
@@ -81,12 +82,11 @@
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-				<input type="button" value="글작성" id="wBtn">
+				<input type="button" value="수정" id="mBtn">
 			</td>
 		</tr>
 	</table>
 </form>
 </div>
-
 </body>
 </html>

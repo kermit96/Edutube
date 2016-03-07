@@ -1,6 +1,7 @@
 package com.wing.mainApp.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -78,6 +79,102 @@ public class cListController {
 		lDao.insertclass(data);
 		
 		RedirectView	rv = new RedirectView("../cList/classList.do");
+		mv.setView(rv);
+		return mv;
+	}
+	// 상세
+	@RequestMapping("/cList/classView")
+	public ModelAndView classView(HttpServletRequest req, cListData data){
+		ModelAndView	mv = new ModelAndView();
+		
+		String	strNo = req.getParameter("oriNo");
+		int	oriNo = Integer.parseInt(strNo);
+		String	strPage = req.getParameter("nowPage");
+		int	nowPage = Integer.parseInt(strPage);
+		String	kind = req.getParameter("flag");
+		
+		cListData map = lDao.selectView(oriNo);
+		
+		mv.addObject("DATA", map);
+		mv.addObject("NOWPAGE", nowPage);
+		mv.addObject("KIND", kind);
+		mv.setViewName("cList/classView");
+		return mv;
+	}
+	// 삭제
+	@RequestMapping("/cList/classDelete.do")
+	public ModelAndView classDelete(HttpServletRequest req){
+		ModelAndView	mv = new ModelAndView();
+		
+		String strPage = req.getParameter("nowPage");
+		String	strNo = req.getParameter("oriNo");
+		int	nowPage = Integer.parseInt(strPage);
+		int	oriNo = Integer.parseInt(strNo);
+		
+		HashMap	map = new HashMap();
+		map.put("NO",  oriNo);
+		int cnt	= lDao.isUpdate(map);
+		if(cnt == 0) {
+			RedirectView rv = new RedirectView("../cList/classView.do");
+			rv.addStaticAttribute("oriNo", oriNo);
+			rv.addStaticAttribute("nowPage", nowPage);
+			return mv;
+		}
+		else {
+			lDao.deleteclass(oriNo);
+		}
+		RedirectView	rv = new RedirectView("../cList/classList.do");
+		mv.setView(rv);
+		
+		return mv;
+	}
+	// 수정하기 폼 요청
+	@RequestMapping("/cList/classModifyForm.do")
+	public ModelAndView classModifyForm(HttpServletRequest req, cListData data){
+		ModelAndView	mv = new ModelAndView();
+		
+//		String strPage = req.getParameter("nowPage");
+		String strNo = req.getParameter("oriNo");
+//		System.out.println(strPage);
+//		
+//		int nowPage = Integer.parseInt(strPage);
+		int	oriNo = Integer.parseInt(strNo);
+		data.no = oriNo;
+		System.out.println(oriNo);
+		System.out.println(data.oriNo);
+		System.out.println(data.no);
+		
+		
+		HashMap	map = new HashMap();
+		map.put("NO", oriNo);
+		int cnt = lDao.isUpdate(map);
+		cListData	result = new cListData();
+		if(cnt == 0) {
+			RedirectView	rv = new RedirectView("../cList/classView.do");
+			rv.addStaticAttribute("oriNo", oriNo);
+//			rv.addStaticAttribute("nowPage", nowPage);
+			mv.setView(rv);
+			return mv;
+		}
+		else {
+			result = lDao.selectView(oriNo);
+		}
+		
+		mv.addObject("DATA", result);
+//		mv.addObject("NOWPAGE", nowPage);
+		mv.setViewName("cList/classModifyForm");
+		return mv;
+	}
+	// 수정
+	@RequestMapping("/cList/classModify")
+	public ModelAndView	classModify(cListData data) {
+		ModelAndView	mv = new ModelAndView();
+		
+		lDao.updateclass(data);
+		
+		RedirectView	rv = new RedirectView("../cList/classView.do");
+		rv.addStaticAttribute("oriNo", data.no);
+//		rv.addStaticAttribute("nowPage", data.nowPage);
 		mv.setView(rv);
 		return mv;
 	}

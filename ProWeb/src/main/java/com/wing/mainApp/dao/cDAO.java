@@ -1,6 +1,7 @@
 package com.wing.mainApp.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import com.wing.mainApp.data.cListData;
 public class cDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
-	
+	// 총데이터 수 구하기 요청
 	public int getTotal(int kind) {
 		//	DAO 함수의 매개변수는 parameterType하고는 전혀 무관하다.
 		//	다만 그 질의를 실행하기 위해서 필요한 모든 데이터를 넘겨주는 역활을 한다.
@@ -30,13 +31,29 @@ public class cDAO {
 			return 0;
 		}
 	}
-	
+	// 게시물등록 요청
 	public void insertclass(cListData data) {
 		sqlSession.insert("clist.classinsert", data);
 	}
+	// 목록보기 요청
 	public ArrayList getClassList() {
 		ArrayList	result = (ArrayList)sqlSession.selectList("clist.getlist");
 		return result;
 	}
-
+	// 상세보기 요청
+	public cListData selectView(int NO) {
+		return sqlSession.selectOne("clist.classview", NO);
+	}
+	// 수정 삭제 요청
+	public int isUpdate(HashMap map) {
+		return sqlSession.selectOne("clist.isupdate", map);
+	}
+	// 삭제 함수
+	public void deleteclass(int NO) {
+		sqlSession.update("clist.deleteclass", NO);
+	}
+	// 수정 함수
+	public void updateclass(cListData data) {
+		sqlSession.update("clist.updateclass", data);
+	}
 }

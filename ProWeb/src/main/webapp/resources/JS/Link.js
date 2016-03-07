@@ -33,7 +33,7 @@
 	
 	/*공지사항*/
 	function goNotice(){
-		location.href="/edutube/cList/classList.do"
+		alert('공지사항');
 	}
 
 	/*강사소개*/
@@ -44,7 +44,7 @@
 	/*강의목록*/
 	function goClasses(){
 //		alert('강의목록');
-		location.href="/edutube/classlist/classmain.do";
+		location.href="/edutube/cList/classList.do"
 	}
 	
 	/*자료실*/

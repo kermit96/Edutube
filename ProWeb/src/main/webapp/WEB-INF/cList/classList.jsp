@@ -19,6 +19,9 @@
  	
 	<!--스크립트-->
 	<script>
+	function Detail(orino) {
+		$(location).attr("href", "../cList/classView.do?nowPage=${PINFO.nowPage}&oriNo="+ orino + "&flag=L");
+	}
 	$(document).ready(function(){
 		$("#wBtn").click(function(){
 			$(location).attr("href", "../cList/classWriteForm.do");
@@ -64,7 +67,9 @@
 			<tr>
 				<td>${temp.no}</td>
 				<td>aaa</td>
-				<td>${temp.title}</td>
+				<td>
+				<a href="JavaScript:Detail(${temp.no})">${temp.title}</a>
+				</td>
 				<td>aaa</td>
 				<td>aaa</td>
 				<td>aaa</td>
@@ -85,6 +90,30 @@
 				</select>
 				<input type="text" id="content" name="content">
 				<input type="button" value="검색" id="sBtn">
+			</td>
+		</tr>
+	</table>
+	<!-- 	페이지 이동 기능 -->
+	<table border="1" align="center" width="800">
+		<tr>
+			<td align="center">
+				<a href="../cList/classList.do?nowPage=1">[◀◀]</a>
+				<c:if test="${pInfo.startPage eq 1}">
+					[◀]
+				</c:if>
+				<c:if test="${pInfo.startPage ne 1}">
+					<a href="../cList/classList.do?nowPage=${pInfo.startPage - 1}">[◀]</a>
+				</c:if>
+				<c:forEach var="temp" begin="${pInfo.startPage}" end="${pInfo.endPage}">
+					<a href="../cList/classList.do?nowPage=${temp}">[ ${temp} ]</a>
+				</c:forEach>
+				<c:if test="${pInfo.endPage eq pInfo.totalNum}">
+					[▶]
+				</c:if>
+				<c:if test="${pInfo.endPage ne pInfo.totalNum}">
+					<a href="../cList/classList.do?nowPage=${pInfo.endPage + 1}">[▶]</a>
+				</c:if>
+				<a href="../cList/classList.do?nowPage=${pInfo.totalNum}">[▶▶]</a>
 			</td>
 		</tr>
 	</table>
