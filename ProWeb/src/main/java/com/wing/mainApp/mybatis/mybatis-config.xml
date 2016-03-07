@@ -15,11 +15,14 @@
 		<typeAlias alias="Alist" type="java.util.ArrayList" />
 		<typeAlias alias="Hmap" type="java.util.HashMap" />		
 		<typeAlias alias="cListData" type="com.wing.mainApp.data.cListData" />
+		<typeAlias alias="schData" type="com.wing.mainApp.data.ScheduleData" />				
+
 	</typeAliases>
 	
 	<mappers>
 		 		
-	<mapper resource="/com/wing/mainApp/sql/SampleSQL.xml" /> 	
+		<mapper resource="/com/wing/mainApp/sql/SampleSQL.xml" />
+		<mapper resource="/com/wing/mainApp/sql/ScheduleSQL.xml" />
 		<mapper resource="/com/wing/mainApp/sql/cListSQL.xml" />
 	</mappers>
 

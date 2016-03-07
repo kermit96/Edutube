@@ -15,5 +15,23 @@ public class SessionUtil {
 		}
 	}
 	
+	public static boolean isAdmin(HttpSession session){
+		if(session.getAttribute("NAL").equals("A")){
+			return true;
+		}
+		else{
+			return false;
+		}		
+	}
+	
+	public static boolean isLecturer(HttpSession session){
+		if(session.getAttribute("NAL").equals("L")){
+			return true;
+		}
+		else{
+			return false;
+		}		
+	}
+	
 	
 }
