@@ -43,6 +43,12 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+		<!-- 채팅 소켓 설정 -->
+		<dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-websocket</artifactId>
+          <version>4.1.6.RELEASE</version>
+      </dependency>
 				
 		<!-- AspectJ -->
 		<dependency>

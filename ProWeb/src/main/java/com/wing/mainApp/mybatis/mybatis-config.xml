@@ -13,9 +13,11 @@
 		<typeAlias alias="int" type="java.lang.Integer" />
 		<typeAlias alias="String" type="java.lang.String" />
 		<typeAlias alias="Alist" type="java.util.ArrayList" />
+
 		<typeAlias alias="Hmap" type="java.util.HashMap" />		
 		<typeAlias alias="cListData" type="com.wing.mainApp.data.cListData" />
 		<typeAlias alias="schData" type="com.wing.mainApp.data.ScheduleData" />				
+		<typeAlias alias="dwdata" type="com.wing.mainApp.data.DownLoadData" />	
 
 	</typeAliases>
 	
@@ -24,6 +26,7 @@
 		<mapper resource="/com/wing/mainApp/sql/SampleSQL.xml" />
 		<mapper resource="/com/wing/mainApp/sql/ScheduleSQL.xml" />
 		<mapper resource="/com/wing/mainApp/sql/cListSQL.xml" />
+		<mapper resource="/com/wing/mainApp/sql/DownSQL.xml" />	
 	</mappers>
 
 </configuration>
