@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "HTTP://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="false" />
+		<setting name="useGeneratedKeys" value="true" />
+		<setting name="defaultExecutorType" value="REUSE" />
+	</settings>
+	<typeAliases>
+		<!-- 	이 안에는 SQL이 사용할 데이터 타입의 별칭을 등록한다. -->
+		<typeAlias alias="ndata" type="com.wing.mainApp.data.NoticeData" /> 
+		<typeAlias alias="smdata" type="com.wing.mainApp.data.SmartBoardData" />
+		<typeAlias alias="fudata" type="com.wing.mainApp.data.FileUploadData" />
+		<typeAlias alias="gcate"  type="com.wing.mainApp.data.GoodsCateData" />
+		<typeAlias alias="idata" type="com.wing.mainApp.data.IntroInfoData" />
+		<typeAlias alias="gdata" type="com.wing.mainApp.data.GoodsInfoData" />
+		<typeAlias alias="cartdata" type="com.wing.mainApp.data.GoodsCartData" />
+	</typeAliases>
+	<mappers>
+		<!-- 	이 안에는 사용할 SQL의 xml 파일을 등록한다. -->
+	 	 	<mapper resource="/com/wing/mainApp/sql/SampleSQL.xml" />
+	        <mapper resource="/com/wing/mainApp/sql/NoticeSQL.xml" />
+			<mapper resource="/com/wing/mainApp/sql/SmartBoardSQL.xml" />
+		    <mapper resource="/com/wing/mainApp/sql/FileUploadSQL.xml" />			
+			<mapper resource="/com/wing/mainApp/sql/GoodsManagerSQL.xml" />
+			<mapper resource="/com/wing/mainApp/sql/IntroInfoSQL.xml" />
+		    <mapper resource="/com/wing/mainApp/sql/GoodsCartSQL.xml" />
+		    
+	</mappers>
+</configuration>
+
