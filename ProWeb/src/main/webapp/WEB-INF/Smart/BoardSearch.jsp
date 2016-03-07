@@ -1,57 +1,57 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Insert title here</title>
-<!-- 	jquery ¶óÀÌºê·¯¸® ¼³Ä¡ -->
+<!-- 	jquery ë¼ì´ë¸ŒëŸ¬ë¦¬ ì„¤ì¹˜ -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>		
 		<script>
 			$(document).ready(function(){
 				$("#wBtn").click(function(){
-					$(location).attr("href", "../Smart/BoardWriteForm.dol");
+					$(location).attr("href", "../Smart/BoardWriteForm.do");
 				});
 				$("#sBtn").click(function(){
-					//	¼­¹ö·Î º¸³»¸é µÈ´Ù.
-					$("#sFrm").attr("action", "../Smart/BoardSearch.dol");
+					//	ì„œë²„ë¡œ ë³´ë‚´ë©´ ëœë‹¤.
+					$("#sFrm").attr("action", "../Smart/BoardSearch.do");
 					$("#sFrm").submit();
 				});
 			});
 		</script>
 	</head>
 	<body>
-<!-- 	°Ë»ö ±â´É Æû -->
+<!-- 	ê²€ìƒ‰ ê¸°ëŠ¥ í¼ -->
 		<form method="POST" id="sFrm">
 			<table border="1" width="80%" align="center">
 				<tr>
 					<td>
 						<select id="kind" name="kind">
-							<option value="title">Á¦¸ñ</option>
-							<option value="body">º»¹®</option>
-							<option value="writer">±Û¾´ÀÌ</option>
-							<option value="all">Á¦¸ñ + º»¹®</option>
+							<option value="title">ì œëª©</option>
+							<option value="body">ë³¸ë¬¸</option>
+							<option value="writer">ê¸€ì“´ì´</option>
+							<option value="all">ì œëª© + ë³¸ë¬¸</option>
 						</select>
 						<input type="text" id="content" name="content">
-						<input type="button" value="°Ë»ö" id="sBtn">
+						<input type="button" value="ê²€ìƒ‰" id="sBtn">
 					</td>
 				</tr>
 			</table>
 		</form>
-<!-- 	¸ñ·Ï º¸¿©ÁÖ±â -->
+<!-- 	ëª©ë¡ ë³´ì—¬ì£¼ê¸° -->
 		<table border="1" width="80%" align="center">
 			<tr>
-				<th>¹øÈ£</th>
-				<th>Á¦¸ñ</th>
-				<th>±Û¾´ÀÌ</th>
-				<th>ÀÛ¼ºÀÏ</th>
-				<th>Á¶È¸¼ö</th>
+				<th>ë²ˆí˜¸</th>
+				<th>ì œëª©</th>
+				<th>ê¸€ì“´ì´</th>
+				<th>ì‘ì„±ì¼</th>
+				<th>ì¡°íšŒìˆ˜</th>
 			</tr>
 <c:forEach		var="temp" items="${LIST}">
 			<tr>
 				<td>${temp.no}</td>
 				<td>
-					<a href="../Smart/BoardHit.dol?nowPage=${PINFO.nowPage}&kind=L&oriNo=${temp.no}">${temp.title}</a>
+					<a href="../Smart/BoardHit.do?nowPage=${PINFO.nowPage}&kind=L&oriNo=${temp.no}">${temp.title}</a>
 				</td>
 				<td>${temp.id}</td>
 				<td>${temp.wdate}</td>
@@ -59,12 +59,12 @@
 			</tr>
 </c:forEach>
 		</table>
-<!-- 	ÆäÀÌÁö ÀÌµ¿ ±â´É -->
-<!-- 	±âÅ¸ ºÎ°¡ ±â´É -->
+<!-- 	í˜ì´ì§€ ì´ë™ ê¸°ëŠ¥ -->
+<!-- 	ê¸°íƒ€ ë¶€ê°€ ê¸°ëŠ¥ -->
 		<table border="1" width="80%" align="center">
 			<tr>
 				<td align="center">
-					<input type="button" id="wBtn" value="±Û¾²±â">
+					<input type="button" id="wBtn" value="ê¸€ì“°ê¸°">
 				</td>
 			</tr>
 		</table>

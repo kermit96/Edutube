@@ -1,26 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Insert title here</title>
 		</head>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 		<script src="../se2/js/HuskyEZCreator.js" charset="utf-8"></script>
 		<script>
 			$(document).ready(function(){
-				$count = 0;		//	Ãß°¡µÉ ¾÷·Îµå ÆûÀÇ ÀÏ·Ã¹øÈ£¸¦ ºÎ¿©ÇÒ º¯¼ö
+				$count = 0;		//	ì¶”ê°€ë  ì—…ë¡œë“œ í¼ì˜ ì¼ë ¨ë²ˆí˜¸ë¥¼ ë¶€ì—¬í•  ë³€ìˆ˜
 				$("#aBtn").click(function(){
-					//	ÇÒÀÏ
-					//		°­Á¦·Î ÆÄÀÏ ¾÷·Îµå ÆûÀ» ¸¸µé¾î¼­ 
+					//	í• ì¼
+					//		ê°•ì œë¡œ íŒŒì¼ ì—…ë¡œë“œ í¼ì„ ë§Œë“¤ì–´ì„œ 
 					$html = "<tr id='fpos"+ ($count + 1) +"'>";
-					$html += "<td>ÆÄÀÏÃ·ºÎ</td>";
+					$html += "<td>íŒŒì¼ì²¨ë¶€</td>";
 					$html += "<td><input type='file' name='upfile'></td>";
 					$html += "</tr>";
-					//		Æû¿¡ Ãß°¡ÇÑ´Ù.
+					//		í¼ì— ì¶”ê°€í•œë‹¤.
 					$("#fpos" + $count).after($html);
-					//		¾ÆÀÌµğ·Î »ç¿ëÇÒ ÀÏ·Ã¹øÈ£¸¦ Áõ°¡ÇÑ´Ù.
+					//		ì•„ì´ë””ë¡œ ì‚¬ìš©í•  ì¼ë ¨ë²ˆí˜¸ë¥¼ ì¦ê°€í•œë‹¤.
 					$count = $count + 1;
 				});
 				$("#dBtn").click(function(){
@@ -31,38 +31,38 @@
 					$count = $count - 1;
 				});
 				$("#mBtn").click(function(){
-					//	½ºÅ²¿¡ ÀÖ´Â ³»¿ëÀ» ÅØ½ºÆ®¿¡¸®¾î¿¡ ¹İ¿µÇØ¾ß ÇÏ°í.....				
+					//	ìŠ¤í‚¨ì— ìˆëŠ” ë‚´ìš©ì„ í…ìŠ¤íŠ¸ì—ë¦¬ì–´ì— ë°˜ì˜í•´ì•¼ í•˜ê³ .....				
 					oEditors.getById["body"].exec("UPDATE_CONTENTS_FIELD", []);
-					//	¹«°á¼º °Ë»çÇÏ°í
-					$("#frm").attr("action", "../Smart/BoardModify.dol");
+					//	ë¬´ê²°ì„± ê²€ì‚¬í•˜ê³ 
+					$("#frm").attr("action", "../Smart/BoardModify.do");
 					$("#frm").submit();
 				});
 			});
 		</script>
 		<script>
 			function DeleteFile(no) {
-				//	Ajax¸¦ ÅëÇØ¼­ »èÁ¦¸¦ ¿äÃ»ÇÑ´Ù.
+				//	Ajaxë¥¼ í†µí•´ì„œ ì‚­ì œë¥¼ ìš”ì²­í•œë‹¤.
 				$.ajax({
-					url : "../Smart/BoardFileDelete.dol",
+					url : "../Smart/BoardFileDelete.do",
 					data : "no=" + no + "&temp=" + new Date(),
 					dataType : "json",
 					type : "GET",
 					success : function(data) {
-						//	ÇÒÀÏ
-						//		±× ÆÄÀÏÀÌ Ç¥½ÃµÈ ÁÙÀ» Áö¿î´Ù.
+						//	í• ì¼
+						//		ê·¸ íŒŒì¼ì´ í‘œì‹œëœ ì¤„ì„ ì§€ìš´ë‹¤.
 						$("#files" + no).remove();
 					},
 					error : function(){
-						alert("¿¡·¯´Ù");
+						alert("ì—ëŸ¬ë‹¤");
 					}
 				});				
 			}
 		</script>
 	<body>
-<!-- 	½º¸¶Æ® ¿¡µğÅÍ¸¦ Àû¿ëÇÏ´Â Æûµµ Ã³À½¿¡´Â ¿ø·¡ ¸¸µå´Â ÆûÃ³·³ Á¦ÀÛÇÑ´Ù. 
-		´Ù¸¸ textarea ºÎºĞ¿¡ ½º¸¶Æ® ¿¡µğÅÍ ½ºÅ²À» Àû¿ëÇÏ¸é µÈ´Ù.
-		1.	³×ÀÌ¹ö ½º¸¶Æ® ¿¡µğÅÍ ¶óÀÌºê·¯¸®¸¦ ºÎ¸¥´Ù.
-		2.	textarea¿¡ ½ºÅ²À» ÀÔÈù´Ù.
+<!-- 	ìŠ¤ë§ˆíŠ¸ ì—ë””í„°ë¥¼ ì ìš©í•˜ëŠ” í¼ë„ ì²˜ìŒì—ëŠ” ì›ë˜ ë§Œë“œëŠ” í¼ì²˜ëŸ¼ ì œì‘í•œë‹¤. 
+		ë‹¤ë§Œ textarea ë¶€ë¶„ì— ìŠ¤ë§ˆíŠ¸ ì—ë””í„° ìŠ¤í‚¨ì„ ì ìš©í•˜ë©´ ëœë‹¤.
+		1.	ë„¤ì´ë²„ ìŠ¤ë§ˆíŠ¸ ì—ë””í„° ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ ë¶€ë¥¸ë‹¤.
+		2.	textareaì— ìŠ¤í‚¨ì„ ì…íŒë‹¤.
 -->
 		<form method="POST" id="frm" action="" enctype="multipart/form-data">
 			<input type="hidden" name="nowPage" value="${NOWPAGE}">
@@ -70,11 +70,11 @@
 			<input type="hidden" name="oriNo" value="${ORINO}">
 			<table width="80%" border="1" align="center">
 				<tr>
-					<td>±Û¾´ÀÌ</td>
+					<td>ê¸€ì“´ì´</td>
 					<td><input type="text" id="id" name="id" value="${sessionScope.ID}" disabled></td>
 				</tr>
 				<tr>
-					<td>Á¦¸ñ</td>
+					<td>ì œëª©</td>
 					<td><input type="text" id="title" name="title" value="${DATA.title}"></td>
 				</tr>
 				<tr>
@@ -82,27 +82,27 @@
 				</tr>
 <c:if test="${not empty FILES}">
 	<c:forEach var="temp" items="${FILES}">
-	<!-- 	³ªÁß¿¡ ÀÌ ÁÙÀ» »èÁ¦ÇÒ ¸ñÀûÀ¸·Î id°ªÀ» ºÎ¿©ÇÑ´Ù. -->		
+	<!-- 	ë‚˜ì¤‘ì— ì´ ì¤„ì„ ì‚­ì œí•  ëª©ì ìœ¼ë¡œ idê°’ì„ ë¶€ì—¬í•œë‹¤. -->		
 				<tr id="files${temp.no}">
 					<td colspan="2">
-						${temp.oriname} <input type="button" value="»èÁ¦" OnClick="JavaScript:DeleteFile(${temp.no})">
+						${temp.oriname} <input type="button" value="ì‚­ì œ" OnClick="JavaScript:DeleteFile(${temp.no})">
 					</td>
 				</tr>
 	</c:forEach>
 </c:if>
-<!-- 	»õ·Î¿î ÆÄÀÏ Ã·ºÎ¸¦ À§ÇÑ Á¦ÀÛ 
-		¼öÁ¤ÀÌ¹Ç·Î ÆÄÀÏÀ» ¾÷·ÎµåÇÒÁö ¸ğ¸£±â ¶§¹®¿¡ Ã³À½¿¡´Â ´ÜÃß¸¸ º¸¿©ÁÖ°í
-		ÇÊ¿äÇÏ¸é ÆÄÀÏ ¾÷·Îµå ÆûÀ» Ãß°¡ÇØ¼­ ¾÷·Îµå°¡ °¡´ÉÇÏµµ·Ï ÇÏ°Ú´Ù.
+<!-- 	ìƒˆë¡œìš´ íŒŒì¼ ì²¨ë¶€ë¥¼ ìœ„í•œ ì œì‘ 
+		ìˆ˜ì •ì´ë¯€ë¡œ íŒŒì¼ì„ ì—…ë¡œë“œí• ì§€ ëª¨ë¥´ê¸° ë•Œë¬¸ì— ì²˜ìŒì—ëŠ” ë‹¨ì¶”ë§Œ ë³´ì—¬ì£¼ê³ 
+		í•„ìš”í•˜ë©´ íŒŒì¼ ì—…ë¡œë“œ í¼ì„ ì¶”ê°€í•´ì„œ ì—…ë¡œë“œê°€ ê°€ëŠ¥í•˜ë„ë¡ í•˜ê² ë‹¤.
 -->
 				<tr id="fpos0">
 					<td colspan="2" align="right">
-						<input type="button" value="Ãß°¡" id="aBtn">
-						<input type="button" value="»èÁ¦" id="dBtn">
+						<input type="button" value="ì¶”ê°€" id="aBtn">
+						<input type="button" value="ì‚­ì œ" id="dBtn">
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<input type="button" value="¼öÁ¤ÇÏ±â" id="mBtn">
+						<input type="button" value="ìˆ˜ì •í•˜ê¸°" id="mBtn">
 					</td>
 				</tr>
 			</table>

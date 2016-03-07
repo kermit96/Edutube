@@ -1,57 +1,40 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Insert title here</title>
-		<script type="text/javascript" src="../se2/js/HuskyEZCreator.js" charset="utf-8">
-		</script>
+		<script type="text/javascript" src="/edutube/resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		
 		<script>
 			$(document).ready(function(){
-				$count = 0;	//	Áö±İ±îÁö Á¸ÀçÇÏ´Â Ã·ºÎ ÆÄÀÏÀÇ °³¼ö¸¦ ÁöÁ¤ÇÒ º¯¼ö
-				$("#dBtn").click(function(){
-					//	Ç×»ó ÇÑ°³´Â ³²°ÜµÎ¾î¾ß ÇÏ¹Ç·Î
-					if($count == 0) {
-						return;
-					}
-					//	»èÁ¦´Â Ç×»ó ¸¶Áö¸·¿¡ ¸¸µç ¼ø¼­´ë·Î Áö¿ìµµ·Ï ¾à¼ÓÇÏÀÚ.
-					$("#upload" + $count).remove();
-					//	»èÁ¦°¡ ³¡³µÀ¸¸é Ã·ºÎÆÄÀÏÀÇ °³¼ö°¡ ÁÙ¾úÀ¸¹Ç·Î
-					$count = $count - 1;
-				});
-				$("#aBtn").click(function(){
-					//	ÇÒÀÏ 	Ãß°¡ÇÒ <tr>À» ¸¸µç´Ù.
-					$count = $count + 1;
-					$html = "<tr id='upload"+$count+"'>";
-					$html += "<td>Ã·ºÎÆÄÀÏ</td>";
-					$html += "<td colspan='2'><input type='file' id='up"+ $count +"' name='upfile'></td>";
-					$html += "</tr>";
-					
-					$("#upload").after($html);
-				});
 				$("#wBtn").click(function(){
-					//	¸ÕÀú ½ºÅ²¿¡ ³»¿ëÀ» textarea·Î ¿Å±ä´Ù.
 					oEditors.getById["body"].exec("UPDATE_CONTENTS_FIELD", []);
-					//	ÀÌÁ¦ ¹«°á¼º °Ë»çÇÏ°í...
 					var	body = $("#body").val();
-					
-					$("#frm").attr("action", "../Smart/BoardWrite.dol");
+					alert(body);
+					$("#frm").attr("action", "../Smart/BoardWrite.do");
 					$("#frm").submit();
 				});
 			});
 		</script>
 	</head>
 	<body>
+	<%
+		session.setAttribute("ID","rewg3");
+		session.setAttribute("NICK","nasundol");
+		session.setAttribute("NAME","ë‚˜ì„ ëŒ");
+		session.setAttribute("PASSWORD","asd123");
+	%>
 		<form method="POST" id="frm" action="" enctype="multipart/form-data">
 			<table width="70%" border="1" align="center">
 				<tr>
-					<td>±Û¾´ÀÌ</td>
-					<td colspan="2"><input type="text" name="writer" id="writer" value="${sessionScope.NICK}" disabled>
+					<td>ê¸€ì“´ì´</td>
+					<td colspan="2"><input type="text" name="writer" id="writer" value="${sessionScope.NICK}" disabled></td>
 				</tr>
 				<tr>
-					<td>Á¦¸ñ</td>
-					<td colspan="2"><input type="text" name="title" id="title">
+					<td>ì œëª©</td>
+					<td colspan="2"><input type="text" name="title" id="title"></td>
 				</tr>
 				<tr>
 					<td colspan="3">
@@ -59,37 +42,33 @@
 					</td>
 				</tr>
 				<tr>
-					<td>ºñ¹Ğ¹øÈ£</td>
-					<td colspan="2"><input type="password" name="pw" id="pw">
+					<td>ë¹„ë°€ë²ˆí˜¸</td>
+					<td colspan="2"><input type="password" name="pw" id="pw"></td>
 				</tr>			
-<!-- 	µ¿ÀûÀ¸·Î Ã·ºÎÆÄÀÏÀÇ °³¼ö¸¦ Á¶ÀıÇÒ ¼ö ÀÖµµ·Ï ÇÏ°íÀÚ ÇÑ´Ù. 
-		±×·¡¼­ µ¿ÀûÀ¸·Î Ã·ºÎÆÄÀÏÀ» ÀÔ·ÂÇÒ input¸¦ ¸¸µé À§Ä¡¸¦ Àâ¾ÆÁÖ¾î¾ßÇÑ´Ù.
--->
+				
 				<tr id="upload">
-					<td>Ã·ºÎÆÄÀÏ</td>
+					<td>ì²¨ë¶€íŒŒì¼</td>
 					<td><input type="file" name="upfile" id="up0"></td>
 					<td>
-						<input type="button" id="aBtn" value="Ãß°¡">
-						<input type="button" id="dBtn" value="»èÁ¦">
+						<input type="button" id="aBtn" value="ì¶”ê°€">
+						<input type="button" id="dBtn" value="ì‚­ì œ">
 					</td>
 				</tr>
 				<tr>
 					<td colspan="3">
-						<input type="button" value="±Û¾²±â" id="wBtn">
+						<input type="button" value="ê¸€ì“°ê¸°" id="wBtn">
 					</td>
 				</tr>
 			</table>		
 		</form>
 	</body>
-<!-- 	body¶ó´Â textarea°¡ ¸¸µé¾îÁö±â Àü¿¡ ÀÌ ½ºÅ©¸³Æ®°¡ ½ÇÇàµÇ¸é
-		½ºÅ²ÀÌ ÀÔÇôÁöÁö ¾ÊÀ» ¼ö ÀÖ´Ù.
- -->
+	
 	<script>
 		var oEditors = [];
 		nhn.husky.EZCreator.createInIFrame({
 			oAppRef: oEditors,
 			elPlaceHolder: "body",
-			sSkinURI: "../se2/SmartEditor2Skin.html",
+			sSkinURI: "/edutube/resources/smarteditor/SmartEditor2Skin.html",
 			fCreator: "createSEditor2"
 		});
 	</script>

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 import com.wing.mainApp.dao.DownDAO;
+import com.wing.mainApp.data.DownLoadData;
 import com.wing.mainApp.data.DownLoadData;
 import com.wing.mainApp.util.FileUtil;
 import com.wing.mainApp.util.PageUtil;
@@ -37,7 +39,7 @@ public class DownController {
 			nowPage = Integer.parseInt(strPage);
 		}
 		
-		int total = dDao.getTotal(1);
+		int total = dDao.getTotal();
 		PageUtil pInfo = new PageUtil(nowPage, total, 5 , 5);
 		pInfo.calcInfo();
 		
@@ -70,36 +72,76 @@ public class DownController {
 		mv.setViewName("/DownLoad/DownWrite");
 		return mv;
 	}
+	// 글써줄거임
 	@RequestMapping("/DownLoad/DownWriteProc")
-	public ModelAndView DownWriteProc(DownLoadData data){
-		ModelAndView mv = new ModelAndView();
+	public ModelAndView DownWriteProc(DownLoadData data, HttpSession session){
+		ModelAndView		mv = new ModelAndView();
+		System.out.println("왔다");
+		System.out.println(data.title);
+		System.out.println(data.body);
+		if(StringUtil.isNull(data.title) || StringUtil.isNull(data.body)) {
+			RedirectView	rv = new RedirectView("../DownLoad/DownMain.do");
+			mv.setView(rv);
+			return mv;
+		}
 		
-		String path="E:\\FileUpload";
-		String oriName ="";
-		String saveName = "";
-		long length= 0;
-		if(!data.upfile.isEmpty()){
-			oriName = data.upfile.getOriginalFilename();
-			saveName = FileUtil.rename(path, oriName);
-			length = data.upfile.getSize();
-			File file = new File(path, saveName);
-			try{
-				data.upfile.transferTo(file);
-			}
-			catch(Exception e) {
-				System.out.println("파일 업로드 실패 = " +e);
+		
+		
+		
+		
+		
+		System.out.println("sex");
+		String	path = "E:\\FileUpload";
+		String[]	oriname = null;
+		String[]	savename = null;
+		long[]		len = null;
+		int			count = 0;
+
+		if(data.upfile != null) {
+			oriname 	= new String[data.upfile.length];
+			savename = new String[data.upfile.length];
+			len 		= new long[data.upfile.length];
+			
+			for(int i = 0; i < data.upfile.length; i++) {
+				if(data.upfile[i].isEmpty()) {
+					continue;
+				}
+				else {
+					oriname[count] = data.upfile[i].getOriginalFilename();
+					savename[count] = FileUtil.rename(path, oriname[count]);
+					len[count] = data.upfile[i].getSize();
+					try {
+						File	file = new File(path, savename[count]);
+						data.upfile[i].transferTo(file);
+					}
+					catch(Exception e) {
+						System.out.println("업로드 실패 " + e);
+					}
+					count = count + 1;
+				}
 			}
 		}
-		data.len = length;
-		data.oriname = oriName;
-		data.savename = saveName;
-		data.path = path;
+		String	id = (String) session.getAttribute("ID");
+		data.id = id;
 		
+		int	no = dDao.selectMax(); 
+		data.no = no;
 		
-			dDao.insertDown(data);
-			dDao.insertUpload(data);
+		dDao.insertBoard(data);
 		
-		RedirectView rv = new RedirectView("../DownLoad/DownMain.do");
+		if(count != 0) {
+			DownLoadData	temp = new DownLoadData();
+			temp.no = no;
+			temp.path = path;
+			for(int i = 0; i < count; i++) {
+				temp.oriname = oriname[i];
+				temp.savename = savename[i];
+				temp.len = len[i];
+				dDao.insertFile(temp);
+			}
+		}
+		
+		RedirectView	rv = new RedirectView("../DownLoad/DownMain.do");
 		mv.setView(rv);
 		return mv;
 	}

@@ -1,40 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="down">
-	<!-- 게시물 등록 -->
-	<insert id="wdown" parameterType="dwdata">
-		INSERT
-			INTO
-				DownLoad (down_no,mem_id,down_title,down_body)
-			VALUES
-			((SELECT NVL(MAX(down_NO), 0) + 1 FROM DownLoad), #{id}, #{title}, #{body})
-	</insert>
-	<select id="getlist"  resultType="dwdata">
-		SELECT
-				down_NO AS downno,
-				down_TITLE AS title,
-				mem_ID AS id,
-				down_DATE AS wdate
-			FROM
-				DownLoad
-			WHERE
-								down_isdeleted ='N'
-			ORDER BY
-					down_NO DESC
-	</select>
-	<select id="gettotal" resultType="java.lang.Integer">
+<!-- 총데이터 갯수 알려줌 -->	
+	<select		id="getTotal"	resultType="java.lang.Integer">
 		SELECT
 			COUNT(*) AS TOTAL
 		FROM
 			DownLoad
 		WHERE
-			down_isdeleted='N'
+			Down_IsDeleted = 'N'
 	</select>
-	<insert id="udown" parameterType="dwdata">
+	
+	<!-- 게시물 목록 -->
+	<select		id="getList"	resultType="dwdata"		
+									parameterType="java.util.HashMap">
+		SELECT
+			Down_NO 		AS no,
+			Down_TITLE 	AS title,
+			Down_Body 	AS body,
+			Down_Date	AS wdate
+		FROM 
+			DownLoad
+		WHERE
+			Down_IsDeleted='N'		
+	</select>
+	
+	
+	<!-- 일련번호 구하기 -->
+	<select id="selectMax"	resultType="java.lang.Integer">
+		SELECT
+			NVL(MAX(Down_NO), 0) + 1		AS NO
+		FROM
+			DownLoad
+	</select>
+	
+	<!-- 첨부 파일 등록 -->
+	<insert		id="insertFile" parameterType="dwdata">
 		INSERT
-			INTO
-				UpLoad (upload_no,down_no,upload_path,upload_oriname,upload_savename,upload_length)
-			VALUES
-				(#{upno},#{downno},#{path},#{oriname},#{savename},#{len})
+		INTO
+			UpLoad
+		VALUES
+			((SELECT NVL(MAX(UpLoad_NO), 0) + 1 FROM UpLoad), #{no}, #{path}, 
+			#{oriname}, #{savename}, #{len}, SYSDATE, 'N')
 	</insert>
+	
+	<!-- 	게시물 등록하기 -->
+	<insert		id="insertBoard"	parameterType="dwdata">
+		INSERT
+		INTO
+			DownLoad
+		VALUES
+			(#{no}, #{id}, #{title}, #{body}, SYSDATE, SYSDATE, 'N')
+	</insert>
+	
 </mapper>

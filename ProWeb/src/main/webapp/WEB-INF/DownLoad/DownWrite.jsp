@@ -23,7 +23,7 @@
 
 	</head>  
 	<body>
-		<form method="POST" id="wfrm" enctype="multipart/form-data">
+		<form method="POST" id="wfrm" name="wfrm" enctype="multipart/form-data">
 			<table width="70%" border="1" align="center">
 				<tr>
 					<td>id</td>
@@ -71,7 +71,7 @@
 						alert("본문을 입력해 주세요.");
 						return;
 					}
-					
+					var body = $("#body").val();
 					$frm = $("#wfrm");
 					$frm.attr("action","../DownLoad/DownWriteProc.do");
 					$frm.submit();

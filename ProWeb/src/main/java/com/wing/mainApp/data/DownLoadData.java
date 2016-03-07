@@ -5,33 +5,63 @@ import java.sql.Date;
 import org.springframework.web.multipart.MultipartFile;
 
 public class DownLoadData {
-	public int upno;
-	public int downno;
-	public String id;
-	public String title;
-	public String body;
-	public Date wdate;
-	public String isDeleted;
-	public MultipartFile upfile;
-	public MultipartFile[] files;
-	public String oriname;
-	public String savename;
-	public String path;
-	public long len;
-	
-	
-	
-	public MultipartFile getUpfile() {
+	public		String				title;
+	public		String				body;
+	public		String				pw;
+	public		MultipartFile[]		upfile;
+	public		String				id;
+	public		int					no;
+	public		String				path;
+	public		String				oriname;
+	public		String				savename;
+	public		long				len;
+	public		int					hit;
+	public		Date				wdate;
+	public		Date				mdate;
+	public		int					oriNo;
+	public		String				kind;
+	public		int					nowPage;
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getBody() {
+		return body;
+	}
+	public void setBody(String body) {
+		this.body = body;
+	}
+	public String getPw() {
+		return pw;
+	}
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
+	public MultipartFile[] getUpfile() {
 		return upfile;
 	}
-	public void setUpfile(MultipartFile upfile) {
+	public void setUpfile(MultipartFile[] upfile) {
 		this.upfile = upfile;
 	}
-	public MultipartFile[] getFiles() {
-		return files;
+	public String getId() {
+		return id;
 	}
-	public void setFiles(MultipartFile[] files) {
-		this.files = files;
+	public void setId(String id) {
+		this.id = id;
+	}
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
 	}
 	public String getOriname() {
 		return oriname;
@@ -45,23 +75,17 @@ public class DownLoadData {
 	public void setSavename(String savename) {
 		this.savename = savename;
 	}
-	public String getPath() {
-		return path;
-	}
-	public void setPath(String path) {
-		this.path = path;
-	}
 	public long getLen() {
 		return len;
 	}
 	public void setLen(long len) {
 		this.len = len;
 	}
-	public String getId() {
-		return id;
+	public int getHit() {
+		return hit;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setHit(int hit) {
+		this.hit = hit;
 	}
 	public Date getWdate() {
 		return wdate;
@@ -69,34 +93,29 @@ public class DownLoadData {
 	public void setWdate(Date wdate) {
 		this.wdate = wdate;
 	}
-	public String getTitle() {
-		return title;
+	public Date getMdate() {
+		return mdate;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setMdate(Date mdate) {
+		this.mdate = mdate;
 	}
-	public String getBody() {
-		return body;
+	public int getOriNo() {
+		return oriNo;
 	}
-	public void setBody(String body) {
-		this.body = body;
+	public void setOriNo(int oriNo) {
+		this.oriNo = oriNo;
 	}
-	public String getIsDeleted() {
-		return isDeleted;
+	public String getKind() {
+		return kind;
 	}
-	public void setIsDeleted(String isDeleted) {
-		this.isDeleted = isDeleted;
+	public void setKind(String kind) {
+		this.kind = kind;
 	}
-	public int getUpno() {
-		return upno;
+	public int getNowPage() {
+		return nowPage;
 	}
-	public void setUpno(int upno) {
-		this.upno = upno;
+	public void setNowPage(int nowPage) {
+		this.nowPage = nowPage;
 	}
-	public int getDownno() {
-		return downno;
-	}
-	public void setDownno(int downno) {
-		this.downno = downno;
-	}
+	
 }
