@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -99,7 +99,7 @@ html, body {
 	font-size: 18px;
 	font color: black;
 	font-weight: plane;
-	width: 70%;
+	width: 80%;
 	height: 80%;
 	margin: 0 auto; 
 }
@@ -173,9 +173,7 @@ a.logC:hover {
 					<div id="state_logout">
 						<a href="JavaScript:goLogout()" class="logC">로그아웃</a>&nbsp;&nbsp;<a href="JavaScript:goInfo()"
 							class="logC">마이페이지</a>
-					</div>
-					
-						<select id="lang" name="lang">
+							<select id="lang" name="lang">
 							<option value="0" disabled selected>Language</option>
 							<option>Kor</option>
 							<option>Eng</option>
@@ -183,10 +181,14 @@ a.logC:hover {
 							<option></option>
 						</select>
 					</div>
-					
+					</c:if>
+						
+				
+						
+					</div>					
 					
 
-				</c:if>
+				
 
 			</div>
 		</div>
