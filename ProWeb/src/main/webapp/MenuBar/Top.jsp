@@ -156,7 +156,7 @@ a.logC:hover {
 				<c:if test="${sessionScope.ID eq null}">
 
 					<div id="state_login">
-						<a href="JavaScript:testLogin();" class="logC">로그인</a>&nbsp;&nbsp;<a href="" class="logC">회원가입</a>
+						<a href="JavaScript:goLogin();" class="logC">로그인</a>&nbsp;&nbsp;<a href="JavaScript:joinmember()" class="logC">회원가입</a>
 						<select id="lang" name="lang">
 							<option value="0" disabled selected>Language</option>
 							<option>Kor</option>
@@ -171,9 +171,20 @@ a.logC:hover {
 				<c:if test="${sessionScope.ID ne null}">
 
 					<div id="state_logout">
-						<a href="" class="logC">로그아웃</a>&nbsp;&nbsp;<a href=""
+						<a href="JavaScript:goLogout()" class="logC">로그아웃</a>&nbsp;&nbsp;<a href="JavaScript:goInfo()"
 							class="logC">마이페이지</a>
 					</div>
+					
+						<select id="lang" name="lang">
+							<option value="0" disabled selected>Language</option>
+							<option>Kor</option>
+							<option>Eng</option>
+							<option>Japan</option>
+							<option></option>
+						</select>
+					</div>
+					
+					
 
 				</c:if>
 
