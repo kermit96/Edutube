@@ -12,12 +12,13 @@
 				 mem_id 
 	            , mem_nick
                  , mem_name 
+                 ,mem_nal
 		FROM
 			Member where   mem_id = #{userid} and  mem_pass = #{password}
 			and mem_isDeleted = 'N'
 	</select>
 	
-	<select id="getmember" resultType="com.wing.mainApp.data.Member" parameterType="String" >
+	<select id="getmember" resultType="com.wing.mainApp.data.Member" parameterType="java.util.HashMap" >
 		Select
 			mem_nick,
 	 		mem_pass,
@@ -35,7 +36,7 @@
 	
 	
 	
-	<select id="usercount" resultType="int" parameterType="String" >
+	<select id="usercount" resultType="int" parameterType="java.util.HashMap" >
 		Select
 			count(*) 
 		FROM
@@ -43,7 +44,7 @@
 	</select>
 	
 	
-	<select id="nickcount" resultType="int" parameterType="String" >
+	<select id="nickcount" resultType="int" parameterType="java.util.HashMap" >
 		Select
 			count(*) 
 		FROM
@@ -52,18 +53,22 @@
 	
 	
 	<select id="findid" resultType="String" parameterType="java.util.HashMap" >
+			
 		Select
 			mem_id
 		FROM
-			Member where   mem_name=#{username} and mem_email=#{email} 			
+			Member where   mem_name=#{name} and mem_email = #{email}
+			 			
 	</select>
 	
 	
 	<select id="findpassword" resultType="int" parameterType="java.util.HashMap" >
+	
 		Select
 			count(*) 
 		FROM
-			Member where   mem_name=#{userid} and mem_email=#{email} and mem_name=#{name}  			
+			Member where   mem_name=#{userid} and mem_email=#{email} and mem_name=#{name}
+			  			
 	</select>
 	
 
@@ -91,7 +96,7 @@
 	
 	<update id="updatemember"  parameterType="com.wing.mainApp.data.Member" >	
 	update member set mem_nick = #{mem_nick},
-	       mem_name=#{mem_name},mem_ename=#{mem_email},mem_tel=#{mem_tel},
+	       mem_name=#{mem_name},mem_email=#{mem_email},mem_tel=#{mem_tel},
 	       mem_addrCode = #{mem_addrCode},mem_addr=#{mem_addr},
 	       mem_detailaddr =#{mem_detailaddr} where mem_id = #{mem_id}
 	</update>
@@ -101,7 +106,7 @@
 	   <if test=" oldpassword != null  and  oldpassword !=''" >
 	     and  	 mem_pass = #{oldpassword}
 	  </if>
-	   <if test="email != and  and  email !=''"  >
+	   <if test="email != null and  email !=''"  >
 	     and  	 mem_email = #{email}
 	  </if>
 	  
@@ -111,10 +116,6 @@
 	  
 	</update>
 	
-	
-	
-	
-	
-	
+
 
 </mapper>

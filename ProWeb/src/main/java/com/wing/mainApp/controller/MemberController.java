@@ -15,13 +15,13 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.wing.mainApp.dao.MemberDao;
+import com.wing.mainApp.dao.MemberDAO;
 import com.wing.mainApp.data.*;
 import com.wing.mainApp.util.StringUtil;
 import com.wing.mainApp.util.util;
 
 @Controller
-public class member {
+public class MemberController {
 
 	@Autowired
 	MemberDAO dao;
@@ -167,14 +167,13 @@ void CheckUserid(HttpServletRequest req, HttpServletResponse res)
 	   
 	   String str = "";
 	   
-	   int random = (int)Math.random()*100000;
+	   int random = (int)(Math.random()*10000);
 	   String password = Integer.toBinaryString(random);
 	   
 	   String sha256password = util.GetSha256(password);
 	   
-	  int count  = dao.changepassword(userid,name,email,sha256password);
-	   
-	  System.out.println("count = "+count);
+	   int count  = dao.changepassword(userid,name,email,sha256password);	  
+	  
 	   if (count== 0) {
 		  str = "이름이나  e-mail 이 잘못 되었습니다";    
 		   
@@ -186,8 +185,7 @@ void CheckUserid(HttpServletRequest req, HttpServletResponse res)
     	   } catch(Exception ex) {
     		   ex.printStackTrace();
     		   str = ex.toString();
-    	   }
-   	   
+    	   }   	   
 	   }
 
  	   PrintWriter write;
@@ -338,7 +336,7 @@ void CheckUserid(HttpServletRequest req, HttpServletResponse res)
 		   session.setAttribute("NAL", member.getMem_Nal());		   
 	   }
 	   	          
-  	    Gson gson = new Gson();
+  	  Gson gson = new Gson();
 
        String jsonstr = gson.toJson(data);
        write.print(jsonstr);		   

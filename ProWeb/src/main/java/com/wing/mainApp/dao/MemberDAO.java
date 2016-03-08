@@ -3,6 +3,7 @@ package com.wing.mainApp.dao;
 import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.wing.mainApp.data.Member;
@@ -11,6 +12,8 @@ import com.wing.mainApp.data.Member;
 //  member 관리 Dao
 @Repository
 public class MemberDAO {
+		
+	@Autowired
 	private SqlSessionTemplate sqlSession;
 
 
@@ -22,14 +25,21 @@ public class MemberDAO {
 		map.put("userid", userid);
 		map.put("password", password);
 
-		Member member; 
-		member = (Member)sqlSession.selectOne("member.login",map);	
+		Member member = null;
+		try {
+		   member = sqlSession.selectOne("member.login",map);		
+		} catch (Exception ex) {
+			
+		  ex.printStackTrace();	
+		}
 		return member;
 	}
 
 	// 같은 userid 가 있는지 check 
 	public int  isSameuserid(String userid) 
 	{
+		HashMap map = new HashMap();
+		map.put("userid", userid);
 		return (int)sqlSession.selectOne("member.usercount",userid);			
 	}
 
@@ -37,7 +47,10 @@ public class MemberDAO {
 	// 같은 nick이름이  있는지 check 
 	public int  isSamenick(String nickname) 
 	{
-		return (int)sqlSession.selectOne("member.nickcount",nickname);			
+		
+		HashMap map = new HashMap();
+		map.put("nickname", nickname);
+		return (int)sqlSession.selectOne("member.nickcount",map);			
 	}
 
 	//username 과   email 가지고     id 를 찾는다   
@@ -45,8 +58,14 @@ public class MemberDAO {
 	{
 		HashMap map = new HashMap();
 		map.put("name", username);
-		map.put("email", email);		
-		return (String)sqlSession.selectOne("member.findid",map);			
+		map.put("email", email);
+						
+	   try { 	 		
+		   return (String)sqlSession.selectOne("member.findid",map);
+	   } catch(Exception ex) {
+		   ex.printStackTrace();
+		   return "";
+	   }
 	}
 
 	//username 과   email 가지고     id 를 찾는다   
@@ -63,7 +82,9 @@ public class MemberDAO {
 
 	public Member getMember(String userid)
 	{		
-		return (Member)sqlSession.selectOne("member.getmember",userid);		
+		HashMap map = new HashMap();
+		map.put("userid", userid);
+		return (Member)sqlSession.selectOne("member.getmember",map);		
 	}
 
 	public int   joinmember(Member member) 
@@ -99,8 +120,5 @@ public class MemberDAO {
 		int count = sqlSession.update("member.changepassword",map);
 		return count;
 	}
-
-	
-
 
 }

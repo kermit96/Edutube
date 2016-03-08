@@ -11,12 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.google.gson.Gson;
+import com.wing.mainApp.util.MailSendInfo;
+import com.wing.mainApp.util.util;
+import com.wing.mainApp.util.config.Globalconfig;
+import com.wing.mainApp.util.sql.BaseJDBCDao;
+import com.wing.mainApp.util.sql.DBTYPE;
 
-import iedu.config.Globalconfig;
-import iedu.sql.BaseJDBCDao;
-import iedu.sql.DBTYPE;
-import iedu.util.MailSendInfo;
-import iedu.util.util;
 
 //  setup page setting 관련 루틴 
 @Controller
