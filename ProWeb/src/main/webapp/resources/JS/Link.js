@@ -53,14 +53,16 @@
 		location.href="/edutube/DownLoad/DownMain.do";
 	}
 	
-	/*FAQ/QA*/
-	function goQuestion(){
-		alert('질문게시판');
+	/*FAQ*/
+	function goFAQ(){
+		location.href="/edutube/CustomerBoard/FAQBoardList.do";
+		/*location.href="/edutube/CustomerBoard/FAQBoardWriteForm.do";*/	
 	}
+	
 		
-	/*고객센터*/
-	function goCS(){
-		alert('고객센터');
+	/*QA*/
+	function goQA(){
+		location.href="/edutube/CustomerBoard/QABoardList.do";
 	}
 
 	/*검색*/

@@ -1,15 +1,55 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+ 
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Edu Tube</title>
+	
+	<!--CSS-->
+	<link rel="stylesheet" href="/edutube/resources/CSS/bootstrap.min.css">
+	<!--  íŒŒí”¼ì½˜ ë„£ê¸° -->
+	<link rel="shortcut icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
+	<link rel="icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
+	<!--  ê²€ìƒ‰ë°” -->
+	
+	<!--JS-->
+	 <script src="/edutube/resources/JS/jquery-2.1.4.min.js"></script>
+ 	<script src="/edutube/resources/JS/bootstrap.min.js"></script>
+ 	
+	<!--ìŠ¤í¬ë¦½íŠ¸-->
+	<script>
+	</script>
+	
+	<!--  ìŠ¤íƒ€ì¼ -->
+	<style>
+		#EduContainer{
+				width:1200px;
+				position: absolute;
+				left: 50%;
+				margin-left:-600px;				
+		}
+	</style>
+	
 </head>
 <body>
-	<a href="./Member/LoginForm.do">·Î±×ÀÎ</a><br>
-	<a href="./CustomerBoard/FAQBoardList.do">FAQ °Ô½ÃÆÇ</a><br>
-	<a href="./CustomerBoard/FAQBoardWriteForm.do">FAQ µî·Ï(°ü¸®ÀÚ¿ë)</a><br>
-	<a href="./CustomerBoard/QABoardList.do">QA °Ô½ÃÆÇ</a>
+
+<div id='EduContainer'>
+
+	<div id='top'>	
+		<jsp:include page="/MenuBar/Top.jsp" flush="false" />
+	</div>	
+	
+	<div id="Main">
+		<p>ë©”ì¸ í˜ì´ì§€ ì…ë‹ˆë‹¤.</p>
+	</div>
+	 
+</div>
+
+
 </body>
 </html>
+
+
+

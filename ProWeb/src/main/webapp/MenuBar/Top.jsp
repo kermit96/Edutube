@@ -187,8 +187,8 @@ a.logC:hover {
 			<li><a href="JavaScript:goLecIntro()"><span>강사 소개</span></a></li>
 			<li><a href="JavaScript:goClasses()"><span>강의 목록</span></a></li>
 			<li><a href="JavaScript:goDownload()"><span>자료실</span></a></li>
-			<li><a href="#"><span>FAQ/QA</span></a></li>
-			<li><a href="JavaScript:goCS()"><span>고객센터</span></a></li>
+			<li><a href="./CustomerBoard/FAQBoardList.do"><span>FAQ</span></a></li>
+			<li><a href="./CustomerBoard/QABoardList.do"><span>QA</span></a></li>			
 			<li class='last'><a href="JavaScript:goTest()"><span>테스트</span></a></li>
 		</ul>
 	</div>
