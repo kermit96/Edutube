@@ -52,7 +52,8 @@ public class MemberController {
 		map.put("ID", id);
 		map.put("PW", pw);
 		// 	조심 	키값은 SQL에서 지정한 #{키값}과 동일해야 한다.
-		HashMap result = mDao.login(map);
+		HashMap result = mDao.login(map);		
+		
 		
 		if(result == null || result.isEmpty()) {
 			//	결과물이 존재하지 않니	로그인 실패

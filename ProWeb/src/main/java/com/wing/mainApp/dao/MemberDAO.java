@@ -3,35 +3,104 @@ package com.wing.mainApp.dao;
 import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-//	이 클래스가 자동 DI가 되기 위해 어노테이션 시킨다
+import com.wing.mainApp.data.Member;
+
+
+//  member 관리 Dao
 @Repository
 public class MemberDAO {
-	//	이 클래스는 컨넥션 풀을 사용해야 하는데
-	//	우리는 컨넥션 풀을 사용하기 위한 클래스를 DI로 등록해 놓았다
-	//	고로 그 클래스를 이용하도록 한다.
-	@Autowired
-	SqlSessionTemplate	sqlSession;
-	/*
-	 * 로그인 처리를 위한 함수
-	 */
-	public HashMap login(HashMap map) {
-		//	매개변수는 parameterType과 무관하다.
-		//	이것은 컨트롤러가 제공하는 데이터 형태를 의미하는 것이다.
-		// 1번		파라메터는 필수사항으로 무조건 실행할 SQL코드
-		//			SQL코드	namespace.id
-		// 2번		파라메터는 선택사항으로 필요한 데이터를 제공한다.
-		HashMap result = sqlSession.selectOne("member.loginproc", map);
-		// 	질의 명령에 필요한 데이터를 제공하는 방식은
-		//	SQL을 작성할때 사용했던 parameterType과 같아야 한다.
-		//	반환값은
-		//	SQL을 작성할때 사용했던 resultType에 의존한다
-		//	즉, 반드시 같지 않아도 상관은 없는데...
-		//	다만 resultType으로 지정한 것이 분명히 그 안에 포함될 수 있어야 한다.
-		return result;
-		
+	private SqlSessionTemplate sqlSession;
+
+
+	// 로그인 할수 있는지 check 
+	public Member  isLogin(String userid,String password) 
+	{
+
+		HashMap map = new HashMap();
+		map.put("userid", userid);
+		map.put("password", password);
+
+		Member member; 
+		member = (Member)sqlSession.selectOne("member.login",map);	
+		return member;
 	}
+
+	// 같은 userid 가 있는지 check 
+	public int  isSameuserid(String userid) 
+	{
+		return (int)sqlSession.selectOne("member.usercount",userid);			
+	}
+
+
+	// 같은 nick이름이  있는지 check 
+	public int  isSamenick(String nickname) 
+	{
+		return (int)sqlSession.selectOne("member.nickcount",nickname);			
+	}
+
+	//username 과   email 가지고     id 를 찾는다   
+	public String  findid(String username,String email) 
+	{
+		HashMap map = new HashMap();
+		map.put("name", username);
+		map.put("email", email);		
+		return (String)sqlSession.selectOne("member.findid",map);			
+	}
+
+	//username 과   email 가지고     id 를 찾는다   
+	public int  changepassword(String userid,String username,String email,String password) 
+	{
+		HashMap map = new HashMap();
+		map.put("name", username);
+		map.put("email", email);
+		map.put("userid", userid);
+		map.put("newpassword", password);
+
+		return sqlSession.update("member.changepassword",map);			
+	}
+
+	public Member getMember(String userid)
+	{		
+		return (Member)sqlSession.selectOne("member.getmember",userid);		
+	}
+
+	public int   joinmember(Member member) 
+	{
+
+		return sqlSession.insert("member.joinmember",member);			
+	}
+
+
+	public int  updatemember(Member member) 
+	{
+
+		return sqlSession.update("member.updatemember",member);			
+	}
+
+
+	public int  changepassword(String userid,String oldpassword,String newpassword) 
+	{
+		HashMap map = new HashMap();
+		map.put("oldpassword", oldpassword);
+		map.put("newpassword", newpassword);
+		map.put("userid", userid);	
+		int count = sqlSession.update("member.changepassword",map);
+		return count;
+	}
+
+	public int  changepassword(String userid,String newpassword) 
+	{
+		HashMap map = new HashMap();
+		map.put("oldpassword", "");
+		map.put("newpassword", newpassword);
+		map.put("userid", userid);	
+		int count = sqlSession.update("member.changepassword",map);
+		return count;
+	}
+
 	
+
+
 }

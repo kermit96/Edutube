@@ -1,19 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!-- DTD 파일을 설정한다. -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--  루트 태그를 작성한다. -->
 <mapper namespace="member">
-	<!-- 	로그인 질의 명령
-				질의 명령의 결과를 어떤 방식으로 받을지
-				질의 명령을 실행할 때 필요한 데이터를 어떤 형태로 제공할지
-	 -->
-	<select id="loginproc" resultType="java.util.HashMap" parameterType="java.util.HashMap">
-		SELECT
-			mem_Id			AS		ID,
-			mem_Name	AS		NAME,
-			mem_Nick		AS		NICK
+
+	<!--  이안에 필요한 질의 명령 만들기 -->
+	<select id="login" resultType="com.wing.mainApp.data.Member" parameterType="java.util.HashMap" >
+		Select
+				 mem_id 
+	            , mem_nick
+                 , mem_name 
 		FROM
-			Members
-		WHERE
-				mem_ID = #{ID}
-		AND	mem_Pass = #{PW}
+			Member where   mem_id = #{userid} and  mem_pass = #{password}
+			and mem_isDeleted = 'N'
 	</select>
+	
+	<select id="getmember" resultType="com.wing.mainApp.data.Member" parameterType="String" >
+		Select
+			mem_nick,
+	 		mem_pass,
+			mem_name,
+			mem_email,
+			mem_tel,
+			mem_addrCode,
+			mem_addr,
+			mem_detailaddr
+		FROM
+			Member where   mem_id = #{userid} 
+	</select>
+	
+	
+	
+	
+	
+	<select id="usercount" resultType="int" parameterType="String" >
+		Select
+			count(*) 
+		FROM
+			Member where   mem_id = #{userid} 			
+	</select>
+	
+	
+	<select id="nickcount" resultType="int" parameterType="String" >
+		Select
+			count(*) 
+		FROM
+			Member where   mem_nick = #{nickname} 			
+	</select>
+	
+	
+	<select id="findid" resultType="String" parameterType="java.util.HashMap" >
+		Select
+			mem_id
+		FROM
+			Member where   mem_name=#{username} and mem_email=#{email} 			
+	</select>
+	
+	
+	<select id="findpassword" resultType="int" parameterType="java.util.HashMap" >
+		Select
+			count(*) 
+		FROM
+			Member where   mem_name=#{userid} and mem_email=#{email} and mem_name=#{name}  			
+	</select>
+	
+
+	<!--  이안에 필요한 질의 명령 만들기 -->
+	<insert id="joinmember"  parameterType="com.wing.mainApp.data.Member" >
+		insert into 
+		     member(mem_id, 
+	mem_nick,
+	 mem_pass,
+	mem_name,
+	mem_email,
+	mem_tel,
+	mem_addrCode,
+	mem_addr,
+	mem_detailaddr) values(#{mem_id}, 
+	 #{mem_nick},
+	 #{mem_pass},
+	 #{mem_name},
+	#{mem_email},
+	#{mem_tel},
+	#{mem_addrCode},
+	#{mem_addr},
+	#{mem_detailaddr})	
+	</insert>
+	
+	<update id="updatemember"  parameterType="com.wing.mainApp.data.Member" >	
+	update member set mem_nick = #{mem_nick},
+	       mem_name=#{mem_name},mem_ename=#{mem_email},mem_tel=#{mem_tel},
+	       mem_addrCode = #{mem_addrCode},mem_addr=#{mem_addr},
+	       mem_detailaddr =#{mem_detailaddr} where mem_id = #{mem_id}
+	</update>
+	
+	<update id="changepassword"  parameterType="java.util.HashMap" >	
+	  update member set mem_pass = #{newpassword} where mem_id = #{userid}
+	   <if test=" oldpassword != null  and  oldpassword !=''" >
+	     and  	 mem_pass = #{oldpassword}
+	  </if>
+	   <if test="email != and  and  email !=''"  >
+	     and  	 mem_email = #{email}
+	  </if>
+	  
+	  <if test="name != null  and name !=''" >
+	     and  	 mem_name = #{name}
+	  </if>
+	  
+	</update>
+	
+	
+	
+	
+	
+	
+
 </mapper>
