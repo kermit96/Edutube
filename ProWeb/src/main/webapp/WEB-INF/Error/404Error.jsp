@@ -21,7 +21,7 @@
 	<!--CustomScript-->
 	<script>
 		function reHome(){
-			location.href="/edutube/";
+			location.href="/edutube/main.do";
 		}
 	</script>
 	
