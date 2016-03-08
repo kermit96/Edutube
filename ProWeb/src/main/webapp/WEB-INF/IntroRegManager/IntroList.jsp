@@ -195,7 +195,7 @@
 	
 	<!-- 왼쪽 사이드 영역 -->
 	<div id="side">  	
-			<jsp:include page="/MenuBar/Foot.jsp" flush="false" />
+			
 	</div>
 	</div>	
 	

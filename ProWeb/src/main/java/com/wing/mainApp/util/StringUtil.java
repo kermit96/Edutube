@@ -1,11 +1,14 @@
 package com.wing.mainApp.util;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /*
- * 	¹®ÀÚ¿­¿¡ °ü·ÃµÈ ±â´ÉÀ» ´Ü¼øÈ­ ½ÃÅ°±â À§ÇÑ À¯Æ¿¸®Æ¼ Å¬·¡½º
+ * 	ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ü¼ï¿½È­ ï¿½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ¿ï¿½ï¿½Æ¼ Å¬ï¿½ï¿½ï¿½ï¿½
  */
 public final class StringUtil {
 	/*
-	 * 	¹®ÀÚ¿­ÀÌ ³ÎÀÎÁö¸¦ È®ÀÎÇØ ÁÖ´Â ÇÔ¼ö
+	 * 	ë¬¸ìžì—´ì´ ë„ì¸ì§€ë¥¼ í™•ì¸í•´ ì£¼ëŠ” í•¨ìˆ˜
 	 */
 	public static boolean isNull(String data) {
 		if(data == null || data.length() == 0) {
@@ -17,15 +20,30 @@ public final class StringUtil {
 	}
 	
 	/*
-	 * 
+	 * 	ë‚ ì§œë¥¼ ì›í•˜ëŠ” í˜•íƒœì˜ ë¬¸ìžë¡œ ë³€í™˜ì‹œì¼œì£¼ëŠ” í•¨ìˆ˜
 	 */
-	public static String stringSplit(String data,int len){
-		if(data.length() > len){
-			return data.substring(0,len) + "...";
-		}
-		else{
-			return data;
-		}
+	public static String getDateStr(Date date) {
+		SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd");
+		return form.format(date);
+	}
+	public static String getDateTimeStr(Date date) {
+		SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		return form.format(date);
+	}
+	public static String getTimeStr(Date date) {
+		SimpleDateFormat form = new SimpleDateFormat("hh:mm:ss");
+		return form.format(date);
+	}
+	public static String getDateStr(Date date, String pattern) {
+		SimpleDateFormat form = new SimpleDateFormat(pattern);
+		return form.format(date);
+	}
+	
+	/*	
+	 * BR íƒœê·¸ë¡œ ë³€í™˜ì‹œì¼œì£¼ëŠ” í•¨ìˆ˜
+	 */
+	public static String setBr(String data) {
+		return data.replaceAll("\r\n", "<br>");
 	}
 	
 }
