@@ -86,8 +86,8 @@ html, body {
 	clear: both
 }
 
-<%--
-안쪽의 div --%> #searchBar {
+<%--안쪽의 div --%> 
+#searchBar {
 	width: 70%;
 	height: 80%;
 	padding-top: 10px;
@@ -181,14 +181,7 @@ a.logC:hover {
 							<option></option>
 						</select>
 					</div>
-					</c:if>
-						
-				
-						
-					</div>					
-					
-
-				
+					</c:if>	
 
 			</div>
 		</div>
