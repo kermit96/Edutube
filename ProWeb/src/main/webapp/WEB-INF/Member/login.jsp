@@ -19,7 +19,7 @@
  	<script src="../resources/JS/bootstrap.min.js"></script>
  	
 	<!--스크립트-->
-<script type="text/javascript" src="../resource/JS/sha256.js"> </script>
+<script type="text/javascript" src="../resources/JS/sha256.js"> </script>
 <script>
 	
 	$( document ).ready(function() {
@@ -33,22 +33,34 @@
 	      );
 
 
+	      $("#findmember").click(
+	    		  findmember
+	      );
+
+	      
 	});
 	
 	function make()
 	{
 		
 		// location.href = ;
-		window.open('MakeMember.jsp', "_blank" );
+		 window.open('../member/joinmember.do', "_blank" );
 	}
+	
+	
+	function findmember()
+	{
+		
+		 window.open('../member/findmember.do', "_blank" );
+		
+	}
+	
 	
 	function login()
 	{
 		
 		var userid = $("#userid").val().trim();
 		var password = $("#password").val().trim();
-		
-		         
 		
 		if (userid == "") {
 			
@@ -62,11 +74,16 @@
 			return;
 		}
 		
-        password = Sha256.hash(password);
+        try {
+          password = Sha256.hash(password);
+        } catch (ex) {        	
+        	alert(ex);	
+        }
         
+
         try {
         $.ajax({
-            url:"../member/ajax/login",
+            url:"../member/ajax/login.do",
             async:false,
             type:'post',
             dataType:'json',
@@ -110,7 +127,7 @@
 	        <td><input type="password" id="password" placeholder="password">    </td> 	        
 	      </tr>
 	      <tr> 
-	         <td colspan="2" align="center"> <button id="login"> 로그인 </button>   <button id="login"> 취소 </button>  </td>
+	         <td colspan="2" align="center"> <button id="login"> 로그인 </button>   <button id="makeid"> 가입 </button>  <button id="findmember"> ID/PASSWORD 찾기 </button>  </td>
 	      </tr>
 	      	      
 	      </table>   
