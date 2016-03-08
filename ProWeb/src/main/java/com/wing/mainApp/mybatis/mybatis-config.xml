@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "HTTP://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>	
+		<setting name="cacheEnabled" value="false" />
+		<setting name="useGeneratedKeys" value="true" />
+		<setting name="defaultExecutorType" value="REUSE" />	
+	</settings>	
+
+	<typeAliases>
+		<!--  이 안에는 SQL 이 사용할 데이터 타입의 별칭을 등록 한다. -->
+		<typeAlias alias="int" type="java.lang.Integer" />
+		<typeAlias alias="String" type="java.lang.String" />
+		<typeAlias alias="Alist" type="java.util.ArrayList" />
+
+		<typeAlias alias="Hmap" type="java.util.HashMap" />
+		<typeAlias alias="cListData" type="com.wing.mainApp.data.cListData" />
+		<typeAlias alias="schData" type="com.wing.mainApp.data.ScheduleData" />				
+		<typeAlias alias="dwdata" type="com.wing.mainApp.data.DownLoadData" />	
+		<typeAlias alias="cbdata" type="com.wing.mainApp.data.BoardData" />
+		<typeAlias alias="ndata" type="com.wing.mainApp.data.NoticeData" /> 
+		<typeAlias alias="idata" type="com.wing.mainApp.data.IntroInfoData" />
+	</typeAliases>
+
+	
+	<mappers>
+		<mapper resource="/com/wing/mainApp/sql/SampleSQL.xml" />
+		<mapper resource="/com/wing/mainApp/sql/ScheduleSQL.xml" />
+		<mapper resource="/com/wing/mainApp/sql/cListSQL.xml" />
+		<mapper resource="/com/wing/mainApp/sql/DownSQL.xml" />
+		<mapper resource="/com/wing/mainApp/sql/BoardSQL.xml" />
+	 	<mapper resource="/com/wing/mainApp/sql/MemberSQL.xml" />
+	    <mapper resource="/com/wing/mainApp/sql/NoticeSQL.xml" />
+		<mapper resource="/com/wing/mainApp/sql/IntroInfoSQL.xml" />
+	</mappers>
+
+</configuration>
