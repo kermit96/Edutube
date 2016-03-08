@@ -181,15 +181,8 @@ a.logC:hover {
 							<option></option>
 						</select>
 					</div>
-					</c:if>
-						
-				
-						
-					</div>					
-					
-
-				
-
+					</c:if>						
+				</div>					
 			</div>
 		</div>
 	</div>
@@ -207,7 +200,6 @@ a.logC:hover {
 		</ul>
 	</div>
 
-</div>
 
 <script src="/edutube/resources/JS/classie.js"></script>
 <script src="/edutube/resources/JS/selectFx.js"></script>

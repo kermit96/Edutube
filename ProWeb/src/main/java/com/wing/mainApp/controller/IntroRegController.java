@@ -28,14 +28,14 @@ public class IntroRegController {
 	@RequestMapping("/IntroRegManager/IntroRegForm")
 	public ModelAndView	introRegForm(HttpSession session) {
 		ModelAndView		mv = new ModelAndView();
-	
+	    /*
 		if(!SessionUtil.isSession(session)) {
 			//	
 			RedirectView	rv = new RedirectView("../Member/member_form.do");
 			mv.setView(rv);
 			return mv;
 		}
-		
+		*/
 		//ArrayList	list = gmDao.getCate(null, 1);	
 		//		
 		//mv.addObject("LCATE", list);
@@ -48,12 +48,14 @@ public class IntroRegController {
 	@RequestMapping("/IntroRegManager/IntroReg")
 	public ModelAndView	introWrite(HttpSession session, IntroInfoData data) {
 		ModelAndView		mv = new ModelAndView();
+		/*
 		if(!SessionUtil.isSession(session)) {
 			//	
 			RedirectView	rv = new RedirectView("../Member/member_form.do");
 			mv.setView(rv);
 			return mv;
 		}
+		*/
 		String	id = (String) session.getAttribute("loginId");//Joon
 		data.setMem_id(id);//媛뺤궗 ID �엯�젰
 		
@@ -88,12 +90,14 @@ public class IntroRegController {
 	@RequestMapping("/IntroRegManager/IntroLec")
 	public ModelAndView		introLec(HttpServletRequest req, HttpSession session,IntroInfoData data){
 		ModelAndView		mv = new ModelAndView();
+		/*
 		if(!SessionUtil.isSession(session)) {
 			//	
 			RedirectView	rv = new RedirectView("../Member/member_form.do");
 			mv.setView(rv);
 			return mv;
-		}		
+		}
+		*/		
 		//mv.setViewName("IntroRegManager/IntroLec");
 		mv.setViewName("IntroRegManager/IntroList");
 		return mv;
