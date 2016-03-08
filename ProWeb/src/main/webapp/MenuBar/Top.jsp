@@ -101,7 +101,7 @@ html, body {
 	font-weight: plane;
 	width: 70%;
 	height: 80%;
-	margin: 0 auto;
+	margin: 0 auto; 
 }
 
 a.logC:link {
