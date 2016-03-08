@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,6 +59,10 @@
 <body>
 
 <div id='EduContainer'>
+
+<%-- <c:if test="${sessionScope.ADMIN ne 'Y'}">
+ 	<c:redirect url="/LoginForm.jsp" />
+</c:if> --%>
 
 	<div id='top'>	
 		<jsp:include page="/MenuBar/Top.jsp" flush="false" />

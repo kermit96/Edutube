@@ -4,7 +4,7 @@
  */
 	/*Home*/
 	function goHome(){
-		location.href="/edutube";
+		location.href="/edutube/main.do";
 	}
 
 	/*로그인  회원 가입  마이페이지*/
