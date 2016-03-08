@@ -24,7 +24,7 @@ import com.wing.mainApp.util.util;
 public class member {
 
 	@Autowired
-	MemberDao dao;
+	MemberDAO dao;
    @RequestMapping("/member/login")
    ModelAndView Login(HttpServletRequest req, HttpServletResponse res) 
    {
