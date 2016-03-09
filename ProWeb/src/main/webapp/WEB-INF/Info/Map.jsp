@@ -34,20 +34,20 @@
     	padding:5px;	      
 		}
 	</style>
-
 </head>
-
 <body>
 <div id='EduContainer'>
 	<div id='top'>	
 		<jsp:include page="/MenuBar/Top.jsp" flush="false" />
 	</div>
-
+	
 	<div id=nav>
-	<a href="info.do">홈피소개</a><br>
-	<a href="use.do">이용방법</a><br>
-	<a href="map.do">오시는길</a><br>
+	<a href="Info.do">홈피소개</a><br>
+	<a href="Use.do">이용방법</a><br>
+	<a href="Map.do">오시는길</a><br>
 	</div>
+	<center><img src="../resources/img/road.jpg"><br>
+	<br><img src="../resources/img/map.jpg"></center>
 </div>
 </body>
 </html>
