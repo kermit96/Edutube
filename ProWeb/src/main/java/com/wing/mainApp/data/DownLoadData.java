@@ -17,10 +17,11 @@ public class DownLoadData {
 	public		long				len;
 	public		int					hit;
 	public		Date				wdate;
-	public		Date				mdate;
+	public		Date				cdate;
 	public		int					oriNo;
 	public		String				kind;
 	public		int					nowPage;
+	
 	public String getTitle() {
 		return title;
 	}
@@ -93,11 +94,11 @@ public class DownLoadData {
 	public void setWdate(Date wdate) {
 		this.wdate = wdate;
 	}
-	public Date getMdate() {
-		return mdate;
+	public Date getCdate() {
+		return cdate;
 	}
-	public void setMdate(Date mdate) {
-		this.mdate = mdate;
+	public void setCdate(Date cdate) {
+		this.cdate = cdate;
 	}
 	public int getOriNo() {
 		return oriNo;
