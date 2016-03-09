@@ -40,7 +40,7 @@
 	/*홈페이지 소개*/
 	function goHomeIntro(){
 //		alert('홈페이지 소개');
-		location.href="/edutube/Info/infomain.do";
+		location.href="/edutube/Info/InfoMain.do";
 	}
 	
 	/*공지사항*/
@@ -56,7 +56,7 @@
 	/*강의목록*/
 	function goClasses(){
 //		alert('강의목록');
-		location.href="/edutube/cList/classList.do"
+		location.href="/edutube/ClassList/ClassList.do"
 	}
 	
 	/*자료실*/
@@ -119,9 +119,6 @@
 		 location.href="/edutube/member/memberjoin.do"+"?returnurl=" +encodeURIComponent(html);
 		
 	}
-	
-
-	
 	
   
 	function changeLanguage()
