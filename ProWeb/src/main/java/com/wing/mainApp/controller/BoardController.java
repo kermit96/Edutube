@@ -302,7 +302,6 @@ public class BoardController {
 		mv.addObject("LIST", result);
 		mv.setViewName("/CustomerBoard/QABoardSearch");
 		
-		return mv;
-		
+		return mv;		
 	}
 }

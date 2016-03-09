@@ -40,7 +40,7 @@
 	
 	<div id="Main">
 		<!-- This area is Body Part -->
-		
+		검색ㅇㅇㅇ
 		
 	</div>
 	 

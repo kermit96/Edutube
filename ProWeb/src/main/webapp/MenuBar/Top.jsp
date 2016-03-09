@@ -2,6 +2,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!--  관리자 판별 -->
+<c:set var="isAdmin"  value="false" />
+	<c:if test="${sessionScope.NAL eq 'A' }">
+		<c:set var="isAdmin" value="true" />
+	</c:if>
+
 <!DOCTYPE html>
 <title>에듀 튜브</title>
 
@@ -20,23 +26,7 @@
 <script src="/edutube/resources/JS/bootstrap.min.js"></script>
 <script src="/edutube/resources/JS/Link.js"></script>
 
-<!--스크립트-->
-<script>
-	function testLogin() {
-		location.href = "/edutube/testLogin.do";
-	}
-	function SearchOnKey()
-	{
-	     if(event.keyCode == 13)
-	     {
-	          alert('엔터쳐서 검색창 실행됫다');
-	          /* goSearch(); */
-	     }
-	     
-	     
-	}
-	
-</script>
+
 
 <!--  Style -->
 <Style>
@@ -142,8 +132,8 @@ a.logC:hover {
 
 		<div id="searchcontainer">
 			<div id="searchBar">
-				<form id="searchFrm" name="searchFrm" onKeyDown="JavaScript:SearchOnKey();">
-					<input type="text" id="searchBox"> <a
+				<form method="POST" id="searchFrm" name="searchFrm"   onKeyDown="JavaScript:SearchOnKey();">
+					<input type="text" id="searchBox" name="searchBox"> <a
 						href="JavaScript:goSearch()"><img
 						src="/edutube/resources/img/searchBtn.png"></a>
 				</form>
@@ -198,6 +188,9 @@ a.logC:hover {
 			<li><a href="JavaScript:goFAQ()"><span>FAQ</span></a></li>
 			<li><a href="JavaScript:goQA()"><span>QA</span></a></li>			
 			<li class='last'><a href="JavaScript:goTest()"><span>테스트</span></a></li>
+			<c:if test="${isAdmin==true}">
+ 				<li class='last'><a href="/edutube/AdminPage/AdminMain.do"><span>관리자</span></a></li>	
+			</c:if>
 		</ul>
 	</div>
 
@@ -214,4 +207,29 @@ a.logC:hover {
 	})();
 </script>
 
+
+<!--스크립트-->
+<script>
+	/* 엔터키 눌렀을때도 실행하게 */
+	function SearchOnKey()
+	{
+	     if(event.keyCode == 13)
+	     {	          
+	          goSearch(); 
+	     }	     
+	}	
+	/*검색*/
+	function goSearch(){			
+			
+			$searchWord=$("#searchBox").val();
+			if($searchWord==""){
+				alert('검색어를 입력해주세욜');
+				return;
+			}			
+			$("#searchFrm").attr("action", "/edutube/Search/SearchForm.do");
+			$("#searchFrm").submit();
+			
+	}		
+	
+</script>
 

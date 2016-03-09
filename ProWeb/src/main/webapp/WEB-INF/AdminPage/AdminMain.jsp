@@ -40,7 +40,7 @@
 	
 	<div id="Main">
 		<!-- This area is Body Part -->
-		
+		관리자 페이지임
 		
 	</div>
 	 
