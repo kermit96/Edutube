@@ -1,30 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="classlist">
-
-<!-- 	<select id="gettotal" resultType="java.lang.Integer">
+<mapper namespace="clist">
+	<!-- 총 데이터 수 구하기 -->
+	<select id="gettotal" resultType="java.lang.Integer">
 		SELECT
 			COUNT(*) AS TOTAL
 		FROM
-			class	
+			class
 	</select>
-	
-	
- <select id="classview" resultType="cdata" parameterType="java.lang.Integer">
+	<!-- 게시물 등록 -->
+	<insert id="classinsert" parameterType="ClassListData">
+		INSERT
+		INTO
+			class
+		VALUES
+			((SELECT NVL(MAX(no), 0) + 1 FROM class),#{title},#{body},'N')
+	</insert>
+	<!-- 목록보기 -->
+	<select id="getlist" resultType="ClassListData">
 		SELECT
-			class_no			AS NO,
-			sub_code		AS CODE,
-			mem_id		AS ID,
-			class_Title		AS TITLE,
-			class_Body		AS BODY,
-			class_Date		AS DATE,
-			class_good			AS GOOD,
-			class_lang		AS	LANG,
-			class_cDate		AS cDATE
+			no	AS no,
+			title	AS title,
+			body	AS body
+		FROM
+			class
+		ORDER BY
+			no DESC
+	</select>
+	<!-- 상세보기 -->
+	<select id="classview" resultType="ClassListData" parameterType="java.lang.Integer">
+		SELECT
+			no AS no,
+			title	AS title,
+			body	AS body
 		FROM
 			class
 		WHERE
-					class_No = #{NO}
-			AND	mem_id = nem_id
-	</select> -->
+			no = #{NO}
+	</select>
+	<!-- 수정 삭제 -->
+	<select id="isupdate" resultType="java.lang.Integer" parameterType="Hmap">
+		SELECT
+			COUNT(*) AS CNT
+		FROM
+			class
+		WHERE
+			no = #{NO}
+	</select>
+	<!-- 수정 질의 -->
+	<update id="updateclass" parameterType="ClassListData">
+		UPDATE
+			class
+		SET
+			title = #{title},
+			body = #{body},
+			date = SYSDATE
+		WHERE
+			no = #{NO}
+	</update>
+	<!-- 삭제 질의 -->
+	<update id="deleteclass"	parameterType="java.lang.Integer">
+		UPDATE
+			class
+		SET
+			isDeleted = 'N'
+		WHERE
+			no = #{NO}
+	</update>
 </mapper>
