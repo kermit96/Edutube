@@ -15,10 +15,17 @@ public class SearchController {
 	public ModelAndView SearchForm(HttpServletRequest req){
 		
 		ModelAndView mv = new ModelAndView();
-		String keyword = req.getParameter("searchBox");
 		
-		mv.addObject(keyword);
-		System.out.println("검색어 : " + keyword);
+		/*String url = req.getRequestURL().toString();*/			
+		
+		String keyword = req.getParameter("searchBox");				
+		
+		if(keyword==null){			
+			mv.setViewName("/main.do");
+			return mv;
+		}
+		
+		mv.addObject("keyword",keyword);		
 		mv.setViewName("/Search/SearchForm");
 		
 		return mv;

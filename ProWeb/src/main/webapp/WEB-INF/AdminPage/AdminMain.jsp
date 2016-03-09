@@ -71,6 +71,7 @@
 			<div id="centerPage">
 				나는 관리자 페이지
 			</div>
+			
 		</div>
 
 	</div>

@@ -119,7 +119,7 @@ a.logC:hover {
 	border: 3px solid #ff8000;
 	outline-style: none;
 	width: 350px;
-}
+} 
 </Style>
 
 <div id="topcontainer">
@@ -222,6 +222,8 @@ a.logC:hover {
 	function goSearch(){			
 			
 			$searchWord=$("#searchBox").val();
+			$searchWord=$searchWord.replace(/^\s+|\s+$/g,"");
+
 			if($searchWord==""){
 				alert('검색어를 입력해주세욜');
 				return;
@@ -229,7 +231,9 @@ a.logC:hover {
 			$("#searchFrm").attr("action", "/edutube/Search/SearchForm.do");
 			$("#searchFrm").submit();
 			
-	}		
+	}
+	
+
 	
 </script>
 
