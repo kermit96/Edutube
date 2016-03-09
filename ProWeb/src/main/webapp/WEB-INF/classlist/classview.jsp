@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,12 +19,6 @@
  	
 	<!--스크립트-->
 	<script>
-	$(document).ready(function(){
-		$("#mBtn").click(function(){
-			$("#mfrm").attr("action", "../ClassList/ClassModify.do");
-			$("#mfrm").submit();
-		});
-	});
 	</script>
 	
 	<!--  스타일 -->
@@ -49,44 +44,32 @@
 	<div id='top'>	
 		<jsp:include page="/MenuBar/Top.jsp" flush="false" />
 	</div>
-	<form method="POST" id="mfrm">
-	<input type="hidden" name="nowPage" value="${NOWPAGE}">
+		상세보기
+	<div id=nav>
+	<a href="teacherlist.do">강사별 목록</a><br>
+	<a href="classlist.do">강의별 목록</a><br>
+	<a href="bestlist.do">인기별 목록</a><br>
+	</div>
 	<table width="800" border="1" align="center">
 		<tr>
 			<th>강의번호</th>
-			<td><input type="text" value="${DATA.no}" disabled></td>
-		</tr>
-		<tr>
 			<th>강의코드</th>
-			<td><input type="text" disabled></td>
-		</tr>
-		<tr>
-			<th>제    목</th>
-			<td><input type="text" name="title" id="title" value="${DATA.title}"></td>
-		</tr>
-		<tr>
-			<th>본　  문</th>
-			<td><textarea name="body" id="body" value="${DATA.body}"></textarea></td>
-		</tr>
-		<tr>
+			<th>제　  목</th>
 			<th>작 성 자</th>
-			<td><input type="text" disabled></td>
-		</tr>
-		<tr>
 			<th>작 성 일</th>
-			<td><input type="text" disabled></td>
-		</tr>
-		<tr>
 			<th>추 천 수</th>
-			<td><input type="text" disabled></td>
 		</tr>
+		<c:forEach var="temp" items="${LIST}">
 		<tr>
-			<td colspan="2" align="center">
-				<input type="button" value="수정" id="mBtn">
-			</td>
+			<td>${DATA.no}</td>
+			<td>${DATA.code}</td>
+			<td>${DATA.title}</td>
+			<td>${DATA.id}</td>
+			<td>${DATA.date}</td>
+			<td>${DATA.good}</td>
 		</tr>
+		</c:forEach>
 	</table>
-</form>
 </div>
 </body>
 </html>

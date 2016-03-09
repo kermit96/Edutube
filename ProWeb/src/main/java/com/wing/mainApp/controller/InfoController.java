@@ -10,32 +10,32 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class InfoController {
 	
-	@RequestMapping("/Info/InfoMain")
-	public ModelAndView InfoMain(HttpServletRequest req, HttpSession session){
+	@RequestMapping("/Info/infomain.do")
+	public ModelAndView infomain(HttpServletRequest req, HttpSession session){
 		ModelAndView 	mv = new ModelAndView();
 		
-		mv.setViewName("/Info/InfoMain");
+		mv.setViewName("Info/infomain");
 		return mv;
 	}
-	@RequestMapping("/Info/Info")
-	public ModelAndView Info(HttpServletRequest req, HttpSession session){
+	@RequestMapping("/Info/info.do")
+	public ModelAndView info(HttpServletRequest req, HttpSession session){
 		ModelAndView 	mv = new ModelAndView();
 		
-		mv.setViewName("/Info/Info");
+		mv.setViewName("Info/info");
 		return mv;
 	}
-	@RequestMapping("/Info/Map")
-	public ModelAndView Map(HttpServletRequest req, HttpSession session){
+	@RequestMapping("/Info/map.do")
+	public ModelAndView map(HttpServletRequest req, HttpSession session){
 		ModelAndView 	mv = new ModelAndView();
 		
-		mv.setViewName("/Info/Map");
+		mv.setViewName("Info/map");
 		return mv;
 	}
-	@RequestMapping("/Info/Use")
-	public ModelAndView Use(HttpServletRequest req, HttpSession session){
+	@RequestMapping("/Info/use.do")
+	public ModelAndView use(HttpServletRequest req, HttpSession session){
 		ModelAndView 	mv = new ModelAndView();
 		
-		mv.setViewName("/Info/Use");
+		mv.setViewName("Info/use");
 		return mv;
 	}
 	

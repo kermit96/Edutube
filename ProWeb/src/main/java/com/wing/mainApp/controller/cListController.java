@@ -12,33 +12,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.wing.mainApp.dao.ClassListDAO;
-import com.wing.mainApp.data.ClassListData;
+import com.wing.mainApp.dao.cDAO;
+import com.wing.mainApp.data.cListData;
 import com.wing.mainApp.util.PagingUtil;
 import com.wing.mainApp.util.StringUtil;
 
 @Controller
-public class ClassListController {
+public class cListController {
 
 	@Autowired
-	ClassListDAO lDao;
+	cDAO lDao;
 	
-	// Î™©Î°ùÎ≥¥Í∏∞ ÏöîÏ≤≠
-	@RequestMapping("/ClassList/ClassList.do")
+	// ∏Ò∑œ
+	@RequestMapping("/cList/classList.do")
 	public ModelAndView classList(HttpServletRequest req, HttpSession session){
 		ModelAndView 	mv = new ModelAndView();
 		
-		String strpage = req.getParameter("nowPage");
+		String strPage = req.getParameter("nowPage");
 		int	nowPage = 0;
-		if(StringUtil.isNull(strpage)){
+		if(StringUtil.isNull(strPage)){
 			nowPage = 1;
 		}
 		else {
-			nowPage = Integer.parseInt(strpage);
+			nowPage = Integer.parseInt(strPage);
 		}
 			
 		int	total = lDao.getTotal(1);
-		PagingUtil	pInfo = new PagingUtil(nowPage, total, 10, 10);
+		PagingUtil	pInfo = new PagingUtil(nowPage, total, 5, 5);
 		pInfo.pagingProc();
 		
 		ArrayList	list = lDao.getClassList();
@@ -51,71 +51,71 @@ public class ClassListController {
 		
 		ArrayList	result = new ArrayList();
 		for(int i = start; i <= end; i++) {
-			ClassListData	temp = (ClassListData)list.get(i);
+			cListData	temp = (cListData)list.get(i);
 			result.add(temp);
 		}
 		
 		mv.addObject("PINFO", pInfo);
 		mv.addObject("LIST", result);
 		
-		mv.setViewName("ClassList/ClassList");
+		mv.setViewName("cList/classList");
 		return mv;
 	}
-	// Í∏ÄÏì∞Í∏∞ Ìèº ÏöîÏ≤≠
-	@RequestMapping("/ClassList/ClassWriteForm.do")
+	// ±€æ≤±‚ ∆˚
+	@RequestMapping("/cList/classWriteForm.do")
 	public ModelAndView classWriteForm(HttpServletRequest req, HttpSession session){
 		ModelAndView	mv = new ModelAndView();
 		
-		mv.setViewName("ClassList/ClassWriteForm");
+		mv.setViewName("cList/classWriteForm");
 		return mv;
 	}
 	
-	// Í∏ÄÏì∞Í∏∞ ÏöîÏ≤≠
-	@RequestMapping("/ClassList/ClassWrite")
-	public ModelAndView classWrite(HttpSession session, ClassListData data){
+	// ±€æ≤±‚
+	@RequestMapping("/cList/classWrite")
+	public ModelAndView classWrite(HttpSession session, cListData data){
 		ModelAndView	mv = new ModelAndView();
 		
 		data.id = (String) session.getAttribute("ID");
 		lDao.insertclass(data);
 		
-		RedirectView	rv = new RedirectView("../ClassList/ClassList.do");
+		RedirectView	rv = new RedirectView("../cList/classList.do");
 		mv.setView(rv);
 		return mv;
 	}
-	// ÏÉÅÏÑ∏Î≥¥Í∏∞ ÏöîÏ≤≠
-	@RequestMapping("/ClassList/ClassView")
-	public ModelAndView classView(HttpServletRequest req, ClassListData data){
+	// ªÛºº
+	@RequestMapping("/cList/classView")
+	public ModelAndView classView(HttpServletRequest req, cListData data){
 		ModelAndView	mv = new ModelAndView();
 		
 		String	strNo = req.getParameter("oriNo");
 		int	oriNo = Integer.parseInt(strNo);
-		String	strpage = req.getParameter("nowPage");
-		int	nowPage = Integer.parseInt(strpage);
+		String	strPage = req.getParameter("nowPage");
+		int	nowPage = Integer.parseInt(strPage);
 		String	kind = req.getParameter("flag");
 		
-		ClassListData map = lDao.selectView(oriNo);
+		cListData map = lDao.selectView(oriNo);
 		
 		mv.addObject("DATA", map);
-		mv.addObject("nowPage", nowPage);
+		mv.addObject("NOWPAGE", nowPage);
 		mv.addObject("KIND", kind);
-		mv.setViewName("ClassList/ClassView");
+		mv.setViewName("cList/classView");
 		return mv;
 	}
-	// ÏÇ≠Ï†ú ÏöîÏ≤≠
-	@RequestMapping("/ClassList/ClassDelete.do")
+	// ªË¡¶
+	@RequestMapping("/cList/classDelete.do")
 	public ModelAndView classDelete(HttpServletRequest req){
 		ModelAndView	mv = new ModelAndView();
 		
-		String strpage = req.getParameter("nowPage");
+		String strPage = req.getParameter("nowPage");
 		String	strNo = req.getParameter("oriNo");
-		int	nowPage = Integer.parseInt(strpage);
+		int	nowPage = Integer.parseInt(strPage);
 		int	oriNo = Integer.parseInt(strNo);
 		
 		HashMap	map = new HashMap();
 		map.put("NO",  oriNo);
 		int cnt	= lDao.isUpdate(map);
 		if(cnt == 0) {
-			RedirectView rv = new RedirectView("../ClassList/ClassView.do");
+			RedirectView rv = new RedirectView("../cList/classView.do");
 			rv.addStaticAttribute("oriNo", oriNo);
 			rv.addStaticAttribute("nowPage", nowPage);
 			return mv;
@@ -123,21 +123,21 @@ public class ClassListController {
 		else {
 			lDao.deleteclass(oriNo);
 		}
-		RedirectView	rv = new RedirectView("../ClassList/ClassList.do");
+		RedirectView	rv = new RedirectView("../cList/classList.do");
 		mv.setView(rv);
 		
 		return mv;
 	}
-	// ÏàòÏ†ïÌïòÍ∏∞ Ìèº ÏöîÏ≤≠
-	@RequestMapping("/ClassList/ClassModifyForm.do")
-	public ModelAndView classModifyForm(HttpServletRequest req, ClassListData data){
+	// ºˆ¡§«œ±‚ ∆˚ ø‰√ª
+	@RequestMapping("/cList/classModifyForm.do")
+	public ModelAndView classModifyForm(HttpServletRequest req, cListData data){
 		ModelAndView	mv = new ModelAndView();
 		
-//		String strpage = req.getParameter("nowPage");
+//		String strPage = req.getParameter("nowPage");
 		String strNo = req.getParameter("oriNo");
-//		System.out.println(strpage);
+//		System.out.println(strPage);
 //		
-//		int nowPage = Integer.parseInt(strpage);
+//		int nowPage = Integer.parseInt(strPage);
 		int	oriNo = Integer.parseInt(strNo);
 		data.no = oriNo;
 		System.out.println(oriNo);
@@ -148,9 +148,9 @@ public class ClassListController {
 		HashMap	map = new HashMap();
 		map.put("NO", oriNo);
 		int cnt = lDao.isUpdate(map);
-		ClassListData	result = new ClassListData();
+		cListData	result = new cListData();
 		if(cnt == 0) {
-			RedirectView	rv = new RedirectView("../ClassList/ClassView.do");
+			RedirectView	rv = new RedirectView("../cList/classView.do");
 			rv.addStaticAttribute("oriNo", oriNo);
 //			rv.addStaticAttribute("nowPage", nowPage);
 			mv.setView(rv);
@@ -161,18 +161,18 @@ public class ClassListController {
 		}
 		
 		mv.addObject("DATA", result);
-//		mv.addObject("nowPage", nowPage);
-		mv.setViewName("ClassList/ClassModifyForm");
+//		mv.addObject("NOWPAGE", nowPage);
+		mv.setViewName("cList/classModifyForm");
 		return mv;
 	}
-	// ÏàòÏ†ï ÏöîÏ≤≠
-	@RequestMapping("/ClassList/ClassModify")
-	public ModelAndView	classModify(ClassListData data) {
+	// ºˆ¡§
+	@RequestMapping("/cList/classModify")
+	public ModelAndView	classModify(cListData data) {
 		ModelAndView	mv = new ModelAndView();
 		
 		lDao.updateclass(data);
 		
-		RedirectView	rv = new RedirectView("../ClassList/ClassView.do");
+		RedirectView	rv = new RedirectView("../cList/classView.do");
 		rv.addStaticAttribute("oriNo", data.no);
 //		rv.addStaticAttribute("nowPage", data.nowPage);
 		mv.setView(rv);

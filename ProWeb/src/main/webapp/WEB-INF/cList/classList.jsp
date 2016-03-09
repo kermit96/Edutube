@@ -20,11 +20,11 @@
 	<!--스크립트-->
 	<script>
 	function Detail(orino) {
-		$(location).attr("href", "../ClassList/ClassView.do?nowPage=${PINFO.nowPage}&oriNo="+ orino + "&flag=L");
+		$(location).attr("href", "../cList/classView.do?nowPage=${PINFO.nowPage}&oriNo="+ orino + "&flag=L");
 	}
 	$(document).ready(function(){
 		$("#wBtn").click(function(){
-			$(location).attr("href", "../ClassList/ClassWriteForm.do");
+			$(location).attr("href", "../cList/classWriteForm.do");
 		});
 	});
 	</script>
@@ -97,23 +97,23 @@
 	<table border="1" align="center" width="800">
 		<tr>
 			<td align="center">
-				<a href="../ClassList/ClassList.do?nowpage=1">[◀◀]</a>
+				<a href="../cList/classList.do?nowPage=1">[◀◀]</a>
 				<c:if test="${pInfo.startPage eq 1}">
 					[◀]
 				</c:if>
 				<c:if test="${pInfo.startPage ne 1}">
-					<a href="../ClassList/ClassList.do?nowpage=${pInfo.startPage - 1}">[◀]</a>
+					<a href="../cList/classList.do?nowPage=${pInfo.startPage - 1}">[◀]</a>
 				</c:if>
 				<c:forEach var="temp" begin="${pInfo.startPage}" end="${pInfo.endPage}">
-					<a href="../ClassList/ClassList.do?nowpage=${temp}">[ ${temp} ]</a>
+					<a href="../cList/classList.do?nowPage=${temp}">[ ${temp} ]</a>
 				</c:forEach>
-				<c:if test="${pInfo.endPage eq pInfo.pageNum}">
+				<c:if test="${pInfo.endPage eq pInfo.totalNum}">
 					[▶]
 				</c:if>
-				<c:if test="${pInfo.endPage ne pInfo.pageNum}">
-					<a href="../ClassList/ClassList.do?nowpage=${pInfo.endPage + 1}">[▶]</a>
+				<c:if test="${pInfo.endPage ne pInfo.totalNum}">
+					<a href="../cList/classList.do?nowPage=${pInfo.endPage + 1}">[▶]</a>
 				</c:if>
-				<a href="../ClassList/ClassList.do?nowpage=${pInfo.pageNum}">[▶▶]</a>
+				<a href="../cList/classList.do?nowPage=${pInfo.totalNum}">[▶▶]</a>
 			</td>
 		</tr>
 	</table>

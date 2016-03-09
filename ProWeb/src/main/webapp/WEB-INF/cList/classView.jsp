@@ -20,18 +20,18 @@
 	<script>
 		$(document).ready(function(){
 			$("#lBtn").click(function(){
-				$(location).attr("href", "../ClassList/ClassList.do?nowPage=${NOWPAGE}");
+				$(location).attr("href", "../cList/classList.do?nowPage=${NOWPAGE}");
 			})
 		})
 		$(document).ready(function(){
 		$("#dBtn").click(function(){
-			$("#mfrm").attr("action", "../ClassList/ClassDelete.do");
+			$("#mfrm").attr("action", "../cList/classDelete.do");
 				$("#mfrm").submit();
 			})
 		})
 		$(document).ready(function(){
 		$("#mBtn").click(function(){
-			$("#mfrm").attr("action", "../ClassList/ClassModifyForm.do?oriNo=${DATA.no}");
+			$("#mfrm").attr("action", "../cList/classModifyForm.do?oriNo=${DATA.no}");
 			$("#mfrm").submit();
 			})
 		})

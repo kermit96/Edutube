@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,13 +39,11 @@
 	<div id='top'>	
 		<jsp:include page="/MenuBar/Top.jsp" flush="false" />
 	</div>
-		
-	<img src="../resources/img/1234.jpg">
-		
+		여기가 메인
 	<div id=nav>
-	<a href="Info.do">홈피소개</a><br>
-	<a href="Use.do">이용방법</a><br>
-	<a href="Map.do">오시는길</a><br>
+	<a href="teacherlist.do">강사별 목록</a><br>
+	<a href="classlist.do">강의별 목록</a><br>
+	<a href="bestlist.do">인기별 목록</a><br>
 	</div>
 </div>
 </body>
