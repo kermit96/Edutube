@@ -120,9 +120,6 @@
 		
 	}
 	
-
-	
-	
   
 	function changeLanguage()
 	{
