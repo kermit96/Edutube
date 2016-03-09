@@ -56,32 +56,36 @@
 	</div>
 	<table width="800" border="1" align="center">
 		<tr>
-			<th>강의번호</th>	
-			<th>강의코드</th>
-			<th>제     목</th>	
-			<th>작 성 자</th>	
-			<th>작 성 일</th>	
-			<th>추 천 수</th>
+			<th width="5%">번호</th>
+			<th width="10%">강의코드</th>
+			<th width="20%">작 성 자</th>
+			<th width="30%">제     목</th>
+			<th width="10%">작 성 일</th>	
+			<th width="10%">추 천 수</th>
+			<th width="10%">조 회 수</th>
+			<th width="15%">언     어</th>
 		</tr>
 		<c:forEach var="temp" items="${LIST}">
 			<tr>
 				<td>${temp.no}</td>
-				<td>aaa</td>
+				<td>${temp.code}</td>
+				<td>${temp.nick}</td>
 				<td>
-				<a href="JavaScript:Detail(${temp.no})">${temp.title}</a>
+				<a href="JavaScript:Detail(${temp.no})" >${temp.title}</a>
 				</td>
-				<td>aaa</td>
-				<td>aaa</td>
-				<td>aaa</td>
+				<td>${temp.cdate}</td>
+				<td>${temp.good}</td>
+				<td>${temp.hit}</td>
+				<td>${temp.lang}</td>
 			</tr>
 		</c:forEach>
-		<tr>
-			<td colspan="6" align="center">
+		<!-- <tr>
+			<td colspan="8" align="center">
 				<input type="button" value="글작성" id="wBtn">
 			</td>
-		</tr>
+		</tr> -->
 		<tr>
-			<td colspan="6" align="center">
+			<td colspan="8" align="center">
 				<select id="kind" name="kind">
 					<option value="title">제목</option>
 					<option value="body">내용</option>
@@ -93,8 +97,9 @@
 			</td>
 		</tr>
 	</table>
+	<center><input type="button" value="글작성" id="wBtn"></center>
 	<!-- 	페이지 이동 기능 -->
-	<table border="1" align="center" width="800">
+	<table align="center" width="800">
 		<tr>
 			<td align="center">
 				<a href="../ClassList/ClassList.do?nowpage=1">[◀◀]</a>
