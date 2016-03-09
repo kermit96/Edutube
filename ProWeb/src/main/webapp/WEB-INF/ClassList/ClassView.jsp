@@ -18,12 +18,23 @@
  	
 	<!--스크립트-->
 	<script>
-	$(document).ready(function(){
-		$("#wBtn").click(function(){
-			$("#wfrm").attr("action", "../cList/classWrite.do");
-			$("#wfrm").submit();
+		$(document).ready(function(){
+			$("#lBtn").click(function(){
+				$(location).attr("href", "../ClassList/ClassList.do?nowPage=${NOWPAGE}");
+			})
 		})
-	})
+		$(document).ready(function(){
+		$("#dBtn").click(function(){
+			$("#mfrm").attr("action", "../ClassList/ClassDelete.do");
+				$("#mfrm").submit();
+			})
+		})
+		$(document).ready(function(){
+		$("#mBtn").click(function(){
+			$("#mfrm").attr("action", "../ClassList/ClassModifyForm.do?oriNo=${DATA.no}");
+			$("#mfrm").submit();
+			})
+		})
 	</script>
 	
 	<!--  스타일 -->
@@ -49,44 +60,42 @@
 	<div id='top'>	
 		<jsp:include page="/MenuBar/Top.jsp" flush="false" />
 	</div>
-	<form method="POST" id="wfrm">
+<form method="POST" id="mfrm">
 	<table width="800" border="1" align="center">
 		<tr>
 			<th>강의번호</th>
-			<td><input type="text" disabled></td>
-		</tr>
-		<tr>
+			<td align="center">${DATA.no}</td>	
 			<th>강의코드</th>
-			<td><input type="text" disabled></td>
-		</tr>
-		<tr>
-			<th>제    목</th>
-			<td><input type="text" name="title" id="title"></td>
-		</tr>
-		<tr>
-			<th>본　  문</th>
-			<td><textarea name="body" id="body"></textarea></td>
-		</tr>
-		<tr>
+			<td align="center">aaa</td>
 			<th>작 성 자</th>
-			<td><input type="text" disabled></td>
-		</tr>
-		<tr>
+			<td align="center">aaa</td>
 			<th>작 성 일</th>
-			<td><input type="text" disabled></td>
-		</tr>
-		<tr>
+			<td align="center">aaa</td>	
 			<th>추 천 수</th>
-			<td><input type="text" disabled></td>
+			<td align="center">aaa</td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center">
-				<input type="button" value="글작성" id="wBtn">
-			</td>
+			<th colspan="10">제     목</th>
+		</tr>
+		<tr>
+			<td colspan="10">${DATA.title}</td>	
+		</tr>
+		<tr>
+			<th colspan="10">본     문</th>
+		</tr>
+		<tr>
+			<td colspan="10">${DATA.body}</td>
+		</tr>
+	</table>
+	<br>
+	<table width="800" align="center">
+		<tr>
+			<td><input type="button" value="목록" id="lBtn"></td>
+			<td><input type="button" value="수정" id="mBtn"></td>
+			<td><input type="button" value="삭제" id="dBtn"></td>
 		</tr>
 	</table>
 </form>
 </div>
-
 </body>
 </html>
