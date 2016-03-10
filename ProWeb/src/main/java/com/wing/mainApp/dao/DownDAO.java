@@ -56,6 +56,22 @@ public class DownDAO {
 		return (ArrayList) sqlSession.selectList("down.selectFile", no);
 	}
 	
+	// 게시글 삭제 질의
+	public void boardDelete(int NO) {
+		sqlSession.update("down.deleteDown",NO);
+		
+	}
+	
+	// 파일 삭제 질의
+	public void fileDelete(int NO){
+		sqlSession.update("down.deleteFile",NO);
+	}
+	
+	// 파일 존재 여부 확인 질의
+	public int isFile(int NO){
+		return sqlSession.selectOne("down.isFile", NO);
+	}
+	
 	
 	
 	
@@ -102,13 +118,6 @@ public class DownDAO {
 	 */
 	public DownLoadData selectPwInfo(int NO) {
 		return (DownLoadData) sqlSession.selectOne("down.selectPwInfo", NO);
-	}
-	
-	/*
-	 * 파일 삭제 질의 
-	 */
-	public void fileDelete(int NO) {
-		sqlSession.delete("down.deleteFile", NO);
 	}
 	
 	/*

@@ -99,5 +99,14 @@
 		WHERE
 			Down_No=#{no}
 	</update>
+<!-- 파일 존재 여부 확인 -->
+	<select id="isFile" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		SELECT
+			UpLoad_Length AS len
+		FROM
+			UpLoad
+		WHERE
+			Down_No =#{no}
+	</select>
 		
 </mapper>
