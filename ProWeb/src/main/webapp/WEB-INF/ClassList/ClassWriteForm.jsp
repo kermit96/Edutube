@@ -38,8 +38,8 @@
 							return;
 					}
 
-					$group = $("#subcode").val();
-					if ($group == 0) {
+					$subcode = $("#subcode").val();
+					if ($subcode == 0) {
 							alert("과목을 선택해 주세요");
 						return;
 					}
@@ -150,7 +150,11 @@ input#title{
 				<div id="formMain">
 				<form class="form-horizontal" id="classForm" name="classForm">
 					<fieldset>
-				
+					<!--  숨겨놓을것 -->
+					<input id="id" name="id" value="${sessionScope.ID}" type="hidden" />
+					<input id="nick" name="nick" value="${sessionScope.NICKNAME}" type="hidden" />
+					
+					
 						<!-- Text input-->
 						<div class="control-group" id="formTop">
 							<div id="selectD">

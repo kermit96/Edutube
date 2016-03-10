@@ -97,14 +97,20 @@ public class ClassListController {
 	
 	// 글쓰기 요청
 	@RequestMapping("/ClassList/ClassWrite")
-	public ModelAndView classWrite(HttpSession session, ClassListData data){
-		ModelAndView	mv = new ModelAndView();
+	public ModelAndView classWrite(HttpSession session, ClassListData data,HttpServletRequest req ){
+		ModelAndView	 mv = new ModelAndView();
+		
+		mv.addObject("CODE",req.getParameter("code"));
+		mv.addObject("nowPage",req.getParameter("nowPage"));
 		
 		data.id = (String) session.getAttribute("ID");
+		data.nick = (String) session.getAttribute("NICKNAME");
+		
 		lDao.insertclass(data);
 		
-		RedirectView	rv = new RedirectView("../ClassList/ClassList.do");
-		mv.setView(rv);
+		
+		mv.setViewName("/ClassList/ClassWrite");
+		
 		return mv;
 	}
 	

@@ -16,8 +16,12 @@ public class ClassListData {
 	public int oriNo;
 	public Date wdate;
 	public String realdate;
+
+
 	public String lang;
 	public String code;
+	
+	public String mediaURL;
 	
 	public int getNo() {
 		return no;
@@ -96,7 +100,12 @@ public class ClassListData {
 		SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd");
 		return form.format(wdate);
 	}
-
+	public String getMediaURL() {
+		return mediaURL;
+	}
+	public void setMediaURL(String mediaURL) {
+		this.mediaURL = mediaURL;
+	}
 	
 
 	
