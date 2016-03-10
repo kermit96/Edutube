@@ -18,7 +18,9 @@
 
 <!--CustomScript-->
 <script>
-	
+	function classWrite(){
+		 location.href="../ClassList/ClassWriteForm.do?code=${CODE}&nowPage={nowPage}";
+	}
 </script>
 
 <!--Never Delete "EduContainer" style tag-->
@@ -137,7 +139,7 @@
 						<tr>
 							<td colspan=6 align="center">
 								<button class="btn btn-success" type="button"
-									onclick="JavaScript:ReqWrite();">
+									onclick="JavaScript:classWrite();">
 									<span class="glyphicon glyphicon-pencil"></span>글쓰기
 								</button>
 							</td>

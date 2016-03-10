@@ -68,11 +68,19 @@ public class ClassListController {
 		mv.setViewName("ClassList/ClassList");
 		return mv;
 	}
+	/**
+	 * 
+	 * 03-10 완료
+	 * */
+	
 	
 	// 글쓰기 폼 요청
 	@RequestMapping("/ClassList/ClassWriteForm.do")
 	public ModelAndView classWriteForm(HttpServletRequest req, HttpSession session){
 		ModelAndView	mv = new ModelAndView();
+	
+		mv.addObject("CODE",req.getParameter("CODE"));
+		mv.addObject("nowPage",req.getParameter("nowPage"));
 		
 		mv.setViewName("ClassList/ClassWriteForm");
 		return mv;

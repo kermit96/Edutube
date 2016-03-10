@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>EduTube</title>
-<!--CSS-->
+	<!--CSS-->
 	<link rel="stylesheet" href="/edutube/resources/CSS/bootstrap.min.css">
 	<!--  파피콘 넣기 -->
 	<link rel="shortcut icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
@@ -18,12 +18,7 @@
  	
 	<!--스크립트-->
 	<script>
-	$(document).ready(function(){
-		$("#wBtn").click(function(){
-			$("#wfrm").attr("action", "../ClassList/ClassWrite.do");
-			$("#wfrm").submit();
-		})
-	})
+
 	</script>
 	
 	<!--  스타일 -->
@@ -34,14 +29,26 @@
 				left: 50%;
 				margin-left:-600px;				
 		}
-		#nav {
-    	line-height:20px;
-    	float:left;
-    	padding:5px;	      
-		}
-		tr > th {
-			text-align:center;
-		}
+
+#main {
+	width: 1200px;
+}
+
+#centerPage {
+	float: right;
+	position: relative;
+	width: 980px;
+	height: 100%;
+	padding: 10px;
+	font-size: 16px;
+}
+
+#sideBarDiv {
+	float: left;
+	border-top: solid 1px white;
+	clear: both;
+	width: 150px;
+}
 	</style>
 </head>
 <body>
@@ -49,58 +56,65 @@
 	<div id='top'>	
 		<jsp:include page="/MenuBar/Top.jsp" flush="false" />
 	</div>
-	<form method="POST" id="wfrm">
-	<table width="800" border="1" align="center">
-		<tr>
-			<th>강의번호</th>
-			<td><input type="text" disabled></td>
-		</tr>
-		<tr>
-			<th>강의코드</th>
-			<td><input type="text" disabled></td>
-		</tr>
-		<tr>
-			<th>작 성 자</th>
-			<td><input type="text" value="${sessionScope.ID}" disabled></td>
-		</tr>
-		<tr>
-			<th>제    목</th>
-			<td><input type="text" name="title" id="title"></td>
-		</tr>
-		<tr>
-			<th>본　  문</th>
-			<td><textarea name="body" id="body"></textarea></td>
-		</tr>
-		<tr>
-			<th>작 성 일</th>
-			<td><input type="text" disabled></td>
-		</tr>
-		<tr>
-			<th>조 회 수</th>
-			<td><input type="text" disabled></td>
-		</tr>
-		<tr>
-			<th>추 천 수</th>
-			<td><input type="text" disabled></td>
-		</tr>
-		<tr>
-			<th>언     어</th>
-			<td>
-				<select id="kind" name="kind">
-					<option value="kor">한국어</option>
-					<option value="eng">영어</option>
-					<option value="jap">일본어</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2" align="center">
-				<input type="button" value="글작성" id="wBtn">
-			</td>
-		</tr>
-	</table>
-</form>
+	
+	<div id="Main">
+			<!-- This area is Body Part -->
+		<div id="sideBarDiv">
+			<jsp:include page="/MenuBar/ClassSide.jsp" flush="false" />
+		</div>
+			
+		<div id="centerPage">
+			
+		</div>	
+	</div>
+	
 </div>
+
+<!--  글쓰기 -->
+<script>
+ var oEditors = [];
+	nhn.husky.EZCreator.createInIFrame({
+	    oAppRef: oEditors,
+	    elPlaceHolder: "body",
+	    sSkinURI: "/edutube/resources/smarteditor/SmartEditor2Skin.html",
+	    fCreator: "createSEditor2"
+	}); 
+	
+	$(document).ready(function(){
+		
+		$("#save").click(function(){
+			
+			$title =$("#title").val();
+			if($title==""){
+				alertify.alert("제목을 입력해 주세요");
+				return;
+			}
+			
+			$group =$("#depG").val();
+			if($group==0){
+				alertify.alert("그룹을 선택해 주세요");
+				return;
+			}
+			
+			$body =$("#body").val();
+			if($body==""){
+				alertify.alert("본문을 입력해 주세요");
+				return;
+			}
+			
+			$wdate =$("#wdate").val();
+			if($wdate==""){
+				alertify.alert("날짜를 선택해 주세요");
+				return;
+			}
+			
+			oEditors.getById["body"].exec("UPDATE_CONTENTS_FIELD", []);
+			
+			$("#frm").attr("action", "../ClassList/ClassWrite.do?nowPage=${nowPage}&code=${CODE}");
+			$("#frm").submit();
+		});
+	});
+</script>
 
 </body>
 </html>
