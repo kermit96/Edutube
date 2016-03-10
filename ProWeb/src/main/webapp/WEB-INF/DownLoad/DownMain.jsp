@@ -53,29 +53,23 @@
 			<div>
 				<h1>자료실 입니다</h1>
 			</div>
-			<div id="main">	
-				<div>
-				<!-- sideBar -->
-				</div>
-				<div id="asd">
-				<table width="80%" border="1" align="center">
+			<div id="main">
+			<table width="80%" border="1" align="center">
 					<tr>
 						<th width="10%">번호</th>
 						<th width="45%">제목</th>
 						<th width="15%">글쓴이</th>
 						<th width="15%">날짜</th>
-						<th width="10%">조회수</th>
-						<th width="5%">첨부파일</th>
+						<th width="15%">첨부파일</th>
 					</tr>
 				<c:forEach var="temp" items="${LIST}">
 					<tr align="center">
 						<td>${temp.no}</td>
 						<td>
-							<a href="JavaScript:goDetail(${temp.no}})">${temp.title}</a>
+							<a href="JavaScript:goDetail(${temp.no})">${temp.title}</a>
 						</td>
 						<td>${temp.id}</td>
 						<td>${temp.wdate}</td>
-						<td>0</td>
 						<td align="center">
 	<c:if test="${not empty temp.oriname}">
 				<a href="../FileUpload/FileDownload.do?oriNo=${temp.no}"><img src="../images/down.gif"></a>	
@@ -86,7 +80,12 @@
 					<tr>
 						<td colspan="6" align="center"><input type="button" value="write" id="wBtn"><input type="button" value="back" id="lBtn"></td>	
 					</tr>
-				</table>
+				</table>	
+				<div>
+				<!-- sideBar -->
+				</div>
+				<div id="asd">
+				
 				</div>
 			</div>
 		</div>

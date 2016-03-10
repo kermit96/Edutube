@@ -58,29 +58,4 @@ public class ClassListDAO {
 	public void updateclass(ClassListData data) {
 		sqlSession.update("clist.updateclass", data);
 	}
-	// 봤던 글번호 검색 함수
-	public HashMap getShowNo(String ID) {
-		return sqlSession.selectOne("clist.showno", ID);
-	}
-	// 글번호 수정 및 등록 함수
-	public void updateShowNo(HashMap map, int kind) {
-		if(kind == 1) {
-			sqlSession.update("clist.updateshowno", map);
-		}
-		else {
-			sqlSession.insert("clist.insertshowno", map);
-		}
-	}
-	// 조회수 증가 질의 실행 함수
-	public void updateHit(int NO) {
-		sqlSession.update("clist.updatehit", NO);
-	}
-	// 추천 수정 함수
-	public void updateGood(int NO) {
-		sqlSession.update("clist.updategood", NO);
-	}
-	// 추천 상황 검색
-	public int selectGood(int NO) {
-		return sqlSession.selectOne("clist.selectgood", NO);
-	}
 }

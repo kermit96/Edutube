@@ -15,120 +15,113 @@ public class DownDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-	// µ¥ÀÌÅÍ °¹¼ö ±¸ÇÏ±â
+	// ì´ë°ì´í„° ê°¯ìˆ˜êµ¬í•˜ëŠ” í•¨ìˆ˜
 	public int getTotal() {
 		return sqlSession.selectOne("down.getTotal");
 	}
 
-	// °Ô½Ã¹° ¸ñ·Ï º¸¿©ÁÖ±â
+	// ê²Œì‹œê¸€ ë¶ˆëŸ¬ì˜¤ëŠ” í•¨ìˆ˜
 	
-	public	ArrayList	getDownList() {
+	public	ArrayList	getList() {
 		return (ArrayList) sqlSession.selectList("down.getList");
 	}
 	
-	// °Ô½Ã¹° µî·Ï
+	// ê²Œì‹œê¸€ ë“±ë¡í•¨ìˆ˜
 	
 	public void insertBoard(DownLoadData data) {
 		sqlSession.insert("down.insertBoard", data);
 	}
 
-	// Ã·ºÎÆÄÀÏ µî·Ï
+	// íŒŒì¼ ì—…ë¡œë“œ í•¨ìˆ˜
 	
 	public void insertFile(DownLoadData data) {
 		sqlSession.insert("down.insertFile", data);
 	}
 	
-	
-	
-	
-	
-	
-	/*
-	 * 	ÀÏ·Ã¹øÈ£ ¹Ş¾Æ¿À±â ÇÔ¼ö
-	 */
+	// ì¼ë ¨ë²ˆí˜¸ êµ¬í•˜ëŠ” í•¨ìˆ˜
+	 
 	public int selectMax() {
-		return sqlSession.selectOne("smart.selectMax");
+		return sqlSession.selectOne("down.selectMax");
 	}
 	
+	// ê¸€ë³´ê¸° í•¨ìˆ˜
 	
-	
-	
-	
-	/*
-	 * 	»ó¼¼º¸±â ÁúÀÇ½ÇÇà
-	 */
 	public DownLoadData selectView(int no) {
-		return (DownLoadData) sqlSession.selectOne("smart.selectView", no);
+		return (DownLoadData) sqlSession.selectOne("down.selectView", no);
 	}
-	/*
-	 * 	ÆÄÀÏ °Ë»ö ÁúÀÇ ½ÇÇà
-	 */
+	
+	// íŒŒì¼ ë³´ê¸° í•¨ìˆ˜
+	
 	public	ArrayList	selectFile(int no) {
-		return (ArrayList) sqlSession.selectList("smart.selectFile", no);
+		return (ArrayList) sqlSession.selectList("down.selectFile", no);
 	}
+	
+	
+	
+	
 	/*
-	 * 	ÀÌÀü±Û, ´ÙÀ½±Û ÁúÀÇ ½ÇÇà
+	 * 	ì´ì „ê¸€, ë‹¤ìŒê¸€ ì§ˆì˜ ì‹¤í–‰
 	 */
 	public HashMap selectPreNext(int no) {
-		return (HashMap) sqlSession.selectOne("smart.selectPreNext", no);
+		return (HashMap) sqlSession.selectOne("down.selectPreNext", no);
 	}
 	/*
-	 * 	ÀÌ¹Ìº» ±Û¹øÈ£ °Ë»ö ÁúÀÇ
+	 * 	ì´ë¯¸ë³¸ ê¸€ë²ˆí˜¸ ê²€ìƒ‰ ì§ˆì˜
 	 */
 	public String selectHit(String ID) {
-		return (String) sqlSession.selectOne("smart.selectHit", ID);
+		return (String) sqlSession.selectOne("down.selectHit", ID);
 	}
 	/*
-	 * 	ÀÌ¹Ìº» ±Û¹øÈ£ ¼öÁ¤ ÁúÀÇ
+	 * 	ì´ë¯¸ë³¸ ê¸€ë²ˆí˜¸ ìˆ˜ì • ì§ˆì˜
 	 */
 	public void updateHit(HashMap map) {
-		sqlSession.update("smart.updateHit", map);
+		sqlSession.update("down.updateHit", map);
 	}
 	/*
-	 * 	±Û¹øÈ£ »ı¼º ÁúÀÇ
+	 * 	ê¸€ë²ˆí˜¸ ìƒì„± ì§ˆì˜
 	 */
 	public	void insertHit(HashMap map) {
-		sqlSession.insert("smart.insertHit", map);
+		sqlSession.insert("down.insertHit", map);
 	}
 	/*
-	 * 	½ÇÁ¦ Á¶È¸¼ö Áõ°¡ ÁúÀÇ
+	 * 	ì‹¤ì œ ì¡°íšŒìˆ˜ ì¦ê°€ ì§ˆì˜
 	 */
 	public void updateBoardHit(int NO) {
-		sqlSession.update("smart.updateBoardHit", NO);
+		sqlSession.update("down.updateBoardHit", NO);
 	}
 	
 	/*
-	 * 	ÆÄÀÏ Á¤º¸ °Ë»ö ÁúÀÇ
+	 * 	íŒŒì¼ ì •ë³´ ê²€ìƒ‰ ì§ˆì˜
 	 */
 	public HashMap selectFileInfo(int NO) {
-		return (HashMap) sqlSession.selectOne("smart.selectFileInfo", NO);
+		return (HashMap) sqlSession.selectOne("down.selectFileInfo", NO);
 	}
 	
 	/*
-	 * 	¼öÁ¤/»èÁ¦¸¦ À§ÇÑ Á¤º¸ °Ë»ö ÁúÀÇ
+	 * 	ìˆ˜ì •/ì‚­ì œë¥¼ ìœ„í•œ ì •ë³´ ê²€ìƒ‰ ì§ˆì˜
 	 */
 	public DownLoadData selectPwInfo(int NO) {
-		return (DownLoadData) sqlSession.selectOne("smart.selectPwInfo", NO);
+		return (DownLoadData) sqlSession.selectOne("down.selectPwInfo", NO);
 	}
 	
 	/*
-	 * ÆÄÀÏ »èÁ¦ ÁúÀÇ 
+	 * íŒŒì¼ ì‚­ì œ ì§ˆì˜ 
 	 */
 	public void fileDelete(int NO) {
-		sqlSession.delete("smart.deleteFile", NO);
+		sqlSession.delete("down.deleteFile", NO);
 	}
 	
 	/*
-	 *	°Ô½ÃÆÇ ¼öÁ¤ ÁúÀÇ 
+	 *	ê²Œì‹œíŒ ìˆ˜ì • ì§ˆì˜ 
 	 */
 	public void updateBoard(DownLoadData data) {
-		sqlSession.update("smart.updateBoard", data);
+		sqlSession.update("down.updateBoard", data);
 	}
 	
 	/*
-	 * °Ë»ö ÁúÀÇ
+	 * ê²€ìƒ‰ ì§ˆì˜
 	 */
 	public ArrayList	selectSearch(HashMap map) {
-		return (ArrayList) sqlSession.selectList("smart.selectSearch", map);
+		return (ArrayList) sqlSession.selectList("down.selectSearch", map);
 	}
 }

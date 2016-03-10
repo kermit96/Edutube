@@ -2,6 +2,7 @@ package com.wing.mainApp.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,6 +20,7 @@ import com.wing.mainApp.data.DownLoadData;
 import com.wing.mainApp.data.DownLoadData;
 import com.wing.mainApp.util.FileUtil;
 import com.wing.mainApp.util.PageUtil;
+import com.wing.mainApp.util.SessionUtil;
 import com.wing.mainApp.util.StringUtil;
 
 @Controller
@@ -43,7 +45,7 @@ public class DownController {
 		PageUtil pInfo = new PageUtil(nowPage, total, 5 , 5);
 		pInfo.calcInfo();
 		
-		ArrayList list = dDao.getDownList();
+		ArrayList list = dDao.getList();
 		
 		int		start = (pInfo.nowPage - 1) * pInfo.pageList;
 		int		end = start + pInfo.pageList - 1;
@@ -72,25 +74,17 @@ public class DownController {
 		mv.setViewName("/DownLoad/DownWrite");
 		return mv;
 	}
-	// �۽��ٰ���
+	// 글쓰기 요청
+	
 	@RequestMapping("/DownLoad/DownWriteProc")
 	public ModelAndView DownWriteProc(DownLoadData data, HttpSession session){
 		ModelAndView		mv = new ModelAndView();
-		System.out.println("�Դ�");
-		System.out.println(data.title);
-		System.out.println(data.body);
 		if(StringUtil.isNull(data.title) || StringUtil.isNull(data.body)) {
 			RedirectView	rv = new RedirectView("../DownLoad/DownMain.do");
 			mv.setView(rv);
 			return mv;
 		}
 		
-		
-		
-		
-		
-		
-		System.out.println("sex");
 		String	path = "E:\\FileUpload";
 		String[]	oriname = null;
 		String[]	savename = null;
@@ -115,7 +109,7 @@ public class DownController {
 						data.upfile[i].transferTo(file);
 					}
 					catch(Exception e) {
-						System.out.println("���ε� ���� " + e);
+						System.out.println("파일 업로드 에러=" + e);
 					}
 					count = count + 1;
 				}
@@ -126,6 +120,13 @@ public class DownController {
 		
 		int	no = dDao.selectMax(); 
 		data.no = no;
+		System.out.println("---------insertBoard-----------");
+		System.out.println(data.no);
+		System.out.println(data.id);
+		System.out.println(data.title);
+		System.out.println(data.body);
+		System.out.println(data.wdate);
+		System.out.println("---------insertBoard-----------");
 		
 		dDao.insertBoard(data);
 		
@@ -133,6 +134,14 @@ public class DownController {
 			DownLoadData	temp = new DownLoadData();
 			temp.no = no;
 			temp.path = path;
+			System.out.println("---------insertFile-------");
+			System.out.println(data.no);
+			System.out.println(data.path);
+			System.out.println(data.oriname);
+			System.out.println(data.savename);
+			System.out.println(data.len);
+			System.out.println(data.wdate);
+			System.out.println("---------insertFile-------");
 			for(int i = 0; i < count; i++) {
 				temp.oriname = oriname[i];
 				temp.savename = savename[i];
@@ -145,14 +154,48 @@ public class DownController {
 		mv.setView(rv);
 		return mv;
 	}
-	@RequestMapping("/DownLoad/UploadWrite")
-	public ModelAndView UpLoadWrite(){
+	// 상세보기 함수
 	
+	@RequestMapping("/DownLoad/DownView")
+	public ModelAndView boardView(HttpSession session, DownLoadData data, HttpServletRequest req) {
+		ModelAndView		mv = new ModelAndView();
+//		if(!SessionUtil.isSession(session)) {
+//			RedirectView	rv = new RedirectView(""); // 로그인폼으로 보내야함
+//			mv.setView(rv);
+//			return mv;
+//		}		
+		
+		System.out.println(data.oriNo);
+		DownLoadData	rData = dDao.selectView(data.oriNo);
+		ArrayList			fList = dDao.selectFile(data.oriNo);
+		for(int i =0; i < fList.size(); i++){
+			System.out.println(fList.get(i));
+		}
+		
+		mv.addObject("VIEW", rData);
+		mv.addObject("FILES", fList);
+		mv.addObject("NOWPAGE", data.nowPage);
+		mv.setViewName("DownLoad/DownView");
+		return mv;
+	}
+	// 게시글 수정함수
+	@RequestMapping("/DownLoad/DownModify")
+	public ModelAndView downModify(DownLoadData data, HttpSession session){
 		ModelAndView mv = new ModelAndView();
+		
+		String id= (String)session.getAttribute("ID");
+		if(id.equals(null)||id==""){
+			mv.setViewName("DownLoad/DownView.do");
+			return mv;
+		}
 		
 		
 		return mv;
 	}
-	
-	
+	@RequestMapping("/DownLoad/DownDelete")
+	public ModelAndView downDelete(){
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
+	}
 }
