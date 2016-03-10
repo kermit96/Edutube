@@ -20,25 +20,25 @@
    <li><a href='#'>과목별 검색</a></li>
    <li class='active has-sub'><a href='#'>언어</a>
       <ul>
-         <li class='has-sub'><a href='#'>한국어</a></li>
-         <li class='has-sub'><a href='#'>일본어</a></li>
-         <li class='has-sub'><a href='#'>중국어</a></li>
-         <li class='has-sub'><a href='#'>영어</a></li>
+         <li class='has-sub'><a href="../ClassList/ClassList.do?code=langkor">한국어</a></li>
+         <li class='has-sub'><a href='../ClassList/ClassList.do?code=langjap'>일본어</a></li>
+         <li class='has-sub'><a href='../ClassList/ClassList.do?code=langchn'>중국어</a></li>
+         <li class='has-sub'><a href='../ClassList/ClassList.do?code=langeng'>영어</a></li>
       </ul>
    </li>
    <li class='active has-sub'><a href='#'>프로그래밍</a>
       <ul>
-         <li class='has-sub'><a href='#'>자바</a></li>
-         <li class='has-sub'><a href='#'>C언어</a></li>
-         <li class='has-sub'><a href='#'>PHP</a></li>
+         <li class='has-sub'><a href='../ClassList/ClassList.do?code=progjava'>자바</a></li>
+         <li class='has-sub'><a href='../ClassList/ClassList.do?code=progclang'>C언어</a></li>
+         <li class='has-sub'><a href='../ClassList/ClassList.do?code=progphp'>PHP</a></li>
       </ul>
    </li>
    <li class='active has-sub'><a href='#'>요리</a>
       <ul>
-         <li class='has-sub'><a href='#'>한식</a></li>
-         <li class='has-sub'><a href='#'>중식</a></li>
-         <li class='has-sub'><a href='#'>일식</a></li>
-       	 <li class='has-sub'><a href='#'>양식</a></li>
+         <li class='has-sub'><a href='../ClassList/ClassList.do?code=cookkor'>한식</a></li>
+         <li class='has-sub'><a href='../ClassList/ClassList.do?code=cookchn'>중식</a></li>
+         <li class='has-sub'><a href='../ClassList/ClassList.do?code=cookjap'>일식</a></li>
+       	 <li class='has-sub'><a href='../ClassList/ClassList.do?code=cookwest'>양식</a></li>
       </ul>
    </li>
 

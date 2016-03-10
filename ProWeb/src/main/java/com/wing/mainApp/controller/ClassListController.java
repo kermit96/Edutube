@@ -24,6 +24,7 @@ public class ClassListController {
 	ClassListDAO lDao;
 	
 	// 목록보기 요청
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping("/ClassList/ClassList.do")
 	public ModelAndView classList(HttpServletRequest req, HttpSession session){
 		ModelAndView 	mv = new ModelAndView();
@@ -60,6 +61,7 @@ public class ClassListController {
 			result.add(temp);
 		}
 		
+		mv.addObject("CODE",code);
 		mv.addObject("PINFO", pInfo);
 		mv.addObject("LIST", result);
 		

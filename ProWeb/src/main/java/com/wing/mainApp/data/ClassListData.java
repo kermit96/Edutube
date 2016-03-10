@@ -1,5 +1,6 @@
 package com.wing.mainApp.data;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ClassListData {
@@ -14,15 +15,10 @@ public class ClassListData {
 
 	public int oriNo;
 	public Date wdate;
+	public String realdate;
 	public String lang;
 	public String code;
 	
-	public String getNick() {
-		return nick;
-	}
-	public void setNick(String nick) {
-		this.nick = nick;
-	}
 	public int getNo() {
 		return no;
 	}
@@ -47,11 +43,23 @@ public class ClassListData {
 	public void setId(String id) {
 		this.id = id;
 	}
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
 	public int getGood() {
 		return good;
 	}
 	public void setGood(int good) {
 		this.good = good;
+	}
+	public int getHit() {
+		return hit;
+	}
+	public void setHit(int hit) {
+		this.hit = hit;
 	}
 	public int getNowPage() {
 		return nowPage;
@@ -65,7 +73,12 @@ public class ClassListData {
 	public void setOriNo(int oriNo) {
 		this.oriNo = oriNo;
 	}
-
+	public Date getWdate() {
+		return wdate;
+	}
+	public void setWdate(Date wdate) {
+		this.wdate = wdate;
+	}
 	public String getLang() {
 		return lang;
 	}
@@ -78,17 +91,15 @@ public class ClassListData {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public int getHit() {
-		return hit;
+	
+	public String getRealdate() {
+		SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd");
+		return form.format(wdate);
 	}
-	public void setHit(int hit) {
-		this.hit = hit;
-	}
-	public Date getWdate() {
-		return wdate;
-	}
-	public void setWdate(Date wdate) {
-		this.wdate = wdate;
-	}
+
+	
+
+	
+	
 	
 }

@@ -121,19 +121,19 @@
 							<tr>
 								<td>${content.no}</td>
 								<td>
-								<a href="../ClassList/ClassList.do?nowPage=${PINFO.nowPage}&oriNO=${content.no}"><span></span>[${content.code}]&nbsp;${content.title}</a>
+								<a href="../ClassList/ClassList.do?nowPage=${PINFO.nowPage}&oriNO=${content.no}&code=${CODE}"><span></span>[${content.code}]&nbsp;${content.title}</a>
 								</td>
 								<td>${content.nick}</td>
 								<td>	${content.good}</td>
 								<td>${content.hit}</td>
-								<td>${content.wdate}</td>								
+								<td>${content.realdate}</td>								
 							</tr>
 						</c:forEach>
 						<!--  반복문 종료 -->
 
 					</tbody>
 					<!--  필요한 기능 -->
-				
+						<c:if test="${sessionScope.NAL eq 'L' }">
 						<tr>
 							<td colspan=6 align="center">
 								<button class="btn btn-success" type="button"
@@ -141,7 +141,8 @@
 									<span class="glyphicon glyphicon-pencil"></span>글쓰기
 								</button>
 							</td>
-						</tr>					
+						</tr>
+						</c:if>					
 
 				</table>
 				<!--  테이블 종료 -->
@@ -152,14 +153,14 @@
 
 						<c:if test="${PINFO.startPage ne 1}">
 							<li><a
-								href="../ClassList/ClassList.do?nowPage=${PINFO.startPage-1}">이전</a></li>
+								href="../ClassList/ClassList.do?nowPage=${PINFO.startPage-1}&code=${CODE}">이전</a></li>
 						</c:if>
 
 						<c:forEach var="imsi" begin="${PINFO.startPage}"
 							end="${PINFO.endPage}">
 
 							<c:if test="${imsi ne PINFO.nowPage}">
-								<li><a href="../ClassList/ClassList.do?nowPage=${imsi}">${imsi}</a></li>
+								<li><a href="../ClassList/ClassList.do?nowPage=${imsi}&code=${CODE}">${imsi}</a></li>
 							</c:if>
 							<c:if test="${imsi eq PINFO.nowPage}">
 								<li class="active"><a href="#">${imsi}</a></li>
@@ -169,7 +170,7 @@
 
 						<c:if test="${PINFO.endPage ne PINFO.pageNum}">
 							<li><a
-								href="../ClassList/ClassList.do?nowPage=${PINFO.endPage + 1}">다음</a></li>
+								href="../ClassList/ClassList.do?nowPage=${PINFO.endPage + 1}&code=${CODE}">다음</a></li>
 						</c:if>
 
 						<c:if test="${PINFO.endPage eq PINFO.pageNum}">

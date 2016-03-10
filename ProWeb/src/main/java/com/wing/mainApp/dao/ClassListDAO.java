@@ -44,7 +44,7 @@ public class ClassListDAO {
 			result = (ArrayList)sqlSession.selectList("clist.getlist");
 		}
 		else{
-			result = (ArrayList)sqlSession.selectList("clist.getlistofsub");
+			result = (ArrayList)sqlSession.selectList("clist.getlistofsub",code);
 		}		
 				
 		return result;
