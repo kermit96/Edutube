@@ -8,6 +8,17 @@
 		FROM
 			class
 	</select>
+	<!--  과목별 총 데이터 수 구하기 -->
+	<select id="gettotalofsub" resultType="int" parameterType="String">
+		Select
+			Count(*) as Total
+		From
+			Class
+		where
+			sub_code=#{code}		
+	</select>
+	
+	
 	<!-- 게시물 등록 -->
 	<insert id="classinsert" parameterType="ClassListData">
 		INSERT
@@ -16,16 +27,41 @@
 		VALUES
 			((SELECT NVL(MAX(no), 0) + 1 FROM class),#{title},#{body},'N')
 	</insert>
-	<!-- 목록보기 -->
+	<!-- 목록보기 (전체용)-->
 	<select id="getlist" resultType="ClassListData">
-		SELECT
-			no	AS no,
-			title	AS title,
-			body	AS body
-		FROM
-			class
-		ORDER BY
-			no DESC
+        SELECT
+            class_no    AS no,
+            s.sub_name AS code,
+            class_title    AS title,
+            mem_nick        AS nick,
+            class_date    AS wdate,
+            class_good AS good,
+            class_hit as hit            
+        FROM
+            class c,subject s
+        where
+            C.SUB_CODE = S.SUB_CODE  
+        ORDER BY
+            no DESC
+	</select>
+	<!-- 목록보기 (과목별)-->
+	<select id="getlistofsub" resultType="ClassListData" parameterType="String">
+		        SELECT
+            class_no    AS no,
+            s.sub_name AS code,
+            class_title    AS title,
+            mem_nick   AS nick,
+            class_date    AS wdate,
+            class_good AS good,
+            class_hit		AS  hit            
+        FROM
+            class c,subject s
+        where
+            C.SUB_CODE = S.SUB_CODE 
+        and
+            C.SUB_CODE = #{code}  
+        ORDER BY
+            no DESC			
 	</select>
 	<!-- 상세보기 -->
 	<select id="classview" resultType="ClassListData" parameterType="java.lang.Integer">

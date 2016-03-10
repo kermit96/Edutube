@@ -28,7 +28,7 @@ public class ClassListController {
 	public ModelAndView classList(HttpServletRequest req, HttpSession session){
 		ModelAndView 	mv = new ModelAndView();
 		
-		String strpage = req.getParameter("nowPage");
+				String strpage = req.getParameter("nowPage");
 		int	nowPage = 0;
 		if(StringUtil.isNull(strpage)){
 			nowPage = 1;
@@ -36,12 +36,17 @@ public class ClassListController {
 		else {
 			nowPage = Integer.parseInt(strpage);
 		}
-			
-		int	total = lDao.getTotal(1);
-		PagingUtil	pInfo = new PagingUtil(nowPage, total, 10, 10);
+		
+		String code = req.getParameter("code");
+		if(StringUtil.isNull(code)){
+			code = "default";
+		}	
+		
+		int	total = lDao.getTotal(code);
+		PagingUtil	pInfo = new PagingUtil(nowPage, total, 10, 5);
 		pInfo.pagingProc();
 		
-		ArrayList	list = lDao.getClassList();
+		ArrayList	list = lDao.getClassList(code);
 		
 		int	start = (pInfo.nowPage -1) * pInfo.onePageCount;
 		int	end = start + pInfo.onePageCount -1;
@@ -61,6 +66,7 @@ public class ClassListController {
 		mv.setViewName("ClassList/ClassList");
 		return mv;
 	}
+	
 	// 글쓰기 폼 요청
 	@RequestMapping("/ClassList/ClassWriteForm.do")
 	public ModelAndView classWriteForm(HttpServletRequest req, HttpSession session){

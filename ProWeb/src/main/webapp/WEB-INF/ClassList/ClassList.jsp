@@ -1,127 +1,188 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>EduTube</title>
+
+<!--  Favicon (Main Icon) -->
+<link rel="shortcut icon" href="/edutube/favicon.ico"
+	type="image/x-icon" />
+<link rel="icon" href="/edutube/favicon.ico" type="image/x-icon" />
+
 <!--CSS-->
-	<link rel="stylesheet" href="/edutube/resources/CSS/bootstrap.min.css">
-	<!--  파피콘 넣기 -->
-	<link rel="shortcut icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
-	<link rel="icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
-	<!--  검색바 -->
+
+<!--JS-->
+
+<!--CustomScript-->
+<script>
 	
-	<!--JS-->
-	 <script src="/edutube/resources/JS/jquery-2.1.4.min.js"></script>
- 	<script src="/edutube/resources/JS/bootstrap.min.js"></script>
- 	
-	<!--스크립트-->
-	<script>
-	function Detail(orino) {
-		$(location).attr("href", "../ClassList/ClassView.do?nowPage=${PINFO.nowPage}&oriNo="+ orino + "&flag=L");
+</script>
+
+<!--Never Delete "EduContainer" style tag-->
+<style>
+#EduContainer {
+	width: 1200px;
+	position: absolute;
+	left: 50%;
+	margin-left: -600px;
+}
+
+#main {
+	width: 1200px;
+}
+
+#centerPage {
+	float: right;
+	position: relative;
+	width: 980px;
+	height: 100%;
+	padding: 10px;
+	font-size: 16px;
+}
+
+#sideBarDiv {
+	float: left;
+	border-top: solid 1px white;
+	clear: both;
+	width: 150px;
+}
+/* 페이징과 테이블 CSS */
+	#paging{		
+		text-align:center;
+		margin: 0 auto;
 	}
-	$(document).ready(function(){
-		$("#wBtn").click(function(){
-			$(location).attr("href", "../ClassList/ClassWriteForm.do");
-		});
-	});
-	</script>
-	
-	<!--  스타일 -->
-	<style>
-		#EduContainer{
-				width:1200px;
-				position: absolute;
-				left: 50%;
-				margin-left:-600px;				
-		}
-		#nav {
-    	line-height:20px;
-    	float:left;
-    	padding:5px;	      
-		}
-		tr > th {
-			text-align:center;
-		}
-	</style>
-</head>
+	tbody tr td a:link{
+		text-decoration: none;
+	}	
+	tbody tr td a:hover{
+		text-decoration: none;
+	}	
+	tbody tr td a:visited{
+		text-decoration: none;
+	}	
+</style>
 
 </head>
 <body>
-<div id='EduContainer'>
-	<div id='top'>	
-		<jsp:include page="/MenuBar/Top.jsp" flush="false" />
-	</div>
-	<table width="800" border="1" align="center">
-		<tr>
-			<th width="5%">번호</th>
-			<th width="10%">강의코드</th>
-			<th width="20%">작 성 자</th>
-			<th width="30%">제     목</th>
-			<th width="10%">작 성 일</th>	
-			<th width="10%">추 천 수</th>
-			<th width="10%">조 회 수</th>
-			<th width="15%">언     어</th>
-		</tr>
-		<c:forEach var="temp" items="${LIST}">
-			<tr>
-				<td>${temp.no}</td>
-				<td>${temp.code}</td>
-				<td>${temp.nick}</td>
-				<td>
-				<a href="JavaScript:Detail(${temp.no})" >${temp.title}</a>
-				</td>
-				<td>${temp.cdate}</td>
-				<td>${temp.good}</td>
-				<td>${temp.hit}</td>
-				<td>${temp.lang}</td>
-			</tr>
-		</c:forEach>
-		<!-- <tr>
-			<td colspan="8" align="center">
-				<input type="button" value="글작성" id="wBtn">
-			</td>
-		</tr> -->
-		<tr>
-			<td colspan="8" align="center">
-				<select id="kind" name="kind">
-					<option value="title">제목</option>
-					<option value="body">내용</option>
-					<option value="writer">글쓴이</option>
-					<option value="both">제목+내용</option>
-				</select>
-				<input type="text" id="content" name="content">
-				<input type="button" value="검색" id="sBtn">
-			</td>
-		</tr>
-	</table>
-	<center><input type="button" value="글작성" id="wBtn"></center>
-	<!-- 	페이지 이동 기능 -->
-	<table align="center" width="800">
-		<tr>
-			<td align="center">
-				<a href="../ClassList/ClassList.do?nowpage=1">[◀◀]</a>
-				<c:if test="${pInfo.startPage eq 1}">
-					[◀]
-				</c:if>
-				<c:if test="${pInfo.startPage ne 1}">
-					<a href="../ClassList/ClassList.do?nowpage=${pInfo.startPage - 1}">[◀]</a>
-				</c:if>
-				<c:forEach var="temp" begin="${pInfo.startPage}" end="${pInfo.endPage}">
-					<a href="../ClassList/ClassList.do?nowpage=${temp}">[ ${temp} ]</a>
-				</c:forEach>
-				<c:if test="${pInfo.endPage eq pInfo.pageNum}">
-					[▶]
-				</c:if>
-				<c:if test="${pInfo.endPage ne pInfo.pageNum}">
-					<a href="../ClassList/ClassList.do?nowpage=${pInfo.endPage + 1}">[▶]</a>
-				</c:if>
-				<a href="../ClassList/ClassList.do?nowpage=${pInfo.pageNum}">[▶▶]</a>
-			</td>
-		</tr>
-	</table>
-</div>
+
+	<div id='EduContainer'>
+
+		<div id='top'>
+			<jsp:include page="/MenuBar/Top.jsp" flush="false" />
+		</div>
+
+		<div id="Main">
+			<!-- This area is Body Part -->
+			<div id="sideBarDiv">
+				<jsp:include page="/MenuBar/ClassSide.jsp" flush="false" />
+			</div>
+			<div id="centerPage">
+				<!--  게시글 테이블 (body) -->
+				<!-- 아래 부터 작성 -->
+				<p>&nbsp;</p>
+
+				<h3>강의</h3>
+				<br>
+
+				<!--  선택박스 (그룹 선택) -->
+
+				<!-- 채용공고 게시판 -->
+				<table class="table table-bordered table-hover">
+
+					<colgroup>
+						<col style="width: 100px">
+						<col style="width: 400px">
+						<col style="width: 160px">
+						<col style="width: 100px">
+						<col style="width: 100px">
+						<col style="width: 120px">
+					</colgroup>
+
+					<!-- 컬럼 -->
+					<thead>
+						<tr>
+							<th>글번호</th>
+							<th>글제목</th>
+							<th>글쓴이</th>
+							<th>추천수</th>
+							<th>조회수</th>
+							<th>작성일</th>
+						</tr>
+					</thead>
+
+					<!--  바디 -->
+					<tbody>
+
+						<!--  반복문 시작 -->
+						<c:forEach var="content" items="${LIST}">
+							<tr>
+								<td>${content.no}</td>
+								<td>
+								<a href="../ClassList/ClassList.do?nowPage=${PINFO.nowPage}&oriNO=${content.no}"><span></span>[${content.code}]&nbsp;${content.title}</a>
+								</td>
+								<td>${content.nick}</td>
+								<td>	${content.good}</td>
+								<td>${content.hit}</td>
+								<td>${content.wdate}</td>								
+							</tr>
+						</c:forEach>
+						<!--  반복문 종료 -->
+
+					</tbody>
+					<!--  필요한 기능 -->
+				
+						<tr>
+							<td colspan=6 align="center">
+								<button class="btn btn-success" type="button"
+									onclick="JavaScript:ReqWrite();">
+									<span class="glyphicon glyphicon-pencil"></span>글쓰기
+								</button>
+							</td>
+						</tr>					
+
+				</table>
+				<!--  테이블 종료 -->
+				<!--  페이징 처리 -->
+				<div id="paging">
+					<ul class="pagination">
+					
+
+						<c:if test="${PINFO.startPage ne 1}">
+							<li><a
+								href="../ClassList/ClassList.do?nowPage=${PINFO.startPage-1}">이전</a></li>
+						</c:if>
+
+						<c:forEach var="imsi" begin="${PINFO.startPage}"
+							end="${PINFO.endPage}">
+
+							<c:if test="${imsi ne PINFO.nowPage}">
+								<li><a href="../ClassList/ClassList.do?nowPage=${imsi}">${imsi}</a></li>
+							</c:if>
+							<c:if test="${imsi eq PINFO.nowPage}">
+								<li class="active"><a href="#">${imsi}</a></li>
+							</c:if>
+
+						</c:forEach>
+
+						<c:if test="${PINFO.endPage ne PINFO.pageNum}">
+							<li><a
+								href="../ClassList/ClassList.do?nowPage=${PINFO.endPage + 1}">다음</a></li>
+						</c:if>
+
+						<c:if test="${PINFO.endPage eq PINFO.pageNum}">
+						</c:if>
+
+					</ul>
+				</div><!--  페이징 처리 끝 -->
+			</div><!--  게시글 테이블 끝 -->
+		</div><!--  센터페이지 -->
+	</div><!--  전체 DIV -->
+
 </body>
 </html>
+
+
+

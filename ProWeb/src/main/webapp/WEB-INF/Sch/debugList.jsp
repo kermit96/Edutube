@@ -71,11 +71,10 @@
 	<div id="Main">
 		<!-- This area is Body Part -->
 		<div id="sideBarDiv">
-			<jsp:include page="/MenuBar/AdminSide.jsp" flush="false" />
+			<jsp:include page="/MenuBar/ClassSide.jsp" flush="false" />
 		</div>		
 		<div id="centerPage">
-			<a href="JavaScript:goSCH();">스케쥴</a>
-			<a href="JavaScript:goIntro();">강사소개</a>
+			
 		</div>
 	</div>
 	 

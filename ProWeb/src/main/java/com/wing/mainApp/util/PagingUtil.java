@@ -2,19 +2,19 @@ package com.wing.mainApp.util;
 
 public class PagingUtil {
 	/*
-	 * ÆäÀÌÂ¡ Ã³¸®
+	 * ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½
 	 */
 	public int nowPage;
 	public int startPage;
 	public int endPage;
-	public int totalCount;			// ÃÑ °Ô½Ã¹° ¼ö
-	public int onePageCount;	// ÇÑ°³ÀÇ ÆäÀÌÁö¿¡ ³ªÅ¸³¯ °Ô½Ã±Û ¼ö
-	public int groupSize;			// ÇÑ°³ÀÇ ÆäÀÌÁö ±×·ì¿¡ ³ªÅ¸³¯ ÆäÀÌÁö ¼ö 
-	public int pageNum;			// ÆÄ¶ó¸ÞÅÍ¿¡ µû¸¥ ÃÑ ÆäÀÌÁö¼ö	
+	public int totalCount;			// ê²Œì‹œê¸€ ìˆ˜
+	public int onePageCount;	// í•œ íŽ˜ì´ì§€ì— ë‚˜íƒ€ë‚  ê²Œì‹œê¸€ ìˆ˜
+	public int groupSize;			// í•œ íŽ˜ì´ì§€ ê·¸ë£¹ì— ë‚˜íƒ€ë‚  íŽ˜ì´ì§€ ê°¯ìˆ˜ (1~5) 
+	public int pageNum;			// ì „ì²´ íŽ˜ì´ì§€ ìˆ«ìž
 	
 	/*
 		PagingUtil = new PagingUtil
-			(ÇöÀçÆäÀÌÁö, °Ô½Ã¹°ÃÑ°¹¼ö, ÇÑÆäÀÌÁö°Ô½Ã±Û, ÇÑ ÆäÀÌÁö±×·ìÀÇ °¹¼ö)
+			
 	*/
 	public PagingUtil (int nowPage,int totalCount){
 		this(nowPage,totalCount,10,5);		
@@ -31,7 +31,7 @@ public class PagingUtil {
 
 	public void pagingProc(){
 			
-			// ÃÑ ÆäÀÌÁö ¼ö
+			// ì „ì²´ íŽ˜ì´ì§€ êµ¬í•˜ê¸°
 			if(totalCount % onePageCount == 0){
 				pageNum = totalCount / onePageCount;
 			}
@@ -39,12 +39,12 @@ public class PagingUtil {
 				pageNum = totalCount / onePageCount + 1;
 			}
 			
-			// Àß¸øµÈ nowPage °ª 1·Î
+			// í˜„ìž¬ íŽ˜ì´ì§€ ì˜¤ë¥˜ ë³´ì •
 			if(!(nowPage > 0) || nowPage > pageNum){
 				nowPage = 1;
 			}
 			
-			// ½ÃÀÛ ÆäÀÌÁö (6~10 ÀÏ¶§ (6) ±¸ÇÏ±â)
+			// ì‹œìž‘ íŽ˜ì´ì§€ (6~10 ì´ë©´ (6) êµ¬í•˜ê¸°)
 			int tempP = nowPage / groupSize;
 			
 			if(nowPage%groupSize == 0){
@@ -54,13 +54,13 @@ public class PagingUtil {
 				startPage = tempP*groupSize + 1;
 			}
 			
-			// ³¡ ÆäÀÌÁö (6~10 ÀÏ¶§ (10) ±¸ÇÏ±â)
+			// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (6~10 ï¿½Ï¶ï¿½ (10) ï¿½ï¿½ï¿½Ï±ï¿½)
 			endPage = startPage + groupSize - 1;			
 			if(endPage > pageNum){
 				endPage = pageNum;
 			}
 			
-	} // °è»ê ÇÔ¼ö ³¡
+	} // ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½
 
 	public int getNowPage() {
 		return nowPage;
