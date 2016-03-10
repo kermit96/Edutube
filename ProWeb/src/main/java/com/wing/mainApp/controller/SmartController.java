@@ -29,7 +29,7 @@
 //	
 //	
 //	/*
-//	 * 	±Û¾²±â Æû ¿äÃ» Ã³¸® ÇÔ¼ö
+//	 * 	ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ã» Ã³ï¿½ï¿½ ï¿½Ô¼ï¿½
 //	 */
 //	@RequestMapping("/Smart/BoardWriteForm")
 //	public ModelAndView	boardWriteForm(HttpSession session) {
@@ -46,7 +46,7 @@
 //	}
 //	
 //	/*
-//	 * 	¸ñ·Ïº¸±â ¿äÃ» Ã³¸® ÇÔ¼ö
+//	 * 	ï¿½ï¿½Ïºï¿½ï¿½ï¿½ ï¿½ï¿½Ã» Ã³ï¿½ï¿½ ï¿½Ô¼ï¿½
 //	 */
 //	@RequestMapping("/Smart/BoardList")
 //	public ModelAndView	 boardList(HttpServletRequest req) {
@@ -81,12 +81,12 @@
 //	}
 //	
 //	/*
-//	 * 	±Û¾²±â ¿äÃ»
+//	 * 	ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»
 //	 */
 //	@RequestMapping("/Smart/BoardWrite")
 //	public ModelAndView	boardWrite(HttpSession session, SmartBoardData data) {
 //		ModelAndView		mv = new ModelAndView();
-//		System.out.println("¿Ô´Ù");
+//		System.out.println("ï¿½Ô´ï¿½");
 //		System.out.println(data.title);
 //		System.out.println(data.body);
 //		System.out.println(data.pw);
@@ -120,7 +120,7 @@
 //						data.upfile[i].transferTo(file);
 //					}
 //					catch(Exception e) {
-//						System.out.println("¾÷·Îµå ½ÇÆÐ " + e);
+//						System.out.println("ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ " + e);
 //					}
 //					count = count + 1;
 //				}
@@ -152,7 +152,7 @@
 //	}
 //	
 //	/*
-//	 * 	»ó¼¼º¸±â
+//	 * 	ï¿½ó¼¼ºï¿½ï¿½ï¿½
 //	 */
 //	@RequestMapping("/Smart/BoardView")
 //	public ModelAndView boardView(HttpSession session, SmartBoardData data) {
@@ -175,7 +175,7 @@
 //	}
 //	
 //	/*	
-//	 * Á¶È¸¼ö Áõ°¡
+//	 * ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 //	 */
 //	@RequestMapping("/Smart/BoardHit")
 //	public ModelAndView boardHit(SmartBoardData data, HttpSession session) {
@@ -216,7 +216,7 @@
 //	}
 //	
 //	/*
-//	 * 	ÆÄÀÏ ´Ù¿î·Îµå 
+//	 * 	ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½Îµï¿½ 
 //	 */
 //	@RequestMapping("/Smart/BoardDown")
 //	public ModelAndView		boardDown(HttpServletRequest req) {
@@ -238,7 +238,7 @@
 //	}
 //	
 //	/*
-//	 * 	¼öÁ¤Æû ¿äÃ» 
+//	 * 	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã» 
 //	 */
 //	@RequestMapping("/Smart/BoardModifyForm")
 //	public ModelAndView	boardModifyForm(SmartBoardData data, HttpSession session) {
@@ -269,7 +269,7 @@
 //	}
 //	
 //	/*
-//	 * 	ÆÄÀÏ »èÁ¦ ¿äÃ»
+//	 * 	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»
 //	 */
 //	@RequestMapping("/Smart/BoardFileDelete")
 //	public ModelAndView	boardFileDelete(@RequestParam("no") int no) {
@@ -286,7 +286,7 @@
 //	}
 //	
 //	/*
-//	 * 	¼öÁ¤ÇÏ±â ¿äÃ» Ã³¸® ÇÔ¼ö
+//	 * 	ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½Ã» Ã³ï¿½ï¿½ ï¿½Ô¼ï¿½
 //	 */
 //	@RequestMapping("/Smart/BoardModify")
 //	public ModelAndView		boardModify(SmartBoardData data) {
@@ -340,7 +340,7 @@
 //	}
 //	
 //	/*
-//	 * °Ë»öÇÏ±â ¿äÃ»
+//	 * ï¿½Ë»ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½Ã»
 //	 */
 //	@RequestMapping("/Smart/BoardSearch")
 //	public ModelAndView boardSearch(HttpServletRequest req, HttpSession session) {

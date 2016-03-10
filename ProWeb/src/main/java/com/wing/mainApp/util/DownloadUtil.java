@@ -14,14 +14,14 @@ import org.springframework.web.servlet.view.AbstractView;
 public class DownloadUtil extends AbstractView {
 	
     public DownloadUtil() {
-        setContentType("applicaiton/download;charset=EUC-KR");
+        setContentType("applicaiton/download;charset=UTF-8");
     }
     
     @Override
     protected void renderMergedOutputModel(Map model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
     	//===========
-    	String	oriName = (String)model.get("oirname");
+    	String	oriName = (String)model.get("oriname");
     	//===========
     	File file = (File) model.get("downloadFile");
         response.setContentType(getContentType());

@@ -30,7 +30,7 @@ public class MemberController {
    {
 	   ModelAndView mv = new ModelAndView();
 
-	   // login 호춫 
+	   // login 호출
 	   String returl = req.getParameter("returnurl");
 	   
 	   mv.setViewName("/Member/login");
@@ -179,7 +179,7 @@ void CheckUserid(HttpServletRequest req, HttpServletResponse res)
 		   
 	   } else {
     	  str = "password 를  e-mail 로 전달 했습니다."  ;
-    	  String body = name +" 닝의 비밀 번호는  "+password + " 입니다";
+    	  String body = name +" 님의 비밀 번호는  "+password + " 입니다";
     	   try {
    	         util.SendMail(email, "Edutube 비밀번호 알림", body);
     	   } catch(Exception ex) {

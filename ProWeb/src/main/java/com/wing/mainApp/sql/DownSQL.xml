@@ -12,8 +12,7 @@
 	</select>
 	
 	<!-- 게시물 목록 -->
-	<select		id="getList"	resultType="dwdata"		
-									parameterType="java.util.HashMap">
+	<select		id="getList"	resultType="dwdata" >
 		SELECT
 			Down_NO 		AS no,
 			Down_TITLE 	AS title,
@@ -44,13 +43,61 @@
 			#{oriname}, #{savename}, #{len}, SYSDATE, 'N')
 	</insert>
 	
-	<!-- 	게시물 등록하기 -->
+	<!-- 	게시물 등록 -->
 	<insert		id="insertBoard"	parameterType="dwdata">
 		INSERT
 		INTO
 			DownLoad
 		VALUES
-			(#{no}, #{id}, #{title}, #{body}, SYSDATE, SYSDATE, 'N')
+			((SELECT NVL(MAX(Down_NO), 0) + 1 FROM DownLoad), #{id}, #{title}, #{body}, SYSDATE, SYSDATE, 'N')
 	</insert>
-	
+	<!-- 글보기 -->
+	<select		id="selectView"	resultType="dwdata" 
+									parameterType="java.lang.Integer">
+		SELECT
+			Down_NO			AS	no,
+			Mem_ID			AS id,
+			Down_Title		AS title, 
+			Down_Body		AS body, 
+			Down_Date		AS wdate,
+			Down_CDate		AS cdate
+		FROM
+			DownLoad
+		WHERE
+			Down_NO = #{no}
+	</select>
+<!-- 첨부파일 보기 -->
+	<select		id="selectFile"		resultType="dwdata"	
+									parameterType="java.lang.Integer">
+		SELECT
+			UpLoad_NO			AS	no,
+			UpLoad_Path		AS path,
+			UpLoad_OriName	AS oriname,
+			UpLoad_SaveName	AS	savename,
+			UpLoad_Length		AS len,
+			UpLoad_CDate    	AS cDate
+		FROM
+			UpLoad
+		WHERE
+			Down_NO	= #{no}
+	</select>
+<!-- 게시물 삭제 -->
+	<update id="deleteDown" parameterType="java.lang.Integer">
+		UPDATE
+			DownLoad
+		SET
+			Down_IsDeleted='Y'
+		WHERE
+			Down_No=#{no}
+	</update>
+<!-- 파일 있으면 삭제 -->
+	<update id="deleteFile" parameterType="java.lang.Integer">
+		UPDATE
+			UpLoad
+		SET
+			UpLoad_IsDeleted='Y'
+		WHERE
+			Down_No=#{no}
+	</update>
+		
 </mapper>

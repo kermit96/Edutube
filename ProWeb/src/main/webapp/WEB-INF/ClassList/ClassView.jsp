@@ -63,28 +63,30 @@
 <form method="POST" id="mfrm">
 	<table width="800" border="1" align="center">
 		<tr>
-			<th>강의번호</th>
-			<td align="center">${DATA.no}</td>	
+			<th>번호</th>
+			<td align="center">${DATA.no}</td>
 			<th>강의코드</th>
-			<td align="center">aaa</td>
+			<td align="center">${DATA.code}</td>
 			<th>작 성 자</th>
-			<td align="center">aaa</td>
+			<td align="center">${sessionScope.NICKNAME}</td>
 			<th>작 성 일</th>
-			<td align="center">aaa</td>	
+			<td align="center">${DATA.cdate}</td>
+			<th>조 회 수</th>
+			<td align="center">${DATA.hit}</td>
 			<th>추 천 수</th>
-			<td align="center">aaa</td>
+			<td align="center">${DATA.good}</td>
 		</tr>
 		<tr>
-			<th colspan="10">제     목</th>
+			<th colspan="12">제     목</th>
 		</tr>
 		<tr>
-			<td colspan="10">${DATA.title}</td>	
+			<td colspan="12">${DATA.title}</td>	
 		</tr>
 		<tr>
-			<th colspan="10">본     문</th>
+			<th colspan="12">본     문</th>
 		</tr>
 		<tr>
-			<td colspan="10">${DATA.body}</td>
+			<td colspan="12">${DATA.body}</td>
 		</tr>
 	</table>
 	<br>
