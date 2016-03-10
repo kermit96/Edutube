@@ -21,8 +21,8 @@
 		<typeAlias alias="cbdata" type="com.wing.mainApp.data.BoardData" />
 		<typeAlias alias="ndata" type="com.wing.mainApp.data.NoticeData" /> 
 		<typeAlias alias="idata" type="com.wing.mainApp.data.IntroInfoData" />
+		<typeAlias alias="subdata" type="com.wing.mainApp.data.SubjectData" />
 	</typeAliases>
-
 	
 	<mappers>
 		<mapper resource="/com/wing/mainApp/sql/SampleSQL.xml" />
@@ -33,6 +33,7 @@
 	 	<mapper resource="/com/wing/mainApp/sql/MemberSQL.xml" />
 	    <mapper resource="/com/wing/mainApp/sql/NoticeSQL.xml" />
 		<mapper resource="/com/wing/mainApp/sql/IntroInfoSQL.xml" />
+		<mapper resource="/com/wing/mainApp/sql/commonSQL.xml" />
 	</mappers>
 
 </configuration>

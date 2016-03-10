@@ -74,17 +74,26 @@ public class ClassListController {
 	 * */
 	
 	
+	@SuppressWarnings("rawtypes")
 	// 글쓰기 폼 요청
 	@RequestMapping("/ClassList/ClassWriteForm.do")
 	public ModelAndView classWriteForm(HttpServletRequest req, HttpSession session){
 		ModelAndView	mv = new ModelAndView();
 	
-		mv.addObject("CODE",req.getParameter("CODE"));
+		mv.addObject("CODE",req.getParameter("code"));
 		mv.addObject("nowPage",req.getParameter("nowPage"));
+		
+		ArrayList result = lDao.getSubList();		
+		
+		mv.addObject("SUBLIST",result);
 		
 		mv.setViewName("ClassList/ClassWriteForm");
 		return mv;
 	}
+	/**
+	 * 
+	 * 03-10 완료
+	 * */
 	
 	// 글쓰기 요청
 	@RequestMapping("/ClassList/ClassWrite")
@@ -98,6 +107,7 @@ public class ClassListController {
 		mv.setView(rv);
 		return mv;
 	}
+	
 	// 상세보기 요청
 	@RequestMapping("/ClassList/ClassView")
 	public ModelAndView classView(HttpServletRequest req, ClassListData data){

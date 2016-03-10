@@ -30,6 +30,17 @@ public class ClassListDAO {
 			return sqlSession.selectOne("clist.gettotalofsub", code);
 		}
 	}
+	/**
+	 *  전체 과목 구하기 
+	 * */
+	@SuppressWarnings("rawtypes")
+	public ArrayList getSubList(){
+		ArrayList list = (ArrayList) sqlSession.selectList("comm.getSubList");		
+		return list;
+	}
+	
+	
+	
 	// 게시물등록 요청
 	public void insertclass(ClassListData data) {
 		sqlSession.insert("clist.classinsert", data);

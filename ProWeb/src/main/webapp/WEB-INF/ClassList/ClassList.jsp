@@ -19,7 +19,7 @@
 <!--CustomScript-->
 <script>
 	function classWrite(){
-		 location.href="../ClassList/ClassWriteForm.do?code=${CODE}&nowPage={nowPage}";
+		 location.href="../ClassList/ClassWriteForm.do?code=${CODE}&nowPage=${PINFO.nowPage}";
 	}
 </script>
 

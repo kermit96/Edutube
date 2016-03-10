@@ -63,6 +63,9 @@
         ORDER BY
             no DESC			
 	</select>
+	
+
+	
 	<!-- 상세보기 -->
 	<select id="classview" resultType="ClassListData" parameterType="java.lang.Integer">
 		SELECT

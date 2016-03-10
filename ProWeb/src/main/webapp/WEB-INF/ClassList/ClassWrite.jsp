@@ -4,7 +4,7 @@
 
 <!--  비정상 접근 처리 -->  
 <c:if test="${sessionScope.NAL ne 'L'}">
- 	<c:redirect url="../Member/login.jsp" />
+ 	<c:redirect url="../Member/login.do" />
 </c:if>
 
 
