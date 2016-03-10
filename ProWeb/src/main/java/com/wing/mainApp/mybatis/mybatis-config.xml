@@ -33,7 +33,7 @@
 	 	<mapper resource="/com/wing/mainApp/sql/MemberSQL.xml" />
 	    <mapper resource="/com/wing/mainApp/sql/NoticeSQL.xml" />
 		<mapper resource="/com/wing/mainApp/sql/IntroInfoSQL.xml" />
-		<mapper resource="/com/wing/mainApp/sql/commonSQL.xml" />
+		<mapper resource="/com/wing/mainApp/sql/CommonSQL.xml" />
 	</mappers>
 
 </configuration>
