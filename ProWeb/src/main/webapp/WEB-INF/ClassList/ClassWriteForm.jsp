@@ -19,12 +19,45 @@
 <!--JS-->
 <script src="/edutube/resources/JS/jquery-2.1.4.min.js"></script>
 <script src="/edutube/resources/JS/bootstrap.min.js"></script>
+<script type="text/javascript" src="/edutube/resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 
 <!--스크립트-->
 <script>
 	function goClassList(){
 		location.href="../ClassList/ClassList.do?nowPage=${nowPage}&code=${CODE}";
-	} 
+	}
+	
+
+	$(document).ready(	function() {
+
+			$("#save").click(function() {
+
+					$title = $("#title").val();
+						if ($title == "") {
+							alert("제목을 입력해 주세요");
+							return;
+					}
+
+					$group = $("#subcode").val();
+					if ($group == 0) {
+							alert("과목을 선택해 주세요");
+						return;
+					}
+
+					$body = $("#body").val();
+					if ($body == "") {
+							alert("본문을 입력해 주세요");
+						return;
+					}					
+
+					oEditors.getById["body"].exec(
+									"UPDATE_CONTENTS_FIELD",[]);
+
+					$("#classForm").attr("action",
+									"../ClassList/ClassWrite.do?nowPage=${nowPage}&code=${CODE}");
+					$("#classForm").submit();
+				});
+	});
 </script>
 
 <!--  스타일 -->
@@ -56,26 +89,26 @@
 	width: 150px;
 }
 div#formMain{
-	width:700px;
-	height:500px;
+	width:800px;
+	height:600px;
 	margin-left: auto;
 	margin-right: auto;
 }
 	
 	textarea#body{
-		width:650px;
+		width:750px;
 		height:400px;
 		resize:none;
 	}
 
 div#writeUtilD{
-	width:700px;	
+	width:800px;	
 	margin-left: auto;
 	margin-right: auto;
 }
 
 div#formTop {
-	width:700px;
+	width:800px;
 	margin-top:50px;
 	margin-bottom:20px;
 }
@@ -83,6 +116,18 @@ div#selectD{
 	float:left;
 	width:150px;
 }
+div#mediaDIV{
+	width:800px;
+	margin-top:20px;
+}
+p#mediaURL{
+	float:left;
+	width:150px;
+}
+input#mediaURL{
+	width:500px;
+}
+
 input#title{
 	width:500px;
 }
@@ -124,18 +169,23 @@ input#title{
 
 						<!-- Textarea -->
 						<div class="control-group">							
-							<div class="controls">
+							<div>
 								<textarea id="body" name="body" required></textarea>
 							</div>
+						</div>
+						
+						<div id="mediaDIV">
+							<p id="mediaURL">동영상 주소</p>													
+							<input id="mediaURL" name="mediaURL" type="text" >	
 						</div>
 
 					</fieldset>
 				</form>
 				</div><!--  글쓰기 폼 끝 -->
 				<div id="writeUtilD">
-					<a class="button button-purple" onClick="JavaScript:reHome();" id="save" name="save"><i class="fa fa-rocket"></i>
+					<a class="button button-purple"  id="save" ><i class="fa fa-rocket"></i>
 					글올리기</a>
-					<a class="button button-yellow" onClick="JavaScript:goClassList();" id="ListBtn" name="ListBtn">
+					<a class="button button-yellow" onClick="JavaScript:goClassList();" id="ListBtn" >
 					목록으로</a>					
 				</div>
 			</div>
@@ -149,40 +199,9 @@ input#title{
 		nhn.husky.EZCreator.createInIFrame({
 			oAppRef : oEditors,
 			elPlaceHolder : "body",
-			sSkinURI : "/edutube/resources/smarteditor/SmartEditor2Skin.html",
+			sSkinURI : "../resources/smarteditor/SmartEditor2Skin.html",
 			fCreator : "createSEditor2"
-		});
-
-		$(document).ready(	function() {
-
-				$("#save").click(function() {
-
-						$title = $("#title").val();
-							if ($title == "") {
-								alert("제목을 입력해 주세요");
-								return;
-						}
-
-						$group = $("#subcode").val();
-						if ($group == 0) {
-								alert("과목을 선택해 주세요");
-							return;
-						}
-
-						$body = $("#body").val();
-						if ($body == "") {
-								alert("본문을 입력해 주세요");
-							return;
-						}					
-
-						oEditors.getById["body"].exec(
-										"UPDATE_CONTENTS_FIELD",[]);
-
-						$("#classForm").attr("action",
-										"../ClassList/ClassWrite.do?nowPage=${nowPage}&code=${CODE}");
-						$("#classForm").submit();
-					});
-		});
+		});		
 	</script>
 
 </body>
