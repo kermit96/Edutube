@@ -20,7 +20,17 @@
 
   <script> 
   
-  
+	$( document ).ready(function() {	
+		 init();
+	});
+
+	function init()
+	{		
+		$("#ok").click(function() {			
+			ok();
+		});
+		
+	}
   
     function ok() 
     {

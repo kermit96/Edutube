@@ -66,7 +66,7 @@
 		</tr>
 		<tr>
 			<th>본　  문</th>
-			<td><textarea name="body" id="body">${DATA.body}</textarea></td>
+			<td><textarea name="body" id="body" value="${DATA.body}"></textarea></td>
 		</tr>
 		<tr>
 			<th>작 성 자</th>

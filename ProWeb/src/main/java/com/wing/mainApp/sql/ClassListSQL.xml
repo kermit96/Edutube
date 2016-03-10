@@ -14,41 +14,29 @@
 		INTO
 			class
 		VALUES
-			((SELECT NVL(MAX(class_no), 0) + 1 FROM class),#{code},#{id},#{title},#{body},SYSDATE,0,0,#{lang},SYSDATE,'N')
+			((SELECT NVL(MAX(no), 0) + 1 FROM class),#{title},#{body},'N')
 	</insert>
 	<!-- 목록보기 -->
 	<select id="getlist" resultType="ClassListData">
 		SELECT
-			class_no	AS	no,
-			sub_code	AS	code,
-			mem_nick	AS	nick,
-			class_title	AS	title,
-			class_date	AS	cdate,
-			class_hit	AS	hit,
-			class_good	AS	good,
-			class_lang	AS	lang
+			no	AS no,
+			title	AS title,
+			body	AS body
 		FROM
-			class, member
-		WHERE
-				class_isdeleted = 'N'
+			class
 		ORDER BY
-			class_no DESC
+			no DESC
 	</select>
 	<!-- 상세보기 -->
 	<select id="classview" resultType="ClassListData" parameterType="java.lang.Integer">
 		SELECT
-			class_no	AS	no,
-			sub_code	AS	code,
-			class_date	AS	cdate,
-			mem_nick 	AS 	nick,
-			class_hit	AS	hit,
-			class_good	AS	good,
-			class_title	AS	title,
-			class_body	AS	body
+			no AS no,
+			title	AS title,
+			body	AS body
 		FROM
-			class , member 
+			class
 		WHERE
-			class_no = #{NO}
+			no = #{NO}
 	</select>
 	<!-- 수정 삭제 -->
 	<select id="isupdate" resultType="java.lang.Integer" parameterType="Hmap">
@@ -57,83 +45,26 @@
 		FROM
 			class
 		WHERE
-			class_no = #{NO}
+			no = #{NO}
 	</select>
 	<!-- 수정 질의 -->
 	<update id="updateclass" parameterType="ClassListData">
 		UPDATE
 			class
 		SET
-			class_title = #{title},
-			class_body = #{body},
-			class_date = SYSDATE
+			title = #{title},
+			body = #{body},
+			date = SYSDATE
 		WHERE
-			class_no = #{no}
+			no = #{NO}
 	</update>
 	<!-- 삭제 질의 -->
 	<update id="deleteclass"	parameterType="java.lang.Integer">
 		UPDATE
 			class
 		SET
-			class_isDeleted = 'N'
+			isDeleted = 'N'
 		WHERE
-			class_no = #{NO}
+			no = #{NO}
 	</update>
-	<!-- 	봤던 글번호를 알아내는 질의 -->
-	<select id="showno" resultType="HMap"
-											parameterType="java.lang.String">
-		SELECT
-			mem_ID	AS ID,
-			class_NO AS SHOWNO
-		FROM
-			class
-		WHERE
-			mem_ID = #{ID}
-	</select>
-	<!-- 	새로운 글을 봤으면 다음에는 그 글을 처리못하도록 수정질의 -->
-	<update id="updateshowno" parameterType="HMap">
-		UPDATE
-			class
-		SET
-			class_NO = #{NO}
-		WHERE
-			mem_ID = #{ID}		
-	</update>
-	<!-- 	처음 글을 본사람은 그 사람의 ID로 등록된 것이 없으므로 새롭게 등록해 주는질의 -->
-	<insert id="insertshowno" parameterType="HMap">
-		INSERT
-		INTO
-			class
-		VALUES
-			(#{ID}, #{NO})
-	</insert>
-	<!-- 	게시물 조회수 증가 질의 -->
-	<update id="updatehit" parameterType="java.lang.Integer">
-		UPDATE
-			class
-		SET
-			class_Hit = class_Hit + 1
-		WHERE
-			class_No = #{NO}
-	</update>
-	<!-- 	게시물 추천 증가 질의 -->
-	<update id="updategood"	parameterType="java.lang.Integer">
-		UPDATE
-			class
-		SET
-			class_Good = class_Good + 1
-		WHERE
-			class_NO = #{NO}	
-	</update>
-<!-- 	게시물 추천 상황 질의 -->
-	<select id="selectgood"	resultType="java.lang.Integer"	
-													parameterType="java.lang.Integer">
-		SELECT
-			class_Good AS GOOD
-		FROM
-			class
-		WHERE
-			class_NO = #{NO}
-	</select>
-	
 </mapper>

@@ -4,15 +4,13 @@ import java.util.Date;
 
 public class ClassListData {
 	public int no;
-	public String nick;
 	public String title;
 	public String body;
 	public String id;
 	public int good;
 	public int nowPage;
 	public int oriNo;
-	public int hit;
-	public Date cdate;
+	public Date date;
 	public String lang;
 	public String code;
 	public int getNo() {
@@ -23,12 +21,6 @@ public class ClassListData {
 	}
 	public String getTitle() {
 		return title;
-	}
-	public void setNick(String nick) {
-		this.nick = nick;
-	}
-	public String getNick() {
-		return nick;
 	}
 	public void setTitle(String title) {
 		this.title = title;
@@ -63,11 +55,11 @@ public class ClassListData {
 	public void setOriNo(int oriNo) {
 		this.oriNo = oriNo;
 	}
-	public int getHit() {
-		return hit;
+	public Date getData() {
+		return date;
 	}
-	public void setHit(int hit) {
-		this.hit = hit;
+	public void setData(Date date) {
+		this.date = date;
 	}
 	public String getLang() {
 		return lang;
@@ -80,12 +72,6 @@ public class ClassListData {
 	}
 	public void setCode(String code) {
 		this.code = code;
-	}
-	public Date getCdate() {
-		return cdate;
-	}
-	public void setCdate(Date cdate) {
-		this.cdate = cdate;
 	}
 	
 }

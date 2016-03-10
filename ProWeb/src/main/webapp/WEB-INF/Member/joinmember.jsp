@@ -300,7 +300,7 @@ function checkpassword(input)
 <div id='EduContainer'  align="center">
          <h2>EduTube 회원 가입    </h2>
 	     <br>
-	     <form  id="target"   method=" post"  action="../member/joinmemberprocess.do" >
+	     <form  id="target"   method="post"  action="../member/joinmemberprocess.do" >
 	     
 	        <input type="hidden" id="mem_pass" name="mem_pass" / >
 	      <table>

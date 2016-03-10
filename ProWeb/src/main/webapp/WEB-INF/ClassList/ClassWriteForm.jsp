@@ -18,15 +18,6 @@
  	
 	<!--스크립트-->
 	<script>
-	function selectEvent(selectObj) {
-		$("#code").val(selectObj.value);
-		var lang = wfrm.langa.options[wfrm.langa.selectedIndex].text;
-		alert(lang);
-		$("#lang").val(lang);
-	}
-	
-	
-	
 	$(document).ready(function(){
 		$("#wBtn").click(function(){
 			$("#wfrm").attr("action", "../ClassList/ClassWrite.do");
@@ -61,37 +52,44 @@
 	<form method="POST" id="wfrm">
 	<table width="800" border="1" align="center">
 		<tr>
-			<th>작 성 자</th>
-			<td><input type="text" value="${sessionScope.NICKNAME}" disabled></td>
+			<th>강의번호</th>
+			<td><input type="text" disabled></td>
 		</tr>
 		<tr>
 			<th>강의코드</th>
-			<td><input type="text" id="code" name="code" readonly="readonly" value="langkor"></td>
+			<td><input type="text" disabled></td>
+		</tr>
+		<tr>
+			<th>작 성 자</th>
+			<td><input type="text" value="${sessionScope.ID}" disabled></td>
 		</tr>
 		<tr>
 			<th>제    목</th>
-			<td><input type="text" name="title" id="title">
-			<input type="text" name="lang" id="lang"></td>
+			<td><input type="text" name="title" id="title"></td>
 		</tr>
 		<tr>
 			<th>본　  문</th>
 			<td><textarea name="body" id="body"></textarea></td>
 		</tr>
 		<tr>
+			<th>작 성 일</th>
+			<td><input type="text" disabled></td>
+		</tr>
+		<tr>
+			<th>조 회 수</th>
+			<td><input type="text" disabled></td>
+		</tr>
+		<tr>
+			<th>추 천 수</th>
+			<td><input type="text" disabled></td>
+		</tr>
+		<tr>
 			<th>언     어</th>
 			<td>
-				<select id="langa" name="langa" onChange="javascript:selectEvent(this)">
-					<option value="langkor" selected>한국어</option>
-					<option value="langeng" >영어</option>
-					<option value="langchn" >중국어</option>
-					<option value="langjap">일본어</option>
-					<option value="progjava">자바</option>
-					<option value="progclang">C언어</option>
-					<option value="progphp">PHP</option>
-					<option value="cookkor">한식</option>
-					<option value="cookchn">중식</option>
-					<option value="cookjap">일식</option>
-					<option value="cookwest">양식</option>
+				<select id="kind" name="kind">
+					<option value="kor">한국어</option>
+					<option value="eng">영어</option>
+					<option value="jap">일본어</option>
 				</select>
 			</td>
 		</tr>
