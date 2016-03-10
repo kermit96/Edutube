@@ -16,18 +16,15 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 		<script src="/edutube/resources/JS/jquery-2.1.4.min.js"></script>
  		<script src="/edutube/resources/JS/bootstrap.min.js"></script>
-		<%
-			session.setAttribute("id", "rewg3");
-		%>
-		<script type="text/javascript" src="/edutube/resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+		<script type="text/javascript" src="/edutube/resources/smarteditor/js/HuskyEZCreator.js" charset="UTF-8"></script>
 
 	</head>  
 	<body>
-		<form method="POST" id="wfrm" name="wfrm" enctype="multipart/form-data">
+		<form method="POST" id="wfrm" name="wfrm"  enctype="multipart/form-data">
 			<table width="70%" border="1" align="center">
 				<tr>
 					<td>id</td>
-					<td id="id" name="id"><input type="text" id="id" value="rewg3" name="id" readonly="readonly"></td>
+					<td><input type="text" id="id" value="${sessionScope.NICKNAME}" name="id" readonly="readonly"></td>
 				</tr>
 				<tr>
 					<td>제목</td>

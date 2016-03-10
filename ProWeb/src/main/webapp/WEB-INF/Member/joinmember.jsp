@@ -241,6 +241,7 @@ function checkpassword(input)
         oncomplete: function(data) {
         	   // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
+        	try {   
             // 각 주소의 노출 규칙에 따라 주소를 조합한다.
             // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
             var fullAddr = ''; // 최종 주소 변수
@@ -273,11 +274,19 @@ function checkpassword(input)
                 fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
             }
 
+           
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
-            document.getElementById('mem_addrcode').value = data.zonecode; //5자리 새우편번호 사용
+            document.getElementById('mem_addrCode').value = data.zonecode; //5자리 새우편번호 사용
+            
             document.getElementById('mem_addr').value = fullAddr;
+            
             // 커서를 상세주소 필드로 이동한다.
-            document.getElementById('mem_detailaddr').focus();                        
+            document.getElementById('mem_detailaddr').focus();
+            
+        	} catch(ex) {
+        		
+        		alert(ex);
+        	}
         }
     }).open();
     
@@ -291,7 +300,7 @@ function checkpassword(input)
 <div id='EduContainer'  align="center">
          <h2>EduTube 회원 가입    </h2>
 	     <br>
-	     <form  id="target"   method=" post"  action="../member/joinmemberprocess.do" >
+	     <form  id="target"   method="post"  action="../member/joinmemberprocess.do" >
 	     
 	        <input type="hidden" id="mem_pass" name="mem_pass" / >
 	      <table>
@@ -343,7 +352,7 @@ function checkpassword(input)
 	            <input type="text" id="mem_addrCode"   name="mem_addrCode"  placeholder="우편번호">
 			    <input type="button" id="addrfind"     value="우편번호 찾기"><br>
 			    <input type="text" id="mem_addr"  name="mem_addr"   id="mem_addr"   placeholder="주소">
-			    <input type="text" id="mem_detailaddr"  name="mem_detailaddr"  id="mem_detailaddr"   placeholder="상세주소">
+			    <input type="text" id="mem_detailaddr"  name="mem_detailaddr"    placeholder="상세주소">
 			    
 			    			  	         
 	        </td> 	        

@@ -10,8 +10,9 @@ public class ClassListData {
 	public int good;
 	public int nowPage;
 	public int oriNo;
-	public Date data;
+	public Date date;
 	public String lang;
+	public String code;
 	public int getNo() {
 		return no;
 	}
@@ -55,16 +56,22 @@ public class ClassListData {
 		this.oriNo = oriNo;
 	}
 	public Date getData() {
-		return data;
+		return date;
 	}
-	public void setData(Date data) {
-		this.data = data;
+	public void setData(Date date) {
+		this.date = date;
 	}
 	public String getLang() {
 		return lang;
 	}
 	public void setLang(String lang) {
 		this.lang = lang;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 	
 }

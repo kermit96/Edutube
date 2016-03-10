@@ -20,7 +20,7 @@
 	<script>
 	$(document).ready(function(){
 		$("#wBtn").click(function(){
-			$("#wfrm").attr("action", "../cList/classWrite.do");
+			$("#wfrm").attr("action", "../ClassList/ClassWrite.do");
 			$("#wfrm").submit();
 		})
 	})
@@ -60,6 +60,10 @@
 			<td><input type="text" disabled></td>
 		</tr>
 		<tr>
+			<th>작 성 자</th>
+			<td><input type="text" value="${sessionScope.ID}" disabled></td>
+		</tr>
+		<tr>
 			<th>제    목</th>
 			<td><input type="text" name="title" id="title"></td>
 		</tr>
@@ -68,16 +72,26 @@
 			<td><textarea name="body" id="body"></textarea></td>
 		</tr>
 		<tr>
-			<th>작 성 자</th>
+			<th>작 성 일</th>
 			<td><input type="text" disabled></td>
 		</tr>
 		<tr>
-			<th>작 성 일</th>
+			<th>조 회 수</th>
 			<td><input type="text" disabled></td>
 		</tr>
 		<tr>
 			<th>추 천 수</th>
 			<td><input type="text" disabled></td>
+		</tr>
+		<tr>
+			<th>언     어</th>
+			<td>
+				<select id="kind" name="kind">
+					<option value="kor">한국어</option>
+					<option value="eng">영어</option>
+					<option value="jap">일본어</option>
+				</select>
+			</td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center">

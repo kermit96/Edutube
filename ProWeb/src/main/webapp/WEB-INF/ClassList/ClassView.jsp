@@ -18,12 +18,23 @@
  	
 	<!--스크립트-->
 	<script>
-	$(document).ready(function(){
+		$(document).ready(function(){
+			$("#lBtn").click(function(){
+				$(location).attr("href", "../ClassList/ClassList.do?nowPage=${NOWPAGE}");
+			})
+		})
+		$(document).ready(function(){
+		$("#dBtn").click(function(){
+			$("#mfrm").attr("action", "../ClassList/ClassDelete.do");
+				$("#mfrm").submit();
+			})
+		})
+		$(document).ready(function(){
 		$("#mBtn").click(function(){
-			$("#mfrm").attr("action", "../cList/classModify.do");
+			$("#mfrm").attr("action", "../ClassList/ClassModifyForm.do?oriNo=${DATA.no}");
 			$("#mfrm").submit();
-		});
-	});
+			})
+		})
 	</script>
 	
 	<!--  스타일 -->
@@ -49,41 +60,41 @@
 	<div id='top'>	
 		<jsp:include page="/MenuBar/Top.jsp" flush="false" />
 	</div>
-	<form method="POST" id="mfrm">
-	<input type="hidden" name="nowPage" value="${NOWPAGE}">
+<form method="POST" id="mfrm">
 	<table width="800" border="1" align="center">
 		<tr>
-			<th>강의번호</th>
-			<td><input type="text" value="${DATA.no}" disabled></td>
-		</tr>
-		<tr>
+			<th>번호</th>
+			<td align="center">${DATA.no}</td>
 			<th>강의코드</th>
-			<td><input type="text" disabled></td>
-		</tr>
-		<tr>
-			<th>제    목</th>
-			<td><input type="text" name="title" id="title" value="${DATA.title}"></td>
-		</tr>
-		<tr>
-			<th>본　  문</th>
-			<td><textarea name="body" id="body" value="${DATA.body}"></textarea></td>
-		</tr>
-		<tr>
+			<td align="center">${DATA.code}</td>
 			<th>작 성 자</th>
-			<td><input type="text" disabled></td>
-		</tr>
-		<tr>
+			<td align="center">${sessionScope.NICKNAME}</td>
 			<th>작 성 일</th>
-			<td><input type="text" disabled></td>
-		</tr>
-		<tr>
+			<td align="center">${DATA.cdate}</td>
+			<th>조 회 수</th>
+			<td align="center">${DATA.hit}</td>
 			<th>추 천 수</th>
-			<td><input type="text" disabled></td>
+			<td align="center">${DATA.good}</td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center">
-				<input type="button" value="수정" id="mBtn">
-			</td>
+			<th colspan="12">제     목</th>
+		</tr>
+		<tr>
+			<td colspan="12">${DATA.title}</td>	
+		</tr>
+		<tr>
+			<th colspan="12">본     문</th>
+		</tr>
+		<tr>
+			<td colspan="12">${DATA.body}</td>
+		</tr>
+	</table>
+	<br>
+	<table width="800" align="center">
+		<tr>
+			<td><input type="button" value="목록" id="lBtn"></td>
+			<td><input type="button" value="수정" id="mBtn"></td>
+			<td><input type="button" value="삭제" id="dBtn"></td>
 		</tr>
 	</table>
 </form>
