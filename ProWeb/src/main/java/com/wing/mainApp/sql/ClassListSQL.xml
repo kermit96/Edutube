@@ -23,9 +23,9 @@
 	<insert id="classinsert" parameterType="ClassListData">
 		INSERT
 		INTO
-			class
+			class (class_no,sub_code,mem_id,mem_nick,	class_title,class_body)
 		VALUES
-			((SELECT NVL(MAX(no), 0) + 1 FROM class),#{title},#{body},'N')
+			((SELECT NVL(MAX(no), 0) + 1 FROM class),#{title},#{body})
 	</insert>
 	<!-- 목록보기 (전체용)-->
 	<select id="getlist" resultType="ClassListData">

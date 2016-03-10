@@ -31,6 +31,9 @@
 	$(document).ready(	function() {
 
 			$("#save").click(function() {
+				
+					$mediaURL=$("#mediaURL").val();					
+					$mediaURL=$mediaURL.replace(/^\s+|\s+$/g,"");
 
 					$title = $("#title").val();
 						if ($title == "") {

@@ -100,6 +100,10 @@ public class ClassListController {
 	public ModelAndView classWrite(HttpSession session, ClassListData data,HttpServletRequest req ){
 		ModelAndView	 mv = new ModelAndView();
 		
+		if(data.mediaURL == null){
+			
+		}
+		
 		mv.addObject("CODE",req.getParameter("code"));
 		mv.addObject("nowPage",req.getParameter("nowPage"));
 		
