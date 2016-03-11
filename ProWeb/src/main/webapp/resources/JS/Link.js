@@ -76,11 +76,6 @@
 	function goQA(){
 		location.href="/edutube/CustomerBoard/QABoardList.do";
 	}
-
-	/*검색*/
-	function goSearch(){
-		alert('검색!');
-	}
 	
 	/*게시판 테스트를 위해..*/
 	function goTest(){
@@ -118,11 +113,8 @@
 		
 		 location.href="/edutube/member/memberjoin.do"+"?returnurl=" +encodeURIComponent(html);
 		
-	}
-	
+	}	
 
-	
-	
   
 	function changeLanguage()
 	{

@@ -1,5 +1,6 @@
 package com.wing.mainApp.data;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ClassListData {
@@ -7,12 +8,21 @@ public class ClassListData {
 	public String title;
 	public String body;
 	public String id;
+	public String nick;
 	public int good;
+	public int hit;
 	public int nowPage;
+
 	public int oriNo;
-	public Date date;
+	public Date wdate;
+	public String realdate;
+
+
 	public String lang;
 	public String code;
+	
+	public String mediaURL;
+	
 	public int getNo() {
 		return no;
 	}
@@ -37,11 +47,23 @@ public class ClassListData {
 	public void setId(String id) {
 		this.id = id;
 	}
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
 	public int getGood() {
 		return good;
 	}
 	public void setGood(int good) {
 		this.good = good;
+	}
+	public int getHit() {
+		return hit;
+	}
+	public void setHit(int hit) {
+		this.hit = hit;
 	}
 	public int getNowPage() {
 		return nowPage;
@@ -55,11 +77,11 @@ public class ClassListData {
 	public void setOriNo(int oriNo) {
 		this.oriNo = oriNo;
 	}
-	public Date getData() {
-		return date;
+	public Date getWdate() {
+		return wdate;
 	}
-	public void setData(Date date) {
-		this.date = date;
+	public void setWdate(Date wdate) {
+		this.wdate = wdate;
 	}
 	public String getLang() {
 		return lang;
@@ -73,5 +95,20 @@ public class ClassListData {
 	public void setCode(String code) {
 		this.code = code;
 	}
+	
+	public String getRealdate() {
+		SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd");
+		return form.format(wdate);
+	}
+	public String getMediaURL() {
+		return mediaURL;
+	}
+	public void setMediaURL(String mediaURL) {
+		this.mediaURL = mediaURL;
+	}
+	
+
+	
+	
 	
 }

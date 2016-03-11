@@ -24,11 +24,12 @@ public class ClassListController {
 	ClassListDAO lDao;
 	
 	// 목록보기 요청
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping("/ClassList/ClassList.do")
 	public ModelAndView classList(HttpServletRequest req, HttpSession session){
 		ModelAndView 	mv = new ModelAndView();
 		
-		String strpage = req.getParameter("nowPage");
+				String strpage = req.getParameter("nowPage");
 		int	nowPage = 0;
 		if(StringUtil.isNull(strpage)){
 			nowPage = 1;
@@ -36,12 +37,17 @@ public class ClassListController {
 		else {
 			nowPage = Integer.parseInt(strpage);
 		}
-			
-		int	total = lDao.getTotal(1);
-		PagingUtil	pInfo = new PagingUtil(nowPage, total, 10, 10);
+		
+		String code = req.getParameter("code");
+		if(StringUtil.isNull(code)){
+			code = "default";
+		}	
+		
+		int	total = lDao.getTotal(code);
+		PagingUtil	pInfo = new PagingUtil(nowPage, total, 10, 5);
 		pInfo.pagingProc();
 		
-		ArrayList	list = lDao.getClassList();
+		ArrayList	list = lDao.getClassList(code);
 		
 		int	start = (pInfo.nowPage -1) * pInfo.onePageCount;
 		int	end = start + pInfo.onePageCount -1;
@@ -55,33 +61,63 @@ public class ClassListController {
 			result.add(temp);
 		}
 		
+		mv.addObject("CODE",code);
 		mv.addObject("PINFO", pInfo);
 		mv.addObject("LIST", result);
 		
 		mv.setViewName("ClassList/ClassList");
 		return mv;
 	}
+	/**
+	 * 
+	 * 03-10 완료
+	 * */
+	
+	
+	@SuppressWarnings("rawtypes")
 	// 글쓰기 폼 요청
 	@RequestMapping("/ClassList/ClassWriteForm.do")
 	public ModelAndView classWriteForm(HttpServletRequest req, HttpSession session){
 		ModelAndView	mv = new ModelAndView();
+	
+		mv.addObject("CODE",req.getParameter("code"));
+		mv.addObject("nowPage",req.getParameter("nowPage"));
+		
+		ArrayList result = lDao.getSubList();		
+		
+		mv.addObject("SUBLIST",result);
 		
 		mv.setViewName("ClassList/ClassWriteForm");
 		return mv;
 	}
+	/**
+	 * 
+	 * 03-10 완료
+	 * */
 	
 	// 글쓰기 요청
 	@RequestMapping("/ClassList/ClassWrite")
-	public ModelAndView classWrite(HttpSession session, ClassListData data){
-		ModelAndView	mv = new ModelAndView();
+	public ModelAndView classWrite(HttpSession session, ClassListData data,HttpServletRequest req ){
+		ModelAndView	 mv = new ModelAndView();
+		
+		if(data.mediaURL == null){
+			
+		}
+		
+		mv.addObject("CODE",req.getParameter("code"));
+		mv.addObject("nowPage",req.getParameter("nowPage"));
 		
 		data.id = (String) session.getAttribute("ID");
+		data.nick = (String) session.getAttribute("NICKNAME");
+		
 		lDao.insertclass(data);
 		
-		RedirectView	rv = new RedirectView("../ClassList/ClassList.do");
-		mv.setView(rv);
+		
+		mv.setViewName("/ClassList/ClassWrite");
+		
 		return mv;
 	}
+	
 	// 상세보기 요청
 	@RequestMapping("/ClassList/ClassView")
 	public ModelAndView classView(HttpServletRequest req, ClassListData data){
