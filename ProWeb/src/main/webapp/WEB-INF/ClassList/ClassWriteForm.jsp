@@ -145,7 +145,7 @@ input#title{
 
 			<div id="centerPage">
 				<div id="formMain">
-				<form class="form-horizontal" id="classForm" name="classForm">
+				<form class="form-horizontal" id="classForm" name="classForm" method="POST">
 					<fieldset>
 					<!--  숨겨놓을것 -->
 					<input id="id" name="id" value="${sessionScope.ID}" type="hidden" />

@@ -31,6 +31,23 @@
 		VALUES
 			((SELECT NVL(MAX(class_no), 0) + 1 FROM class),#{code},#{id},#{nick},#{title},#{body})
 	</insert>
+	<!-- 게시물 등록 (동영상 있는 경우)-->
+<insert id="classinsertM" parameterType="ClassListData">
+		INSERT
+		INTO
+			video
+		VALUES
+			((SELECT NVL(MAX(video_no), 0) + 1 FROM video),#{no},#{mediaURL})
+	</insert>
+	<!--  이번에 넣을 레코드 pk 최고값 -->
+	<select id="selectMAX" resultType="int">
+        SELECT distinct
+                    (SELECT NVL(MAX(class_no), 0) + 1 FROM class) AS maxNO
+        FROM
+            class
+	</select>
+	
+	
 	<!-- 목록보기 (전체용)-->
 	<select id="getlist" resultType="ClassListData">
         SELECT
@@ -100,6 +117,8 @@
 			video_no	AS mediaNO,
 			video_url 	AS mediaURL			
 		FROM
+			video
+		WHERE
 			class_no = #{NO}	
 	</select>
 	

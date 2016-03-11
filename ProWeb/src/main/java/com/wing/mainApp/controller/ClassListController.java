@@ -133,7 +133,13 @@ public class ClassListController {
 		data.id = (String) session.getAttribute("ID");
 		data.nick = (String) session.getAttribute("NICKNAME");
 				
-		
+		String[] temp = data.code.split(",");
+		if(temp[0].equals(req.getParameter("code"))) {
+			data.code = temp[1];
+		}
+		else {
+			data.code = temp[0];
+		}
 		
 		lDao.insertclass(data,kind);
 		
@@ -142,8 +148,13 @@ public class ClassListController {
 		
 		return mv;
 	}
+	/**
+	 * 
+	 * 03/11 대충완료(더작업해야함)
+	 * */
 	
 	// 상세보기 요청
+	@SuppressWarnings("rawtypes")
 	@RequestMapping("/ClassList/ClassView")
 	public ModelAndView classView(HttpServletRequest req, ClassListData data){
 		ModelAndView	mv = new ModelAndView();
@@ -164,6 +175,14 @@ public class ClassListController {
 		
 		ClassListData map = lDao.selectView(oriNo);
 		
+		ArrayList mList = lDao.selectMediaList(oriNo);
+		boolean isExist = true;
+		if(mList == null){
+			isExist = false;
+		}
+		
+		mv.addObject("isExist",isExist);
+		mv.addObject("mList",mList);
 		mv.addObject("DATA", map);
 		mv.addObject("nowPage", nowPage);
 		
