@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script>
@@ -25,9 +25,9 @@
 	<body>
 		<table border="1" align="center" width="80%">
 				<tr>
-					<td>Á¦¸ñ</td>
-					<td>±Û¾´ÀÌ</td>
-					<td>ÀÛ¼ºÀÏ</td>
+					<td>ì œëª©</td>
+					<td>ê¸€ì“´ì´</td>
+					<td>ìž‘ì„±ì¼</td>
 				</tr>
 			<c:forEach var="temp" items="${LIST}">
 				<tr>
@@ -38,7 +38,7 @@
 			</c:forEach>
 				=>
 		</c:if>
-					<a href="JavaScript:goDetail(${temp.no})">${temp.title}</a></td>
+					<a href="JavaScript:goDetail(${temp.no})">[${temp.qname}]${temp.title}</a></td>
 					<td>${temp.id}</td>
 					<td>${temp.datetime}</td>
 				</tr>
@@ -47,31 +47,31 @@
 		<table border="1" align="center" width="80%">
 			<tr>
 				<td align="center">
-					<input type="button" value="±Û¾²±â" id="wBtn">
+					<input type="button" value="ê¸€ì“°ê¸°" id="wBtn">
 				</td>
 			</tr>
 		</table>
 		<table border="1" align="center" width="80%">
 			<tr>
 				<td align="center">
-				<!-- 	[Ã³À½][ÀÌÀü][1][2][3][4][5][´ÙÀ½][¸¶Áö¸·] -->
-					<a href="../CustomerBoard/QABoardList.do?nowPage=1">[Ã³  À½]</a>
+				<!-- 	[ì²˜ìŒ][ì´ì „][1][2][3][4][5][ë‹¤ìŒ][ë§ˆì§€ë§‰] -->
+					<a href="../CustomerBoard/QABoardList.do?nowPage=1">[ì²˜  ìŒ]</a>
 					<c:if test="${PINFO.startPage eq 1}">
-						[ÀÌ Àü]
+						[ì´ ì „]
 					</c:if>
 					<c:if test="${PINFO.startPage ne 1}">
-						<a href="../CustomerBoard/QABoardList.do?nowPage=${PINFO.startPage - 1}">[ÀÌ Àü]</a>
+						<a href="../CustomerBoard/QABoardList.do?nowPage=${PINFO.startPage - 1}">[ì´ ì „]</a>
 					</c:if>
 					<c:forEach var="temp" begin="${PINFO.startPage}" end="${PINFO.endPage}">
 						<a href="../CustomerBoard/QABoardList.do?nowPage=${temp}">[ ${temp} ]</a>
 					</c:forEach>
 					<c:if test="${PINFO.endPage eq PINFO.totalPage}">
-						[´Ù À½]
+						[ë‹¤ ìŒ]
 					</c:if>
 					<c:if test="${PINFO.endPage ne PINFO.totalPage}">
-						<a href="../CustomerBoard/QABoardList.do?nowPage=${PINFO.endPage + 1}">[´Ù À½]</a>
+						<a href="../CustomerBoard/QABoardList.do?nowPage=${PINFO.endPage + 1}">[ë‹¤ ìŒ]</a>
 					</c:if>
-					<a href="../CustomerBoard/QABoardList.do?nowPage=${PINFO.totalPage}">[¸¶Áö¸·]</a>
+					<a href="../CustomerBoard/QABoardList.do?nowPage=${PINFO.totalPage}">[ë§ˆì§€ë§‰]</a>
 				</td>
 			</tr>
 		</table>
@@ -80,12 +80,12 @@
 				<td align="center">
 					<form method="POST" id="sfrm">
 						<select id="kind" name="kind">
-							<option value="title">Á¦¸ñ</option>
-							<option value="writer">±Û¾´ÀÌ</option>
-							<option value="both">Á¦¸ñ + ±Û¾´ÀÌ</option>
+							<option value="title">ì œëª©</option>
+							<option value="writer">ê¸€ì“´ì´</option>
+							<option value="both">ì œëª© + ê¸€ì“´ì´</option>
 						</select>
 						<input type="text" id="content" name="content">
-						<input type="button" value="°Ë»ö" id="sBtn">
+						<input type="button" value="ê²€ìƒ‰" id="sBtn">
 					</form>
 				</td>
 			</tr>
