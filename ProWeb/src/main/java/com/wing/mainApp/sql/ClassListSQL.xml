@@ -100,8 +100,7 @@
 			video_no	AS mediaNO,
 			video_url 	AS mediaURL			
 		FROM
-			class_no = #{}
-	
+			class_no = #{NO}	
 	</select>
 	
 	
