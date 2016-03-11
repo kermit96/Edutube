@@ -41,17 +41,13 @@
 							return;
 					}
 
-					$subcode = $("#subcode").val();
-					if ($subcode == 0) {
+					$code = $("#code").val();
+					if ($code == 0) {
 							alert("과목을 선택해 주세요");
 						return;
 					}
 
-					$body = $("#body").val();
-					if ($body == "") {
-							alert("본문을 입력해 주세요");
-						return;
-					}					
+						
 
 					oEditors.getById["body"].exec(
 									"UPDATE_CONTENTS_FIELD",[]);
@@ -161,7 +157,7 @@ input#title{
 						<!-- Text input-->
 						<div class="control-group" id="formTop">
 							<div id="selectD">
-							<select id="subcode" name="subcode" class="input-large">
+							<select id="code" name="code" class="input-large">
 									<option value="0" >Select Subject</option>
 										<c:forEach var="sublist" items="${SUBLIST}">
 											<option value="${sublist.subcode}">${sublist.subname}</option>

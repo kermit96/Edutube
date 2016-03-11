@@ -42,8 +42,14 @@ public class ClassListDAO {
 	
 	
 	// 게시물등록 요청
-	public void insertclass(ClassListData data) {
-		sqlSession.insert("clist.classinsert", data);
+	public void insertclass(ClassListData data,int kind) {
+		
+		if(kind == 0){
+			sqlSession.insert("clist.classinsert", data);
+		}
+		else{
+			System.out.println("동영상이 있는경우임 : " + data.mediaURL);
+		}
 	}
 	
 	// 목록보기 요청

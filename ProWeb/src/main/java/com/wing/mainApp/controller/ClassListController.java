@@ -100,17 +100,21 @@ public class ClassListController {
 	public ModelAndView classWrite(HttpSession session, ClassListData data,HttpServletRequest req ){
 		ModelAndView	 mv = new ModelAndView();
 		
-		if(data.mediaURL == null){
-			
-		}
+		// 동영상 주소가 있는 경우
+		int kind = 1;
+		
+		// 동영상 주소가 없는 경우
+		if(data.mediaURL == null || data.mediaURL.equals("")){
+			kind = 0;
+		}		
 		
 		mv.addObject("CODE",req.getParameter("code"));
 		mv.addObject("nowPage",req.getParameter("nowPage"));
 		
 		data.id = (String) session.getAttribute("ID");
 		data.nick = (String) session.getAttribute("NICKNAME");
-		
-		lDao.insertclass(data);
+				
+		lDao.insertclass(data,kind);
 		
 		
 		mv.setViewName("/ClassList/ClassWrite");
