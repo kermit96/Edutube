@@ -129,4 +129,8 @@
 		
 	  	
 	}
+	
+	function goInfo(){
+		location.href="/edutube/myPage/myPageMain.do";
+	}
   

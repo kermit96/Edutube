@@ -51,10 +51,10 @@
 	</filter-mapping>
 
 	<!--  에러 페이지 -->
-	<error-page>
+	<!-- <error-page>
 		<error-code>404</error-code>
 		<location>/WEB-INF/Error/404Error.jsp</location>
-	</error-page>
+	</error-page> -->
 
 
 </web-app>

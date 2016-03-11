@@ -71,8 +71,8 @@
 						<td>${temp.id}</td>
 						<td>${temp.wdate}</td>
 						<td align="center">
-	<c:if test="${not empty temp.oriname}">
-				<a href="../FileUpload/FileDownload.do?oriNo=${temp.no}"><img src="../images/down.gif"></a>	
+	<c:if test="${temp.len ne 0}">
+				<a href="../DownLoad/FileDownLoad.do?oriNo=${temp.no}"><img src="/resources/img/down.gif"></a>	
 	</c:if>			
 				</td>
 					</tr>

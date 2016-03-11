@@ -21,9 +21,9 @@ public class DownloadUtil extends AbstractView {
     protected void renderMergedOutputModel(Map model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
     	//===========
-    	String	oriName = (String)model.get("oirname");
+    	String	oriName = (String)model.get("oriName");
     	//===========
-    	File file = (File) model.get("downloadFile");
+    	File file = (File) model.get("fileDownLoad");
         response.setContentType(getContentType());
         response.setContentLength((int)file.length());
 
