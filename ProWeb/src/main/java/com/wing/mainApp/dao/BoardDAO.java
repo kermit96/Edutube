@@ -57,6 +57,27 @@ public class BoardDAO {
 	}
 	
 	/*
+	 * FAQ상세보기 함수
+	 */
+	public BoardData viewFAQ(int no) {
+		return sqlSession.selectOne("cboard.faqview", no);
+	}
+	
+	/*
+	 * FAQ 삭제 함수
+	 */
+	public void deleteFAQ(int no) {
+		sqlSession.update("cboard.faqdelete", no);
+	}
+	
+	/*
+	 * FAQ 수정 함수
+	 */
+	public void modifyFAQ(BoardData data) {
+		sqlSession.update("cboard.faqmodify", data);
+	}
+	
+	/*
 	 * QA등록 요청 함수
 	 */
 	public void insertQA(BoardData data) {
@@ -97,5 +118,19 @@ public class BoardDAO {
 	 */
 	public ArrayList getSearch(HashMap map) {
 		return (ArrayList)sqlSession.selectList("cboard.searchboard", map);
+	}
+	
+	/*
+	 * QA 삭제 함수
+	 */
+	public void deleteQA(BoardData data) {
+		sqlSession.update("cboard.qadelete", data);
+	}
+	
+	/*
+	 * QA 수정 함수
+	 */
+	public void modifyQA(BoardData data) {
+		sqlSession.update("cboard.qamodify", data);
 	}
 }

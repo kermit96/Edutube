@@ -1,15 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<script>
 		$(document).ready(function(){
 			$("#wBtn").click(function(){
-			//	¹«°á¼º °Ë»ç¸¦ ¹İµå½Ã ÁøÇàÇÏ½Ã°í
+					$title = $("#title").val();
+					if($title == "") {
+						alert("ì œëª©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”");
+						return;
+					}
+					
+					$body = $("#body").val();
+					if($body == "") {
+						alert("ë³¸ë¬¸ì„ ì…ë ¥í•´ì£¼ì„¸ìš”");
+						return;
+					}
 				$("#wfrm").attr("action", "../CustomerBoard/QABoardReple.do");
 				$("#wfrm").submit();
 			});
@@ -23,31 +33,32 @@
 			<tr>
 				<td align="center">
 					<select id="qno" name="qno">
-						<option value="1">°¡ÀÔ¹æ¹ı</option>
-						<option value="2">»çÀÌÆ® ÀÌ¿ë</option>
-						<option value="3">µ¿¿µ»ó ¼ö°­</option>
+						<option value="1">ê°€ì…ë°©ë²•</option>
+						<option value="2">ì‚¬ì´íŠ¸ ì´ìš©</option>
+						<option value="3">ë™ì˜ìƒ ìˆ˜ê°•</option>
+						<option value="4">ê¸°íƒ€</option>
 					</select>
 				</td>
 			</tr>
 		</table>
  		<table width="50%" border="1" align="center">
  			<tr>
-				<td>±Û¾´ÀÌ</td>
+				<td>ê¸€ì“´ì´</td>
 				<td>
-					<input type="text" name="id" id="id" value="id"  readonly="readonly">
+					<input type="text" value="${sessionScope.ID}"  disabled>
 				</td>
 			</tr>
 			<tr>
-				<td>Á¦¸ñ</td>
+				<td>ì œëª©</td>
 				<td><input type="text" name="title" id="title"></td>
 			</tr>
 			<tr>
-				<td>º»¹®</td>
-				<td><input type="text" name="body" id="body"></td>
+				<td>ë³¸ë¬¸</td>
+				<td><textarea name="body" id="body"></textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="button" value="±Û¾²±â" id="wBtn">
+					<input type="button" value="ê¸€ì“°ê¸°" id="wBtn">
 				</td>
 			</tr>
 		</table>

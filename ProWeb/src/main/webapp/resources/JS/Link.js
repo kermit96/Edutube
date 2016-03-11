@@ -4,7 +4,7 @@
  */
 	/*Home*/
 	function goHome(){
-		location.href="/edutube";
+		location.href="/edutube/main.do";
 	}
 
 	/*로그인  회원 가입  마이페이지*/
@@ -86,6 +86,41 @@
 	function goTest(){
 		location.href="/edutube/Sch/debugList.do";
 	}
+	
+	
+	/*로그인  회원 가입  마이페이지*/
+	function goLogin(){
+	
+		 var loc = window.location;
+			
+		 var html = loc.pathname+loc.search+loc.hash;
+		
+		 try {
+		 location.href="/edutube/member/login.do"+"?returnurl=" +encodeURIComponent(html);
+		 
+		 } catch (ex) {
+			 
+			 alert(ex);
+		 }		 
+	}
+	
+		
+	function goLogout()
+	{		
+		 location.href="/edutube/member/logout.do";
+	}
+	
+	function memberJoin(){
+
+		 var loc = window.location;
+			
+		 var html = loc.pathname+loc.search+loc.hash;
+		
+		 location.href="/edutube/member/memberjoin.do"+"?returnurl=" +encodeURIComponent(html);
+		
+	}
+	
+
 	
 	
   
