@@ -22,7 +22,7 @@ public class ClassController {
 	@Autowired
 	ClassDAO cDao;
 	/*
-	 	°­ÀÇ¸ñ·Ï ¸ÞÀÎ
+	 	ï¿½ï¿½ï¿½Ç¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	 */
 	@RequestMapping("/classlist/classmain.do")
 	public ModelAndView classmain(HttpServletRequest req, HttpSession session){
@@ -32,7 +32,7 @@ public class ClassController {
 		return mv;
 	}
 	/*
-		ÀÎ±âº° ¸ñ·Ï
+		ï¿½Î±âº° ï¿½ï¿½ï¿½
 	 */
 	@RequestMapping("/classlist/bestlist.do")
 	public ModelAndView bestlist(HttpServletRequest req, HttpSession session){
@@ -42,7 +42,7 @@ public class ClassController {
 		return mv;
 	}
 	/*
-	 	°­»çº° ¸ñ·Ï
+	 	ï¿½ï¿½ï¿½çº° ï¿½ï¿½ï¿½
 	 */
 	@RequestMapping("/classlist/teacherlist.do")
 	public ModelAndView teacherlist(HttpServletRequest req, HttpSession session){
@@ -52,9 +52,9 @@ public class ClassController {
 		return mv;
 	}
 	/*
-	 	°­ÀÇº° ¸ñ·Ï
+	 	ï¿½ï¿½ï¿½Çºï¿½ ï¿½ï¿½ï¿½
 	 */
-	@RequestMapping("/classlist/classlist.do")
+	@RequestMapping("/classlist/classList.do")
 	public ModelAndView classlist(HttpServletRequest req, HttpSession session){
 		ModelAndView 	mv = new ModelAndView();
 		
@@ -62,7 +62,7 @@ public class ClassController {
 		return mv;
 	}
 	/*
-	 	»ó¼¼º¸±â ¿äÃ»
+	 	ï¿½ó¼¼ºï¿½ï¿½ï¿½ ï¿½ï¿½Ã»
 	 */
 	@RequestMapping("/classlist/classview.do")
 	public ModelAndView classview(HttpServletRequest req, HttpSession session){
@@ -82,13 +82,13 @@ public class ClassController {
 		return mv;
 	}
 	/*
-	 * 	°Ë»ö ¿äÃ» Ã³¸® ÇÔ¼ö
+	 * 	ï¿½Ë»ï¿½ ï¿½ï¿½Ã» Ã³ï¿½ï¿½ ï¿½Ô¼ï¿½
 	 */
 	@RequestMapping("/classlist/classSearch")
 	public ModelAndView	classSearch(HttpServletRequest req, HttpSession session) {
 		ModelAndView		mv = new ModelAndView();
-		//	ÇÒÀÏ
-		//		³Ñ¾î¿Â ÆÄ¶ó¸ÞÅÍ ¹Þ´Â´Ù.
+		//	ï¿½ï¿½ï¿½ï¿½
+		//		ï¿½Ñ¾ï¿½ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´Â´ï¿½.
 		String	strPage = req.getParameter("nowPage");
 		int		nowPage = 0;
 		if(StringUtil.isNull(strPage)) {
@@ -99,27 +99,27 @@ public class ClassController {
 		}
 		String	kind = req.getParameter("kind");
 		String	content = req.getParameter("content");
-		//	À§ 2°³´Â °Ë»öÀ» À§ÇØ¼­ ÇÊ¼ö µ¥ÀÌÅÍÀÎµ¥....
-		//	°á°ú°¡ ¸¹À¸¸é ÆäÀÌÁö ÀÌµ¿ ±â´ÉÀÌ ÀÖÀ» °ÍÀÌ°í
-		//	±×·¯¸é 2°³ÀÇ µ¥ÀÌÅÍ´Â ³Ñ¾î¿ÀÁö ¾Ê´Â´Ù.
-		//	¹®Á¦Á¡		ÆäÀÌÁö ÀÌµ¿±â´É¿¡ ÀÇÇØ¼­ ´Ù¸¥ ÆäÀÌÁö¸¦ º¸°íÀÚ ÇÏ¸é?
-		//	ÇØ°á ¹æ¹ý	ÇöÀç ¹ÞÀº µ¥ÀÌÅÍ¸¦ ¼¼¼Ç¿¡ ±â¾ïÇØ ³õ°í »ç¿ëÇÏÀÚ.
+		//	ï¿½ï¿½ 2ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ê¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îµï¿½....
+		//	ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½
+		//	ï¿½×·ï¿½ï¿½ï¿½ 2ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í´ï¿½ ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
+		//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½É¿ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¸ï¿½?
+		//	ï¿½Ø°ï¿½ ï¿½ï¿½ï¿½	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 		if(StringUtil.isNull(kind)) {
-			//	ÀÌ°Ç º¸³ª¸¶³ª ÆäÀÌÁö ÀÌµ¿À¸·Î ³Ñ¾î¿Í¼­ ¹ÞÁö ¸øÇÑ °ÍÀÌ´Ù.
-			//	±×·¡¼­ ÀÌ °æ¿ì´Â ¼¼¼Ç¿¡¼­ ¹Þµµ·Ï ÇÏÀÚ.
+			//	ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½Í¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½.
+			//	ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½ ï¿½Þµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 			kind = (String) session.getAttribute("kind");
 			content = (String) session.getAttribute("content");
-			//	±×·¡µµ ¸ø¹Þ¾ÒÀ¸¸é	´Ù¸¥ °÷À¸·Î ³»º¸³»¾ß ÇÑ´Ù.
+			//	ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Þ¾ï¿½ï¿½ï¿½ï¿½ï¿½	ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
 			if(StringUtil.isNull(kind)) {
-				//	Redirect ½ÃÅ²´Ù.
+				//	Redirect ï¿½ï¿½Å²ï¿½ï¿½.
 			}
 		}
-		//	ÀÌÁ¦ ¾îµð¼­ ¹Þ¾Ò´øÁö °£¿¡ °Ë»öÇÒ µ¥ÀÌÅÍ°¡ ¿Ï¼ºµÇ¾ú´Ù.
-		//	±×·³ ´ÙÀ½¹øÀ» À§ÇØ¼­ ¼¼¼Ç¿¡ ±â·ÏÇØ ³õ¾Æ¾ß ÇÏ°Ú´Ù.
+		//	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Þ¾Ò´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Ï¼ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½.
+		//	ï¿½×·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ¾ï¿½ ï¿½Ï°Ú´ï¿½.
 		session.setAttribute("kind", kind);
 		session.setAttribute("content", content);
 		
-		//		ÆäÀÌÁö Á¤º¸¸¦ ±¸ÇÑ´Ù.(ÃÑ µ¥ÀÌÅÍ °³¼ö¸¦ ±¸ÇÑ´Ù.)
+		//		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.(ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.)
 		HashMap	map = new HashMap();
 		map.put("kind", kind);
 		map.put("CONTENT", content);
@@ -127,16 +127,16 @@ public class ClassController {
 		PagingUtil	pInfo = new PagingUtil(nowPage, count, 5, 5);
 //		pInfo.calcInfo2();
 		
-		//		°Ë»ö µ¥ÀÌÅÍ¸¦ ±¸ÇÑ´Ù.
+		//		ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
 		ArrayList	list = cDao.getSearch(map);
-		//	¿©±â´Â ÆäÀÌÁö ±â´É¿¡ °ü°è¾øÀÌ ¸ðµç µ¥ÀÌÅÍ¸¦ ´Ù ±¸ÇÑ°ÍÀÌ¹Ç·Î
-		//	±× ÆäÀÌÁö¿¡¼­ º¸¿©ÁÙ °¹¼ö¸¸ ²¨³»¾ß ÇÑ´Ù.
+		//	ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½É¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ°ï¿½ï¿½Ì¹Ç·ï¿½
+		//	ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
 		ArrayList	result = new ArrayList();
 		if(list.size() != 0) {
-			//	²¨³¾ ½ÃÀÛÀ§Ä¡¿Í ²¨³¾ ¸¶Áö¸· À§Ä¡¸¦ ±¸ÇÑ´Ù.
+			//	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
 			int		start = (pInfo.nowPage - 1) * pInfo.onePageCount;
 			int		end = start + pInfo.onePageCount - 1;
-			//	¸¶Áö¸· ÆäÀÌÁöÀÎ °æ¿ì¸¦ Ã³¸®ÇÑ´Ù.
+			//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¸¦ Ã³ï¿½ï¿½ï¿½Ñ´ï¿½.
 			if(end >= list.size()) {
 				end = list.size() - 1;
 			}
@@ -144,7 +144,7 @@ public class ClassController {
 				result.add(list.get(i));
 			}
 		}
-		//		ºä¿¡°Ô ¾Ë·ÁÁØ´Ù.
+		//		ï¿½ä¿¡ï¿½ï¿½ ï¿½Ë·ï¿½ï¿½Ø´ï¿½.
 		mv.addObject("PINFO", pInfo);
 		mv.addObject("LIST", result);
 		mv.setViewName("classlist/classSearch");

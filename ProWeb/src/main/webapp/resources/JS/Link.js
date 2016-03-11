@@ -3,6 +3,8 @@
 	 메뉴 누르면 이동하는 
  */
 	/*Home*/
+
+
 	function goHome(){
 		location.href="/edutube/main.do";
 	}
@@ -45,12 +47,14 @@
 	
 	/*공지사항*/
 	function goNotice(){
-		alert('공지사항');
+		//alert('공지사항');
+		location.href="/edutube/Notice/NoticeList.do";
 	}
 
 	/*강사소개*/
 	function goLecIntro(){
-		alert('강사소개');
+		//alert('강사소개');
+		location.href="/edutube/IntroRegManager/IntroList.do";
 	}
 	
 	/*강의목록*/
@@ -119,14 +123,42 @@
 		 location.href="/edutube/member/memberjoin.do"+"?returnurl=" +encodeURIComponent(html);
 		
 	}
-	
-
-	
-	
-  
-	function changeLanguage()
+	//과목별 강사 소개 링크
+	function goJavaLang()
 	{
+		location.href="/edutube//IntroRegManager/IntroJavaLang.do";
+	}
+    function goCLang(){
+    	location.href="/edutube/IntroRegManager/IntroCLang.do";
+    }
+    function goPhpLang(){
+    	location.href="/edutube/IntroRegManager/IntroPhpLang.do";
+    }
+ 
+    function goKorLang(){
+    	//alert('KorLang');
+    	location.href="/edutube/IntroRegManager/IntroKorLang.do";    
+    }
+    function goJapLang(){
+    	location.href="/edutube/IntroRegManager/IntroJapLang.do";
+    }
+    function goChnLang(){
+    	location.href="/edutube/IntroRegManager/IntroChnLang.do";
+    }
+    function goKorCook(){
+    	location.href="/edutube/IntroRegManager/IntroKorCook.do";
+    }
+    function goChnCook(){
+    	location.href="/edutube/IntroRegManager/IntroChnCook.do";
+    }
+    function goJapCook(){
+    	location.href="/edutube/IntroRegManager/IntroJapCook.do";
+    }
+    function goWestCook(){
+    	location.href="/edutube/IntroRegManager/IntroWestCook.do";
+    }
+	function changeLanguage()
+	{	
 		
-	  	
 	}
   

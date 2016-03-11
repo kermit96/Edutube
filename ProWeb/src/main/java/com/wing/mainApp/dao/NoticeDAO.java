@@ -31,11 +31,37 @@ public class NoticeDAO {
 		//ArrayList	result = (ArrayList)sqlSession.selectList("notice.getlist",map);
 		//return result;
 		return (ArrayList)sqlSession.selectList("notice.getlist");
-	}		
+	}
+	
+	public NoticeData selectFinalList(int NO) {
+		
+		//System.out.println("NO="+NO);
+		HashMap map= new HashMap();
+		map.put("NO",NO);
+		return sqlSession.selectOne("notice.getfinallist",map);
+	}
 	public void insertNotice(NoticeData data) {
 		sqlSession.insert("notice.noticeinsert", data);
 	}
+	/*
+	 * 수정 혹은 삭제가 가능한 질의 요청 함수
+	 */
+	public int isUpdate(HashMap map) {
+		return sqlSession.selectOne("notice.isupdate", map);
+	}
+	/*
+	 * 	게시물 수정 함수
+	 */
+	public void updateNotice(NoticeData data) {
+		sqlSession.update("notice.updatenotice", data);
+	}
 	
+	/*
+	 * 	게시물 삭제 함수
+	 */
+	public void deleteNotice(int NO) {
+		sqlSession.update("notice.deletenotice", NO);
+	}
 	public HashMap getShowno(String ID){
 		return sqlSession.selectOne("notice.showno",ID);
 	}
@@ -53,43 +79,32 @@ public class NoticeDAO {
 	public void updateHit(int NO){
 		sqlSession.update("notice.updatehit", NO);
 	}
+	
+	public int noticeMax(){
+		return (int)sqlSession.selectOne("notice.noticemax");
+	}
 		
 	/*
 	 * 	�긽�꽭蹂닿린 �슂泥� 吏덉쓽 �떎�뻾 �븿�닔
 	 */
 	public NoticeData selectView(int NO) {
-		return sqlSession.selectOne("notice.noticeview", NO);
+		System.out.println("NO="+NO);
+		HashMap map= new HashMap();
+		map.put("NO",NO);
+		return sqlSession.selectOne("notice.noticeview", map);
 	}
 	/*
-	 * 	�뙎湲��벑濡� 吏덉쓽 �슂泥� �븿�닔
+	 * 	
 	 */
-	public void insertReple(NoticeData data) {
-		//sqlSession.insert("notice.insertreple", data);
+	public int getSearchCount(HashMap map) {
+		return sqlSession.selectOne("notice.searchcount", map);
 	}
+	
 	/*
-	 * 	�뙎湲� 寃��깋 吏덉쓽 �슂泥� �븿�닔
+	 * 	
 	 */
-	public ArrayList	getReple(int NO) {
-		return (ArrayList)sqlSession.selectList("notice.selectreple", NO);
-	}
-	/*
-	 * �닔�젙 �샊�� �궘�젣媛� 媛��뒫�븳 吏덉쓽 �슂泥� �븿�닔
-	 */
-	public int isUpdate(HashMap map) {
-		return sqlSession.selectOne("notice.isupdate", map);
-	}
-
-	/*
-	 * 	寃뚯떆臾� �닔�젙 �븿�닔
-	 */
-	public void updateNotice(NoticeData data) {
-		sqlSession.update("notice.updatenotice", data);
-	}
-	/*
-	 * 	寃뚯떆臾� �궘�젣 �븿�닔
-	 */
-	public void deleteNotice(int NO) {
-		sqlSession.update("rboard.deleteboard", NO);
+	public ArrayList getSearch(HashMap map) {
+		return (ArrayList) sqlSession.selectList("notice.searchnotice", map);
 	}
 		
 }

@@ -5,24 +5,31 @@ import java.util.Date;
 import org.springframework.web.multipart.MultipartFile;
 
 public class IntroInfoData {
-	private int    intro_no; /* ¼Ò°³ ¹øÈ£ */
-	private String mem_id;       /* È¸¿ø ¾ÆÀÌ´Ù */
-	private String intro_title;  /* ¼Ò°³ Á¦¸ñ */
-	private String intro_body;   /* ¼Ò°³ º»¹® */
-	private Date   intro_date;     /* ¼Ò°³ ÀÛ¼ºÀÏ */
-	private String intro_path;     /* »çÁø °æ·Î * /
-	private String intro_oriName;  /*»çÁø ÀÌ¸§ */ 
-	private int    intro_length;     /*»çÁø ±æÀÌ */
-	private Date   intro_cDate;    /* µ¥ÀÌÅÍ »ý¼º ³¯Â¥ */
-	private int    intro_isDeleted; /* ¼Ò°³ »èÁ¦ ¿©ºÎ */
+	private int    intro_no; /* ï¿½Ò°ï¿½ ï¿½ï¿½È£ */
+	private String mem_id;       /* È¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½ */
+	private String intro_title;  /* ï¿½Ò°ï¿½ ï¿½ï¿½ï¿½ï¿½ */
+	private String intro_body;   /* ï¿½Ò°ï¿½ ï¿½ï¿½ï¿½ï¿½ */
+	private Date   intro_date;     /* ï¿½Ò°ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½ */
+	private String intro_path;     /* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ * /
+	private String intro_oriName;  /*ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ */ 
+	private int    intro_length;     /*ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
+	private Date   intro_cDate;    /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥ */
+	private int    intro_isDeleted; /* ï¿½Ò°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	
-	//»çÁø ÆÄÀÏ °ü·Ã ¸â¹öµé
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 	public	MultipartFile	gimg;
 	public	MultipartFile	upfile;
 	public  MultipartFile[]	files;
 	private	String			gimg1;
 	private	String			gimg2;
+	private int	nowPage;
 			
+	public int getNowPage() {
+		return nowPage;
+	}
+	public void setNowPage(int nowPage) {
+		this.nowPage = nowPage;
+	}
 	public MultipartFile getGimg() {
 		return gimg;
 	}

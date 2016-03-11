@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -81,7 +80,7 @@ html, body {
 	float: right;
 	padding-top: 20px;
 }
- 
+
 #cssmenu {
 	clear: both
 }
@@ -181,8 +180,15 @@ a.logC:hover {
 							<option></option>
 						</select>
 					</div>
-					</c:if>						
-				</div>					
+					</c:if>
+						
+				
+						
+					</div>					
+					
+
+				
+
 			</div>
 		</div>
 	</div>
@@ -199,6 +205,7 @@ a.logC:hover {
 			<li class='last'><a href="JavaScript:goTest()"><span>테스트</span></a></li>
 		</ul>
 	</div>
+
 
 
 <script src="/edutube/resources/JS/classie.js"></script>
