@@ -102,9 +102,10 @@ public class ClassListController {
 		
 		// 동영상 주소가 있는 경우
 		int kind = 1;
+		String url = data.mediaURL.replaceAll("\\s", "");
 		
 		// 동영상 주소가 없는 경우
-		if(data.mediaURL == null || data.mediaURL.equals("")){
+		if(url == null || url.equals("")){			
 			kind = 0;
 		}		
 		
@@ -114,6 +115,8 @@ public class ClassListController {
 		data.id = (String) session.getAttribute("ID");
 		data.nick = (String) session.getAttribute("NICKNAME");
 				
+		
+		
 		lDao.insertclass(data,kind);
 		
 		

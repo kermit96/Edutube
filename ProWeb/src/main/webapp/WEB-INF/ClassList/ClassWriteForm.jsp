@@ -34,7 +34,7 @@
 				
 					$mediaURL=$("#mediaURL").val();					
 					$mediaURL=$mediaURL.replace(/^\s+|\s+$/g,"");
-
+										
 					$title = $("#title").val();
 						if ($title == "") {
 							alert("제목을 입력해 주세요");
@@ -45,9 +45,7 @@
 					if ($code == 0) {
 							alert("과목을 선택해 주세요");
 						return;
-					}
-
-						
+					}						
 
 					oEditors.getById["body"].exec(
 									"UPDATE_CONTENTS_FIELD",[]);

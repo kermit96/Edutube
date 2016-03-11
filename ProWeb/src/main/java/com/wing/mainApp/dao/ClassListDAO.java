@@ -44,7 +44,11 @@ public class ClassListDAO {
 	// 게시물등록 요청
 	public void insertclass(ClassListData data,int kind) {
 		
-		if(kind == 0){
+		System.out.println(data.title);
+		System.out.println(data.body);
+		
+		
+		if(kind == 0){			
 			sqlSession.insert("clist.classinsert", data);
 		}
 		else{
