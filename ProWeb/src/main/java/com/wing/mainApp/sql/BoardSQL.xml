@@ -23,13 +23,53 @@
 <!-- FAQ 목록 보기 질의 -->
 	<select id="faqselect"  resultType="cbdata">
 		SELECT
-			FAQ_title 	AS TITLE,
-			FAQ_body 	AS BODY
+			f.FAQ_no		AS		NO,
+			f.FAQ_title 		AS		TITLE,
+			f.QT_no			AS 	QNO,
+			q.QT_name		AS		QNAME,
+			f.FAQ_body 	AS 	BODY
+		FROM
+			FAQ f, QTYPE q
+		WHERE
+			f.FAQ_isDeleted= 'N'
+			AND	f.QT_no = q.QT_no
+		ORDER BY
+			f.QT_no ASC
+	</select>
+<!--  FAQ상세보기 질의 -->
+	<select id="faqview" resultType="cbdata" parameterType="java.lang.Integer">
+		SELECT
+			FAQ_no		AS 	NO,
+   			mem_id		AS 	ID, 
+   			FAQ_title		AS 	TITLE,
+   			FAQ_body	AS 	BODY,
+   			FAQ_cdate 	AS 	WDATE
 		FROM
 			FAQ
 		WHERE
-			FAQ_isDeleted= 'N'
+			FAQ_no = #{no}
+			AND	FAQ_isdeleted = 'N'
 	</select>
+<!--  FAQ삭제 질의 -->
+	<update id="faqdelete" parameterType="java.lang.Integer">
+		UPDATE
+			FAQ
+		SET
+			FAQ_isDeleted = 'Y'
+		WHERE
+			FAQ_no= #{no}
+	</update> 
+<!-- 	FAQ수정 질의 -->
+	<update id="faqmodify" parameterType="cbdata">
+		UPDATE
+			FAQ
+		SET
+			FAQ_title = #{title},
+			FAQ_body = #{body},
+			FAQ_cdate = SYSDATE
+		WHERE
+			FAQ_no = #{no}
+	</update>
 <!--  QA_no 알아내는 질의 -->
 	<select id="nosearch" resultType="java.lang.Integer" parameterType="java.lang.Integer">
 		SELECT
@@ -57,21 +97,23 @@
 <!--  QA게시물 목록가져오기 질의 -->
 	<select id="qaselect" resultType="cbdata">
 		SELECT
-			QA_no		AS		NO,
-   			mem_id		AS		ID,
-   			QT_no		AS		QNO,
-   			QA_title		AS		TITLE,
-   			QA_body	AS		BODY,
-   			QA_date		AS		WDATE,
-   			QA_top		AS		TOP,
-   			QA_mid		AS		MID,
-   			QA_Bottom	AS		BOTTOM
+			q.QA_no			AS		NO,
+			t.QT_name		AS		QNAME,
+   			q.mem_id		AS		ID,
+   			q.QT_no			AS		QNO,
+   			q.QA_title		AS		TITLE,
+   			q.QA_body		AS		BODY,
+   			q.QA_date		AS		WDATE,
+   			q.QA_top		AS		TOP,
+   			q.QA_mid		AS		MID,
+   			q.QA_Bottom	AS		BOTTOM
 		FROM
-			QA
+			QA q, QTYPE t
 		WHERE
-			QA_isDeleted = 'N'
+			q.QA_isDeleted = 'N'
+			AND	t.QT_no = q.QT_no
 		ORDER BY
-			QA_top DESC, QA_bottom ASC
+			q.QA_top DESC, q.QA_bottom ASC
 	</select>
 <!--  QA상세보기 질의 -->
 	<select id="qaview" resultType="cbdata" parameterType="java.lang.Integer">
@@ -87,7 +129,7 @@
 		FROM
 			QA
 		WHERE
-			QA_no = #{NO}
+			QA_no = #{no}
 	</select>
 <!--  QA답글 달기 질의 -->
 	<update id="qareple" parameterType="cbdata">
@@ -143,4 +185,24 @@
 		ORDER BY
 			QA_NO DESC
 	</select>
-</mapper>
+<!--  QA삭제 질의 -->
+	<update id="qadelete" parameterType="cbdata">
+		UPDATE
+			QA
+		SET
+			QA_isDeleted = 'Y'
+		WHERE
+			QA_top= #{top}
+	</update>
+<!-- 	QA수정 질의 -->
+	<update id="qamodify" parameterType="cbdata">
+		UPDATE
+			QA
+		SET
+			QA_title = #{title},
+			QA_body = #{body},
+			QA_date = SYSDATE
+		WHERE
+			QA_no = #{no}
+	</update>
+</mapper> 

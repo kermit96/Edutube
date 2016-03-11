@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script>
@@ -23,15 +23,15 @@
 </script>
 </head>
 	<body>
-<!--	°Ë»öÆû -->
-<!--	¸ñ·Ï Ãâ·Â -->
+<!--	ê²€ìƒ‰í¼ -->
+<!--	ëª©ë¡ ì¶œë ¥ -->
 		<table border="1" align="center" width="80%">
 				<tr>
-					<td>¹øÈ£</td>
-					<td>Á¦¸ñ</td>
-					<td>º»¹®</td>
-					<td>±Û¾´ÀÌ</td>
-					<td>ÀÛ¼ºÀÏ</td>
+					<td>ë²ˆí˜¸</td>
+					<td>ì œëª©</td>
+					<td>ë³¸ë¬¸</td>
+					<td>ê¸€ì“´ì´</td>
+					<td>ìž‘ì„±ì¼</td>
 				</tr>
 			<c:forEach var="temp" items="${LIST}">
 				<tr>
@@ -53,23 +53,23 @@
 	<table border="1" align="center" width="80%">
 			<tr>
 				<td align="center">
-					<a href="../CustomerBoard/QABoardList.do?nowPage=1">[Ã³  À½]</a>
+					<a href="../CustomerBoard/QABoardList.do?nowPage=1">[ì²˜  ìŒ]</a>
 					<c:if test="${PINFO.startPage eq 1}">
-						[ÀÌ Àü]
+						[ì´ ì „]
 					</c:if>
 					<c:if test="${PINFO.startPage ne 1}">
-						<a href="../CustomerBoard/QABoardList.do?nowPage=${PINFO.startPage - 1}">[ÀÌ Àü]</a>
+						<a href="../CustomerBoard/QABoardList.do?nowPage=${PINFO.startPage - 1}">[ì´ ì „]</a>
 					</c:if>
 					<c:forEach var="temp" begin="${PINFO.startPage}" end="${PINFO.endPage}">
 						<a href="../CustomerBoard/QABoardList.do?nowPage=${temp}">[ ${temp} ]</a>
 					</c:forEach>
 					<c:if test="${PINFO.endPage eq PINFO.totalPage}">
-						[´Ù À½]
+						[ë‹¤ ìŒ]
 					</c:if>
 					<c:if test="${PINFO.endPage ne PINFO.totalPage}">
-						<a href="../CustomerBoard/QABoardList.do?nowPage=${PINFO.endPage + 1}">[´Ù À½]</a>
+						<a href="../CustomerBoard/QABoardList.do?nowPage=${PINFO.endPage + 1}">[ë‹¤ ìŒ]</a>
 					</c:if>
-					<a href="../CustomerBoard/QABoardList.do?nowPage=${PINFO.totalPage}">[¸¶Áö¸·]</a>
+					<a href="../CustomerBoard/QABoardList.do?nowPage=${PINFO.totalPage}">[ë§ˆì§€ë§‰]</a>
 				</td>
 			</tr>
 		</table>

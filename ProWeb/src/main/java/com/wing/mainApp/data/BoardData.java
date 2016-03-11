@@ -7,7 +7,9 @@ import com.wing.mainApp.util.StringUtil;
 public class BoardData {
 	public int		no;
 	public int 		qno;
+	public String	qname;
 	public String 	id;
+	public String	name;
 	public String 	title;
 	public String 	body;
 	public int		hit;
@@ -17,6 +19,8 @@ public class BoardData {
 	public int		bottom;
 	public String	admin;
 	public String	nick;
+	public String 	nal;
+	public int 		nowPage;
 	
 	public Date getWdate() {
 		return wdate;
@@ -92,6 +96,36 @@ public class BoardData {
 	}
 	public void setAdmin(String admin) {
 		this.admin = admin;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
+	public String getNal() {
+		return nal;
+	}
+	public void setNal(String nal) {
+		this.nal = nal;
+	}
+	public int getNowPage() {
+		return nowPage;
+	}
+	public void setNowPage(int nowPage) {
+		this.nowPage = nowPage;
+	}
+	public String getQname() {
+		return qname;
+	}
+	public void setQname(String qname) {
+		this.qname = qname;
 	}
 	
 }
