@@ -21,6 +21,7 @@ public class ClassListData {
 	public String lang;
 	public String code;
 	
+
 	public String mediaURL;
 	
 	public int getNo() {
@@ -106,7 +107,6 @@ public class ClassListData {
 	public void setMediaURL(String mediaURL) {
 		this.mediaURL = mediaURL;
 	}
-	
 
 	
 	

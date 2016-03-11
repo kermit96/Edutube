@@ -40,6 +40,15 @@
 	
 	<div id="Main">
 		<!-- This area is Body Part -->
+		${DATA.id}
+		${DATA.nick}
+		${DATA.realdate}
+		${DATA.title}
+		${DATA.body}
+		${DATA.hit}
+		${DATA.good}
+		${DATA.code}
+		${DATA.lang}
 		
 		
 	</div>

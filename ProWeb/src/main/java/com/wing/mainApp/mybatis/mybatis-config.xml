@@ -22,6 +22,7 @@
 		<typeAlias alias="ndata" type="com.wing.mainApp.data.NoticeData" /> 
 		<typeAlias alias="idata" type="com.wing.mainApp.data.IntroInfoData" />
 		<typeAlias alias="subdata" type="com.wing.mainApp.data.SubjectData" />
+		<typeAlias alias="mediadata" type="com.wing.mainApp.data.MediaData" />
 	</typeAliases>
 	
 	<mappers>

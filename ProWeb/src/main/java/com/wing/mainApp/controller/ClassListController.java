@@ -80,8 +80,17 @@ public class ClassListController {
 	public ModelAndView classWriteForm(HttpServletRequest req, HttpSession session){
 		ModelAndView	mv = new ModelAndView();
 	
+		String strpage = req.getParameter("nowPage");
+		int	nowPage = 0;
+		if(StringUtil.isNull(strpage)){
+			nowPage = 1;
+		}
+		else {
+			nowPage = Integer.parseInt(strpage);
+		}
+		
 		mv.addObject("CODE",req.getParameter("code"));
-		mv.addObject("nowPage",req.getParameter("nowPage"));
+		mv.addObject("nowPage",nowPage);
 		
 		ArrayList result = lDao.getSubList();		
 		
@@ -107,10 +116,19 @@ public class ClassListController {
 		// 동영상 주소가 없는 경우
 		if(url == null || url.equals("")){			
 			kind = 0;
-		}		
+		}
+		
+		String strpage = req.getParameter("nowPage");
+		int	nowPage = 0;
+		if(StringUtil.isNull(strpage)){
+			nowPage = 1;
+		}
+		else {
+			nowPage = Integer.parseInt(strpage);
+		}
 		
 		mv.addObject("CODE",req.getParameter("code"));
-		mv.addObject("nowPage",req.getParameter("nowPage"));
+		mv.addObject("nowPage",nowPage);
 		
 		data.id = (String) session.getAttribute("ID");
 		data.nick = (String) session.getAttribute("NICKNAME");
@@ -130,17 +148,25 @@ public class ClassListController {
 	public ModelAndView classView(HttpServletRequest req, ClassListData data){
 		ModelAndView	mv = new ModelAndView();
 		
-		String	strNo = req.getParameter("oriNo");
-		int	oriNo = Integer.parseInt(strNo);
-		String	strpage = req.getParameter("nowPage");
-		int	nowPage = Integer.parseInt(strpage);
-		String	kind = req.getParameter("flag");
+		mv.addObject("CODE",req.getParameter("code"));
+		
+		String	strNo = req.getParameter("oriNO");
+		int	oriNo = Integer.parseInt(strNo);		
+		
+		String strpage = req.getParameter("nowPage");
+		int	nowPage = 0;
+		if(StringUtil.isNull(strpage)){
+			nowPage = 1;
+		}
+		else {
+			nowPage = Integer.parseInt(strpage);
+		}
 		
 		ClassListData map = lDao.selectView(oriNo);
 		
 		mv.addObject("DATA", map);
 		mv.addObject("nowPage", nowPage);
-		mv.addObject("KIND", kind);
+		
 		mv.setViewName("ClassList/ClassView");
 		return mv;
 	}
