@@ -106,10 +106,7 @@ public class ClassListData {
 	}
 	
 	/*강제로  바뀌게 하는 함수*/
-	
-	public String getRealURL() {
-		return mediaURL.substring(17, 28);
-	}
+
 	
 	public String getRealdate() {
 		SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd");

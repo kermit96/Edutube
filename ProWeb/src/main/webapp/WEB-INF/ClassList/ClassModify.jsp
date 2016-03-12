@@ -1,53 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title</title>
-	
-	<!--  Favicon (Main Icon) -->
-	<link rel="shortcut icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
-	<link rel="icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
-	
-	<!--CSS-->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-	<!--JS-->
-	
-	<!--CustomScript-->
-	<script>
-	</script>
-	
-	<!--Never Delete "EduContainer" style tag-->
-	<style>
-	
-			#EduContainer{
-				width:1200px;
-				position: absolute;
-				left: 50%;
-				margin-left:-600px;				
-		}	
-	</style>
-	
-</head>
-<body>
+<!--  비정상 접근 처리 -->  
+<c:if test="${sessionScope.NAL ne 'L'}">
+ 	<c:redirect url="../Member/login.do" />
+</c:if>
 
-<div id='EduContainer'>
-
-	<div id='top'>	
-		<jsp:include page="/MenuBar/Top.jsp" flush="false" />
-	</div>	
-	
-	<div id="Main">
-		<!-- This area is Body Part -->
-		
-		
-	</div>
-	 
-</div>
-
-</body>
-</html>
-
-
-
+<c:redirect url="./ClassView.do">
+	<c:param name="nowPage" value="${nowPage}" />
+	<c:param name="oriNO" value="${oriNO}" />
+	<c:param name="code" value="${CODE}" />
+</c:redirect>

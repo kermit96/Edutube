@@ -54,7 +54,7 @@
 									"UPDATE_CONTENTS_FIELD",[]);
 
 					$("#classForm").attr("action",
-									"../ClassList/ClassModify.do?nowPage=${nowPage}&listCode=${listCode}");
+									"../ClassList/ClassModify.do?nowPage=${nowPage}&listCode=${listCode}&oriNO=${oriNO}");
 					$("#classForm").submit();
 				});
 	});
@@ -122,7 +122,7 @@ div#mediaDIV{
 	width:800px;
 	margin-top:20px;
 }
-p#mediaURL{
+p#mediaURLp{
 	float:left;
 	width:150px;
 }
@@ -162,8 +162,13 @@ input#title{
 							<div id="selectD">
 							<select id="code" name="code" class="input-large">
 									<option value="0" >Select Subject</option>
-										<c:forEach var="sublist" items="${SUBLIST}">
-											<option value="${sublist.subcode}">${sublist.subname}</option>
+										<c:forEach var="sublist" items="${SUBLIST}">											
+											<c:if test="${sublist.subcode eq DATA.code}">
+												<option value="${sublist.subcode}" selected>${sublist.subname}</option>
+											</c:if>
+											<c:if test="${sublist.subcode ne DATA.code}">
+												<option value="${sublist.subcode}">${sublist.subname}</option>
+											</c:if>											
 										</c:forEach>
 							</select>
 							</div>
@@ -181,7 +186,7 @@ input#title{
 						</div>
 						
 						<div id="mediaDIV">
-							<p id="mediaURL">동영상 주소</p>													
+							<p id="mediaURLp">동영상 주소</p>													
 							<input id="mediaURL" name="mediaURL" type="text" >	
 						</div>
 

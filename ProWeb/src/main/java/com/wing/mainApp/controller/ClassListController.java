@@ -252,6 +252,7 @@ public class ClassListController {
 		mv.addObject("listCode",subcode);
 		mv.addObject("nowPage",nowPage);
 		
+		
 		ClassListData map = lDao.selectModi(oriNo);
 		ArrayList result = lDao.getSubList();		
 		
@@ -271,15 +272,41 @@ public class ClassListController {
 	
 	// 수정 요청
 	@RequestMapping("/ClassList/ClassModify")
-	public ModelAndView	classModify(ClassListData data) {
+	public ModelAndView	 classModify(ClassListData data,HttpServletRequest req, HttpSession session) {
 		ModelAndView	mv = new ModelAndView();
+	
+		String listcode = req.getParameter("listCode");
+		
+		String	strNo = req.getParameter("oriNO");
+		int	oriNo = Integer.parseInt(strNo);
+		data.no = oriNo;
+		
+		String strpage = req.getParameter("nowPage");
+		int	nowPage = 0;
+		if(StringUtil.isNull(strpage)){
+			nowPage = 1;
+		}
+		else {
+			nowPage = Integer.parseInt(strpage);
+		}
+		
+		// 동영상 주소가 있는 경우
+		int kind = 1;
+		String url = data.mediaURL.replaceAll("\\s", "");
+		
+		// 동영상 주소가 없는 경우
+		if(url == null || url.equals("")){			
+			kind = 0;
+		}
 		
 		lDao.updateclass(data);
 		
-		RedirectView	rv = new RedirectView("../ClassList/ClassView.do");
-		rv.addStaticAttribute("oriNo", data.no);
-//		rv.addStaticAttribute("nowPage", data.nowPage);
-		mv.setView(rv);
+		mv.addObject("code",listcode);
+		mv.addObject("oriNO",oriNo);
+		mv.addObject("nowPage",nowPage);
+		
 		return mv;
 	}
+	
+	
 }

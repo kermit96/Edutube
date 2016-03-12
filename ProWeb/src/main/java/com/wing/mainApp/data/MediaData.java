@@ -3,6 +3,7 @@ package com.wing.mainApp.data;
 public class MediaData {
 	public int mediaNO;
 	public String mediaURL;
+	public String realURL;
 	
 	// 원래글 번호
 	public int no;
@@ -25,8 +26,10 @@ public class MediaData {
 	}
 	public void setMediaURL(String mediaURL) {
 		this.mediaURL = mediaURL;
+	}	
+	
+	public String getRealURL() {
+		return mediaURL.substring(17, 28);
 	}
-	
-	
 	
 }

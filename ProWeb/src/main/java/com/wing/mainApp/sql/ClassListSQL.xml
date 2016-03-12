@@ -127,11 +127,12 @@
 		UPDATE
 			class
 		SET
-			title = #{title},
-			body = #{body},
-			date = SYSDATE
+			class_title = #{title},
+			class_body = #{body},
+			sub_code = #{code},
+			class_date = SYSDATE
 		WHERE
-			class_no = #{NO}
+			class_no = #{no}
 	</update>
 	<!-- 삭제 질의 -->
 	<update id="deleteclass"	parameterType="int">
@@ -149,14 +150,12 @@
             class_title    AS title,
             class_body    AS body,
             mem_id         AS id,
-            s.sub_name AS code,            
+            sub_code AS code,            
             v.video_url  AS mediaURL
         FROM
-            class c,subject s,video v
+            class c,video v
         where
-            c.CLASS_NO = 22           
-        AND
-            s.sub_code = C.SUB_CODE
+            c.CLASS_NO = #{NO}
         AND
             c.class_no = v.class_no
 	</select>
