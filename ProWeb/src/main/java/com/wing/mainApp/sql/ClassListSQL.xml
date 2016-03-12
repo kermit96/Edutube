@@ -122,17 +122,6 @@
 			class_no = #{NO}	
 	</select>
 	
-	
-	<!-- 수정 삭제 -->
-	<select id="isupdate" resultType="java.lang.Integer" parameterType="Hmap">
-		SELECT
-			COUNT(*) AS CNT
-		FROM
-			class
-		WHERE
-			class_no = #{NO}
-
-	</select>
 	<!-- 수정 질의 -->
 	<update id="updateclass" parameterType="ClassListData">
 		UPDATE
@@ -145,13 +134,31 @@
 			class_no = #{NO}
 	</update>
 	<!-- 삭제 질의 -->
-	<update id="deleteclass"	parameterType="java.lang.Integer">
+	<update id="deleteclass"	parameterType="int">
 		UPDATE
 			class
 		SET
-			isDeleted = 'Y'
+			class_isDeleted = 'Y'
 		WHERE
 			class_no = #{NO}
 	</update>
+	
+	<!-- 수정하기 폼요청시 -->
+	<select id="classmodi" resultType="ClassListData" parameterType="int">
+        SELECT
+            class_title    AS title,
+            class_body    AS body,
+            mem_id         AS id,
+            s.sub_name AS code,            
+            v.video_url  AS mediaURL
+        FROM
+            class c,subject s,video v
+        where
+            c.CLASS_NO = 22           
+        AND
+            s.sub_code = C.SUB_CODE
+        AND
+            c.class_no = v.class_no
+	</select>
 
 </mapper>

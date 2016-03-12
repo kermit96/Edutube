@@ -42,10 +42,7 @@ public class ClassListDAO {
 	
 	// 게시물등록 요청 (03/11 미완)
 	public void insertclass(ClassListData data,int kind) {
-				
-		System.out.println(data.no);
-		System.out.println(data.mediaURL);
-		System.out.println(data.code);
+			
 		if(kind == 0){			
 			sqlSession.insert("clist.classinsert", data);
 		}
@@ -76,22 +73,34 @@ public class ClassListDAO {
 	public ClassListData selectView(int NO) {
 		return sqlSession.selectOne("clist.classview", NO);
 	}
+	/**
+	 * 03/12 대충완료
+	 * */
 	
 	// 동영상 리스트 요청
 	@SuppressWarnings("rawtypes")
 	public ArrayList selectMediaList(int NO){
 		return (ArrayList)sqlSession.selectList("clist.mediaList",NO);
 	}
+	/**
+	 * 03/12 대충완료
+	 * */
 	
-	
-	// 수정 삭제 요청
-	public int isUpdate(HashMap map) {
-		return sqlSession.selectOne("clist.isupdate", map);
-	}
 	// 삭제 함수
 	public void deleteclass(int NO) {
-		sqlSession.update("clist.deleteclass", NO);
+		sqlSession.update("clist.deleteclass", NO);	
 	}
+	/**
+	 * 03/12 대충완료
+	 * */
+	// 수정폼 요청
+	public ClassListData selectModi(int NO) {
+		return sqlSession.selectOne("clist.classmodi", NO);
+	}
+	/**
+	 * 03/12 대충완료
+	 * */
+	
 	// 수정 함수
 	public void updateclass(ClassListData data) {
 		sqlSession.update("clist.updateclass", data);

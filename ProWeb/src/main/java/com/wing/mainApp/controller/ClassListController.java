@@ -190,70 +190,85 @@ public class ClassListController {
 		mv.setViewName("ClassList/ClassView");
 		return mv;
 	}
+	/**
+	 *  03/12 완료
+	 * 
+	 * */
+	
 	// 삭제 요청
 	@RequestMapping("/ClassList/ClassDelete.do")
-	public ModelAndView classDelete(HttpServletRequest req){
+	public ModelAndView classDelete(HttpServletRequest req,HttpSession session){
+		
 		ModelAndView	mv = new ModelAndView();
 		
-		String strpage = req.getParameter("nowPage");
+		String subcode = req.getParameter("code");
+				
 		String	strNo = req.getParameter("oriNo");
-		int	nowPage = Integer.parseInt(strpage);
-		int	oriNo = Integer.parseInt(strNo);
+		int	oriNo = Integer.parseInt(strNo);		
 		
-		HashMap	map = new HashMap();
-		map.put("NO",  oriNo);
-		int cnt	= lDao.isUpdate(map);
-		if(cnt == 0) {
-			RedirectView rv = new RedirectView("../ClassList/ClassView.do");
-			rv.addStaticAttribute("oriNo", oriNo);
-			rv.addStaticAttribute("nowPage", nowPage);
-			return mv;
+		String strpage = req.getParameter("nowPage");
+		int	nowPage = 0;
+		if(StringUtil.isNull(strpage)){
+			nowPage = 1;
 		}
 		else {
-			lDao.deleteclass(oriNo);
+			nowPage = Integer.parseInt(strpage);
 		}
-		RedirectView	rv = new RedirectView("../ClassList/ClassList.do");
-		mv.setView(rv);
+		
+		
+		lDao.deleteclass(oriNo);
+				
+		mv.setViewName("ClassList/ClassDelete");
+		mv.addObject("CODE",subcode);
+		mv.addObject("nowPage",nowPage);
 		
 		return mv;
 	}
+	/**
+	 *  03/12 완료
+	 * 
+	 * */
+	
+	@SuppressWarnings("rawtypes")
 	// 수정하기 폼 요청
 	@RequestMapping("/ClassList/ClassModifyForm.do")
-	public ModelAndView classModifyForm(HttpServletRequest req, ClassListData data){
+	public ModelAndView classModifyForm(HttpServletRequest req, HttpSession session){
 		ModelAndView	mv = new ModelAndView();
 		
-//		String strpage = req.getParameter("nowPage");
-		String strNo = req.getParameter("oriNo");
-//		System.out.println(strpage);
-//		
-//		int nowPage = Integer.parseInt(strpage);
+		String	strNo = req.getParameter("oriNo");
 		int	oriNo = Integer.parseInt(strNo);
-		data.no = oriNo;
-		System.out.println(oriNo);
-		System.out.println(data.oriNo);
-		System.out.println(data.no);
 		
+		String subcode = req.getParameter("code");
 		
-		HashMap	map = new HashMap();
-		map.put("NO", oriNo);
-		int cnt = lDao.isUpdate(map);
-		ClassListData	result = new ClassListData();
-		if(cnt == 0) {
-			RedirectView	rv = new RedirectView("../ClassList/ClassView.do");
-			rv.addStaticAttribute("oriNo", oriNo);
-//			rv.addStaticAttribute("nowPage", nowPage);
-			mv.setView(rv);
-			return mv;
+		String strpage = req.getParameter("nowPage");
+		int	nowPage = 0;
+		if(StringUtil.isNull(strpage)){
+			nowPage = 1;
 		}
 		else {
-			result = lDao.selectView(oriNo);
+			nowPage = Integer.parseInt(strpage);
 		}
 		
-		mv.addObject("DATA", result);
-//		mv.addObject("nowPage", nowPage);
+		mv.addObject("listCode",subcode);
+		mv.addObject("nowPage",nowPage);
+		
+		ClassListData map = lDao.selectModi(oriNo);
+		ArrayList result = lDao.getSubList();		
+		
+		mv.addObject("oriNO",oriNo);
+		mv.addObject("DATA", map);
+		mv.addObject("SUBLIST",result);
+		
 		mv.setViewName("ClassList/ClassModifyForm");
 		return mv;
 	}
+	/**
+	 *  03/12 완료
+	 * 
+	 * */
+	
+	
+	
 	// 수정 요청
 	@RequestMapping("/ClassList/ClassModify")
 	public ModelAndView	classModify(ClassListData data) {

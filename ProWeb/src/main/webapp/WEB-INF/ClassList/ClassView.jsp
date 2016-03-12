@@ -24,10 +24,10 @@
 <!--스크립트-->
 <script>
 	function moContent(){
-		
+		location.href="../ClassList/ClassModifyForm.do?code=${CODE}&nowPage=${nowPage}&oriNo=${DATA.no}";
 	}
 	function delContent(){
-		
+		location.href="../ClassList/ClassDelete.do?nowPage=${nowPage}&code=${CODE}&oriNo=${DATA.no}";
 	}
 	function goClassList(){
 		location.href="../ClassList/ClassList.do?nowPage=${nowPage}&code=${CODE}";
@@ -141,7 +141,7 @@ p#title{
 				<div id="viewMain">
 					<div class="videoM">
 					      <c:forEach var="mList" items="${mList}">					      	
-					      	<iframe width="600" height="300" src="https://www.youtube.com/embed/${mList.mediaURL}?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>  					
+					      	<iframe width="600" height="300" src="https://www.youtube.com/embed/${mList.realURL}?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>  					
      					 </c:forEach>	
      					 <p>&nbsp;</p>
 					</div>					
