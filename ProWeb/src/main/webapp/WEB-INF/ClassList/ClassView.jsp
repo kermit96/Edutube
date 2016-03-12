@@ -8,6 +8,8 @@
 <title>EduTube</title>
 <!--CSS-->
 <link rel="stylesheet" href="/edutube/resources/CSS/bootstrap.min.css">
+<link rel="stylesheet" href="/edutube/resources/CSS/customB.css">
+<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
 
 <!--  파피콘 넣기 -->
 <link rel="shortcut icon" href="/edutube/favicon.ico"
@@ -21,6 +23,15 @@
 
 <!--스크립트-->
 <script>
+	function moContent(){
+		
+	}
+	function delContent(){
+		
+	}
+	function goClassList(){
+		location.href="../ClassList/ClassList.do?nowPage=${nowPage}&code=${CODE}";
+	}
 
 </script>
 
@@ -65,26 +76,52 @@
 #viewMain{
 	width:800px;
 	margin:0 auto;	
+	margin-bottom:100px;
 }
 
 #videoM{
-	width:600px;
+	width:800px;
+	height:100%;
+	margin:0 auto;	
+}
+
+#ContentTop{
+	width:800px;
 	height:100%;
 	margin:0 auto;
 }
-
-#realContent{
-	width:600px;
+#bodycontent{
+	width:800px;
+	min-height:300px;
+	margin:0 auto;
+}
+#goodUtil{
+	width:800px;
 	height:100%;
 	margin:0 auto;
-	border:1px solid black;
+}
+#utilBar00{
+	width:800px;
+	height:100%;
+	margin:0 auto;
+}
+#titleC{
+	border-top:2px solid purple;
+	border-bottom:2px solid purple;
+	width:800px;
+	height:100%;
+	margin:0 auto;
 }
 p#title{
 	font-family: 나눔고딕, 'NanumGothic';
-	font-size: 18px;
+	font-size: 24px;
 	font color: black;
 	font-weight: plane;
 }
+#utilT{
+	border-bottom:1px solid black;
+}
+
 
 </style>
 </head>
@@ -106,43 +143,42 @@ p#title{
 					      <c:forEach var="mList" items="${mList}">					      	
 					      	<iframe width="600" height="300" src="https://www.youtube.com/embed/${mList.mediaURL}?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>  					
      					 </c:forEach>	
-     					 <p>글번호&nbsp;:&nbsp;${DATA.id}&nbsp;|&nbsp;강사&nbsp;:&nbsp;${DATA.nick}</p>
-					</div>
-					
-					<div id="realContent">
-						<table>
+     					 <p>&nbsp;</p>
+					</div>					
+
+					<div id="titleC">
+								<p id="title">[${DATA.code}]${DATA.title}</p>							
+					</div>		
+					<div id="ContentTop">
+						<table id="utilT">
 							<tr>
-								<td>
-									<p id="title">[${DATA.code}]${DATA.title}&nbsp;|&nbsp;${DATA.realdate}</p>
-								</td>
+								<td	colspan="2" style="padding:20px">강사 : <a href="#">${DATA.nick}</a></td>								
 							</tr>
 							<tr>
-								<td>
-										유틸바${DATA.good}${DATA.hit}
+								<td style="padding:20px">
+										작성일 : ${DATA.realdate}
+								</td>
+								<td style="padding:20px">
+										조회수 : ${DATA.hit}
 								</td>
 							</tr>
-							<tr>
-								<td>
-									${DATA.body}
-								</td>
-							</tr>
-							${DATA.code}
-						
 						</table>					
+					</div><!--  realcontent1 끝 -->
+					<div id="bodycontent">
+						${DATA.body}
 					</div>
-					                    
-                        	
-				
-				</div>
-				   
-      
-     
-      
-      
-  
-      
-           
-  
+					<div id="goodUtil">
+							추천 : ${DATA.good}
+					</div>
+					<div id="utilBar00">
+						<c:if test="${DATA.id eq sessionScope.ID}">
+						<a class="button button-yellow" onClick="JavaScript:moContent();"><i class="fa fa-clock-o"></i>수정하기</a>
+						<a class="button button-red" onClick="JavaScript:delContent();"><i class="fa fa-times"></i>삭제하기</a>
+						</c:if>						
+						<a class="button button-orange" onClick="JavaScript:goClassList();" id="ListBtn" >목록으로</a>	
+					</div>				
+
+				</div><!--  viewmain 끝 -->
 			</div><!--  실제로 들어갈 내용 -->
 			
 		</div><!-- 메뉴바 밑 감싸기 -->
