@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="app">
+<!-- 관리자인지 학생인지 강사인지 알아내는 함수 -->
+	<select id="whatnal" resultType="java.lang.String" parameterType="java.lang.String">
+		SELECT
+			MEM_NAL
+		FROM
+			MEMBER
+		WHERE
+			MEM_ID = #{id}
+	</select>
+<!-- 강사신청을 했는지 확인하는 질의 -->
+	<select id="exist" resultType="java.lang.String" parameterType="java.lang.String">
+		SELECT
+			APPLY_NO
+		FROM
+			Apply
+		WHERE
+			MEM_ID=#{id}
+	</select>
+<!-- 강사신청 하기 -->
+	<insert id="insertapp" parameterType="appdata">
+	INSERT
+		INTO
+	Apply
+		VALUES((SELECT NVL(MAX(Apply_NO), 0) + 1 FROM Apply),#{code},#{id},#{body},#{path},#{oriname},#{savename},#{len},'N',SYSDATE,SYSDATE)
+	</insert>
+<!-- 강사 신청 리스트 -->
+	<select id="selectTeacher" resultType="appdata">
+		SELECT
+			Apply_NO AS no,
+			SUB_code AS code,
+			MEM_id AS id,
+			Apply_Body AS body,
+			Intro_savename AS savename
+		FROM
+			APPLY
+		WHERE
+			APPLY_IsDeleted ='N'
+	</select>
+<!-- 강사 아이디 불러오기 -->
+	<select id="selectapp" parameterType="java.lang.Integer" resultType="java.lang.String">
+		SELECT
+			Mem_ID AS id
+		FROM
+			Apply
+		WHERE
+			Apply_NO = #{no}
+	</select>
+<!-- 강사 승인 -->
+	<update id="acceptapp" parameterType="java.lang.String">
+		UPDATE
+			MEMBER
+		SET
+			Mem_NAL = 'L'
+		WHERE
+			Mem_ID =#{id}
+	</update>
+<!-- 승인된 강사 컬럼 삭제 -->
+	<update id="deleteapp" parameterType="java.lang.String">
+		UPDATE
+			APPLY
+		SET
+			Apply_IsDeleted = 'Y'
+		WHERE
+			Mem_ID =#{id}
+	</update>
+<!-- 이메일 알아내기 -->
+	<select id="email" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT
+			MEM_EMAIL AS email
+		FROM
+			MEMBER
+		WHERE
+			Mem_ID=#{id}
+	</select>
+</mapper>

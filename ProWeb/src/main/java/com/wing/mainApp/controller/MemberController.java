@@ -333,7 +333,8 @@ void CheckUserid(HttpServletRequest req, HttpServletResponse res)
 		   session.setAttribute("ID", member.getMem_id());
 		   session.setAttribute("NAME", member.getMem_name());
 		   session.setAttribute("NICKNAME", member.getMem_nick());
-		   session.setAttribute("NAL", member.getMem_Nal());		   
+		   session.setAttribute("NAL", member.getMem_Nal());
+		   session.setAttribute("TEL", member.getMem_tel());
 	   }
 	   	          
   	  Gson gson = new Gson();

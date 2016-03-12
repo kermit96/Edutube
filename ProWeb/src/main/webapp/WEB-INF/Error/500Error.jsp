@@ -95,7 +95,7 @@
 				<div id="utilB">		
 					<a class="button button-blue" onClick="JavaScript:reHome();"><i class="fa fa-globe"></i>Main <strong>Home</strong></a>
 				</div>
-							
+
 			</div>
 		</div>						
 	</div>

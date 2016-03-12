@@ -13,6 +13,7 @@
 	            , mem_nick
                  , mem_name 
                  ,mem_nal
+                 ,mem_tel
 		FROM
 			Member where   mem_id = #{userid} and  mem_pass = #{password}
 			and mem_isDeleted = 'N'

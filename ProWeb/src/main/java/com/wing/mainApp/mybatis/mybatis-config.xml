@@ -22,6 +22,7 @@
 		<typeAlias alias="ndata" type="com.wing.mainApp.data.NoticeData" /> 
 		<typeAlias alias="idata" type="com.wing.mainApp.data.IntroInfoData" />
 		<typeAlias alias="subdata" type="com.wing.mainApp.data.SubjectData" />
+		<typeAlias alias="appdata" type="com.wing.mainApp.data.ApplyData" />
 	</typeAliases>
 	
 	<mappers>
@@ -34,6 +35,7 @@
 	    <mapper resource="/com/wing/mainApp/sql/NoticeSQL.xml" />
 		<mapper resource="/com/wing/mainApp/sql/IntroInfoSQL.xml" />
 		<mapper resource="/com/wing/mainApp/sql/CommonSQL.xml" />
+		<mapper resource="/com/wing/mainApp/sql/ApplySQL.xml" />
 	</mappers>
 
 </configuration>
