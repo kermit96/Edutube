@@ -80,8 +80,17 @@ public class ClassListController {
 	public ModelAndView classWriteForm(HttpServletRequest req, HttpSession session){
 		ModelAndView	mv = new ModelAndView();
 	
+		String strpage = req.getParameter("nowPage");
+		int	nowPage = 0;
+		if(StringUtil.isNull(strpage)){
+			nowPage = 1;
+		}
+		else {
+			nowPage = Integer.parseInt(strpage);
+		}
+		
 		mv.addObject("CODE",req.getParameter("code"));
-		mv.addObject("nowPage",req.getParameter("nowPage"));
+		mv.addObject("nowPage",nowPage);
 		
 		ArrayList result = lDao.getSubList();		
 		
@@ -100,118 +109,204 @@ public class ClassListController {
 	public ModelAndView classWrite(HttpSession session, ClassListData data,HttpServletRequest req ){
 		ModelAndView	 mv = new ModelAndView();
 		
-		if(data.mediaURL == null){
-			
+		// 동영상 주소가 있는 경우
+		int kind = 1;
+		String url = data.mediaURL.replaceAll("\\s", "");
+		
+		// 동영상 주소가 없는 경우
+		if(url == null || url.equals("")){			
+			kind = 0;
+		}
+		
+		String strpage = req.getParameter("nowPage");
+		int	nowPage = 0;
+		if(StringUtil.isNull(strpage)){
+			nowPage = 1;
+		}
+		else {
+			nowPage = Integer.parseInt(strpage);
 		}
 		
 		mv.addObject("CODE",req.getParameter("code"));
-		mv.addObject("nowPage",req.getParameter("nowPage"));
+		mv.addObject("nowPage",nowPage);
 		
 		data.id = (String) session.getAttribute("ID");
 		data.nick = (String) session.getAttribute("NICKNAME");
+				
+		String[] temp = data.code.split(",");
+		if(temp[0].equals(req.getParameter("code"))) {
+			data.code = temp[1];
+		}
+		else {
+			data.code = temp[0];
+		}
 		
-		lDao.insertclass(data);
+		lDao.insertclass(data,kind);
 		
 		
 		mv.setViewName("/ClassList/ClassWrite");
 		
 		return mv;
 	}
+	/**
+	 * 
+	 * 03/11 대충완료(더작업해야함)
+	 * */
 	
 	// 상세보기 요청
+	@SuppressWarnings("rawtypes")
 	@RequestMapping("/ClassList/ClassView")
 	public ModelAndView classView(HttpServletRequest req, ClassListData data){
 		ModelAndView	mv = new ModelAndView();
 		
-		String	strNo = req.getParameter("oriNo");
-		int	oriNo = Integer.parseInt(strNo);
-		String	strpage = req.getParameter("nowPage");
-		int	nowPage = Integer.parseInt(strpage);
-		String	kind = req.getParameter("flag");
+		mv.addObject("CODE",req.getParameter("code"));
+		
+		String	strNo = req.getParameter("oriNO");
+		int	oriNo = Integer.parseInt(strNo);		
+		
+		String strpage = req.getParameter("nowPage");
+		int	nowPage = 0;
+		if(StringUtil.isNull(strpage)){
+			nowPage = 1;
+		}
+		else {
+			nowPage = Integer.parseInt(strpage);
+		}
 		
 		ClassListData map = lDao.selectView(oriNo);
 		
+		ArrayList mList = lDao.selectMediaList(oriNo);
+		
+		boolean isExist = true;
+		if(mList == null){
+			isExist = false;
+		}
+		
+		mv.addObject("isExist",isExist);
+		mv.addObject("mList",mList);
 		mv.addObject("DATA", map);
 		mv.addObject("nowPage", nowPage);
-		mv.addObject("KIND", kind);
+		
 		mv.setViewName("ClassList/ClassView");
 		return mv;
 	}
+	/**
+	 *  03/12 완료
+	 * 
+	 * */
+	
 	// 삭제 요청
 	@RequestMapping("/ClassList/ClassDelete.do")
-	public ModelAndView classDelete(HttpServletRequest req){
+	public ModelAndView classDelete(HttpServletRequest req,HttpSession session){
+		
 		ModelAndView	mv = new ModelAndView();
 		
-		String strpage = req.getParameter("nowPage");
+		String subcode = req.getParameter("code");
+				
 		String	strNo = req.getParameter("oriNo");
-		int	nowPage = Integer.parseInt(strpage);
-		int	oriNo = Integer.parseInt(strNo);
+		int	oriNo = Integer.parseInt(strNo);		
 		
-		HashMap	map = new HashMap();
-		map.put("NO",  oriNo);
-		int cnt	= lDao.isUpdate(map);
-		if(cnt == 0) {
-			RedirectView rv = new RedirectView("../ClassList/ClassView.do");
-			rv.addStaticAttribute("oriNo", oriNo);
-			rv.addStaticAttribute("nowPage", nowPage);
-			return mv;
+		String strpage = req.getParameter("nowPage");
+		int	nowPage = 0;
+		if(StringUtil.isNull(strpage)){
+			nowPage = 1;
 		}
 		else {
-			lDao.deleteclass(oriNo);
+			nowPage = Integer.parseInt(strpage);
 		}
-		RedirectView	rv = new RedirectView("../ClassList/ClassList.do");
-		mv.setView(rv);
+		
+		
+		lDao.deleteclass(oriNo);
+				
+		mv.setViewName("ClassList/ClassDelete");
+		mv.addObject("CODE",subcode);
+		mv.addObject("nowPage",nowPage);
 		
 		return mv;
 	}
+	/**
+	 *  03/12 완료
+	 * 
+	 * */
+	
+	@SuppressWarnings("rawtypes")
 	// 수정하기 폼 요청
 	@RequestMapping("/ClassList/ClassModifyForm.do")
-	public ModelAndView classModifyForm(HttpServletRequest req, ClassListData data){
+	public ModelAndView classModifyForm(HttpServletRequest req, HttpSession session){
 		ModelAndView	mv = new ModelAndView();
 		
-//		String strpage = req.getParameter("nowPage");
-		String strNo = req.getParameter("oriNo");
-//		System.out.println(strpage);
-//		
-//		int nowPage = Integer.parseInt(strpage);
+		String	strNo = req.getParameter("oriNo");
 		int	oriNo = Integer.parseInt(strNo);
-		data.no = oriNo;
-		System.out.println(oriNo);
-		System.out.println(data.oriNo);
-		System.out.println(data.no);
 		
+		String subcode = req.getParameter("code");
 		
-		HashMap	map = new HashMap();
-		map.put("NO", oriNo);
-		int cnt = lDao.isUpdate(map);
-		ClassListData	result = new ClassListData();
-		if(cnt == 0) {
-			RedirectView	rv = new RedirectView("../ClassList/ClassView.do");
-			rv.addStaticAttribute("oriNo", oriNo);
-//			rv.addStaticAttribute("nowPage", nowPage);
-			mv.setView(rv);
-			return mv;
+		String strpage = req.getParameter("nowPage");
+		int	nowPage = 0;
+		if(StringUtil.isNull(strpage)){
+			nowPage = 1;
 		}
 		else {
-			result = lDao.selectView(oriNo);
+			nowPage = Integer.parseInt(strpage);
 		}
 		
-		mv.addObject("DATA", result);
-//		mv.addObject("nowPage", nowPage);
+		mv.addObject("listCode",subcode);
+		mv.addObject("nowPage",nowPage);
+		
+		
+		ClassListData map = lDao.selectModi(oriNo);
+		ArrayList result = lDao.getSubList();		
+		
+		mv.addObject("oriNO",oriNo);
+		mv.addObject("DATA", map);
+		mv.addObject("SUBLIST",result);
+		
 		mv.setViewName("ClassList/ClassModifyForm");
 		return mv;
 	}
+	/**
+	 *  03/12 완료
+	 * 
+	 * */
+	
+	
+	
 	// 수정 요청
 	@RequestMapping("/ClassList/ClassModify")
-	public ModelAndView	classModify(ClassListData data) {
+	public ModelAndView	 classModify(ClassListData data,HttpServletRequest req, HttpSession session) {
 		ModelAndView	mv = new ModelAndView();
+	
+		String listcode = req.getParameter("listCode");
+		
+		String	strNo = req.getParameter("oriNO");
+		int	oriNo = Integer.parseInt(strNo);
+		data.no = oriNo;
+		
+		String strpage = req.getParameter("nowPage");
+		int	nowPage = 0;
+		if(StringUtil.isNull(strpage)){
+			nowPage = 1;
+		}
+		else {
+			nowPage = Integer.parseInt(strpage);
+		}
+		
+		// 동영상 주소가 있는 경우
+		int kind = 1;
+		String url = data.mediaURL.replaceAll("\\s", "");
+		
+		// 동영상 주소가 없는 경우
+		if(url == null || url.equals("")){			
+			kind = 0;
+		}
 		
 		lDao.updateclass(data);
 		
-		RedirectView	rv = new RedirectView("../ClassList/ClassView.do");
-		rv.addStaticAttribute("oriNo", data.no);
-//		rv.addStaticAttribute("nowPage", data.nowPage);
-		mv.setView(rv);
+		mv.addObject("code",listcode);
+		mv.addObject("oriNO",oriNo);
+		mv.addObject("nowPage",nowPage);
+		
 		return mv;
 	}
+	
+	
 }

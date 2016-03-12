@@ -1,92 +1,219 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>EduTube</title>
 <!--CSS-->
-	<link rel="stylesheet" href="/edutube/resources/CSS/bootstrap.min.css">
-	<!--  파피콘 넣기 -->
-	<link rel="shortcut icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
-	<link rel="icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
-	<!--  검색바 -->
+<link rel="stylesheet" href="/edutube/resources/CSS/bootstrap.min.css">
+<link rel="stylesheet" href="/edutube/resources/CSS/customB.css">
+<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+<!--  파피콘 넣기 -->
+<link rel="shortcut icon" href="/edutube/favicon.ico"
+	type="image/x-icon" />
+<link rel="icon" href="/edutube/favicon.ico" type="image/x-icon" />
+<!--  검색바 -->
+
+<!--JS-->
+<script src="/edutube/resources/JS/jquery-2.1.4.min.js"></script>
+<script src="/edutube/resources/JS/bootstrap.min.js"></script>
+<script type="text/javascript" src="/edutube/resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+
+<!--스크립트-->
+<script>
+	function goClassList(){
+		location.href="../ClassList/ClassList.do?nowPage=${nowPage}&code=${listCode}";
+	}
 	
-	<!--JS-->
-	 <script src="/edutube/resources/JS/jquery-2.1.4.min.js"></script>
- 	<script src="/edutube/resources/JS/bootstrap.min.js"></script>
- 	
-	<!--스크립트-->
-	<script>
-	$(document).ready(function(){
-		$("#mBtn").click(function(){
-			$("#mfrm").attr("action", "../ClassList/ClassModify.do");
-			$("#mfrm").submit();
-		});
+
+	$(document).ready(	function() {
+
+			$('#title').val('${DATA.title}');
+			$('#mediaURL').val('${DATA.mediaURL}');
+		
+			$("#modifyClass").click(function() {
+				
+					$mediaURL=$("#mediaURL").val();					
+					$mediaURL=$mediaURL.replace(/^\s+|\s+$/g,"");
+										
+					$title = $("#title").val();
+						if ($title == "") {
+							alert("제목을 입력해 주세요");
+							return;
+					}
+
+					$code = $("#code").val();
+					if ($code == 0) {
+							alert("과목을 선택해 주세요");
+						return;
+					}						
+
+					oEditors.getById["body"].exec(
+									"UPDATE_CONTENTS_FIELD",[]);
+
+					$("#classForm").attr("action",
+									"../ClassList/ClassModify.do?nowPage=${nowPage}&listCode=${listCode}&oriNO=${oriNO}");
+					$("#classForm").submit();
+				});
 	});
-	</script>
 	
-	<!--  스타일 -->
-	<style>
-		#EduContainer{
-				width:1200px;
-				position: absolute;
-				left: 50%;
-				margin-left:-600px;				
-		}
-		#nav {
-    	line-height:20px;
-    	float:left;
-    	padding:5px;	      
-		}
-		tr > th {
-			text-align:center;
-		}
-	</style>
+
+</script>
+
+<!--  스타일 -->
+<style>
+#EduContainer {
+	width: 1200px;
+	position: absolute;
+	left: 50%;
+	margin-left: -600px;
+}
+
+#main {
+	width: 1200px;
+}
+
+#centerPage {
+	float: right;
+	position: relative;
+	width: 980px;
+	height: 100%;
+	padding: 10px;
+	font-size: 16px;
+}
+
+#sideBarDiv {
+	float: left;
+	border-top: solid 1px white;
+	clear: both;
+	width: 150px;
+}
+div#formMain{
+	width:800px;
+	height:600px;
+	margin-left: auto;
+	margin-right: auto;
+}
+	
+	textarea#body{
+		width:750px;
+		height:400px;
+		resize:none;
+	}
+
+div#writeUtilD{
+	width:800px;	
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div#formTop {
+	width:800px;
+	margin-top:50px;
+	margin-bottom:20px;
+}
+div#selectD{
+	float:left;
+	width:150px;
+}
+div#mediaDIV{
+	width:800px;
+	margin-top:20px;
+}
+p#mediaURLp{
+	float:left;
+	width:150px;
+}
+input#mediaURL{
+	width:500px;
+}
+
+input#title{
+	width:500px;
+}
+
+</style>
 </head>
 <body>
-<div id='EduContainer'>
-	<div id='top'>	
-		<jsp:include page="/MenuBar/Top.jsp" flush="false" />
+	<div id='EduContainer'>
+		<div id='top'>
+			<jsp:include page="/MenuBar/Top.jsp" flush="false" />
+		</div>
+
+		<div id="Main">
+			<!-- This area is Body Part -->
+			<div id="sideBarDiv">
+				<jsp:include page="/MenuBar/ClassSide.jsp" flush="false" />
+			</div>
+
+			<div id="centerPage">
+				<div id="formMain">
+				<form class="form-horizontal" id="classForm" name="classForm" method="POST">
+					<fieldset>
+					<!--  숨겨놓을것 -->
+					<input id="id" name="id" value="${sessionScope.ID}" type="hidden" />
+					<input id="nick" name="nick" value="${sessionScope.NICKNAME}" type="hidden" />
+					
+					
+						<!-- Text input-->
+						<div class="control-group" id="formTop">
+							<div id="selectD">
+							<select id="code" name="code" class="input-large">
+									<option value="0" >Select Subject</option>
+										<c:forEach var="sublist" items="${SUBLIST}">											
+											<c:if test="${sublist.subcode eq DATA.code}">
+												<option value="${sublist.subcode}" selected>${sublist.subname}</option>
+											</c:if>
+											<c:if test="${sublist.subcode ne DATA.code}">
+												<option value="${sublist.subcode}">${sublist.subname}</option>
+											</c:if>											
+										</c:forEach>
+							</select>
+							</div>
+							<div class="controls" id="titleD">
+								<input id="title" name="title" type="text" 
+									class="input-xlarge" required>
+							</div>
+						</div>
+
+						<!-- Textarea -->
+						<div class="control-group">							
+							<div>
+								<textarea id="body" name="body" required>${DATA.body}</textarea>
+							</div>
+						</div>
+						
+						<div id="mediaDIV">
+							<p id="mediaURLp">동영상 주소</p>													
+							<input id="mediaURL" name="mediaURL" type="text" >	
+						</div>
+
+					</fieldset>
+				</form>
+				</div><!--  글쓰기 폼 끝 -->
+				<div id="writeUtilD">
+					<a class="button button-purple"  id="modifyClass" ><i class="fa fa-rocket"></i>
+					수정하기</a>
+					<a class="button button-yellow" onClick="JavaScript:goClassList();" id="ListBtn" >
+					목록으로</a>					
+				</div>
+			</div>
+		</div>
+
 	</div>
-	<form method="POST" id="mfrm">
-	<input type="hidden" name="nowPage" value="${NOWPAGE}">
-	<table width="800" border="1" align="center">
-		<tr>
-			<th>강의번호</th>
-			<td><input type="text" value="${DATA.no}" disabled></td>
-		</tr>
-		<tr>
-			<th>강의코드</th>
-			<td><input type="text" disabled></td>
-		</tr>
-		<tr>
-			<th>제    목</th>
-			<td><input type="text" name="title" id="title" value="${DATA.title}"></td>
-		</tr>
-		<tr>
-			<th>본　  문</th>
-			<td><textarea name="body" id="body" value="${DATA.body}"></textarea></td>
-		</tr>
-		<tr>
-			<th>작 성 자</th>
-			<td><input type="text" disabled></td>
-		</tr>
-		<tr>
-			<th>작 성 일</th>
-			<td><input type="text" disabled></td>
-		</tr>
-		<tr>
-			<th>추 천 수</th>
-			<td><input type="text" disabled></td>
-		</tr>
-		<tr>
-			<td colspan="2" align="center">
-				<input type="button" value="수정" id="mBtn">
-			</td>
-		</tr>
-	</table>
-</form>
-</div>
+
+	<!--  글쓰기 -->
+	<script>
+		var oEditors = [];
+		nhn.husky.EZCreator.createInIFrame({
+			oAppRef : oEditors,
+			elPlaceHolder : "body",
+			sSkinURI : "../resources/smarteditor/SmartEditor2Skin.html",
+			fCreator : "createSEditor2"
+		});		
+	</script>
+
 </body>
 </html>

@@ -7,6 +7,8 @@
 			COUNT(*) AS TOTAL
 		FROM
 			class
+		WHERE
+			class_isDeleted='N'
 	</select>
 	<!--  과목별 총 데이터 수 구하기 -->
 	<select id="gettotalofsub" resultType="int" parameterType="String">
@@ -15,18 +17,37 @@
 		From
 			Class
 		where
-			sub_code=#{code}		
+			sub_code=#{code}
+		AND
+			class_isDeleted='N'
 	</select>
 	
 	
-	<!-- 게시물 등록 -->
+	<!-- 게시물 등록 (동영상 없는 경우)-->
 	<insert id="classinsert" parameterType="ClassListData">
 		INSERT
 		INTO
-			class (class_no,sub_code,mem_id,mem_nick,	class_title,class_body)
+			class (class_no,sub_code,mem_id,mem_nick,class_title,class_body)
 		VALUES
-			((SELECT NVL(MAX(no), 0) + 1 FROM class),#{title},#{body})
+			((SELECT NVL(MAX(class_no), 0) + 1 FROM class),#{code},#{id},#{nick},#{title},#{body})
 	</insert>
+	<!-- 게시물 등록 (동영상 있는 경우)-->
+ 	<insert id="classinsertM" parameterType="ClassListData">
+		INSERT
+		INTO
+			video
+		VALUES
+			((SELECT NVL(MAX(video_no), 0) + 1 FROM video),#{no},#{mediaURL})
+	</insert>
+	<!--  이번에 넣을 레코드 pk 최고값 -->
+	<select id="selectMAX" resultType="int">
+        SELECT distinct
+                    (SELECT NVL(MAX(class_no), 0) + 1 FROM class) AS maxNO
+        FROM
+            class
+	</select>
+	
+	
 	<!-- 목록보기 (전체용)-->
 	<select id="getlist" resultType="ClassListData">
         SELECT
@@ -40,7 +61,9 @@
         FROM
             class c,subject s
         where
-            C.SUB_CODE = S.SUB_CODE  
+            C.SUB_CODE = S.SUB_CODE
+         AND
+         	class_isDeleted='N'
         ORDER BY
             no DESC
 	</select>
@@ -59,7 +82,9 @@
         where
             C.SUB_CODE = S.SUB_CODE 
         and
-            C.SUB_CODE = #{code}  
+            C.SUB_CODE = #{code} 
+        AND
+         	class_isDeleted='N' 
         ORDER BY
             no DESC			
 	</select>
@@ -67,44 +92,72 @@
 
 	
 	<!-- 상세보기 -->
-	<select id="classview" resultType="ClassListData" parameterType="java.lang.Integer">
-		SELECT
-			no AS no,
-			title	AS title,
-			body	AS body
-		FROM
-			class
-		WHERE
-			no = #{NO}
+	<select id="classview" resultType="ClassListData" parameterType="int">
+        SELECT
+            class_no         AS no,
+            class_title    AS title,
+            class_body    AS body,
+            mem_id         AS id,
+            mem_nick AS nick,
+            class_date AS wdate,
+            s.sub_name AS code,
+            class_lang AS lang,
+            class_hit AS hit,
+            class_good as good
+        FROM
+            class c,subject s
+        where
+            class_no = #{NO}           
+        AND
+            s.sub_code = C.SUB_CODE
 	</select>
-	<!-- 수정 삭제 -->
-	<select id="isupdate" resultType="java.lang.Integer" parameterType="Hmap">
+	<!--  동영상 주소 가져오기 -->
+	<select id="mediaList" resultType="mediadata" parameterType="int">
 		SELECT
-			COUNT(*) AS CNT
+			video_no	AS mediaNO,
+			video_url 	AS mediaURL			
 		FROM
-			class
+			video
 		WHERE
-			no = #{NO}
+			class_no = #{NO}	
 	</select>
+	
 	<!-- 수정 질의 -->
 	<update id="updateclass" parameterType="ClassListData">
 		UPDATE
 			class
 		SET
-			title = #{title},
-			body = #{body},
-			date = SYSDATE
+			class_title = #{title},
+			class_body = #{body},
+			sub_code = #{code},
+			class_date = SYSDATE
 		WHERE
-			no = #{NO}
+			class_no = #{no}
 	</update>
 	<!-- 삭제 질의 -->
-	<update id="deleteclass"	parameterType="java.lang.Integer">
+	<update id="deleteclass"	parameterType="int">
 		UPDATE
 			class
 		SET
-			isDeleted = 'N'
+			class_isDeleted = 'Y'
 		WHERE
-			no = #{NO}
+			class_no = #{NO}
 	</update>
+	
+	<!-- 수정하기 폼요청시 -->
+	<select id="classmodi" resultType="ClassListData" parameterType="int">
+        SELECT
+            class_title    AS title,
+            class_body    AS body,
+            mem_id         AS id,
+            sub_code AS code,            
+            v.video_url  AS mediaURL
+        FROM
+            class c,video v
+        where
+            c.CLASS_NO = #{NO}
+        AND
+            c.class_no = v.class_no
+	</select>
 
 </mapper>

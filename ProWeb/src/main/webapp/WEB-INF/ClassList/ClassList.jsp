@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:if test="${sessionScope.NAL eq null}">
+ 	<c:redirect url="../member/login.do" />
+</c:if>
+   
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,7 +90,7 @@
 				<!-- 아래 부터 작성 -->
 				<p>&nbsp;</p>
 
-				<h3>강의ㅇ</h3>
+				<h3>강의</h3>
 				<br>
 
 				<!--  선택박스 (그룹 선택) -->
@@ -123,7 +127,7 @@
 							<tr>
 								<td>${content.no}</td>
 								<td>
-								<a href="../ClassList/ClassList.do?nowPage=${PINFO.nowPage}&oriNO=${content.no}&code=${CODE}"><span></span>[${content.code}]&nbsp;${content.title}</a>
+								<a href="../ClassList/ClassView.do?nowPage=${PINFO.nowPage}&oriNO=${content.no}&code=${CODE}"><span></span>[${content.code}]&nbsp;${content.title}</a>
 								</td>
 								<td>${content.nick}</td>
 								<td>	${content.good}</td>
@@ -181,7 +185,9 @@
 					</ul>
 				</div><!--  페이징 처리 끝 -->
 			</div><!--  게시글 테이블 끝 -->
-		</div><!--  센터페이지 -->
+		</div><!--  센터페이지 -->		
+		
+		
 	</div><!--  전체 DIV -->
 
 </body>

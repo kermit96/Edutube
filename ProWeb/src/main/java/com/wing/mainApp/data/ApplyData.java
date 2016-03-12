@@ -42,39 +42,7 @@ public class ApplyData {
 		return code;
 	}
 	public void setCode(String code) {
-		if(code.equals("langkor")){
-			this.code="한국어";
-		}
-		else if(code.equals("langjap")){
-			this.code="일본어";
-		}
-		else if(code.equals("langchn")){
-			this.code="중국어";
-		}
-		else if(code.equals("langeng")){
-			this.code="영어";
-		}
-		else if(code.equals("progjava")){
-			this.code="자바";
-		}
-		else if(code.equals("progclang")){
-			this.code="C언어";
-		}
-		else if(code.equals("progphp")){
-			this.code="PHP";
-		}
-		else if(code.equals("cookkor")){
-			this.code="한식";
-		}
-		else if(code.equals("cookchn")){
-			this.code="중식";
-		}
-		else if(code.equals("cookjap")){
-			this.code="일식";
-		}
-		else if(code.equals("cookwest")){
-			this.code="양식";
-		}
+		this.code=code;
 	}
 	public String getId() {
 		return id;

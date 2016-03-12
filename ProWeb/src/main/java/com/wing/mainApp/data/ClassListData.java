@@ -21,7 +21,9 @@ public class ClassListData {
 	public String lang;
 	public String code;
 	
+
 	public String mediaURL;
+	public String realURL;
 	
 	public int getNo() {
 		return no;
@@ -96,19 +98,20 @@ public class ClassListData {
 		this.code = code;
 	}
 	
-	public String getRealdate() {
-		SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd");
-		return form.format(wdate);
-	}
-	public String getMediaURL() {
+	public String getMediaURL() {		
 		return mediaURL;
 	}
 	public void setMediaURL(String mediaURL) {
 		this.mediaURL = mediaURL;
 	}
 	
+	/*강제로  바뀌게 하는 함수*/
 
 	
+	public String getRealdate() {
+		SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd");
+		return form.format(wdate);
+	}
 	
 	
 }

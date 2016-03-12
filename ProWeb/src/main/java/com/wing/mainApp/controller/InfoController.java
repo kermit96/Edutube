@@ -17,13 +17,6 @@ public class InfoController {
 		mv.setViewName("/Info/InfoMain");
 		return mv;
 	}
-	@RequestMapping("/Info/Info")
-	public ModelAndView Info(HttpServletRequest req, HttpSession session){
-		ModelAndView 	mv = new ModelAndView();
-		
-		mv.setViewName("/Info/Info");
-		return mv;
-	}
 	@RequestMapping("/Info/Map")
 	public ModelAndView Map(HttpServletRequest req, HttpSession session){
 		ModelAndView 	mv = new ModelAndView();
