@@ -176,6 +176,7 @@ public class ClassListController {
 		ClassListData map = lDao.selectView(oriNo);
 		
 		ArrayList mList = lDao.selectMediaList(oriNo);
+		
 		boolean isExist = true;
 		if(mList == null){
 			isExist = false;

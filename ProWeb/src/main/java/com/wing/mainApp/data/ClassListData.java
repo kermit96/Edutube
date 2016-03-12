@@ -101,14 +101,12 @@ public class ClassListData {
 		SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd");
 		return form.format(wdate);
 	}
-	public String getMediaURL() {
-		return mediaURL;
+	public String getMediaURL() {		
+		return mediaURL.substring(17, 28);
 	}
 	public void setMediaURL(String mediaURL) {
 		this.mediaURL = mediaURL;
 	}
-
-	
 	
 	
 }

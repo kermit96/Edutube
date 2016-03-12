@@ -26,6 +26,16 @@
 
 <!--  스타일 -->
 <style>
+@font-face {
+	font-family: 'NanumGothic';
+	src: url('/edutube/resources/fonts/NanumGothic.eot');
+	src: url('/edutube/resources/fonts/NanumGothic.eot?#iefix')
+		format('embedded-opentype'),
+		url('/edutube/resources/fonts/NanumGothic.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
 #EduContainer {
 	width: 1200px;
 	position: absolute;
@@ -52,6 +62,29 @@
 	clear: both;
 	width: 150px;
 }
+#viewMain{
+	width:800px;
+	margin:0 auto;	
+}
+
+#videoM{
+	width:600px;
+	height:100%;
+	margin:0 auto;
+}
+
+#realContent{
+	width:600px;
+	height:100%;
+	margin:0 auto;
+	border:1px solid black;
+}
+p#title{
+	font-family: 나눔고딕, 'NanumGothic';
+	font-size: 18px;
+	font color: black;
+	font-weight: plane;
+}
 
 </style>
 </head>
@@ -69,24 +102,46 @@
 
 			<div id="centerPage">
 				<div id="viewMain">
-					<div class="embed-responsive embed-responsive-16by9">
+					<div class="videoM">
 					      <c:forEach var="mList" items="${mList}">					      	
-					      	<iframe class="embed-responsive-item" width="640" height="360" src="${mList.mediaURL}"  frameborder="0" allowfullscreen></iframe>     					
-     					 </c:forEach>			
+					      	<iframe width="600" height="300" src="https://www.youtube.com/embed/${mList.mediaURL}?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>  					
+     					 </c:forEach>	
+     					 <p>글번호&nbsp;:&nbsp;${DATA.id}&nbsp;|&nbsp;강사&nbsp;:&nbsp;${DATA.nick}</p>
+					</div>
+					
+					<div id="realContent">
+						<table>
+							<tr>
+								<td>
+									<p id="title">[${DATA.code}]${DATA.title}&nbsp;|&nbsp;${DATA.realdate}</p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+										유틸바${DATA.good}${DATA.hit}
+								</td>
+							</tr>
+							<tr>
+								<td>
+									${DATA.body}
+								</td>
+							</tr>
+							${DATA.code}
+						
+						</table>					
 					</div>
 					                    
                         	
 				
 				</div>
-				   ${DATA.id}
-      ${DATA.nick}
-      ${DATA.realdate}
-      ${DATA.title}
-      ${DATA.body}
-      ${DATA.hit}
-      ${DATA.good}
-      ${DATA.code}
-      ${DATA.lang}      
+				   
+      
+     
+      
+      
+  
+      
+           
   
 			</div><!--  실제로 들어갈 내용 -->
 			
