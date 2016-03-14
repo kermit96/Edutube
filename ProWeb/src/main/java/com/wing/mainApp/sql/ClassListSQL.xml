@@ -275,6 +275,7 @@
 	<select id="selectReply" parameterType="int" resultType="replydata">
 		Select
 		    re_no AS reno,
+		    mem_id  AS reid,
 		    mem_nick AS renick,
 		    re_body AS rebody,
 		    re_date AS redate

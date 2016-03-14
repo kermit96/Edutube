@@ -573,6 +573,7 @@ public class ClassListController {
 			result.add(temp);
 		}
 		
+		
 		mv.addObject("reDATA",result);
 		mv.setViewName("ClassList/ReplyData");
 		

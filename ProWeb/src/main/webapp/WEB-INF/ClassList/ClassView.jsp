@@ -78,14 +78,16 @@
 	
 	/*댓글보기*/
 		function getReList() {
+				
 				//	이 함수가 실행되면(단추를 누르면...)
 				//	ajax를 통해서	AjaxResp.jsp를 서버에 요청해서 달라고 한다.
 				$.ajax({
-					url:"AjaxResp.jsp",
+					url:"../ClassList/ReplyList.do",
+					data:"oriNo=${DATA.no}&temp=" + new Date(),
 					type:"GET",
 					dataType:"html",
 					success: function(data){
-						$("#div1").html(data);
+						$("#replyListDiv").html(data);
 					},
 					error: function(){
 						alert("이거나오면 안되는데....");
@@ -208,6 +210,7 @@ p#cheer{
 	width:800px;
 	height:100%;
 	margin:0 auto;
+	background-color:#B6CDDF;
 }
 textarea#relplybody{
 	width:600px;
@@ -283,7 +286,7 @@ textarea#relplybody{
 							댓글 페이징
 						</div>
 						<div id="replyUtil">
-							<a class="button button-green" id="rewBtn" onClick=""><i class="fa fa-check"></i>
+							<a class="button button-green" id="rewBtn" onClick="JavaScript:getReList();"><i class="fa fa-check"></i>
 							댓글 보기</a>
 						</div>				
 					</div>				
