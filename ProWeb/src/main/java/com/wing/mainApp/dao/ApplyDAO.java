@@ -1,6 +1,7 @@
 package com.wing.mainApp.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,14 @@ public class ApplyDAO {
 	// 이메일 알아내기
 	public String email(String id){
 		return sqlSession.selectOne("app.email",id);
+	}
+	
+	// 신청 되있는 데이터 지우기
+	public void deleterec(int no){
+		sqlSession.delete("app.deleterec",no);
+	}
+	// 다운로드 파일 정보 검색
+	public HashMap isFile(int no){
+		return (HashMap) sqlSession.selectOne("app.isFile",no);
 	}
 }
