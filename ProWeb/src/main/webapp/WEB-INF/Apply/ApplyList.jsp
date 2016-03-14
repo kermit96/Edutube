@@ -32,6 +32,9 @@
 	function Stop(no){
 		location.href="../Apply/acceptApply.do?no="+no;
 	}
+	function Nos(no){
+		location.href="../Apply/noApply.do?no="+no;
+	}
 </script>
 
 <!--Never Delete "EduContainer" style tag-->
@@ -61,7 +64,7 @@
 					<td>강의코드</td>
 					<td>내용</td>
 					<td>파일</td>
-					<td>승인</td>
+					<td>승인 & 거절</td>
 				</tr>
 				<form method="POST" action="">
 					<c:forEach var="temp" items="${LISTS}">
@@ -69,14 +72,15 @@
 							<td>${temp.id}</td>
 							<td>${temp.code}</td>
 							<td>${temp.body}</td>
-							<c:if test="${temp.savename ne nulls}">
-								<td>${temp.savename}</td>
+							<c:if test='${temp.savename ne "nulls"}'>
+								<td><a href="../Apply/Down.do?no=${temp.no}">${temp.savename}</a></td>
 							</c:if>
-							<c:if test="${temp.savename eq nulls}">
+							<c:if test="${temp.savename eq 'nulls'}">
 								<td>없음</td>
 							</c:if>
-							<td><input type="button" id="oBtn" value="승인" Onclick="JavaScript:Stop(${temp.no})"> <input
-								type="button" id="nBtn" value="거절">
+							<td>
+							<input type="button" id="oBtn" value="승인" Onclick="JavaScript:Stop(${temp.no})" /> 
+							<input type="button" id="nBtn" value="거절" Onclick="JavaScript:Nos(${temp.no})" />
 								</td>
 						</tr>
 					</c:forEach>

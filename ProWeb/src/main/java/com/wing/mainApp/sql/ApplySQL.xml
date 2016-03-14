@@ -75,4 +75,23 @@
 		WHERE
 			Mem_ID=#{id}
 	</select>
+<!-- 신청 되있는 데이터 지우기 -->
+	<delete id="deleterec" parameterType="java.lang.Integer">
+		DELETE
+			FROM
+				Apply
+			WHERE
+				Apply_No = #{no}
+	</delete>
+<!-- 다운로드 파일 검색 -->
+	<select id="isFile" resultType="java.util.HashMap" parameterType="java.lang.Integer">
+		SELECT
+				Intro_Path AS PATH,
+				Intro_OriName AS ORINAME,
+				Intro_SaveName AS SAVENAME
+		FROM
+			Apply
+		WHERE
+			Apply_NO = #{no}
+	</select>
 </mapper>

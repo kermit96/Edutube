@@ -2,6 +2,7 @@ package com.wing.mainApp.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
@@ -110,9 +111,10 @@ public class MyPageController {
 	      System.out.println("---------insertBoard-----------");
 
 	      aDao.insertApply(data);
-		mv.setViewName("Apply/waitApply");
+		mv.setViewName("Apply/waitApply.do");
 		return mv;
 	}
+	// 강사 승인
 	@RequestMapping("Apply/acceptApply")
 	public ModelAndView acceptApply(HttpServletRequest req){
 		ModelAndView mv = new ModelAndView();
@@ -133,7 +135,48 @@ public class MyPageController {
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
-		mv.setViewName("Apply/ApplyList");		
+		mv.setViewName("Apply/ApplyList.do");		
+		return mv;
+	}
+	// 강사 거절
+	@RequestMapping("Apply/noApply")
+	public ModelAndView noApply(HttpServletRequest req){
+		ModelAndView mv= new ModelAndView();
+		
+		String strNo = req.getParameter("no");
+		int no = Integer.parseInt(strNo);
+		
+		// 거절 메일을 보낸다.
+		String id= aDao.selectApply(no);
+		email email = new email();
+		String emadd = aDao.email(id);
+		
+		email.recipient = emadd;
+		try {
+			email.emailno();
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		
+		// 신청되어있는 데이터를 지운다.
+		aDao.deleterec(no);
+		mv.setViewName("Apply/ApplyList.do");		
+		return mv;
+	}
+	// 첨부파일 다운로드 
+	@RequestMapping("Apply/Down")
+	public ModelAndView Down(HttpServletRequest req){
+		ModelAndView mv = null;
+		
+		String strNo = req.getParameter("no");
+		int no = Integer.parseInt(strNo);
+		System.out.println(no);
+		HashMap smap = aDao.isFile(no);
+		HashMap map = new HashMap();
+		map.put("oriName", smap.get("ORINAME"));
+		File file = new File((String)smap.get("PATH"),(String)smap.get("SAVENAME"));
+		map.put("fileDownLoad", file);
+		mv = new ModelAndView("download",map);
 		return mv;
 	}
 }

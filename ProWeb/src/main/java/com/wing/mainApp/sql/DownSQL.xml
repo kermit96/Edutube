@@ -15,6 +15,7 @@
 	<select		id="getList"	resultType="dwdata" >
 		SELECT
 			Down_NO 		AS no,
+			Mem_Id AS id,
 			Down_TITLE 	AS title,
 			Down_Body 	AS body,
 			Down_Date	AS wdate
@@ -99,6 +100,25 @@
 		WHERE
 			Down_No=#{no}
 	</update>
-		
-
+	<select id="whatFile"	resultType="java.util.HashMap"
+									parameterType="java.lang.Integer">
+		SELECT
+			UpLoad_Path		AS PATH,
+			UpLoad_OriName	AS ORINAME,
+			UpLoad_SaveName	AS SAVENAME
+		FROM
+			UpLoad
+		WHERE
+			UpLoad_NO	= #{NO}
+	</select>	
+	<update id="downUpDate"	parameterType="dwdata">
+		UPDATE
+			DownLoad
+		SET
+			Down_Title = #{title},
+			Down_Body = #{body},
+			Down_CDate = SYSDATE
+		WHERE
+			Down_NO	= #{no}
+	</update>
 </mapper>

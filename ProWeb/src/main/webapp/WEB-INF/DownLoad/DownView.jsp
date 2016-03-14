@@ -40,6 +40,7 @@
 			$("#sfrm").submit();
 		});
 		$("aBtn").click(function(){
+			alert("쎾쓰");
 			$("#sfrm").attr("action","../DownLoad/DownMain.do");
 			$("#sfrm").submit();
 		});
