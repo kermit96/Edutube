@@ -16,7 +16,7 @@
 		FROM
 			REPORT
 		WHERE
-			REP_isDeleted = 'N'
+			REP_isDeleted = 'N' 
 	</select>
 <!-- 신고 데이터 목록보기 질의 -->
 	<select id="repselect"  resultType="mdata">
