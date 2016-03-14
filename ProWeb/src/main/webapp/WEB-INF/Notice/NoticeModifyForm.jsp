@@ -44,7 +44,28 @@
 			clear:both;
 			width:150px;			
 		}
-		
+		<!--JOON CSS-->
+		th,td {
+			background:yellowgreen;/*배경색*/
+		}
+		table td, th {
+			border:#d3d3d3 solid 1px;/*경계선 색상 스타일 굵기 */
+		}
+		table {
+			width:100%;
+			border-collapse:collapse;
+			font-size:16px; /*글꼴 크기*/
+			line-height:24px;/*줄 간격*/
+		}		
+		a{
+			text-decoration:none; /* 링크 밑줄 없애기 */
+			color:black; /*글 색상*/
+		}
+		a:HOVER {
+			text-decoration:underline; /* 밑줄 
+			color:green;			/*글 색상*/
+		}
+				
 	</style>
 
 <script>
@@ -71,6 +92,11 @@
 					$("#mfrm").attr("action", "../Notice/NoticeModify.do");
 					$("#mfrm").submit();
 				});
+				$("#lBtn").click(function(){
+					//	이제 무결성 검사하고...										
+					$("#mfrm").attr("action", "../Notice/NoticeList.do?nowPage=${NOWPAGE}");
+					$("#mfrm").submit();
+				});	
 			});
 </script>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -116,8 +142,10 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center">
+					<td colspan="2" align="center" id="lbtn">
 						<input type="button" id="mBtn" value="수정하기" class="btn btn-primary btn-sm">
+						<input type="reset" value="다시작성"  class="btn btn-primary btn-sm">
+						<input type="button" value="목록" id="lBtn" class="btn btn-primary btn-sm">
 					</td>
 				</tr>
 			</table>

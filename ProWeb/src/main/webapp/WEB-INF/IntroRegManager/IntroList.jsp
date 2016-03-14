@@ -165,7 +165,7 @@
 				<td class="text-center">
 					<img src="../gimgs/${temp.gimg2}" width="100" height="100">
 				</td>
-				<td class="text-center">${temp.mem_id}</td>
+				<td class="text-center">${sessionScope.NICKNAME}</td>
 				<td class="text-center">${temp.intro_title}</td>
 				<!-- <td class="text-center">${temp.intro_body}</td>  -->
 				

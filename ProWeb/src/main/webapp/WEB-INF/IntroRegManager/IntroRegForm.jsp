@@ -47,11 +47,12 @@
 			width:150px;			
 		}
 		<!--JOON CSS-->
-		th,td {
-			background:yellowgreen;/*배경색*/
+		
+		table, th, td {
+   		border: 1px solid black text-align:center;
 		}
-		table td, th {
-			border:#d3d3d3 solid 1px;/*경계선 색상 스타일 굵기 */
+		#tr_top{
+			background:rgb(114, 235, 125);/*배경색*/
 		}
 		table {
 			width:100%;
@@ -113,30 +114,30 @@
 		<form method="POST" id="frm" enctype="multipart/form-data">
 
 
-			<table width="50%" border="1" align="center">
+			<table border="1" align="center">
 				<tr>
-					<td class="text-center">강사 ID</td>
-					<td><input type="text" id="mem_id" name="mem_id" value="${sessionScope.ID}" disabled ></td>
+					<th id=#tr_top class="text-center">강사 ID</th>
+					<th ><input type="text" id="mem_id" name="mem_id" value="${sessionScope.ID}" disabled ></th>
 				</tr>
 				<tr>
-					<td class="text-center">제목</td>
-					<td><input type="text" id="intro_title" name="intro_title"></td>
+					<th id=#tr_top class="text-center">제목</th>
+					<th><input type="text" id="intro_title" name="intro_title"></th>
 				</tr>
 				<tr>
-					<td class="text-center">소개 본문</td>
-					<td><textarea cols="80" rows="10" id="intro_body" name="intro_body"></textarea></td>
+					<th id=#tr_top class="text-center">소개 본문</th>
+					<th><textarea cols="80" rows="10" id="intro_body" name="intro_body"></textarea></th>
 				</tr>
 				<tr>
-					<td class="text-center">사진</td>
-					<td><input type="file" id="gimg" name="gimg"></td>
+					<th id=#tr_top class="text-center">사진</th>
+					<th><input type="file" id="gimg" name="gimg"></th>
 				</tr>
 				
-				<tr>
-					<td colspan="2" align="center">
+				<tr align="center">
+					<th id=#tr_top colspan="2" align="center">
 						<input type="button" value="소개 글 등록" id="wBtn" class="btn btn-primary btn-sm">
 						<input type="reset" value="다시작성"  class="btn btn-primary btn-sm">
 						<input type="button" value="목록" id="lBtn"   class="btn btn-primary btn-sm">
-					</td>
+					</th>
 				</tr>
 			</table>
 		</form>

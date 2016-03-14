@@ -15,6 +15,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.wing.mainApp.dao.IntroInfoDAO;
 import com.wing.mainApp.data.IntroInfoData;
+import com.wing.mainApp.util.FileUtil;
 import com.wing.mainApp.util.PageUtil;
 import com.wing.mainApp.util.SessionUtil;
 import com.wing.mainApp.util.StringUtil;
@@ -27,13 +28,14 @@ public class IntroRegController {
 	@RequestMapping("/IntroRegManager/IntroRegForm")
 	public ModelAndView	introRegForm(HttpSession session) {
 		ModelAndView		mv = new ModelAndView();
+		/*
 	  	if(!SessionUtil.isSession(session)) {
 			//	
 			RedirectView	rv = new RedirectView("../Member/login.do");
 			mv.setView(rv);
 			return mv;
 		}
-		
+		*/
 		mv.setViewName("IntroRegManager/IntroRegForm");
 		return mv;
 	}
@@ -43,23 +45,20 @@ public class IntroRegController {
 	@RequestMapping("/IntroRegManager/IntroReg")
 	public ModelAndView	introWrite(HttpSession session, IntroInfoData data) {
 		ModelAndView		mv = new ModelAndView();
-		/*
+		
 		if(!SessionUtil.isSession(session)) {
 			//	
-			RedirectView	rv = new RedirectView("../Member/login.do");
+			RedirectView	rv = new RedirectView("../member/login.do");
 			mv.setView(rv);
 			return mv;
 		}
-		*/
-		//String	id = (String) session.getAttribute("ID");
-		//data.setMem_id(id);//
 		
+		String	id = (String) session.getAttribute("ID");
+		data.setMem_id(id);//		
 		String	gpath = session.getServletContext().getRealPath("gimgs");
 				
-		String	gimg1 = data.getGimg().getOriginalFilename();
-		/*
-		String	gimg2 = "";
-		
+		String	gimg1 = data.getGimg().getOriginalFilename();		
+		String	gimg2 = "";		
 		if(StringUtil.isNull(gimg1)) {
 			gimg2 = "";			//	
 								//	
@@ -73,9 +72,10 @@ public class IntroRegController {
 			}
 			catch(Exception e) {}
 		}		
-		
+		//System.out.println("gimg2=" +gimg2);
 		data.setGimg2(gimg2);
-		*/
+		
+		
 		iDao.insertIntroInfo(data);
 		//
 		RedirectView	rv = new RedirectView("../IntroRegManager/IntroList.do");
@@ -672,14 +672,46 @@ public class IntroRegController {
 	@RequestMapping("/IntroRegManager/IntroModify")
 	public ModelAndView	introModify(HttpSession session,IntroInfoData data,HttpServletRequest req) {
 		ModelAndView		mv = new ModelAndView();
+		System.out.println("Modifyfffdfdfdfd");
+		/*
 		if(!SessionUtil.isSession(session)) {
 			RedirectView	rv = new RedirectView("../Member/Login.do");
 			mv.setView(rv);
 			return mv;
 		}
-		
-		iDao.updateIntro(data); 
-		System.out.println("Modifyfff");
+		*/		
+		//String	id = (String) session.getAttribute("ID");
+		//data.setMem_id(id);//		
+		// 추가할 파일 이름 변경
+		String	gpath = session.getServletContext().getRealPath("gimgs");
+		String	gimg1 = data.getGimg().getOriginalFilename();		
+		String	gimg2 = "";		
+		if(StringUtil.isNull(gimg1)) {
+			gimg2 = "";			//	
+								//	
+		}
+		else {
+			gimg2 = FileUtil.rename(gpath, gimg1);
+			//	
+			File temp = new File(gpath, gimg2);
+			try {
+				data.getGimg().transferTo(temp);
+			}
+			catch(Exception e) {}
+		}		
+		//System.out.println("gimg2=" +gimg2);
+		data.setGimg2(gimg2);		
+	    
+		//
+		String kind = req.getParameter("flag");
+		int	flag = Integer.parseInt(kind);
+		System.out.println("flag="+flag);
+		if(flag==1){
+			iDao.updateIntroPhoto(data,1);
+		}
+		else {
+			iDao.updateIntroPhoto(data,0); 			
+		}
 		
 		RedirectView	rv = new RedirectView("../IntroRegManager/IntroList.do");
 		rv.addStaticAttribute("oriNo", data.getIntro_no());

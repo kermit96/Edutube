@@ -251,7 +251,7 @@ public class NoticeController {
 			RedirectView	rv = new RedirectView("../Member/Login.do");
 			mv.setView(rv);
 			return mv;
-		}
+		}		
 		System.out.println("mem_id="+data.getMem_id());
 		System.out.println("notice_body="+data.getNotice_body());
 		nDao.updateNotice(data);

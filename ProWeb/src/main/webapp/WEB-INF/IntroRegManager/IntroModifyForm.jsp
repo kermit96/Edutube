@@ -44,55 +44,83 @@
 			clear:both;
 			width:150px;			
 		}
-		<style type="text/css">
-	    #Table{
-			background-color: MistyRose;<!--Joon -->
+		<!--JOON CSS-->
+		th,td {
+			background:yellowgreen;/*배경색*/
 		}
-		#tr_top{
-			background:gray;
-			text-align:center;
+		table td, th {
+			border:#d3d3d3 solid 1px;/*경계선 색상 스타일 굵기 */
 		}
-		#page{
-			background-color: MistyRose;
+		table {
+			width:100%;
+			border-collapse:collapse;
+			font-size:16px; /*글꼴 크기*/
+			line-height:24px;/*줄 간격*/
+		}		
+		a{
+			text-decoration:none; /* 링크 밑줄 없애기 */
+			color:black; /*글 색상*/
 		}
-		h3 {
-			text-align:center;
-		}
-		
-		table, th, td {
-   		border: 1px solid black text-align:center;
+		a:HOVER {
+			text-decoration:underline; /* 밑줄 
+			color:green;			/*글 색상*/
 		}
 				
-	</style>	
-		
-	</style>
+	</style>			
 
 <script>
 			$(document).ready(function(){
 				$("#mBtn").click(function(){
 					//할일
 					//무결성 검사하고
-					$writer = $("#writer").val();
+					$writer = $("#mem_id").val();
+					/*
 					if($writer == ""){
 						alert("글쓴이를 입력해 주세요");
 						return;
 					}
-					$title = $("#title").val();
+					*/
+					$title = $("#intro_title").val();
 					if($title == ""){
 						alert("제목을 입력해 주세요");
 						return;
 					}
-					$body = $("#body").val();
+					$body = $("#intro_body").val();
 					if($body == ""){
 						alert("내용을 입력해 주세요");
 						return;
 					}
-					//서버에게 요청한다.
-					$("#mfrm").attr("action", "../Notice/NoticeModify.do");
+					$newphoto = $("#new_img").val();
+					if($newphoto != ""){
+						alert("새로운 사진으로 변경될 예정입니다.");
+						$("#mfrm").attr("action", "../IntroRegManager/IntroModify.do?flag=1");
+					}
+					else{
+						$oldphoto = $("#old_img").val();
+						//if($oldphoto!=""){
+						//	alert("이전  사진을 그대로 사용합니다.");
+							//return;
+							$("#mfrm").attr("action", "../IntroRegManager/IntroModify.do?flag=0");
+						//}
+						
+					}
+					
 					$("#mfrm").submit();
+					//서버에게 요청한다.
+					//$("#mfrm").attr("action", "../IntroRegManager/IntroModify.do");
+					//$("#mfrm").submit();
 				});
+				
+				$("#lBtn").click(function(){
+					//	먼저 스킨에 내용을 textarea로 옮긴다.
+					//oEditors.getById["body"].exec("UPDATE_CONTENTS_FIELD", []);
+					//	이제 무결성 검사하고...
+										
+					$("#mfrm").attr("action", "../IntroRegManager/IntroList.do?nowPage=${NOWPAGE}");
+					$("#mfrm").submit();
+				});				
 			});
-</script>
+		</script>
 
 </head>
 <body>
@@ -112,30 +140,39 @@
 		</div>
 		
 		<div id="centerPage"> 
-		<h4 align="center" ><strong>강사 수정 등록 </strong></h4>	
-		<form method="POST" id="mfrm">
-			<input type="hidden" name="notice_no" value="${DATA.intro_no}">
+		<h4 align="center" ><strong>강사 수정 </strong></h4>	
+		<form method="POST" id="mfrm" enctype="multipart/form-data">
+			
+			<input type="hidden" name="intro_no" value="${DATA.intro_no}">
 			<input type="hidden" name="nowPage" value="${NOWPAGE}">
-			<table border="1" align="center" width="50%">
+			<!--  강사 소개글 등록 폼 -->
+			<table width="80%" border="1" align="center">
 				<tr>
-					<td>글쓴이</td>
-					<td><input type="text" id="writer" name="mem_id" value="${DATA.mem_id}" disabled></td>
+					<td class="text-center">강사 ID</td>
+					<td><input type="text" id="mem_id" name="mem_id" value="${sessionScope.ID}" disabled ></td>
 				</tr>
 				<tr>
-					<td>제목</td>
-					<td>
-						<input type="text" id="title" name="intro_title" value="${DATA.intro_title}">
-					</td>
+					<td class="text-center">제목</td>
+					<td><input type="text" id="intro_title" name="intro_title" value="${DATA.intro_title}"></td>
 				</tr>
 				<tr>
-					<td>내용</td>
-					<td>
-						<textarea id="body" name="intro_body">${DATA.intro_body}</textarea>
-					</td>
+					<td class="text-center">소개 본문</td>
+					<td><textarea cols="80" rows="10" id="intro_body" name="intro_body">${DATA.intro_body}</textarea></td>
 				</tr>
+				<tr>
+					<td class="text-center">기존 사진</td>
+					<td id="old_img">${DATA.gimg2}</td>
+				</tr>
+				<tr>
+					<td class="text-center">사진 변경</td>
+					<td><input type="file" id="new_img" name="gimg"></td>
+				</tr>
+				
 				<tr>
 					<td colspan="2" align="center">
-						<input type="button" id="mBtn" value="수정하기" class="btn btn-primary btn-sm">
+						<input type="button" value="글 수정" id="mBtn" class="btn btn-primary btn-sm">
+						<input type="reset" value="다시작성"  class="btn btn-primary btn-sm">
+						<input type="button" value="목록" id="lBtn"   class="btn btn-primary btn-sm">
 					</td>
 				</tr>
 			</table>

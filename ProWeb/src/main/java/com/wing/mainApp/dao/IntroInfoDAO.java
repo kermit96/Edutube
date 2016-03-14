@@ -90,9 +90,15 @@ public class IntroInfoDAO {
 	/*
 	 * 	게시물 수정 함수
 	 */
-	public void updateIntro(IntroInfoData data) {
-		sqlSession.update("intromanager.updateintro", data);
-	}	
+	public void updateIntroPhoto(IntroInfoData data,int flag) {
+		if(flag==1){//그림 변경 없이 업데이트
+			sqlSession.update("intromanager.updateintrophoto", data);
+			
+		}
+		else { //새로운 그림을 포함하여 업데이트
+			sqlSession.update("intromanager.updateintro", data);
+		}	
+	}
 	/*
 	 * 	게시물 삭제 함수
 	 */

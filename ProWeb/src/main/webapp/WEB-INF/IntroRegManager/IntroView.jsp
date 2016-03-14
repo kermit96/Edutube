@@ -51,7 +51,7 @@
 			background-color: MistyRose;<!--Joon -->
 		}
 		#tr_top{
-			background:gray;
+			background:rgb(114, 235, 125);
 			text-align:center;
 		}
 		#page{
@@ -117,13 +117,13 @@
 		</form>
 		 <!-- 	목록 보여주기 -->
 		<table border="1" width="80%" align="center">
-				<tr id="tr_top">
-					<th class="text-center">번호</th>
-					<th class="text-center">사진</th>
-					<th class="text-center">제목</th>
-					<th class="text-center">글내용</th>
-					<th class="text-center">글쓴이</th>
-					<th class="text-center">작성일</th>
+				<tr>
+					<th  id="tr_top" class="text-center">번호</th>
+					<th  id="tr_top" class="text-center">사진</th>
+					<th  id="tr_top" class="text-center">제목</th>
+					<th  id="tr_top" class="text-center">글내용</th>
+					<th  id="tr_top" class="text-center">글쓴이</th>
+					<th  id="tr_top" class="text-center">작성일</th>
 				</tr>
 	    	   	<tr>
 					<td class="text-center">${DATA.intro_no}</td>

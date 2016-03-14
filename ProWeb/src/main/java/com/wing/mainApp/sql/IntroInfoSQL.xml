@@ -9,7 +9,7 @@
 			Introduce
 		VALUES
 			((SELECT NVL(MAX(intro_no), 0) + 1 FROM Introduce),
-			#{mem_id}, #{intro_title}, #{intro_body},SYSDATE,#{gimg2},'test','10', SYSDATE,'N')
+			#{mem_id}, #{intro_title}, #{intro_body},SYSDATE,#{gimg2},'test','10', SYSDATE,'Y')
 	</insert>
 <!-- 	강사 소개글  질의	-->
 	<select id="selectIntroList"		resultType="idata"
@@ -21,10 +21,10 @@
 			intro_body,
 			intro_path AS gimg2  
 		FROM
-			Introduce
+			Introduce 
 		WHERE
-		    intro_isDeleted = 'Y'
-		ORDER BY intro_no desc		
+		    intro_isDeleted = 'Y'		   	   
+		ORDER BY intro_no DESC		
 	</select>
 <!-- 언어 소개글 질의 -->
 <select id="selectkorlang"		resultType="idata"
@@ -192,16 +192,30 @@
 					intro_no = #{NO}
 	<!-- 	AND	rb_Password = #{PW} -->	
 	</select>
-<!-- 	게시물 수정 질의 -->
-	<update id="updatenotice" parameterType="idata">
+<!-- 	게시물 수정 질의(그림 파일 포함) -->
+	<update id="updateintrophoto" parameterType="idata">
+		UPDATE
+			Introduce
+		SET
+			intro_title = #{intro_title},
+			intro_body = #{intro_body},
+			intro_path = #{gimg2}, 
+			intro_cDate = SYSDATE
+						
+		WHERE
+			intro_no = #{intro_no}
+	</update>
+<!-- 	게시물 수정 질의(그림 파일 미포함) -->
+	<update id="updateintro" parameterType="idata">
 		UPDATE
 			Introduce
 		SET
 			intro_title = #{intro_title},
 			intro_body = #{intro_body},
 			intro_cDate = SYSDATE
+						
 		WHERE
-			notice_no = #{notice_no}
+			intro_no = #{intro_no}
 	</update>
 <!-- 	게시물 삭제 질의 -->
 	<update id="deleteintro"	parameterType="java.lang.Integer">

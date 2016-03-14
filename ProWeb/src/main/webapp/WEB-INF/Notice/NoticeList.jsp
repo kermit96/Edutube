@@ -45,7 +45,7 @@
 		}
 		<!--JOON CSS-->
 		th,td {
-			background:yellowgreen;/*배경색*/
+			background:white;/*배경색*/
 		}
 		table td, th {
 			border:#d3d3d3 solid 1px;/*경계선 색상 스타일 굵기 */
@@ -64,8 +64,7 @@
 			text-decoration:underline; /* 밑줄 
 			color:green;			/*글 색상*/
 		}
-				
-	</style>
+		</style>
 		<script>
 			//	상세보기 요청을 해줄 함수
 			function goDetail(orino) {
@@ -85,8 +84,16 @@
 				});
 			});
 		</script>
-	</head>
-<body>
+		 <script type="text/javascript">
+		    $(document).ready(function(){
+		        setInterval(function(){
+		                  var blink = document.getElementById("dday");
+		            blink.style.visibility = blink.style.visibility == "" ? "hidden" : ""
+		        }, 800);
+		    })
+    	 </script>				
+</head>
+<body onload="startBlink()">
 <div id='EduContainer'>
 
 <%-- <c:if test="${sessionScope.ADMIN ne 'Y'}">
@@ -122,7 +129,7 @@
 			</tr>
 		</table>
 <!-- 	목록 보여주기 -->
-			<table border="1" align="center">
+			<table border="1" width="80%" align="center">
 				<tr id="tr_top">
 					<th class="text-center">번호</th>
 					<th class="text-center">제목</th>
@@ -133,20 +140,22 @@
 	    	<c:if test="${empty LIST}">
 				<tr>
 					<td colspan="5" align="center">
-						<h4>아직 소개 글이 등록이 되지 않았습니다.</h4>
+						<h4>글이 등록이 되지 않았습니다.</h4>
 					</td>
 				</tr>			   
 	  		</c:if>			
 	   		<c:if test="${not empty LIST}">
+	   		
 	   		 <tr>
-			    	<td class="text-center" style="background-color:#00FFFF" ><strong>공지</strong></td>
-					<td class="text-center">
-							<a href="../Notice/NoticeView.do?nowPage=${PINFO.nowPage}&oriNo=${DATA.notice_no}">${DATA.notice_title}</a>
+			    	<td class="text-center" ><strong>최신 공지</strong></td>
+					<td  id="dday" class="text-center" style="background-color:#0FFFFF" >
+							<a href="../Notice/NoticeView.do?nowPage=${PINFO.nowPage}&oriNo=${DATA.notice_no}"><blink>${DATA.notice_title}</blink></a>
 					</td>
 					<!-- <td>${temp.notice_body}</td>  -->
-					<td class="text-center">${DATA.mem_id}</td>
+					<td id="dday" class="text-center">${DATA.mem_id}</td>
 					<td class="text-center">${DATA.notice_date}</td>
 			 </tr>
+			
 		   	<c:forEach	var="temp" items="${LIST}">
 					<tr>
 						<td class="text-center">${temp.notice_no}</td>
@@ -163,7 +172,7 @@
 	
 		<!-- 	페이지 이동 기능 -->
 	
-			<table border="1" align="center" id="page">
+			<table border="1" width="80%" align="center" id="page">
 				<tr>
 					<td align="center">
 					<!-- 	[처음][이전][1][2][3][4][5][다음][마지막] -->
@@ -189,7 +198,7 @@
 			</table>		
 <!-- 	기타 부가 기능 -->
 <c:if test="${sessionScope.ID eq DATA.mem_id}">
-			<table border="1" >
+			<table border="1" width="80%" >
 				<tr id="tr_bot">
 					<td align="center">
 						<input type="button" id="wBtn" value="글쓰기" class="btn btn-primary btn-sm">
