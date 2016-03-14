@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- DTD 파일을 설정한다. -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--  루트 태그를 작성한다. -->
+<mapper namespace="sch">
+	<!--  이안에 필요한 질의 명령 만들기 -->
+	<select id="eventList" resultType="schData" parameterType="String">
+		SELECT 
+			sch2_no AS no,
+			mem2_id AS id,
+			sch2_name AS name,
+			sch2_startDate AS sdate,
+			sch2_endDate AS edate
+		From 
+			schedule2
+		Where 
+			sch2_isDeleted = 'N'
+		AND
+			mem2_id = #{id}
+	</select>
+</mapper>

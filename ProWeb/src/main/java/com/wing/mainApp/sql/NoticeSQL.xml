@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="notice">
+<!-- 	게시물 등록 질의 -->
+	<insert id="noticeinsert" parameterType="ndata">
+		INSERT 
+		INTO
+			Tbl_Notice
+		VALUES
+			((SELECT NVL(MAX(notice_no), 0) + 1 FROM Tbl_Notice), 
+			#{mem_id}, #{notice_title}, #{notice_body}, SYSDATE, SYSDATE, 'Y')
+	</insert>	
+	
+<!-- 	총 데이터 개수 구하기 질의 -->	
+	<select id="gettotal" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		SELECT
+			COUNT(*) AS TOTAL
+		FROM
+			Tbl_Notice
+	</select>
+<!-- 	게시물 목록 질의 
+		resutType을 데이터빈 클래스 형태로 지정하면
+		데이터 빈 클래스의 setXXX함수를 이용해서 찾은 데이터를 기억해 준다.
+		
+		참고	resultType은 나타날 데이터의 줄수와는 상관없이
+				오직 한줄의 데이터를 어떻게 처리할지를 정하는 것이다.
+-->
+	<select id="getlist" resultType="ndata" parameterType="java.util.HashMap">
+		SELECT
+			notice_no			,
+			mem_id			   ,
+			notice_title		,
+			notice_body 		,
+			notice_date		   			
+		FROM
+			Tbl_Notice
+		ORDER BY  
+			notice_no DESC
+		<!-- WHERE
+			notice_isDeleted = 'Y'  -->	
+		<!-- 	AND	mem_id = #{id} -->
+		
+	</select>
+
+<!-- 	게시물 상세보기 질의 -->
+	<select id="noticeview" resultType="ndata" parameterType="java.lang.Integer">
+		SELECT
+			notice_no			AS NO,
+			mem_id		AS ID,
+			notice_title		AS TITLE,
+			notice_body		AS BODY,
+			notice_date		AS WDATE,
+			notice_cdate	AS MDATE,
+		<!--  	hit			     AS HIT,-->
+			
+		FROM
+			Tbl_Notice
+		WHERE
+					notice_no = #{NO}
+			AND	mem_id = m_ID
+	</select>
+
+<!-- 	게시물 조회수 증가 질의 
+	<update id="updatehit" parameterType="java.lang.Integer">
+		UPDATE
+			Tbl_Notice
+		SET
+			hit = hit + 1
+		WHERE
+			notice_no = #{NO}
+	</update>
+-->
+<!-- 	게시물 수정 질의 -->
+<!-- 	게시물 삭제 질의 -->
+<!-- 	수정 혹은 삭제가 가능한 경우인지 판단하는 질의
+		이 질의는 여러가지 형태로 만들수 있는데........ 
+
+		비번이 같으면 결과는 1이 나오고
+		비번이 다르면 결과는 0이 나온다.
+-->	
+	<select id="isupdate" resultType="java.lang.Integer" 
+												parameterType="java.util.HashMap">
+		SELECT
+			COUNT(*) AS CNT
+		FROM
+			Tbl_Notice
+		WHERE
+					notice_no = #{NO}
+			AND	 notice_id = #{ID}
+	</select>
+<!-- 	게시물 수정 질의 -->
+	<update id="updateboard" parameterType="ndata">
+		UPDATE
+			Tbl_Notice
+		SET
+			notice_title = #{notice_title},
+			notice_body = #{notice_body},
+			notice_date = SYSDATE
+		WHERE
+			notice_no = #{notice_no}
+	</update>
+<!-- 	게시물 삭제 질의 -->
+	<update id="deletenotice"	parameterType="java.lang.Integer">
+		UPDATE
+			Tbl_Notice
+		SET
+			notice_isDeleted = 'N'
+		WHERE
+			notice_no = #{NO}
+	</update>
+
+<!-- 	게시물 댓글 추천 증가 질의 -->
+</mapper>
