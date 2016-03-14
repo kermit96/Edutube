@@ -171,6 +171,11 @@ public class ClassListDAO {
 	/**
 	 * 	댓글 기능
 	 * */
+	/*댓글 갯수*/
+	public int getReTotal(int orino){
+		return sqlSession.selectOne("clist.getRetotal",orino);
+	}
+	
 	/*댓글 등록*/
 	public void insertReply(ReplyData data){
 		sqlSession.insert("clist.insertReply", data);

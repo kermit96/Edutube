@@ -76,6 +76,26 @@
 	});
 	}); /*좋아요 처리 끝*/
 	
+	/*댓글보기*/
+		function getReList() {
+				//	이 함수가 실행되면(단추를 누르면...)
+				//	ajax를 통해서	AjaxResp.jsp를 서버에 요청해서 달라고 한다.
+				$.ajax({
+					url:"AjaxResp.jsp",
+					type:"GET",
+					dataType:"html",
+					success: function(data){
+						$("#div1").html(data);
+					},
+					error: function(){
+						alert("이거나오면 안되는데....");
+					}
+				});
+				//	이제 필요한 속성을 쓰면 된다.
+				//	속성의 순서는 관계가 없다.
+				//	필요한 속성만 골라서 쓰면 된다.
+			}
+	
 </script>
 
 <!--  스타일 -->
@@ -256,34 +276,15 @@ textarea#relplybody{
 					
 					<div id="replyList">
 						<div id="replyListDiv">
-							<%-- <c:forEach var="reContent" items="${RELIST}">
-							</c:forEach> --%>
-							<ul class="timeline" id="timeline">
-														
-							    <!-- timeline item -->
-							    <li>
-							        <!-- timeline icon -->
-							        <i class="fa fa-comments bg-yellow"></i>
-							        <div class="timeline-item">
-							            <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>							
-							            <h3 class="timeline-header"><a href="#">글쓴이</a></h3>
 							
-							            <div class="timeline-body">
-							               댓글내용
-							            </div>
-							
-							            <div class="timeline-footer">
-							                <a class="btn btn-warning btn-flat btn-xs">수정하기</a>&nbsp;
-							                <a class="btn btn-danger btn-xs">삭제하기</a>
-							            </div>
-							        </div>
-							    </li>
-							    <!-- END timeline item --> 
-							</ul> <!-- 댓글 끝 -->
 						</div>	
 					
 						<div id="replyPagingDiv">
 							댓글 페이징
+						</div>
+						<div id="replyUtil">
+							<a class="button button-green" id="rewBtn" onClick=""><i class="fa fa-check"></i>
+							댓글 보기</a>
 						</div>				
 					</div>				
 

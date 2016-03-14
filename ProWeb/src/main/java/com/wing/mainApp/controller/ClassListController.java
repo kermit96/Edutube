@@ -512,8 +512,7 @@ public class ClassListController {
 		data.renick = nick;
 		data.rebody = req.getParameter("relplybody");
 		
-		System.out.println(data.rebody);
-		
+				
 		lDao.insertReply(data);
 		
 		mv.addObject("nowPage",nowPage);
@@ -527,7 +526,8 @@ public class ClassListController {
 	/**
 	 * 댓글리스트 기능
 	 * */		
-	@RequestMapping("/ClassList/ClassGood")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@RequestMapping("/ClassList/ReplyList")
 	public ModelAndView	 replyList(HttpServletRequest req, HttpSession session) {
 		ModelAndView	 mv = new ModelAndView();
 		
@@ -542,7 +542,7 @@ public class ClassListController {
 		
 		String	strNo = req.getParameter("oriNo");
 		int	oriNo = Integer.parseInt(strNo);
-		String listcode = req.getParameter("code");
+		
 		
 		String strpage = req.getParameter("rePage");
 		int	rePage = 0;
@@ -552,6 +552,29 @@ public class ClassListController {
 		else {
 			rePage = Integer.parseInt(strpage);
 		}
+		
+		/*총댓글수 구해서 페이징 정보 구하기*/
+		int retotal = lDao.getReTotal(oriNo);
+		PagingUtil	pInfo = new PagingUtil(rePage, retotal, 10, 5);
+		pInfo.pagingProc();
+		
+		// 댓글 불러오기
+		ArrayList	list = lDao.getReplyList(oriNo);
+		
+		int	start = (pInfo.nowPage -1) * pInfo.onePageCount;
+		int	end = start + pInfo.onePageCount -1;
+		if(end >= list.size()) {
+			end = list.size() -1;
+		}
+		
+		ArrayList	result = new ArrayList();
+		for(int i = start; i <= end; i++) {
+			ReplyData	temp = (ReplyData)list.get(i);
+			result.add(temp);
+		}
+		
+		mv.addObject("reDATA",result);
+		mv.setViewName("ClassList/ReplyData");
 		
 		return mv;
 	}

@@ -3,23 +3,32 @@
 <!DOCTYPE html>
 							<ul class="timeline" id="timeline">
 														
-							    <!-- timeline item -->
+							    <!-- timeline items -->
+							    <c:forEach var="recontent" items="${reDATA}">
 							    <li>
 							        <!-- timeline icon -->
 							        <i class="fa fa-comments bg-yellow"></i>
 							        <div class="timeline-item">
-							            <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>							
-							            <h3 class="timeline-header"><a href="#">글쓴이</a></h3>
+							            <span class="time"><i class="fa fa-clock-o"></i> ${recontent.realdate}</span>							
+							            <h3 class="timeline-header"><i class="fa fa-android"></i>No : ${recontent.reno}&nbsp;<a href="#">${recontent.renick}</a></h3>
 							
 							            <div class="timeline-body">
-							               댓글내용
+							               ${recontent.realbody}
 							            </div>
 							
 							            <div class="timeline-footer">
+							            	<c:if test="${sessionScope.ID eq recontent.reid}">
 							                <a class="btn btn-warning btn-flat btn-xs">수정하기</a>&nbsp;
 							                <a class="btn btn-danger btn-xs">삭제하기</a>
+							                </c:if>
 							            </div>
 							        </div>
 							    </li>
-							    <!-- END timeline item --> 
-							</ul> <!-- 댓글 끝 -->
+							    </c:forEach>
+							    <!-- END timeline items --> 
+							</ul> <!-- 댓글 끝 -->							
+					
+						
+						
+						
+						

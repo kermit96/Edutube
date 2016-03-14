@@ -260,15 +260,15 @@
 	</insert>
 	
 	<!--  댓글 토탈 -->
-	<select id="gettotal" resultType="java.lang.Integer">
+	<select id="getRetotal" resultType="int">
 		SELECT
 			COUNT(*) AS TOTAL
 		FROM
 			reply
 		WHERE
-			reply_isDeleted='N'
+			re_isDeleted='N'
 		AND
-			class_no=#{}	
+			class_no=#{orino}	
 	</select>
 
 	<!--  댓글 리스트 -->
