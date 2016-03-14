@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mypage">
+<!-- 신고요청 -->
+	<insert id="repinsert" parameterType="mdata">
+		INSERT
+		INTO
+			REPORT (REP_NO,  mem_ID, REP_CODE, REP_BCODE, REP_BNO, REP_REID)
+		VALUES
+			((SELECT NVL(MAX(REP_NO),0) + 1 FROM REPORT),#{id},#{code},#{bcode},#{bno}, #{repid})
+	</insert>
+<!-- 신고 데이터 갯수 구하기 질의 -->
+	<select id="gettotal" resultType="java.lang.Integer">
+		SELECT
+			COUNT(*)	AS		TOTAL
+		FROM
+			REPORT
+		WHERE
+			REP_isDeleted = 'N'
+	</select>
+<!-- 신고 데이터 목록보기 질의 -->
+	<select id="repselect"  resultType="mdata">
+		SELECT
+			REP_no		AS		NO,
+			MEM_id 		AS		ID,
+			REP_code	AS 	CODE,
+			REP_bcode	AS		BCODE,
+			REP_bno 	AS 	BNO,
+			REP_reid 	AS		REPID,
+			REP_cDate AS		WDATE
+		FROM
+			REPORT
+		WHERE
+			REP_isDeleted= 'N'
+		ORDER BY
+			REP_no ASC
+	</select>
+<!-- 회원정지 질의 -->
+	<update id="userstop" parameterType="java.lang.String">
+		UPDATE
+			MEMBER
+		SET
+			mem_block = 'F'
+		WHERE
+			mem_id= #{repid}
+	</update> 
+<!-- 정지시킬 ID 알아오기 -->
+	<select id="selectrepid" parameterType="java.lang.Integer" resultType="java.lang.String">
+		SELECT
+			REP_REID AS repid
+		FROM
+			REPORT
+		WHERE
+			REP_NO =#{no}
+	
+	</select>	
+</mapper>

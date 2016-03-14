@@ -43,7 +43,9 @@
 	
 	<div id="Main">
 		<p>마이페이지 메인</p>
-		<a href="../Apply/ApplyForm.do">강사 신청으로 ㄱㄱ</a>
+		<a href="../Apply/ApplyForm.do">강사 신청으로 ㄱㄱ</a><br>
+		<a href="../myPage/REPWriteForm.do">너 고소</a><br>
+		<a href="../myPage/REPList.do">사형선고</a>
 	</div>
 	 
 </div>

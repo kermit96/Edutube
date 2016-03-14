@@ -11,17 +11,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.wing.mainApp.dao.ApplyDAO;
+import com.wing.mainApp.dao.MyPageDAO;
 import com.wing.mainApp.data.ApplyData;
+import com.wing.mainApp.data.BoardData;
 import com.wing.mainApp.data.DownLoadData;
 import com.wing.mainApp.data.Member;
+import com.wing.mainApp.data.MyPageData;
 import com.wing.mainApp.util.FileUtil;
+import com.wing.mainApp.util.PageUtil;
+import com.wing.mainApp.util.SessionUtil;
+import com.wing.mainApp.util.StringUtil;
 
 @Controller
 public class MyPageController {
 	@Autowired
-	ApplyDAO aDao;
+	ApplyDAO 		aDao;
+	@Autowired
+	MyPageDAO 	mDao;
 
 	// 마이페이지 메인
 	@RequestMapping("myPage/myPageMain")
@@ -134,6 +143,83 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 		mv.setViewName("Apply/ApplyList");		
+		return mv;
+	}
+	
+	/*
+	 * 신고하기 폼 요청
+	 */
+	@RequestMapping("/myPage/REPWriteForm")
+	public ModelAndView FAQBoardWriteForm() {
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("myPage/REPWriteForm");
+		return mv;
+	}
+	
+	/*
+	 * 신고하기 요청 함수
+	 */
+	@RequestMapping("/myPage/REPWrite")
+	public ModelAndView REPWrite(MyPageData data) {
+		ModelAndView mv = new ModelAndView();
+
+		mDao.insertREP(data);
+		// 뷰를 부른다
+		RedirectView rv = new RedirectView("../myPage/REPList.do");
+		mv.setView(rv);
+		return mv;
+	}
+	
+	/*
+	 * 신고목록보기 
+	 */
+	@RequestMapping("/myPage/REPList")
+	public ModelAndView REPList(HttpServletRequest req) {
+		ModelAndView	mv = new ModelAndView();
+		String	strPage = req.getParameter("nowPage");
+		int			nowPage = 0;
+		
+		if(StringUtil.isNull(strPage)) {
+			nowPage = 1;
+		}
+		else {
+			nowPage = Integer.parseInt(strPage);
+		}
+		
+		int total = mDao.getTotal(1);
+		
+		ArrayList list = mDao.selectREP();
+		ArrayList result = new ArrayList();
+		for(int i = 0; i < total; i++) {
+			MyPageData		temp = (MyPageData)list.get(i);
+			result.add(temp);
+		}
+		
+		mv.addObject("LIST", result);
+		mv.setViewName("myPage/REPList");
+		
+		return mv;
+	}
+	
+	/*
+	 * 회원정지 요청 함수
+	 */
+	@RequestMapping("/myPage/REPUserstop")
+	public ModelAndView REPUserStop(MyPageData data, HttpServletRequest req) {
+		ModelAndView mv = new ModelAndView();
+		
+		
+		String strNo = req.getParameter("no");
+		int no = Integer.parseInt(strNo);
+		System.out.println(no);
+		String repId = mDao.selectRepid(no);
+		System.out.println(repId);
+		mDao.stopREP(repId);
+		
+		RedirectView	rv = new RedirectView("../myPage/REPList.do");
+		mv.setView(rv);
+		
 		return mv;
 	}
 }
