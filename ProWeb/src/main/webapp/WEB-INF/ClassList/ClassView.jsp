@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="/edutube/resources/CSS/bootstrap.min.css">
 <link rel="stylesheet" href="/edutube/resources/CSS/customB.css">
 <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+<link rel="stylesheet" href="/edutube/resources/CSS/AdminLTE.min.css">
 
 <!--  파피콘 넣기 -->
 <link rel="shortcut icon" href="/edutube/favicon.ico"
@@ -246,7 +247,7 @@ textarea#relplybody{
 					<h2>댓글 남기기</h2>
 						<div id="replybox">
 							<form id="reFrm" name="reFrm" method="POST">							
-							<textarea class="form-control" rows="4" id="relplybody"  name="relplybody" required></textarea>
+							<textarea class="form-group" rows="4" id="relplybody"  name="relplybody" required></textarea>
 							</form>
 							<a class="button button-green" id="rewBtn"><i class="fa fa-check"></i>
 							댓글 쓰기</a>
@@ -257,7 +258,33 @@ textarea#relplybody{
 						<div id="replyListDiv">
 							<%-- <c:forEach var="reContent" items="${RELIST}">
 							</c:forEach> --%>
-						</div>					
+							<ul class="timeline" id="timeline">
+														
+							    <!-- timeline item -->
+							    <li>
+							        <!-- timeline icon -->
+							        <i class="fa fa-comments bg-yellow"></i>
+							        <div class="timeline-item">
+							            <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>							
+							            <h3 class="timeline-header"><a href="#">글쓴이</a></h3>
+							
+							            <div class="timeline-body">
+							               댓글내용
+							            </div>
+							
+							            <div class="timeline-footer">
+							                <a class="btn btn-warning btn-flat btn-xs">수정하기</a>&nbsp;
+							                <a class="btn btn-danger btn-xs">삭제하기</a>
+							            </div>
+							        </div>
+							    </li>
+							    <!-- END timeline item --> 
+							</ul> <!-- 댓글 끝 -->
+						</div>	
+					
+						<div id="replyPagingDiv">
+							댓글 페이징
+						</div>				
 					</div>				
 
 				</div><!--  viewmain 끝 -->

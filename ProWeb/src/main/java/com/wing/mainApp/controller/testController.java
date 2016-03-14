@@ -23,7 +23,7 @@ public class testController {
 	
 		ModelAndView mv = new ModelAndView();
 		
-		mv.setViewName("/Sch/debugList");
+		mv.setViewName("/Sch/test");
 		return mv;		
 	}
 	
