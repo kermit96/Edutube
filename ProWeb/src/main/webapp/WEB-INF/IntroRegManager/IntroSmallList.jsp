@@ -5,21 +5,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
-	<!--  Favicon (Main Icon) -->
-	<link rel="shortcut icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
-	<link rel="icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<!--CSS-->
+<link rel="stylesheet" href="/edutube/resources/CSS/bootstrap.min.css">
+<!--  파피콘 넣기 -->
+<link rel="shortcut icon" href="/edutube/favicon.ico"
+	type="image/x-icon" />
+<link rel="icon" href="/edutube/favicon.ico" type="image/x-icon" />
+<!--  검색바 -->
+
+<!--JS-->
+<script src="/edutube/resources/JS/jquery-2.1.4.min.js"></script>
+<script src="/edutube/resources/JS/bootstrap.min.js"></script>
+
+<!--스크립트-->
+<script>
 	
-	
-	<!--CSS-->
-	<!--JS-->
-	
-	<!--CustomScript-->
-		
-	<!--Never Delete "EduContainer" style tag-->
+</script>
+
+<!--  스타일 -->
 	<style>
 	
 		#EduContainer{
@@ -45,46 +52,42 @@
 			clear:both;
 			width:150px;			
 		}
-		<!--JOON CSS-->
-		th,td {
-			background:white;/*배경색*/
-		}
-		table td, th {
-			border:#d3d3d3 solid 1px;/*경계선 색상 스타일 굵기 */
-		}
-		table {
-			width:100%;
-			border-collapse:collapse;
-			font-size:16px; /*글꼴 크기*/
-			line-height:24px;/*줄 간격*/
-		}		
-		a{
-			text-decoration:none; /* 링크 밑줄 없애기 */
-			color:black; /*글 색상*/
-		}
-		a:HOVER {
-			text-decoration:underline; /* 밑줄 
-			color:green;			/*글 색상*/
-		}
 		
 	</style>
-	<script>
+
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- jvectormap -->
+<link rel="stylesheet"
+	href="plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+<!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+<link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+<script>
 	$(document).ready(function() {
 		$("#wBtn").click(function() {
 			$(location).attr("href", "../IntroRegManager/IntroRegForm.do");
 		});
-		$("#lBtn").click(function() {
-			$(location).attr("action", "../IntroRegManager/IntroList.do");
-			//$("#sfrm").submit();
-		});
-		$("#sBtn").click(function() {
-			$("#sfrm").attr("action", "../IntroRegManager/IntroSearch.do");
-			$("#sfrm").submit();
-		});
-		
 	});
-	
-	</script>
+	$(document).ready(function() {
+		$("#sBtn").click(function() {
+			$(location).attr("action", "../IntroRegManager/IntroSearch.do");
+		});
+	});
+</script>
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div id='EduContainer'>
@@ -99,14 +102,13 @@
 				<jsp:include page="/MenuBar/IntroSide.jsp" flush="false" />
 			</div>
 			<div id="centerPage">
-				<h4 align="center" ><strong>전체 리스트</strong></h4>
-<!-- 	검색 기능 폼 
-
+				<h4 align="center" ><strong>과목별 리스트</strong></h4>
+<!-- 	검색 기능 폼 -->
 	    <form method="POST" id="sFrm">
-	 	
+		<!-- 	
 				일반목록은 L로 주기로 했고
 				검색 목록은 S로 주기로 했다.
-		
+		 -->
 			<input type="hidden" name="kind" value="S">
 			<table border="1" width="80%" align="center" id='Table'>
 				<tr>
@@ -122,31 +124,15 @@
 					</td>
 				</tr>
 			</table>
-		</form> -->
-<!-- 	검색기능 -->
-		<table border="1" align="center" width="80%">
-			<tr>
-				<td align="center">
-					<form method="POST" id="sfrm">
-						<select id="kind" name="kind">
-							<option value="title">제목</option>
-							<option value="body">본문</option>
-							<option value="mem_id" >강사 ID</option>
-							<option value="both">제목 + 본문</option>
-						</select>
-						<input type="text" id="content" name="content">
-						<input type="button" value="검색" id="sBtn" class="btn btn-primary btn-sm">
-					</form>
-				</td>
-			</tr>
-		</table>
+		</form>
 <%--	상품 목록 보여주기 	--%>
 	    <table width="80%" border="1" align="center">
+	    	<tr>
 				<th class="text-center">번호</th>
 				<th class="text-center">강사 사진</th>
 				<th class="text-center">강사 ID</th>
 				<!-- <th class="text-center">제목</th> -->
-				<th class="text-center">제목</th>
+				<!-- <th class="text-center">제목</th> --> 
 				
 			</tr>
 	   <c:if test="${empty LIST}">
@@ -160,13 +146,13 @@
 	   <c:forEach var="temp" items="${LIST}" varStatus="status">
 			<tr>
 				<td class="text-center">
-					<a href="../IntroRegManager/IntroView.do?nowPage=${PINFO.nowPage}&oriNo=${temp.intro_no}">${temp.intro_no}</a>
+					<a href="../IntroRegManager/IntroView.do?intro_no=${temp.intro_no}">${temp.intro_no}</a>
 				</td>
 				<td class="text-center">
 					<img src="../gimgs/${temp.gimg2}" width="100" height="100">
 				</td>
-				<td class="text-center">${sessionScope.NICKNAME}</td>
-				<td class="text-center">${temp.intro_title}</td>
+				<td class="text-center">${temp.mem_id}</td>
+				<!-- <td class="text-center">${temp.intro_title}</td> -->
 				<!-- <td class="text-center">${temp.intro_body}</td>  -->
 				
 			</tr>
@@ -196,22 +182,15 @@
 						[다 음]
 					</c:if>
 					<c:if test="${PINFO.endPage ne PINFO.totalPage}">
-						<a href="../IntroRegManager/IntroList.do?nowPage=${PINFO.endPage + 1}">[다 음]</a>
+						<a href="../IntroRegManager/Introist.do?nowPage=${PINFO.endPage + 1}">[다 음]</a>
 					</c:if>
 				</td>
 			</tr>
 	  </table>
-<!-- 	기타 부가 기능 -->
-      <table border="1" align="center">
-			<tr id="tr_bot">
-				<td align="center">
-					<input type="button" id="wBtn" value="글 추가" class="btn btn-primary btn-sm">
-				</td>
-			</tr>
-	  </table>
- 
+
 			</div>
 		</div>
+
 	</div>
 </body>
 </html>

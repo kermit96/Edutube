@@ -19,7 +19,7 @@
 	<!--CustomScript-->
 		
 	<!--Never Delete "EduContainer" style tag-->
-<style>
+	<style>
 	
 		#EduContainer{
 				width:1200px;
@@ -70,18 +70,18 @@
 			
 			$(document).ready(function(){
 				$("#mBtn").click(function(){					
-					$(location).attr("href", "../Notice/NoticeModifyForm.do?oriNo=${DATA.notice_no}&nowPage=${NOWPAGE}");
+					$(location).attr("href", "../IntroRegManager/IntroModifyForm.do?oriNo=${DATA.intro_no}&nowPage=${NOWPAGE}");
 				});
 			});
 			$(document).ready(function(){
 				$("#dBtn").click(function(){
-					$(location).attr("href", "../Notice/NoticeDelete.do?oriNo=${DATA.notice_no}&nowPage=${NOWPAGE}");
+					$(location).attr("href", "../IntroRegManager/IntroDelete.do?oriNo=${DATA.intro_no}&nowPage=${NOWPAGE}");
 				});
 				
 			});
 			$(document).ready(function(){
 				$("#lBtn").click(function(){
-					$(location).attr("href", "../Notice/NoticeList.do?nowPage=${NOWPAGE}");
+					$(location).attr("href", "../IntroRegManager/IntroList.do?nowPage=${NOWPAGE}");
 				});
 				
 			});
@@ -102,11 +102,11 @@
 	<div id="Main">
 		<!-- This area is Body Part -->
 		<div id="sideBarDiv">
-			<jsp:include page="/MenuBar/NoticeSide.jsp" flush="false" />
+			<jsp:include page="/MenuBar/IntroSide.jsp" flush="false" />
 		</div>
 		
 		<div id="centerPage"> 
-		<h4 align="center" ><strong>공지 상세 보기 </strong></h4>
+		<h4 align="center" ><strong>소개 상세 보기 </strong></h4>
 	<!-- 	
 		수정하기 폼 요청에 필요한 데이터를 POST 방식으로 보내기 위한 임시 폼이다. 
 		이 안에 요청에 필요한 모든 데이터를 hidden으로 만들어 놓으면 된다.
@@ -117,28 +117,31 @@
 		</form>
 		 <!-- 	목록 보여주기 -->
 		<table border="1" width="80%" align="center">
-				<tr id="tr_top">
-					<th id="tr_top" class="text-center">번호</th>
-					<th id="tr_top" class="text-center">제목</th>
-					<th id="tr_top" class="text-center">글내용</th>
-					<th id="tr_top" class="text-center">글쓴이</th>
-					<th id="tr_top" class="text-center">작성일</th>
+				<tr>
+					<th  id="tr_top" class="text-center">번호</th>
+					<th  id="tr_top" class="text-center">사진</th>
+					<th  id="tr_top" class="text-center">제목</th>
+					<th  id="tr_top" class="text-center">글내용</th>
+					<th  id="tr_top" class="text-center">글쓴이</th>
+					<th  id="tr_top" class="text-center">작성일</th>
 				</tr>
 	    	   	<tr>
-					<td class="text-center">${DATA.notice_no}</td>
-					<td class="text-center">${DATA.notice_title}</td>
-					<td class="text-center">${DATA.notice_body}</td>
+					<td class="text-center">${DATA.intro_no}</td>
+					<td class="text-center">
+						<img src="../gimgs/${DATA.gimg2}" width="100" height="100"></td>
+					<td class="text-center">${DATA.intro_title}</td>
+					<th class="text-center">${DATA.intro_body}</th>
 					<td class="text-center">${DATA.mem_id}</td>
-					<td class="text-center">${DATA.notice_date}</td>				
+					<td class="text-center">${DATA.intro_date}</td>				
 			   </tr>		
 		</table>
 			<table border="1" width="80%" align="center">
 				<tr id="tr_bot">
 					<td align="center">					
-<c:if test="${sessionScope.ID eq DATA.mem_id}">
+
 					<input type="button" value="수정하기" id="mBtn" class="btn btn-primary btn-sm">
 					<input type="button" value="삭제하기" id="dBtn" class="btn btn-primary btn-sm">					
-</c:if>
+
 					<input type="button" value="목록보기" id="lBtn" class="btn btn-primary btn-sm">					
 					</td>
 				</tr>

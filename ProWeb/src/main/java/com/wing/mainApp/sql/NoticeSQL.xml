@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="notice">
+<!-- 최근 공지글 번호 검색  -->
+    <select id="noticemax" resultType="java.lang.Integer">
+    SELECT max(notice_no) as TEST FROM Notice WHERE notice_isDeleted='Y'
+	</select> 
+	
+
 <!-- 	게시물 등록 질의 -->
 	<insert id="noticeinsert" parameterType="ndata">
 		INSERT 
 		INTO
-			Tbl_Notice
+			Notice
 		VALUES
-			((SELECT NVL(MAX(notice_no), 0) + 1 FROM Tbl_Notice), 
+			((SELECT NVL(MAX(notice_no), 0) + 1 FROM Notice), 
 			#{mem_id}, #{notice_title}, #{notice_body}, SYSDATE, SYSDATE, 'Y')
 	</insert>	
 	
@@ -16,7 +22,7 @@
 		SELECT
 			COUNT(*) AS TOTAL
 		FROM
-			Tbl_Notice
+			Notice
 	</select>
 <!-- 	게시물 목록 질의 
 		resutType을 데이터빈 클래스 형태로 지정하면
@@ -25,39 +31,81 @@
 		참고	resultType은 나타날 데이터의 줄수와는 상관없이
 				오직 한줄의 데이터를 어떻게 처리할지를 정하는 것이다.
 -->
+	
 	<select id="getlist" resultType="ndata" parameterType="java.util.HashMap">
 		SELECT
-			notice_no			,
-			mem_id			   ,
-			notice_title		,
-			notice_body 		,
+			notice_no,
+			mem_id,
+			notice_title,
+			notice_body,
 			notice_date		   			
 		FROM
-			Tbl_Notice
-		ORDER BY  
-			notice_no DESC
-		<!-- WHERE
-			notice_isDeleted = 'Y'  -->	
+			Notice		
+		WHERE
+			notice_isDeleted = 'Y'
+		ORDER BY notice_no DESC 
 		<!-- 	AND	mem_id = #{id} -->
 		
 	</select>
+	<select id="getfinallist" resultType="ndata" parameterType="java.util.HashMap">
+		SELECT
+			notice_no,
+			mem_id,
+			notice_title,
+			notice_body,
+			notice_date		   			
+		FROM
+			Notice		
+		WHERE
+			notice_isDeleted = 'Y'
+			AND notice_no=#{NO}
+		ORDER BY notice_no DESC 
+		<!-- 	AND	mem_id = #{id} -->
+		
+	</select>
+<!-- 	봤던 글번호를 알아내는 질의 -->
+	<select id="showno" resultType="java.util.HashMap" 
+											parameterType="java.lang.String">
+		SELECT
+			bh_ID	AS ID,
+			bh_NO AS SHOWNO
+		FROM
+			NoticeHit
+		WHERE
+			bh_ID = #{ID}
+	</select>
+<!-- 	새로운 글을 봤으면 다음에는 그 글을 처리못하도록 수정질의 -->
+	<update id="updateshowno" parameterType="java.util.HashMap">
+		UPDATE
+			NoticeHit
+		SET
+			bh_NO = #{NO}
+		WHERE
+			bh_ID = #{ID}		
+	</update>
+<!-- 	처음 글을 본사람은 그 사람의 ID로 등록된 것이 없으므로 새롭게 등록해 주는질의 -->
+	<insert id="insertshowno" parameterType="java.util.HashMap">
+		INSERT
+		INTO
+			NoticeHit
+		VALUES
+			(#{ID}, #{NO})
+	</insert>
+
 
 <!-- 	게시물 상세보기 질의 -->
-	<select id="noticeview" resultType="ndata" parameterType="java.lang.Integer">
+	<select id="noticeview" resultType="ndata" parameterType="java.util.HashMap">
 		SELECT
-			notice_no			AS NO,
-			mem_id		AS ID,
-			notice_title		AS TITLE,
-			notice_body		AS BODY,
-			notice_date		AS WDATE,
-			notice_cdate	AS MDATE,
-		<!--  	hit			     AS HIT,-->
-			
+			notice_no,
+			mem_id,
+			notice_title,
+			notice_body,
+			notice_date,
+			notice_cdate			
 		FROM
-			Tbl_Notice
-		WHERE
-					notice_no = #{NO}
-			AND	mem_id = m_ID
+			Notice
+		WHERE 
+			notice_no = #{NO}			
 	</select>
 
 <!-- 	게시물 조회수 증가 질의 
@@ -83,26 +131,26 @@
 		SELECT
 			COUNT(*) AS CNT
 		FROM
-			Tbl_Notice
+			notice
 		WHERE
 					notice_no = #{NO}
-			AND	 notice_id = #{ID}
+	<!-- 	AND	rb_Password = #{PW} -->	
 	</select>
 <!-- 	게시물 수정 질의 -->
-	<update id="updateboard" parameterType="ndata">
+	<update id="updatenotice" parameterType="ndata">
 		UPDATE
-			Tbl_Notice
+			notice
 		SET
 			notice_title = #{notice_title},
 			notice_body = #{notice_body},
-			notice_date = SYSDATE
+			notice_cDate = SYSDATE
 		WHERE
 			notice_no = #{notice_no}
 	</update>
 <!-- 	게시물 삭제 질의 -->
 	<update id="deletenotice"	parameterType="java.lang.Integer">
 		UPDATE
-			Tbl_Notice
+			notice
 		SET
 			notice_isDeleted = 'N'
 		WHERE
@@ -110,4 +158,55 @@
 	</update>
 
 <!-- 	게시물 댓글 추천 증가 질의 -->
+<!-- 	검색 데이터 개수 구하기 질의 -->
+	<select id="searchcount" resultType="java.lang.Integer" 
+								parameterType="java.util.HashMap">
+		SELECT
+			COUNT(*) AS CNT
+		FROM
+			Notice
+		WHERE
+			<if test="kind eq 'title'">
+				notice_title LIKE '%' || #{CONTENT} || '%'
+			</if>
+	 		<if test="kind eq 'body'">
+				notice_body LIKE '%' || #{CONTENT} || '%'
+			</if>
+			<if test="kind eq 'mem_id'">
+				mem_id LIKE '%' || #{CONTENT} || '%'
+			</if>
+			<if test="kind eq 'both'">
+				notice_title LIKE '%' || #{CONTENT} || '%' OR notice_body LIKE '%' || #{CONTENT} || '%'
+			</if>
+	</select>
+<!-- 	 검색 데이터 구하기 질의 -->	
+	<select id="searchnotice"	resultType="ndata" 
+									parameterType="java.util.HashMap">
+		SELECT
+			notice_no,
+			Notice.mem_id,
+			notice_title,
+			notice_body,
+			notice_date		
+		FROM
+			Notice
+		WHERE
+			notice_isDeleted = 'Y'
+			<choose>
+				<when test="kind eq 'title'">
+			AND	notice_title LIKE '%' || #{CONTENT} || '%'
+				</when>
+				<when test="kind eq 'body'">
+			AND	notice_body LIKE '%' || #{CONTENT} || '%'
+				</when>
+				<when test="kind eq 'mem_id'">
+			AND	Notice.mem_id LIKE '%' || #{CONTENT} || '%'
+				</when>
+				<otherwise>
+			AND	(notice_title LIKE '%' || #{CONTENT} || '%' OR notice_body LIKE '%' || #{CONTENT} || '%') 					
+				</otherwise>
+			</choose>
+		ORDER BY
+			notice_no DESC
+	</select>
 </mapper>

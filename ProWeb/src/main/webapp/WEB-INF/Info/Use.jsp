@@ -65,7 +65,7 @@
 	<div id="centerPage">
 		<table width="100%" align="center">
 			<tr>
-				<td><img src="../resources/img/use.jpg"></td>
+				<td><img src="../resources/img/usetop.jpg"></td>
 			</tr><br>
 			<tr>
 				<td><center><img src="../resources/img/usebody.jpg"></center></td>

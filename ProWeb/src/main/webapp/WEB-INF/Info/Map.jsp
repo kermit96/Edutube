@@ -64,10 +64,16 @@
 	</div>
 	
 	<div id="centerPage">
-        <img src="../resources/img/way.jpg"><br>
-		<center><img src="../resources/img/road.jpg"><br>
+		<table width="100%" align="center">
+			<tr>
+				<td><img src="../resources/img/maptop.jpg"></td>
+			</tr><br>
+			<tr>
+				<td><center><img src="../resources/img/road.jpg"><br>
 		<br><a href="http://map.naver.com/index.nhn?dlevel=12&pinType=site&pinId=12105600&x=126.8846070&y=37.5009694&enc=b64"
-		target="_blank" title="EduTube 지도에서보기"><img src="../resources/img/links.jpg" alt="EduTube 지도에서보기"/></a></center>
+		target="_blank" title="EduTube 지도에서보기"><img src="../resources/img/links.jpg" alt="EduTube 지도에서보기"/></a></center></td>
+			</tr>
+		</table>
     </div>
 		
 	<div id="EduFooter">

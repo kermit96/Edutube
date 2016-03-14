@@ -24,7 +24,6 @@
 	<style>
 		#EduContainer{
 				width:1200px;
-				height:500px;
 				position: absolute;
 				left: 50%;
 				margin-left:-600px;				
@@ -63,9 +62,16 @@
 	<div id=sideBarDiv>
 	 <jsp:include page="/MenuBar/InfoSide.jsp" flush="false" />
 	</div>
-	
+
 	<div id="centerPage">
-	<img src="../resources/img/info.jpg" width="100%" height="100%" >
+	<table width="100%" align="center">
+			<tr>
+				<td><img src="../resources/img/infotop.jpg"></td>
+			</tr><br>
+			<tr>
+				<td><center><img src="../resources/img/infobody.jpg"></center></td>
+			</tr>
+		</table>
 	</div>
 	
 	<div id="EduFooter">

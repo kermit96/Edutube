@@ -13,6 +13,7 @@ public class NoticeData {
 	private Date notice_cDate;
 	private int notice_isDeleted;
 	public int		nowPage;
+	
 	//�씪諛� DB �옉�뾽�뿉�꽌�뒗 �궇吏쒖� �떆媛꾩쓣 �뵲濡� 諛쏆븘�꽌 泥섎━�빐�빞 �븯�뒗�뜲
 	//myBatis�뒗 �궡遺��쟻�쑝濡� �궇吏쒖� �떆媛꾩쓣 �떎 諛쏆븘�꽌 臾띠뼱�꽌 泥섎━�빐 以��떎.
 	//洹몃윭誘�濡� myBatis瑜� �궗�슜�븷 �븣�뒗 援녹씠 �궇吏쒖� �떆媛꾩쓣 �뵲濡� 諛쏆쓣 �븘�슂媛� �뾾�떎.
@@ -20,6 +21,7 @@ public class NoticeData {
 	//蹂��닔�쓽 �씠由꾩� �씪遺��윭 �뤌�쓽 name �냽�꽦怨� 媛숆쾶 �뻽�떎.
 		//洹몃옒�빞 set �븿�닔媛� �옄�룞�쑝濡� 留뚮뱾�뼱吏꾨떎.
 	public String	nick;
+	
 	public int getNotice_no() {
 		return notice_no;
 	}

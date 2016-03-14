@@ -72,7 +72,7 @@ html, body {
 	float: right;
 	padding-top: 20px;
 }
- 
+
 #cssmenu {
 	clear: both
 }
@@ -194,7 +194,7 @@ a.logC:hover {
 		</ul>
 	</div>
 
-</div>
+
 
 <script src="/edutube/resources/JS/classie.js"></script>
 <script src="/edutube/resources/JS/selectFx.js"></script>

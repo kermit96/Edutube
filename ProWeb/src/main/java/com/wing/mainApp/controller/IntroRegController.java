@@ -23,45 +23,42 @@ import com.wing.mainApp.util.StringUtil;
 @Controller
 public class IntroRegController {
 	@Autowired
-	private IntroInfoDAO	iDao;//�뙆�씪 �젙蹂댁� 湲고� �젙蹂�
+	private IntroInfoDAO	iDao;//
 		
 	@RequestMapping("/IntroRegManager/IntroRegForm")
 	public ModelAndView	introRegForm(HttpSession session) {
 		ModelAndView		mv = new ModelAndView();
-	
-		if(!SessionUtil.isSession(session)) {
+		/*
+	  	if(!SessionUtil.isSession(session)) {
 			//	
-			RedirectView	rv = new RedirectView("../Member/member_form.do");
+			RedirectView	rv = new RedirectView("../Member/login.do");
 			mv.setView(rv);
 			return mv;
 		}
-		
-		//ArrayList	list = gmDao.getCate(null, 1);	
-		//		
-		//mv.addObject("LCATE", list);
+		*/
 		mv.setViewName("IntroRegManager/IntroRegForm");
 		return mv;
 	}
 	/*
-	 * 	
+	 * 강사 소개글 등록하기	
 	 */
 	@RequestMapping("/IntroRegManager/IntroReg")
 	public ModelAndView	introWrite(HttpSession session, IntroInfoData data) {
 		ModelAndView		mv = new ModelAndView();
+		
 		if(!SessionUtil.isSession(session)) {
 			//	
-			RedirectView	rv = new RedirectView("../Member/member_form.do");
+			RedirectView	rv = new RedirectView("../member/login.do");
 			mv.setView(rv);
 			return mv;
 		}
-		String	id = (String) session.getAttribute("loginId");//Joon
-		data.setMem_id(id);//媛뺤궗 ID �엯�젰
 		
+		String	id = (String) session.getAttribute("ID");
+		data.setMem_id(id);//		
 		String	gpath = session.getServletContext().getRealPath("gimgs");
 				
-		String	gimg1 = data.getGimg().getOriginalFilename();
-		String	gimg2 = "";
-		
+		String	gimg1 = data.getGimg().getOriginalFilename();		
+		String	gimg2 = "";		
 		if(StringUtil.isNull(gimg1)) {
 			gimg2 = "";			//	
 								//	
@@ -75,8 +72,9 @@ public class IntroRegController {
 			}
 			catch(Exception e) {}
 		}		
-		
+		//System.out.println("gimg2=" +gimg2);
 		data.setGimg2(gimg2);
+		
 		
 		iDao.insertIntroInfo(data);
 		//
@@ -88,12 +86,14 @@ public class IntroRegController {
 	@RequestMapping("/IntroRegManager/IntroLec")
 	public ModelAndView		introLec(HttpServletRequest req, HttpSession session,IntroInfoData data){
 		ModelAndView		mv = new ModelAndView();
+		/*
 		if(!SessionUtil.isSession(session)) {
 			//	
-			RedirectView	rv = new RedirectView("../Member/member_form.do");
+			RedirectView	rv = new RedirectView("../Member/login.do");
 			mv.setView(rv);
 			return mv;
-		}		
+		}
+		*/	
 		//mv.setViewName("IntroRegManager/IntroLec");
 		mv.setViewName("IntroRegManager/IntroList");
 		return mv;
@@ -101,32 +101,33 @@ public class IntroRegController {
 	@RequestMapping("/IntroRegManager/IntroList")
 	public ModelAndView		introList(HttpServletRequest req, HttpSession session,IntroInfoData data) {
 		ModelAndView		mv = new ModelAndView();
-		
+		/*
+		if(!SessionUtil.isSession(session)) {
+			//	
+			RedirectView	rv = new RedirectView("../Member/login.do");
+			mv.setView(rv);
+			return mv;
+		}
+		*/	
 		System.out.println("IntroList");
 		
 		String	strPage = req.getParameter("nowPage");
 		int		nowPage = 0;
-		//	占쎈솁占쎌뵬筌롫�苑ｏ옙�뮉 獄쏆꼶諭띰옙�뻻 占쎌젎野껓옙占쎌뱽 占쎈퉸占쎄퐣 占쎈씨占쎈뮉 野껋럩�뒭 筌ｌ꼶�봺�몴占� 占쎈퉸占쎈튊占쎈립占쎈뼄.
+		//	
 		if(StringUtil.isNull(strPage)) {
 			nowPage = 1;
 		}
 		else {
 			nowPage = Integer.parseInt(strPage);
 		}
-		//	占쎈읂占쎌뵠筌욑옙 占쎌젟癰귨옙 筌띾슢諭얏�⑨옙
+		//
 		int	total = iDao.selectTotal();
 		PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
 		pInfo.calcInfo();
-		//	筌뤴뫖以� �뤃�뗫릭�⑨옙
-		//		占쎌뜚占쎈릭占쎈뮉 占쎌맄燁살꼶占쏙옙 雅뚯눊由경에占� 占쎈튋占쎈꺗占쎈뻥占쎈뼄.
-		//									start		end
-		//		nowPage	1占쎈읂占쎌뵠筌욑옙		1 ~ 		5
-		//					2占쎈읂占쎌뵠筌욑옙		6 ~ 		10
 		
 		int	start = (pInfo.nowPage - 1) * pInfo.pageList + 1;
 		int	end = start + pInfo.pageList - 1;
-		//	筌띾뜆占쏙쭕占� 占쎈읂占쎌뵠筌욑옙占쎈뮉 5揶쏆뮄占� 占쎈툧占쎈쭍 占쎈땾占쎈즲 占쎌뿳占쎌몵沃섓옙嚥∽옙.....
-		//	�룯占� 占쎈쑓占쎌뵠占쎄숲 揶쏆뮇�땾癰귣��뼄 占쎌삂占쎌몵筌롳옙 �룯占� 占쎈쑓占쎌뵠占쎄숲揶쏆뮇�땾筌띾슦寃� �댆�눖沅∽쭖占� 占쎈쭆占쎈뼄.
+		
 		if(end > pInfo.totalCount) {
 			end = pInfo.totalCount;
 		}
@@ -136,101 +137,725 @@ public class IntroRegController {
 		map.put("end", end);
 		
 		ArrayList	list = iDao.selectIntroList(map);
-		
-		//	�뀎怨뺧옙占� �겫占썹몴紐껊뼄.
+	
 		mv.addObject("PINFO", pInfo);
 		mv.addObject("LIST", list);
 		mv.setViewName("IntroRegManager/IntroList");
 		return mv;
 	}
-	@RequestMapping("/IntroRegManager/IntroAList")
-	public ModelAndView		introAList(HttpServletRequest req, HttpSession session,IntroInfoData data) {
+	@RequestMapping("/IntroRegManager/IntroKorLang")
+	public ModelAndView		introKorList(HttpServletRequest req, HttpSession session,IntroInfoData data) {
 		ModelAndView		mv = new ModelAndView();
 		
-		System.out.println("IntroList");
-		
+		System.out.println("IntroKorLang");		
 		String	strPage = req.getParameter("nowPage");
 		int		nowPage = 0;
-		//	占쎈솁占쎌뵬筌롫�苑ｏ옙�뮉 獄쏆꼶諭띰옙�뻻 占쎌젎野껓옙占쎌뱽 占쎈퉸占쎄퐣 占쎈씨占쎈뮉 野껋럩�뒭 筌ｌ꼶�봺�몴占� 占쎈퉸占쎈튊占쎈립占쎈뼄.
 		if(StringUtil.isNull(strPage)) {
 			nowPage = 1;
 		}
 		else {
 			nowPage = Integer.parseInt(strPage);
 		}
-		//	占쎈읂占쎌뵠筌욑옙 占쎌젟癰귨옙 筌띾슢諭얏�⑨옙
 		int	total = iDao.selectTotal();
 		PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
 		pInfo.calcInfo();
-		//	筌뤴뫖以� �뤃�뗫릭�⑨옙
-		//		占쎌뜚占쎈릭占쎈뮉 占쎌맄燁살꼶占쏙옙 雅뚯눊由경에占� 占쎈튋占쎈꺗占쎈뻥占쎈뼄.
-		//									start		end
-		//		nowPage	1占쎈읂占쎌뵠筌욑옙		1 ~ 		5
-		//					2占쎈읂占쎌뵠筌욑옙		6 ~ 		10
-		
+				
 		int	start = (pInfo.nowPage - 1) * pInfo.pageList + 1;
 		int	end = start + pInfo.pageList - 1;
-		//	筌띾뜆占쏙쭕占� 占쎈읂占쎌뵠筌욑옙占쎈뮉 5揶쏆뮄占� 占쎈툧占쎈쭍 占쎈땾占쎈즲 占쎌뿳占쎌몵沃섓옙嚥∽옙.....
-		//	�룯占� 占쎈쑓占쎌뵠占쎄숲 揶쏆뮇�땾癰귣��뼄 占쎌삂占쎌몵筌롳옙 �룯占� 占쎈쑓占쎌뵠占쎄숲揶쏆뮇�땾筌띾슦寃� �댆�눖沅∽쭖占� 占쎈쭆占쎈뼄.
+		
 		if(end > pInfo.totalCount) {
 			end = pInfo.totalCount;
 		}
 		
+		/*
 		HashMap	map = new HashMap();
 		map.put("start", start);
 		map.put("end", end);
+		*/
+		String lang = "korlang";
+		HashMap	map = new HashMap();
+		map.put("lang",lang );
 		
-		ArrayList	list = iDao.selectIntroList(map);
+		ArrayList	list = iDao.selectIntroSub(map);
 		
-		//	�뀎怨뺧옙占� �겫占썹몴紐껊뼄.
 		mv.addObject("PINFO", pInfo);
 		mv.addObject("LIST", list);
-		mv.setViewName("IntroRegManager/IntroList");
+		mv.setViewName("IntroRegManager/IntroSmallList");
 		return mv;
 	}
-	@RequestMapping("/IntroRegManager/IntroBList")
-	public ModelAndView		introBList(HttpServletRequest req, HttpSession session,IntroInfoData data) {
+	@RequestMapping("/IntroRegManager/IntroJapLang")
+	public ModelAndView		introJapList(HttpServletRequest req, HttpSession session,IntroInfoData data) {
 		ModelAndView		mv = new ModelAndView();
 		
-		System.out.println("IntroList");
-		
+		//System.out.println("IntroKorLang");		
 		String	strPage = req.getParameter("nowPage");
 		int		nowPage = 0;
-		//	占쎈솁占쎌뵬筌롫�苑ｏ옙�뮉 獄쏆꼶諭띰옙�뻻 占쎌젎野껓옙占쎌뱽 占쎈퉸占쎄퐣 占쎈씨占쎈뮉 野껋럩�뒭 筌ｌ꼶�봺�몴占� 占쎈퉸占쎈튊占쎈립占쎈뼄.
 		if(StringUtil.isNull(strPage)) {
 			nowPage = 1;
 		}
 		else {
 			nowPage = Integer.parseInt(strPage);
 		}
-		//	占쎈읂占쎌뵠筌욑옙 占쎌젟癰귨옙 筌띾슢諭얏�⑨옙
 		int	total = iDao.selectTotal();
 		PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
 		pInfo.calcInfo();
-		//	筌뤴뫖以� �뤃�뗫릭�⑨옙
-		//		占쎌뜚占쎈릭占쎈뮉 占쎌맄燁살꼶占쏙옙 雅뚯눊由경에占� 占쎈튋占쎈꺗占쎈뻥占쎈뼄.
-		//									start		end
-		//		nowPage	1占쎈읂占쎌뵠筌욑옙		1 ~ 		5
-		//					2占쎈읂占쎌뵠筌욑옙		6 ~ 		10
-		
+				
 		int	start = (pInfo.nowPage - 1) * pInfo.pageList + 1;
 		int	end = start + pInfo.pageList - 1;
-		//	筌띾뜆占쏙쭕占� 占쎈읂占쎌뵠筌욑옙占쎈뮉 5揶쏆뮄占� 占쎈툧占쎈쭍 占쎈땾占쎈즲 占쎌뿳占쎌몵沃섓옙嚥∽옙.....
-		//	�룯占� 占쎈쑓占쎌뵠占쎄숲 揶쏆뮇�땾癰귣��뼄 占쎌삂占쎌몵筌롳옙 �룯占� 占쎈쑓占쎌뵠占쎄숲揶쏆뮇�땾筌띾슦寃� �댆�눖沅∽쭖占� 占쎈쭆占쎈뼄.
+		
+		if(end > pInfo.totalCount) {
+			end = pInfo.totalCount;
+		}
+		/*
+		HashMap	map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		*/
+		String lang = "japlang";
+		HashMap	map = new HashMap();
+		map.put("lang",lang );
+		ArrayList	list = iDao.selectIntroSub(map);
+		
+		mv.addObject("PINFO", pInfo);
+		mv.addObject("LIST", list);
+		mv.setViewName("IntroRegManager/IntroSmallList");
+		return mv;
+	}
+	@RequestMapping("/IntroRegManager/IntroChnLang")
+	public ModelAndView		introChnList(HttpServletRequest req, HttpSession session,IntroInfoData data) {
+		ModelAndView		mv = new ModelAndView();
+		
+		System.out.println("IntroKorLang");		
+		String	strPage = req.getParameter("nowPage");
+		int		nowPage = 0;
+		if(StringUtil.isNull(strPage)) {
+			nowPage = 1;
+		}
+		else {
+			nowPage = Integer.parseInt(strPage);
+		}
+		int	total = iDao.selectTotal();
+		PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
+		pInfo.calcInfo();
+				
+		int	start = (pInfo.nowPage - 1) * pInfo.pageList + 1;
+		int	end = start + pInfo.pageList - 1;
+		
 		if(end > pInfo.totalCount) {
 			end = pInfo.totalCount;
 		}
 		
+		/*
 		HashMap	map = new HashMap();
 		map.put("start", start);
 		map.put("end", end);
+		*/
+		String lang = "chnlang";
+		HashMap	map = new HashMap();
+		map.put("lang",lang );
+		ArrayList	list = iDao.selectIntroSub(map);
 		
-		ArrayList	list = iDao.selectIntroList(map);
-		
-		//	�뀎怨뺧옙占� �겫占썹몴紐껊뼄.
 		mv.addObject("PINFO", pInfo);
 		mv.addObject("LIST", list);
-		mv.setViewName("IntroRegManager/IntroList");
+		mv.setViewName("IntroRegManager/IntroSmallList");
+		return mv;
+	}
+	@RequestMapping("/IntroRegManager/IntroJavaLang")
+	public ModelAndView		introJavaList(HttpServletRequest req, HttpSession session,IntroInfoData data) {
+		ModelAndView		mv = new ModelAndView();
+		
+		//System.out.println("IntroKorLang");		
+		String	strPage = req.getParameter("nowPage");
+		int		nowPage = 0;
+		if(StringUtil.isNull(strPage)) {
+			nowPage = 1;
+		}
+		else {
+			nowPage = Integer.parseInt(strPage);
+		}
+		int	total = iDao.selectTotal();
+		PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
+		pInfo.calcInfo();
+				
+		int	start = (pInfo.nowPage - 1) * pInfo.pageList + 1;
+		int	end = start + pInfo.pageList - 1;
+		
+		if(end > pInfo.totalCount) {
+			end = pInfo.totalCount;
+		}
+		
+		/*
+		HashMap	map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		*/
+		String lang = "progjava";
+		HashMap	map = new HashMap();
+		map.put("lang",lang );
+		ArrayList	list = iDao.selectIntroSub(map);
+		
+		mv.addObject("PINFO", pInfo);
+		mv.addObject("LIST", list);
+		mv.setViewName("IntroRegManager/IntroSmallList");
+		return mv;
+	}
+	@RequestMapping("/IntroRegManager/IntroCLang")
+	public ModelAndView		introCLangList(HttpServletRequest req, HttpSession session,IntroInfoData data) {
+		ModelAndView		mv = new ModelAndView();
+		
+		//System.out.println("IntroKorLang");		
+		String	strPage = req.getParameter("nowPage");
+		int		nowPage = 0;
+		if(StringUtil.isNull(strPage)) {
+			nowPage = 1;
+		}
+		else {
+			nowPage = Integer.parseInt(strPage);
+		}
+		int	total = iDao.selectTotal();
+		PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
+		pInfo.calcInfo();
+				
+		int	start = (pInfo.nowPage - 1) * pInfo.pageList + 1;
+		int	end = start + pInfo.pageList - 1;
+		
+		if(end > pInfo.totalCount) {
+			end = pInfo.totalCount;
+		}
+		
+		/*
+		HashMap	map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		*/
+		String lang = "progclang";
+		HashMap	map = new HashMap();
+		map.put("lang",lang );
+		ArrayList	list = iDao.selectIntroSub(map);
+		
+		mv.addObject("PINFO", pInfo);
+		mv.addObject("LIST", list);
+		mv.setViewName("IntroRegManager/IntroSmallList");
+		return mv;
+	}
+	@RequestMapping("/IntroRegManager/IntroPhpLang")
+	public ModelAndView		introPhpLangList(HttpServletRequest req, HttpSession session,IntroInfoData data) {
+		ModelAndView		mv = new ModelAndView();
+		
+		//System.out.println("IntroKorLang");		
+		String	strPage = req.getParameter("nowPage");
+		int		nowPage = 0;
+		if(StringUtil.isNull(strPage)) {
+			nowPage = 1;
+		}
+		else {
+			nowPage = Integer.parseInt(strPage);
+		}
+		int	total = iDao.selectTotal();
+		PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
+		pInfo.calcInfo();
+				
+		int	start = (pInfo.nowPage - 1) * pInfo.pageList + 1;
+		int	end = start + pInfo.pageList - 1;
+		
+		if(end > pInfo.totalCount) {
+			end = pInfo.totalCount;
+		}
+		
+		/*
+		HashMap	map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		*/
+		String lang = "progphp";
+		HashMap	map = new HashMap();
+		map.put("lang",lang );
+		ArrayList	list = iDao.selectIntroSub(map);
+		
+		mv.addObject("PINFO", pInfo);
+		mv.addObject("LIST", list);
+		mv.setViewName("IntroRegManager/IntroSmallList");
+		return mv;
+	}
+	@RequestMapping("/IntroRegManager/IntroKorCook")
+	public ModelAndView		introKorCookList(HttpServletRequest req, HttpSession session,IntroInfoData data) {
+		ModelAndView		mv = new ModelAndView();
+		
+		//System.out.println("IntroKorLang");		
+		String	strPage = req.getParameter("nowPage");
+		int		nowPage = 0;
+		if(StringUtil.isNull(strPage)) {
+			nowPage = 1;
+		}
+		else {
+			nowPage = Integer.parseInt(strPage);
+		}
+		int	total = iDao.selectTotal();
+		PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
+		pInfo.calcInfo();
+				
+		int	start = (pInfo.nowPage - 1) * pInfo.pageList + 1;
+		int	end = start + pInfo.pageList - 1;
+		
+		if(end > pInfo.totalCount) {
+			end = pInfo.totalCount;
+		}
+		
+		/*
+		HashMap	map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		*/
+		String lang = "cookkor";
+		HashMap	map = new HashMap();
+		map.put("lang",lang );
+		ArrayList	list = iDao.selectIntroSub(map);
+		
+		mv.addObject("PINFO", pInfo);
+		mv.addObject("LIST", list);
+		mv.setViewName("IntroRegManager/IntroSmallList");
+		return mv;
+	}
+	@RequestMapping("/IntroRegManager/IntroJapCook")
+	public ModelAndView		introJapCookList(HttpServletRequest req, HttpSession session,IntroInfoData data) {
+		ModelAndView		mv = new ModelAndView();
+		
+		//System.out.println("IntroKorLang");		
+		String	strPage = req.getParameter("nowPage");
+		int		nowPage = 0;
+		if(StringUtil.isNull(strPage)) {
+			nowPage = 1;
+		}
+		else {
+			nowPage = Integer.parseInt(strPage);
+		}
+		int	total = iDao.selectTotal();
+		PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
+		pInfo.calcInfo();
+				
+		int	start = (pInfo.nowPage - 1) * pInfo.pageList + 1;
+		int	end = start + pInfo.pageList - 1;
+		
+		if(end > pInfo.totalCount) {
+			end = pInfo.totalCount;
+		}
+		
+		/*
+		HashMap	map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		*/
+		String lang = "cookjap";
+		HashMap	map = new HashMap();
+		map.put("lang",lang );
+		ArrayList	list = iDao.selectIntroSub(map);
+		
+		mv.addObject("PINFO", pInfo);
+		mv.addObject("LIST", list);
+		mv.setViewName("IntroRegManager/IntroSmallList");
+		return mv;
+	}
+	@RequestMapping("/IntroRegManager/IntroChnCook")
+	public ModelAndView		introChnCookList(HttpServletRequest req, HttpSession session,IntroInfoData data) {
+		ModelAndView		mv = new ModelAndView();
+		
+		//System.out.println("IntroKorLang");		
+		String	strPage = req.getParameter("nowPage");
+		int		nowPage = 0;
+		if(StringUtil.isNull(strPage)) {
+			nowPage = 1;
+		}
+		else {
+			nowPage = Integer.parseInt(strPage);
+		}
+		int	total = iDao.selectTotal();
+		PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
+		pInfo.calcInfo();
+				
+		int	start = (pInfo.nowPage - 1) * pInfo.pageList + 1;
+		int	end = start + pInfo.pageList - 1;
+		
+		if(end > pInfo.totalCount) {
+			end = pInfo.totalCount;
+		}
+		
+		/*
+		HashMap	map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		*/
+		String lang = "cookchn";
+		HashMap	map = new HashMap();
+		map.put("lang",lang );
+		ArrayList	list = iDao.selectIntroSub(map);
+		
+		mv.addObject("PINFO", pInfo);
+		mv.addObject("LIST", list);
+		mv.setViewName("IntroRegManager/IntroSmallList");
+		return mv;
+	}
+	@RequestMapping("/IntroRegManager/IntroWestCook")
+	public ModelAndView		introWestCookList(HttpServletRequest req, HttpSession session,IntroInfoData data) {
+		ModelAndView		mv = new ModelAndView();
+		
+		//System.out.println("IntroKorLang");		
+		String	strPage = req.getParameter("nowPage");
+		int		nowPage = 0;
+		if(StringUtil.isNull(strPage)) {
+			nowPage = 1;
+		}
+		else {
+			nowPage = Integer.parseInt(strPage);
+		}
+		int	total = iDao.selectTotal();
+		PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
+		pInfo.calcInfo();
+				
+		int	start = (pInfo.nowPage - 1) * pInfo.pageList + 1;
+		int	end = start + pInfo.pageList - 1;
+		
+		if(end > pInfo.totalCount) {
+			end = pInfo.totalCount;
+		}
+		
+		/*
+		HashMap	map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		*/
+		String lang = "cookwest";
+		HashMap	map = new HashMap();
+		map.put("lang",lang );
+		ArrayList	list = iDao.selectIntroSub(map);
+		
+		mv.addObject("PINFO", pInfo);
+		mv.addObject("LIST", list);
+		mv.setViewName("IntroRegManager/IntroSmallList");
+		return mv;
+	}
+	@RequestMapping("/IntroRegManager/IntroView")
+	public ModelAndView	introView(HttpServletRequest req, HttpSession session,IntroInfoData data) {
+		ModelAndView		mv = new ModelAndView();
+		//로그인한 사람만 목록을 보여주고 싶으면.....
+			/*
+			if(!SessionUtil.isSession(session)) {
+				RedirectView	rv = new RedirectView("../Member/login.do");
+				mv.setView(rv);
+				return mv;
+			}
+            */
+			String	strPage = req.getParameter("nowPage");
+			int		nowPage = 0;
+			String	strNo = req.getParameter("oriNo");
+			System.out.println("strNo=" +strNo);
+			int	oriNo = Integer.parseInt(strNo);
+			//	
+			if(StringUtil.isNull(strPage)) {
+				nowPage = 1;
+			}
+			else {
+				nowPage = Integer.parseInt(strPage);
+			}
+			//	
+			int	total = iDao.getTotal(1);
+			PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
+			pInfo.calcInfo();
+			
+			int	start = (pInfo.nowPage - 1) * pInfo.pageList + 1;
+			int	end = start + pInfo.pageList - 1;
+			
+			if(end > pInfo.totalCount) {
+				end = pInfo.totalCount;
+			}
+			
+			HashMap	map = new HashMap();
+			map.put("start", start);
+			map.put("end", end);
+			
+			IntroInfoData	temp= iDao.selectView(oriNo);	
+			//System.out.println("temp="+temp.getNotice_title());
+			//	뷰를 선택한다.
+			//	뷰에게 전달할 내용을 준다.
+			mv.addObject("PINFO", pInfo);
+			mv.addObject("DATA", temp);
+			mv.addObject("oriNo", oriNo);
+			mv.addObject("NOWPAGE", nowPage);
+			//System.out.println("NowPage=" +nowPage);
+		mv.setViewName("IntroRegManager/IntroView");
+		return mv;
+	}
+	/*
+	 * 	
+	 */
+	@RequestMapping("/IntroRegManager/IntroDelete")
+	public ModelAndView	introDelete(HttpServletRequest req, HttpSession session) {
+			ModelAndView		mv = new ModelAndView();
+			//로그인한 사람만 목록을 보여주고 싶으면.....
+			if(!SessionUtil.isSession(session)) {
+				RedirectView	rv = new RedirectView("../Member/login.do");
+				mv.setView(rv);
+				return mv;
+			}
+			//할일
+			//넘어온 파라메터 받는다.
+			String	strPage = req.getParameter("nowPage");
+			//System.out.println("test ="+strPage);
+			//String	pw = req.getParameter("pw");
+			String	strNo = req.getParameter("oriNo");
+			int		nowPage = Integer.parseInt(strPage);
+			int		oriNo = Integer.parseInt(strNo);
+			//System.out.println("nowPage");
+			//System.out.println("oriNo");
+			//삭제 할 수 있는지 확인한다.
+			HashMap	map = new HashMap();
+			map.put("NO", oriNo);
+			//map.put("PW", pw);
+			int	cnt = iDao.isUpdate(map);
+			if(cnt == 0) {
+				//	삭제하면 안되는 경우
+				System.out.println("isUpdate");
+				RedirectView 	rv = new RedirectView("../IntroRegManager/IntroView.do");
+				rv.addStaticAttribute("oriNo", oriNo);
+				rv.addStaticAttribute("nowPage", nowPage);
+				mv.setView(rv);
+				return mv;
+			}
+			else {
+				//		삭제한다.
+				System.out.println("삭제한다");
+				iDao.deleteIntro(oriNo);
+			}
+			RedirectView	rv = new RedirectView("../IntroRegManager/IntroList.do");
+			mv.setView(rv);
+			//		뷰를 선택한다.
+			return mv;
+	}
+	@RequestMapping("/IntroRegManager/IntroModifyForm")
+	public ModelAndView	introModifyForm(IntroInfoData data,HttpServletRequest req,HttpSession session) {
+		ModelAndView		mv = new ModelAndView();
+		//로그인한 사람만 목록을 보여주고 싶으면.....
+		if(!SessionUtil.isSession(session)) {
+			RedirectView	rv = new RedirectView("../Member/login.do");
+			mv.setView(rv);
+			return mv;
+		}
+		String	strPage = req.getParameter("nowPage");
+		//String	pw = req.getParameter("pw");
+		String	strNo = req.getParameter("oriNo");
+		int		nowPage = Integer.parseInt(strPage);
+		int		oriNo = Integer.parseInt(strNo);
+
+		//
+		HashMap	map = new HashMap();
+		map.put("NO", oriNo);
+		//map.put("PW", pw);
+		int	cnt = iDao.isUpdate(map);
+		IntroInfoData result = new IntroInfoData();
+		if(cnt == 0) {
+			//				
+			RedirectView 	rv = new RedirectView("../IntroRegManager/IntroView.do");
+			rv.addStaticAttribute("oriNo", oriNo);
+			rv.addStaticAttribute("nowPage", nowPage);
+			mv.setView(rv);
+			return mv;
+		}
+		else {
+			result = iDao.selectView(oriNo);
+		}
+
+		mv.addObject("DATA", result);
+		System.out.println("mem_id="+result.getMem_id());
+		mv.addObject("NOWPAGE", nowPage);
+		mv.setViewName("IntroRegManager/IntroModifyForm");
+		return mv;
+	}
+	@RequestMapping("/IntroRegManager/IntroModify")
+	public ModelAndView	introModify(HttpSession session,IntroInfoData data,HttpServletRequest req) {
+		ModelAndView		mv = new ModelAndView();
+		System.out.println("Modifyfffdfdfdfd");
+		/*
+		if(!SessionUtil.isSession(session)) {
+			RedirectView	rv = new RedirectView("../Member/Login.do");
+			mv.setView(rv);
+			return mv;
+		}
+		*/		
+		//String	id = (String) session.getAttribute("ID");
+		//data.setMem_id(id);//		
+		// 추가할 파일 이름 변경
+		String	gpath = session.getServletContext().getRealPath("gimgs");
+		String	gimg1 = data.getGimg().getOriginalFilename();		
+		String	gimg2 = "";		
+		if(StringUtil.isNull(gimg1)) {
+			gimg2 = "";			//	
+								//	
+		}
+		else {
+			gimg2 = FileUtil.rename(gpath, gimg1);
+			//	
+			File temp = new File(gpath, gimg2);
+			try {
+				data.getGimg().transferTo(temp);
+			}
+			catch(Exception e) {}
+		}		
+		//System.out.println("gimg2=" +gimg2);
+		data.setGimg2(gimg2);		
+	    
+		//
+		String kind = req.getParameter("flag");
+		int	flag = Integer.parseInt(kind);
+		System.out.println("flag="+flag);
+		if(flag==1){
+			iDao.updateIntroPhoto(data,1);
+		}
+		else {
+			iDao.updateIntroPhoto(data,0); 			
+		}
+		
+		RedirectView	rv = new RedirectView("../IntroRegManager/IntroList.do");
+		rv.addStaticAttribute("oriNo", data.getIntro_no());
+		rv.addStaticAttribute("nowPage", data.getNowPage());
+		mv.setView(rv);
+		return mv;		
+	}
+	
+	@RequestMapping("/IntroRegManager/IntroHit")
+	public ModelAndView introHit(HttpServletRequest req, HttpSession session) {
+		ModelAndView		mv = new ModelAndView();
+		
+		String	strPage = req.getParameter("nowPage");
+		
+		if(StringUtil.isNull(strPage)) {
+			RedirectView	rv = new RedirectView("../IntroRegManager/IntroList.do");
+			mv.setView(rv);
+			return mv;
+		}
+		int	nowPage = Integer.parseInt(strPage);
+		String	strNo = req.getParameter("oriNo");
+		int	oriNo = Integer.parseInt(strNo);
+		//String kind = req.getParameter("flag");
+	
+		//String	id = (String) session.getAttribute("ID");
+		//	1.
+		/*
+		HashMap	showMap = nDao.getShowno(id);
+		boolean	isHit = false;		//	
+		if(showMap == null || showMap.isEmpty()) {
+			//	
+			//	
+			isHit = true;
+			//	
+			//	
+			HashMap 	temp = new HashMap();
+			temp.put("ID", id);
+			temp.put("NO", ":" + oriNo + ":");
+			nDao.updateShowno(temp, 2);
+		}
+		else {
+			
+			String	tempNo = ":" + oriNo + ":";
+			String	dbNo = (String) showMap.get("SHOWNO");
+			int index = dbNo.indexOf(tempNo);
+			if(index == -1) {
+				
+				isHit = true;
+				
+				HashMap	temp = new HashMap();
+				temp.put("ID", id);
+				temp.put("NO", dbNo + tempNo);
+				nDao.updateShowno(temp, 1);
+			}
+			else {
+				isHit = false;
+			}
+		}
+	
+		if(isHit == true) {
+			
+			nDao.updateHit(oriNo);
+		}
+			*/
+		//
+		System.out.println("IntroHit");
+		RedirectView	rv = new RedirectView("../IntroRegManager/IntroView.do");
+		rv.addStaticAttribute("oriNo", oriNo);
+		rv.addStaticAttribute("nowPage", nowPage);
+		//rv.addStaticAttribute("flag", kind);
+		mv.setView(rv);
+		return mv;
+	}
+		
+	@RequestMapping("/IntroRegManager/IntroSearch")
+	public ModelAndView	introSearch(HttpServletRequest req, HttpSession session) {
+		System.out.println("Searchfdfd");
+		ModelAndView		mv = new ModelAndView();
+		//	
+		//System.out.println("NoticeSearchfdfd");
+		String	strPage = req.getParameter("nowPage");
+		int		nowPage = 0;
+		if(StringUtil.isNull(strPage)) {
+			nowPage = 1;
+		}
+		else {
+			nowPage = Integer.parseInt(strPage);
+		}
+		String	kind = req.getParameter("kind");
+		String	content = req.getParameter("content");
+		
+		if(StringUtil.isNull(kind)) {
+			
+			kind = (String) session.getAttribute("kind");
+			content = (String) session.getAttribute("content");
+			
+			if(StringUtil.isNull(kind)) {
+				//	Redirect
+				System.out.println("Redirect");
+			}
+		}
+		//	
+		session.setAttribute("kind", kind);
+		session.setAttribute("content", content);
+		
+		//		
+		HashMap	map = new HashMap();
+		map.put("kind", kind);
+		map.put("CONTENT", content);
+		int	count = iDao.getSearchCount(map);
+		System.out.println("S="+count);
+		PageUtil	pInfo = new PageUtil(nowPage, count, 5, 5);
+		//pInfo.calcInfo2();
+		System.out.println("IntroSearch");
+		//	
+		ArrayList	list = iDao.getSearch(map);
+		/*
+		for(Object obj :list  ) {
+			
+			IntroInfoData map2 = (IntroInfoData)obj;
+			System.out.println(map2.getMem_id());			
+		}
+		*/
+		
+		ArrayList	result = new ArrayList();		
+		
+		if(list.size() != 0) {
+			//	
+			int		start = (pInfo.nowPage - 1) * pInfo.pageList;
+			int		end = start + pInfo.pageList - 1;
+			//	
+			if(end >= list.size()) {
+				end = list.size() - 1;
+			}			
+			
+			for(int i = start; i <= end; i++) {
+				result.add(list.get(i));
+			}
+		}
+		//	
+		//System.out.println("IntroSearch");
+		mv.addObject("PINFO", pInfo);
+		mv.addObject("LIST", result);
+		mv.setViewName("/IntroRegManager/IntroSearch");
 		return mv;
 	}
 	
