@@ -17,8 +17,13 @@
 <link rel="icon" href="/edutube/favicon.ico" type="image/x-icon" />
 
 <!--CSS-->
+<link rel="stylesheet" href="/edutube/resources/CSS/bootstrap.min.css">
+<link rel="stylesheet" href="/edutube/resources/CSS/customB.css">
+<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
 
 <!--JS-->
+<script src="/edutube/resources/JS/jquery-2.1.4.min.js"></script>
+<script src="/edutube/resources/JS/bootstrap.min.js"></script>
 
 <!--CustomScript-->
 <script>
@@ -142,10 +147,8 @@
 						<c:if test="${sessionScope.NAL eq 'L' }">
 						<tr>
 							<td colspan=6 align="center">
-								<button class="btn btn-success" type="button"
-									onclick="JavaScript:classWrite();">
-									<span class="glyphicon glyphicon-pencil"></span>글쓰기
-								</button>
+								<a class="button button-blue" onclick="JavaScript:classWrite();"><i class="fa fa-globe"></i>
+								글쓰기</a>
 							</td>
 						</tr>
 						</c:if>					

@@ -28,8 +28,8 @@ public class MediaData {
 		this.mediaURL = mediaURL;
 	}	
 	
-	public String getRealURL() {
-		return mediaURL.substring(17, 28);
+	public String getRealURL() {		
+		return mediaURL.substring(17);
 	}
 	
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.wing.mainApp.data.ClassListData;
 import com.wing.mainApp.data.MediaData;
+import com.wing.mainApp.data.ReplyData;
 
 
 
@@ -109,5 +110,76 @@ public class ClassListDAO {
 	public int getMaxNO(){
 		return sqlSession.selectOne("clist.selectMAX");
 	}
+	
+	/*봤던글 조회*/
+	@SuppressWarnings("rawtypes")
+	public HashMap getShowno(String ID){
+		return sqlSession.selectOne("clist.showno",ID);		
+	}
+	
+	/*본글 업데이트 혹은 삽입*/
+	@SuppressWarnings("rawtypes")
+	public void updateShowno(HashMap map,int kind){
+		// kind 1 이면 update, 2이면 insertt 를 실행 시키도록 한다.
+		if(kind == 1){
+			sqlSession.update("clist.updateshowno",map);
+		}
+		else{
+			sqlSession.insert("clist.insertshowno",map);
+		}		
+	}
+
+	/*
+	 *  조회수 실제로 증가 시키기
+	 */
+	public void updateHit(int NO){
+		sqlSession.update("clist.updatehit",NO);
+	}
+	
+	/**
+	 * 추천 SQL 
+	 * */
+	/*추천수 조회*/
+	@SuppressWarnings("rawtypes")
+	public HashMap getShownoGood(String ID){
+		return sqlSession.selectOne("clist.shownogood",ID);		
+	}
+	
+	/*본글 업데이트 혹은 삽입*/
+	@SuppressWarnings("rawtypes")
+	public void updateShownoGood(HashMap map,int kind){
+		// kind 1 이면 update, 2이면 insertt 를 실행 시키도록 한다.
+		if(kind == 1){
+			sqlSession.update("clist.updateshownogood",map);
+		}
+		else{
+			sqlSession.insert("clist.insertshownogood",map);
+		}		
+	}
+	
+	/*
+	 *  추천수 실제로 증가 시키기
+	 */
+	public void updateGood(int NO){
+		sqlSession.update("clist.updategood",NO);
+	}
+	/*추천수 조회*/
+	public int selectGood(int NO){
+		return sqlSession.selectOne("clist.selectGood",NO);
+	}
+	
+	/**
+	 * 	댓글 기능
+	 * */
+	/*댓글 등록*/
+	public void insertReply(ReplyData data){
+		sqlSession.insert("clist.insertReply", data);
+	}
+	/*댓글 리스트*/
+	@SuppressWarnings("rawtypes")
+	public ArrayList getReplyList(int orino) {
+		return (ArrayList) sqlSession.selectList("clist.selectReply",orino);		
+	}
+	
 	
 }

@@ -109,7 +109,7 @@ public class ClassListData {
 
 	
 	public String getRealdate() {
-		SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat form = new SimpleDateFormat("yy-MM-dd");
 		return form.format(wdate);
 	}
 	

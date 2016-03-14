@@ -32,7 +32,49 @@
 	function goClassList(){
 		location.href="../ClassList/ClassList.do?nowPage=${nowPage}&code=${CODE}";
 	}
-
+	function goWriteRe(){
+		loacation.href="../ClassList/ClassReplyWrite.do?code=${CODE}&nowPage=${nowPage}&oriNo=${DATA.no}";
+	}
+	
+	$(document).ready(	function() {
+		$("#rewBtn").click(function() {
+			
+				/* 유효성검사 */
+					$relplybody=$("#relplybody").val();					
+					$relplybody=$relplybody.replace(/^\s+|\s+$/g,"");
+										
+					$relplybody = $("#relplybody").val();
+						if ($relplybody == "") {
+							alert("본문을 입력해 주세요");
+							return;
+					}
+			
+				$("#reFrm").attr("action",
+					"../ClassList/ClassReplyWrite.do?code=${CODE}&nowPage=${nowPage}&oriNo=${DATA.no}");
+				$("#reFrm").submit();
+		});
+	});
+		
+	/* 좋아요 처리 */
+	$(document).ready(function(){
+	$("#goodB").click(function(){
+		$.ajax({
+			url : "../ClassList/ClassGood.do",
+			data : "oriNo=${DATA.no}&temp=" + new Date(),
+			dataType : "xml",
+			type : "GET",
+			success : function(data) {
+				//	응답 결과를 좋아요 단추에 기록해준다.
+				$good = $(data).find("good").text();
+				$("#goodVal").html($good);				
+			},
+			error : function() {
+				alert("에러다");
+			}
+		});
+	});
+	}); /*좋아요 처리 끝*/
+	
 </script>
 
 <!--  스타일 -->
@@ -89,6 +131,8 @@
 	width:800px;
 	height:100%;
 	margin:0 auto;
+	padding:20px;
+	border-bottom:2px solid orange;
 }
 #bodycontent{
 	width:800px;
@@ -99,18 +143,25 @@
 	width:800px;
 	height:100%;
 	margin:0 auto;
+	margin-bottom:20px;
+	border-top:2px solid orange;
 }
 #utilBar00{
+	float:right;
 	width:800px;
 	height:100%;
 	margin:0 auto;
+	border-top:2px solid orange;
+	border-bottom:2px solid orange;
+	padding:20px;
 }
 #titleC{
 	border-top:2px solid purple;
-	border-bottom:2px solid purple;
+	border-bottom:2px solid orange;
 	width:800px;
 	height:100%;
 	margin:0 auto;
+	padding:10px;
 }
 p#title{
 	font-family: 나눔고딕, 'NanumGothic';
@@ -118,10 +169,29 @@ p#title{
 	font color: black;
 	font-weight: plane;
 }
-#utilT{
-	border-bottom:1px solid black;
+p#cheer{
+	font-family: 나눔고딕, 'NanumGothic';
+	font-size: 18px;
+	font color: black;
+	font-weight: plane;
+}
+#replyWF{
+	width:800px;
+	height:100%;
+	margin:0 auto;
+	padding:20px;
+	border-bottom:2px solid orange;
 }
 
+#replyList{
+	width:800px;
+	height:100%;
+	margin:0 auto;
+}
+textarea#relplybody{
+	width:600px;
+	resize:none;
+}
 
 </style>
 </head>
@@ -150,25 +220,19 @@ p#title{
 								<p id="title">[${DATA.code}]${DATA.title}</p>							
 					</div>		
 					<div id="ContentTop">
-						<table id="utilT">
-							<tr>
-								<td	colspan="2" style="padding:20px">강사 : <a href="#">${DATA.nick}</a></td>								
-							</tr>
-							<tr>
-								<td style="padding:20px">
-										작성일 : ${DATA.realdate}
-								</td>
-								<td style="padding:20px">
-										조회수 : ${DATA.hit}
-								</td>
-							</tr>
-						</table>					
-					</div><!--  realcontent1 끝 -->
+						<i class="fa fa-user"></i>강사 : <a href="#">${DATA.nick}</a>								
+						&nbsp;&nbsp;&nbsp;	
+						작성일 : ${DATA.realdate}				
+						&nbsp;&nbsp;&nbsp;		
+						조회수 : ${DATA.hit}
+					</div><!--  topcontent 끝 -->
 					<div id="bodycontent">
 						${DATA.body}
-					</div>
+					</div>					
 					<div id="goodUtil">
-							추천 : ${DATA.good}
+						<p id="cheer">마음에 드는 강의면 추천을 눌러주세요 :)&nbsp;&nbsp;(중복추천 불가)</p>
+							<button class="btn btn-primary" type="button"  id="goodB" >
+							<i class="fa fa-thumbs-o-up"></i>좋아요!<span class="badge" id="goodVal">${DATA.good}</span></button>						
 					</div>
 					<div id="utilBar00">
 						<c:if test="${DATA.id eq sessionScope.ID}">
@@ -176,6 +240,24 @@ p#title{
 						<a class="button button-red" onClick="JavaScript:delContent();"><i class="fa fa-times"></i>삭제하기</a>
 						</c:if>						
 						<a class="button button-orange" onClick="JavaScript:goClassList();" id="ListBtn" >목록으로</a>	
+					</div>
+					
+					<div id="replyWF">
+					<h2>댓글 남기기</h2>
+						<div id="replybox">
+							<form id="reFrm" name="reFrm" method="POST">							
+							<textarea class="form-control" rows="4" id="relplybody"  name="relplybody" required></textarea>
+							</form>
+							<a class="button button-green" id="rewBtn"><i class="fa fa-check"></i>
+							댓글 쓰기</a>
+						</div>
+					</div>
+					
+					<div id="replyList">
+						<div id="replyListDiv">
+							<%-- <c:forEach var="reContent" items="${RELIST}">
+							</c:forEach> --%>
+						</div>					
 					</div>				
 
 				</div><!--  viewmain 끝 -->

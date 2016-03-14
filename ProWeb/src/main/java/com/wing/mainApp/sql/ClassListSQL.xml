@@ -41,10 +41,8 @@
 	</insert>
 	<!--  이번에 넣을 레코드 pk 최고값 -->
 	<select id="selectMAX" resultType="int">
-        SELECT distinct
-                    (SELECT NVL(MAX(class_no), 0) + 1 FROM class) AS maxNO
-        FROM
-            class
+        SELECT NVL(MAX(class_no), 0) + 1  AS maxNO
+         FROM class
 	</select>
 	
 	
@@ -159,5 +157,127 @@
         AND
             c.class_no = v.class_no
 	</select>
+	
+	<!--  봤던글 검색 -->
+	<select id="showno" resultType="Hmap" parameterType="String">
+		select
+			mem_ID as ID,
+			hit_classno as SHOWNO
+		From
+			Hit
+		where
+			mem_ID=#{ID}	
+	</select>
+	
+	<!--  봤던글번호 업데이트 -->
+	<update id="updateshowno" parameterType="Hmap">
+		UPDATE
+			Hit
+		SET		
+			hit_classno = #{NO}
+		WHERE
+			mem_ID=#{ID}
+	</update>
+	
+	<!--  최초로 본글이면 삽입 -->
+	<insert id ="insertshowno" parameterType="Hmap">
+		INSERT
+		INTO
+			Hit
+		Values
+			(#{ID},#{NO})		
+	</insert>
+	
+	<!--  실제로 조회수 증가 -->
+	<update id="updatehit" parameterType="int">
+			UPDATE
+			class
+		SET
+			class_Hit = class_Hit + 1
+		WHERE
+			class_no = #{NO}
+	</update>
+	
+	<!-- 좋아요 SQL -->
+		<!--  봤던글 검색 -->
+	<select id="shownogood" resultType="Hmap" parameterType="String">
+		select
+			mem_ID as ID,
+			good_no as SHOWNO
+		From
+			good
+		where
+			mem_ID=#{ID}	
+	</select>
+	
+	<!--  봤던글번호 업데이트 -->
+	<update id="updateshownogood" parameterType="Hmap">
+		UPDATE
+			good
+		SET		
+			good_no = #{NO}
+		WHERE
+			mem_ID=#{ID}
+	</update>
+	
+	<!--  최초로 본글이면 삽입 -->
+	<insert id ="insertshownogood" parameterType="Hmap">
+		INSERT
+		INTO
+			good
+		Values
+			(#{ID},#{NO})		
+	</insert>
+	
+	<!--  실제로 조회수 증가 -->
+	<update id="updategood" parameterType="int">
+			UPDATE
+			class
+		SET
+			class_good = class_good + 1
+		WHERE
+			class_no = #{NO}
+	</update>	
+	
+	<select id="selectGood" parameterType="int" resultType="int">
+		SELECT
+			class_good
+		From
+			class
+		Where
+			class_no=#{NO}		
+	</select>
+	
+	<!--  좋아요 SQL 끝 -->
+	
+	<!--  댓글달기 -->
+	<insert id="insertReply" parameterType="replydata">
+		Insert 
+		INTO
+			Reply (re_no,class_no,mem_id,mem_nick,re_body)
+		Values
+			((SELECT NVL(MAX(re_no), 0) + 1 FROM reply),#{orino},#{reid},#{renick},#{rebody})	
+	</insert>
+
+	<!--  댓글 리스트 -->
+	<select id="selectReply" parameterType="int" resultType="replydata">
+		Select
+		    re_no AS reno,
+		    mem_nick AS renick,
+		    re_body AS rebody,
+		    re_date AS redate
+		FROM
+		    reply
+		WHERE
+		    re_isDeleted = 'N'
+		 AND
+		 	class_no = #{orino}   
+		ORDER BY
+		    reno asc   
+	</select>
+	
+	<!--  댓글 수정 -->
+	
+	<!--  댓글 삭제 -->
 
 </mapper>
