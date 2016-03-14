@@ -258,6 +258,18 @@
 		Values
 			((SELECT NVL(MAX(re_no), 0) + 1 FROM reply),#{orino},#{reid},#{renick},#{rebody})	
 	</insert>
+	
+	<!--  댓글 토탈 -->
+	<select id="gettotal" resultType="java.lang.Integer">
+		SELECT
+			COUNT(*) AS TOTAL
+		FROM
+			reply
+		WHERE
+			reply_isDeleted='N'
+		AND
+			class_no=#{}	
+	</select>
 
 	<!--  댓글 리스트 -->
 	<select id="selectReply" parameterType="int" resultType="replydata">

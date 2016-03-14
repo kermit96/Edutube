@@ -3,7 +3,7 @@
 <mapper namespace="notice">
 <!-- 최근 공지글 번호 검색  -->
     <select id="noticemax" resultType="java.lang.Integer">
-    SELECT max(notice_no) as TEST FROM Notice WHERE notice_isDeleted='Y'
+    SELECT NVL(MAX(notice_no), 0) + 1  as TEST FROM Notice WHERE notice_isDeleted='N'
 	</select> 
 	
 

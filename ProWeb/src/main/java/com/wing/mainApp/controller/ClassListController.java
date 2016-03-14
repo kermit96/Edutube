@@ -261,12 +261,6 @@ public class ClassListController {
 			isExist = false;
 		}
 		
-		/*댓글 리스트 불러오기*/
-		ArrayList list = lDao.getReplyList(oriNo);
-/*		ArrayList result = null;
-		mv.addObject("RELIST",result);*/
-		
-		
 		mv.addObject("isExist",isExist);
 		mv.addObject("mList",mList);
 		mv.addObject("DATA", map);
@@ -526,6 +520,38 @@ public class ClassListController {
 		mv.addObject("oriNO",oriNo);
 		mv.addObject("CODE",listcode);
 		mv.setViewName("ClassList/ClassReplyWrite");
+		
+		return mv;
+	}
+	
+	/**
+	 * 댓글리스트 기능
+	 * */		
+	@RequestMapping("/ClassList/ClassGood")
+	public ModelAndView	 replyList(HttpServletRequest req, HttpSession session) {
+		ModelAndView	 mv = new ModelAndView();
+		
+		/*비회원 로그인고*/
+		if(!SessionUtil.isSession(session)) {
+			RedirectView	rv = new RedirectView("../member/login.do?returnurl=%2Fedutube%2Fmain.do");
+			mv.setView(rv);
+			return mv;
+		}
+		
+		/**필요한 값 받아오기*/
+		
+		String	strNo = req.getParameter("oriNo");
+		int	oriNo = Integer.parseInt(strNo);
+		String listcode = req.getParameter("code");
+		
+		String strpage = req.getParameter("rePage");
+		int	rePage = 0;
+		if(StringUtil.isNull(strpage)){
+			rePage = 1;
+		}
+		else {
+			rePage = Integer.parseInt(strpage);
+		}
 		
 		return mv;
 	}
