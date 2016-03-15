@@ -46,7 +46,7 @@
 	            	
 	            	 if (data.result)
 	                 {   
-	            		 $("#checknickname").html("사용할수 없는 nickname 입니다. ");
+	            		 $("#checknickname").html("#{LANGDATA.unusenickname}");
 	            		 $("#mem_nick").focus();		 
 	            	 } else {            	
 	            		 $("#checknickname").html("사용할수 있는 nickname 입니다. ");

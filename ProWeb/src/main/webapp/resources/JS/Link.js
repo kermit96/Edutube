@@ -113,10 +113,11 @@
 
 		 var loc = window.location;
 			
-		 var html = loc.pathname+loc.search+loc.hash;
+		 var html = "/edutube/member/joinmember.do";
 		
-		 location.href="/edutube/member/memberjoin.do"+"?returnurl=" +encodeURIComponent(html);		
-
+		 // location.href="/edutube/member/joinmember.do";
+		 window.open(html,"_blank");
+		 
 	}	
 
 

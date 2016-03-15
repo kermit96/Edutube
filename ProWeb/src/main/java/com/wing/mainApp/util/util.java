@@ -207,7 +207,7 @@ public class util {
 		        }
 		        */
 		   		   
-		        System.out.println("is my ip check=="+IsMyIp("192.168.56.18"));
+		        System.out.println("is my ip check=="+IsMyIp("127.0.0.1"));
 		        		        
 		       	 
 

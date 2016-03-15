@@ -147,14 +147,16 @@ a.logC:hover {
 				<c:if test="${sessionScope.ID eq null}">
 
 					<div id="state_login">
-						<a href="JavaScript:goLogin();" class="logC">로그인</a>&nbsp;&nbsp;<a href="JavaScript:joinmember()" class="logC">회원가입</a>
-						<select id="lang" name="lang">
-							<option value="0" disabled selected>Language</option>
-							<option>Kor</option>
-							<option>Eng</option>
-							<option>Japan</option>
-							<option></option>
+						<a href="JavaScript:goLogin();" class="logC">로그인</a>&nbsp;&nbsp;<a href="JavaScript:memberJoin()" class="logC">회원가입</a>
+						
+						<select id="lang" name="lang" onchange="goLanguage()">
+							<option value="ko"> 한국어</option>
+							<option value="en">English</option>
+							<option value="ja">日本語</option>
+							<option value="ch">中國(繁體)</option>
+							<option value="ch_en">中国()简体)</option>
 						</select>
+						
 					</div>
 				</c:if>
 
@@ -164,12 +166,12 @@ a.logC:hover {
 					<div id="state_logout">
 						<a href="JavaScript:goLogout()" class="logC">로그아웃</a>&nbsp;&nbsp;<a href="JavaScript:goInfo()"
 							class="logC">마이페이지</a>
-							<select id="lang" name="lang">
-							<option value="0" disabled selected>Language</option>
-							<option>Kor</option>
-							<option>Eng</option>
-							<option>Japan</option>
-							<option></option>
+							<select id="lang" name="lang" onchange="goLanguage()">
+							<option value="ko"> 한국어</option>
+							<option value="en">English</option>
+							<option value="ja">日本語</option>
+							<option value="ch">中國(繁體)</option>
+							<option value="ch_en">中国()简体)</option>
 						</select>
 					</div>
 					</c:if>	
@@ -233,6 +235,38 @@ a.logC:hover {
 			
 	}
 	
+	
+	var lang = "${sessionScope.LANG}";
+	
+	$("#lang").val(lang);
+	
+	
+	function goLanguage()
+	{		
+		var lang = $("#lang").val();
+        try {
+            $.ajax({
+                url:"/edutube/lang/changelang.do",
+                async:false,
+                type:'post',
+                dataType:'html',
+                cache:false,
+                data:{lang:lang},
+                success:function(data){
+                	// 재로딩
+                	location.href=location.href;         	              
+                },
+                error:function(request,status,error){
+                     alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                   }
+                	                                    
+            });
+    		
+            } catch (ex) {        	
+            	alert("ajax="+ex);
+            }
+		    
+	}
 
 	
 </script>

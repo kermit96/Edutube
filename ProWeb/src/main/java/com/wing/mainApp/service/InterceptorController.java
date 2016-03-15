@@ -21,9 +21,11 @@ public class InterceptorController extends HandlerInterceptorAdapter  {
 				throws Exception {
 			// TODO Auto-generated method stub
 				
+	
+		
 		  HttpSession ses =  request.getSession();
 		  
-		  String lang = (String)ses.getAttribute("Lang");
+		  String lang = (String)ses.getAttribute("LANG");
 		  
 		  if (StringUtil.isNull(lang)) {
 
@@ -34,7 +36,7 @@ public class InterceptorController extends HandlerInterceptorAdapter  {
 			  
 			  
               for(Cookie cookie :cookes) {
-            	  if (cookie.getName().equals("Lang"))
+            	  if (cookie.getName().equals("LANG"))
             	  {            		  
             		  lang = cookie.getValue();
             		  break;            		  
@@ -43,10 +45,15 @@ public class InterceptorController extends HandlerInterceptorAdapter  {
 			  
               if (StringUtil.isNull(lang)) {
             	  lang = "ko";
-            	  response.addCookie(new Cookie("Lang",lang));             	  
+            	  response.addCookie(new Cookie("LANG",lang));             	  
               }
+              
+              ses.setAttribute("LANG", lang);
                                           			  
 		  }
+		  
+		  
+		  System.out.println("lang = "+lang);
 		  
 		   HashMap map = Langxml.load(lang);    
 	

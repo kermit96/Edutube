@@ -14,6 +14,7 @@ import java.util.HashMap;
  
 public class Langxml {
     static private Langxml xml;
+    static private Object obj = new Object();
     private HashMap kolangmap = new HashMap(); // 한국어 map 	
     private HashMap japanlangmap = new HashMap();  // 일본어 map
     private HashMap enlangmap = new HashMap();  // 영어 map
@@ -24,9 +25,10 @@ public class Langxml {
     
     static public Langxml getinstance() {       
     	if (xml == null) {
-    		synchronized(xml) {
+    		synchronized(obj) {
     			if (xml == null) {
-    				xml = new Langxml();    				
+    				xml = new Langxml();
+    				xml.LoadLang();
     			}    			
     		}    		    		
     	}
@@ -74,17 +76,25 @@ public class Langxml {
         	  
               for(Node node = descNodes.item(i).getFirstChild(); node!=null; node=node.getNextSibling()){ //첫번째 자식을 시작으로 마지막까지 다음 형제를 실행
    
+            	  
+            	  System.out.println("node="+node.getNodeName());
+            	  
                   if(node.getNodeName().equals("id")){
-                	  id = node.getTextContent();                	  
+                	  id = node.getTextContent();       
+                	  System.out.println("id="+id);
                     }else if(node.getNodeName().equals("ko")){
                     	ko = node.getTextContent();
+                    	System.out.println("ko="+ko);
+                    	
                   }else if(node.getNodeName().equals("ja")){
                       ja =  node.getTextContent();
                   }else if(node.getNodeName().equals("ch")){
                     ch =  node.getTextContent();
                   } else if(node.getNodeName().equals("ch_en")){
                       ch_cn =  node.getTextContent();
-                    }
+                    } else if(node.getNodeName().equals("en")){
+                        en =  node.getTextContent();
+                    }   
   
               }
               
@@ -155,15 +165,9 @@ public class Langxml {
   
 		String sConfPath="";
 		sConfPath = sPath + File.separator + "conf"+File.separator +"lang";				
-		
-		
-		return sConfPath;
-	
-		
-	}
 
-    
-    
+		return sConfPath;		
+	}
     
 	private Langxml()
 	{
@@ -171,35 +175,68 @@ public class Langxml {
 		
 	}
 	
-	public HashMap getMap(String lang)
+	static public  HashMap load() {		
+		Langxml xml =  getinstance();				
+		return  xml.getMap(); 
+	}
+	
+	
+	public HashMap getMap()
 	{
-		
-		this.lang = lang;
-		if (lang.toLowerCase() == "ko") {
+		if (lang.toLowerCase().equals("ko")) {
 			
 			 return kolangmap;
 		}
 		
-		if (lang.toLowerCase() == "ja") {
+		if (lang.toLowerCase().equals("ja")) {
 			
 			 return japanlangmap;
 		}
-		
 
-		if (lang.toLowerCase() == "en") {
+		if (lang.toLowerCase().equals("en")) {		
 			
 			 return enlangmap;
 		}
 
+		if (lang.toLowerCase().equals("ch")) {	
+			 return chlangmap;
+		}
 		
-		if (lang.toLowerCase() == "ch") {
+		if (lang.toLowerCase().equals("ch_cn")) {
+			 return ch_cnlangmap;
+		}
+
+		return kolangmap;
+		
+	}
+	
+	
+	public HashMap getMap(String lang)
+	{
+		
+		this.lang = lang;
+		
+		if (lang.toLowerCase().equals("ko")) {
 			
+			 return kolangmap;
+		}
+		
+		if (lang.toLowerCase().equals("ja")) {
+			
+			 return japanlangmap;
+		}
+
+		if (lang.toLowerCase().equals("en")) {		
+			
+			 return enlangmap;
+		}
+
+		if (lang.toLowerCase().equals("ch")) {	
 			 return chlangmap;
 		}
 		
 		
-		if (lang.toLowerCase() == "ch_cn") {
-			
+		if (lang.toLowerCase().equals("ch_cn")) {
 			 return ch_cnlangmap;
 		}
 		

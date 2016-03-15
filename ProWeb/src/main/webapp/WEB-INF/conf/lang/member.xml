@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<languages>
+	<lang>
+		<id>unusenickname</id>
+		<ko>사용할수 없는 nickname 입니다.</ko>
+		<ja>使用できないnicknameです。</ja>
+		<en>Unavailable nickname.</en>
+		<ch>不可用暱稱。</ch>
+		<ch_en>不可用昵称。</ch_en>
+	</lang>
+	<lang>
+		<id>usenickname</id>
+		<ko>사용할수 있는 nickname 입니다.</ko>
+		<ja>使用できるnicknameです。</ja>
+		<en>You can use a nickname.</en>
+		<ch>您可以使用昵称。</ch>
+		<ch_en>您可以使用暱稱。</ch_en>
+</lang>
+
+</languages>

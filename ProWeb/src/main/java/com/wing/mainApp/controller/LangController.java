@@ -16,14 +16,18 @@ public class LangController {
 	@RequestMapping("/lang/changelang")
 	public void changelang(HttpServletRequest request,HttpServletResponse response  ,HttpSession session){
 		
-		String lang =  request.getParameter("Lang");
+		
+		
+		String lang =  request.getParameter("lang");
+		
+
 		
 		if (StringUtil.isNull(lang)) 
 			return;
 		
-		session.setAttribute("Lang", lang);
+		session.setAttribute("LANG", lang);
 		
-		response.addCookie(new Cookie("Lang",lang));
+		response.addCookie(new Cookie("LANG",lang));
 		
 		try 
 		{
@@ -35,7 +39,7 @@ public class LangController {
 			
 		}
 		
-			
+
 	}
 		
 }
