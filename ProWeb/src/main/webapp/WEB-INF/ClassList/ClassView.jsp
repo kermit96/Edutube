@@ -28,13 +28,16 @@
 		location.href="../ClassList/ClassModifyForm.do?code=${CODE}&nowPage=${nowPage}&oriNo=${DATA.no}";
 	}
 	function delContent(){
-		location.href="../ClassList/ClassDelete.do?nowPage=${nowPage}&code=${CODE}&oriNo=${DATA.no}";
+		var check = confirm("정말 글을 삭제하시겠습니까?");
+		if(check){
+			location.href="../ClassList/ClassDelete.do?nowPage=${nowPage}&code=${CODE}&oriNo=${DATA.no}";
+		}
+		else{
+			return;
+		}
 	}
 	function goClassList(){
 		location.href="../ClassList/ClassList.do?nowPage=${nowPage}&code=${CODE}";
-	}
-	function goWriteRe(){
-		loacation.href="../ClassList/ClassReplyWrite.do?code=${CODE}&nowPage=${nowPage}&oriNo=${DATA.no}";
 	}
 	
 	$(document).ready(	function() {
@@ -77,26 +80,85 @@
 	}); /*좋아요 처리 끝*/
 	
 	/*댓글보기*/
-		function getReList() {
-				
-				//	이 함수가 실행되면(단추를 누르면...)
-				//	ajax를 통해서	AjaxResp.jsp를 서버에 요청해서 달라고 한다.
-				$.ajax({
-					url:"../ClassList/ReplyList.do",
-					data:"oriNo=${DATA.no}&temp=" + new Date(),
-					type:"GET",
-					dataType:"html",
-					success: function(data){
-						$("#replyListDiv").html(data);
-					},
-					error: function(){
-						alert("이거나오면 안되는데....");
-					}
-				});
-				//	이제 필요한 속성을 쓰면 된다.
-				//	속성의 순서는 관계가 없다.
-				//	필요한 속성만 골라서 쓰면 된다.
+	$(document).ready(function(){
+		getReListD(1);		
+	});
+	
+	function getReList(num) {				
+		var rePage=num;				
+		$.ajax({
+			url:"../ClassList/ReplyList.do",
+			data:"oriNo=${DATA.no}&rePage="+rePage+"&temp="+new Date(),
+			type:"GET",
+			dataType:"html",
+			success: function(data){
+				$("#replyListDiv").html(data);
+				document.body.scrollTop = document.body.scrollHeight;
+			},
+			error: function(){
+				alert("이거나오면 안되는데....");
 			}
+		});		
+	}
+	
+	function getReListD(num) {				
+		var rePage=num;				
+		$.ajax({
+			url:"../ClassList/ReplyList.do",
+			data:"oriNo=${DATA.no}&rePage="+rePage+"&temp=" + new Date(),
+			type:"GET",
+			dataType:"html",
+			success: function(data){
+				$("#replyListDiv").html(data);				
+			},
+			error: function(){
+				alert("이거나오면 안되는데....");
+			}
+		});		
+	}
+	
+	function writeReply(num) {				
+		var no=num;
+		$content=$("#relplybody").val();
+		$.ajax({
+			url:"../ClassList/ClassReplyWrite.do",
+			data:"relplybody="+$content+"&oriNo="+no+"&temp="+new Date(),
+			type:"POST",			
+			success: function(data){				
+				getReList("last");
+			},
+			error: function(){
+				alert("이거나오면 안되는데....");
+			}
+		});		
+	}
+	
+	/*댓글 리스트 끝*/
+	
+	/*댓글 삭제&수정*/
+		function deleteReply(num) {	
+		
+		var check = confirm("정말 댓글을 삭제하시겠습니까?");
+		
+		 if(check){		
+			var no=num;
+			
+			$.ajax({
+				url:"../ClassList/ReplyDelete.do",
+				data:"&reno="+no+"&temp="+new Date(),
+				type:"POST",			
+				success: function(data){				
+					getReList("last");
+				},
+				error: function(){
+					alert("이거나오면 안되는데....");
+				}
+			});
+		 }
+		 else{
+			 return;
+		 }
+	}
 	
 </script>
 
@@ -205,16 +267,21 @@ p#cheer{
 	padding:20px;
 	border-bottom:2px solid orange;
 }
-
+/*댓글 배경*/
 #replyList{
 	width:800px;
 	height:100%;
 	margin:0 auto;
-	background-color:#B6CDDF;
+	background-color:#ecf0f5;
 }
 textarea#relplybody{
 	width:600px;
 	resize:none;
+}
+#replyPagingDiv{
+	width:800px;
+	margin:0 auto;
+	text-align:center;
 }
 
 </style>
@@ -272,23 +339,14 @@ textarea#relplybody{
 							<form id="reFrm" name="reFrm" method="POST">							
 							<textarea class="form-group" rows="4" id="relplybody"  name="relplybody" required></textarea>
 							</form>
-							<a class="button button-green" id="rewBtn"><i class="fa fa-check"></i>
+							<a class="button button-green" onClick="JavaScript:writeReply(${DATA.no});"><i class="fa fa-check"></i>
 							댓글 쓰기</a>
 						</div>
 					</div>
 					
 					<div id="replyList">
-						<div id="replyListDiv">
-							
-						</div>	
-					
-						<div id="replyPagingDiv">
-							댓글 페이징
-						</div>
-						<div id="replyUtil">
-							<a class="button button-green" id="rewBtn" onClick="JavaScript:getReList();"><i class="fa fa-check"></i>
-							댓글 보기</a>
-						</div>				
+						<div id="replyListDiv">							
+						</div>								
 					</div>				
 
 				</div><!--  viewmain 끝 -->

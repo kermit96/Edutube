@@ -185,6 +185,9 @@ public class ClassListDAO {
 	public ArrayList getReplyList(int orino) {
 		return (ArrayList) sqlSession.selectList("clist.selectReply",orino);		
 	}
-	
+	/*댓글 삭제*/
+	public void deleteReply(int reno){
+		sqlSession.update("clist.deleteReply",reno);
+	}
 	
 }
