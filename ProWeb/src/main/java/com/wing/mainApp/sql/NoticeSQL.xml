@@ -3,9 +3,9 @@
 <mapper namespace="notice">
 <!-- 최근 공지글 번호 검색  -->
     <select id="noticemax" resultType="java.lang.Integer">
-    SELECT NVL(MAX(notice_no), 0)as TEST 
+    SELECT NVL(MAX(notice_no), 0) as TEST 
     FROM Notice
-    WHERE notice_isDeleted='Y'
+    WHERE notice_isDeleted='N'
 	</select> 
 	
 
@@ -16,7 +16,7 @@
 			Notice
 		VALUES
 			((SELECT NVL(MAX(notice_no), 0) + 1 FROM Notice), 
-			#{mem_id}, #{notice_title}, #{notice_body}, SYSDATE, SYSDATE, 'Y')
+			#{mem_id}, #{notice_title}, #{notice_body}, SYSDATE, SYSDATE, 'N')
 	</insert>	
 	
 <!-- 	총 데이터 개수 구하기 질의 -->	
@@ -26,7 +26,7 @@
 		FROM
 			Notice
 		WHERE
-			notice_isDeleted = 'Y'
+			notice_isDeleted = 'N'
 	</select>
 <!-- 	게시물 목록 질의 
 		resutType을 데이터빈 클래스 형태로 지정하면
@@ -47,7 +47,7 @@
 			(SELECT
 				rownum AS RNO, t1.*
 			FROM
-				(SELECT * FROM notice WHERE notice_isDeleted='Y' ORDER BY notice_no DESC) t1)	
+				(SELECT * FROM notice WHERE notice_isDeleted='N' ORDER BY notice_no DESC) t1)	
 		WHERE
 		RNO BETWEEN #{start} AND #{end}			
 	</select>
@@ -62,7 +62,7 @@
 		FROM
 			Notice		
 		WHERE
-			notice_isDeleted = 'Y'
+			notice_isDeleted = 'N'
 			AND notice_no=#{NO}
 		ORDER BY notice_no DESC 
 		<!-- 	AND	mem_id = #{id} -->
@@ -157,7 +157,7 @@
 		UPDATE
 			notice
 		SET
-			notice_isDeleted = 'N'
+			notice_isDeleted = 'Y'
 		WHERE
 			notice_no = #{NO}
 	</update>
@@ -196,7 +196,7 @@
 		FROM
 			Notice
 		WHERE
-			notice_isDeleted = 'Y'
+			notice_isDeleted = 'N'
 			<choose>
 				<when test="kind eq 'title'">
 			AND	notice_title LIKE '%' || #{CONTENT} || '%'
