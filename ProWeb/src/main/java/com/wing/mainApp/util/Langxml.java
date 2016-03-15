@@ -20,14 +20,15 @@ public class Langxml {
     private HashMap chlangmap = new HashMap();  // 중국어 번체
     private HashMap ch_cnlangmap = new HashMap(); // 중국어 간체 
     
+    private String  lang = "ko";
+    
     static public Langxml getinstance() {       
     	if (xml == null) {
     		synchronized(xml) {
     			if (xml == null) {
     				xml = new Langxml();    				
     			}    			
-    		}
-    		    		
+    		}    		    		
     	}
              	
     	return xml;
@@ -49,9 +50,74 @@ public class Langxml {
     	return list;
     }
     
-    public void ParseXml(String filename)
+    public void ParseXml(String filename) 
     {
-    	
+           
+    	try {
+    	 DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+    	  DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+    	  Document doc = dBuilder.parse(filename);
+    	  doc.getDocumentElement().normalize();
+    	  
+    	  NodeList descNodes = doc.getElementsByTagName("lang");
+    	  
+
+    		 
+          for(int i=0; i<descNodes.getLength();i++){
+
+        	 String id = "";
+        	 String ko="";
+        	 String  en="";
+        	 String  ja = "";
+        	 String  ch = "";
+        	 String  ch_cn = "";
+        	  
+              for(Node node = descNodes.item(i).getFirstChild(); node!=null; node=node.getNextSibling()){ //첫번째 자식을 시작으로 마지막까지 다음 형제를 실행
+   
+                  if(node.getNodeName().equals("id")){
+                	  id = node.getTextContent();                	  
+                    }else if(node.getNodeName().equals("ko")){
+                    	ko = node.getTextContent();
+                  }else if(node.getNodeName().equals("ja")){
+                      ja =  node.getTextContent();
+                  }else if(node.getNodeName().equals("ch")){
+                    ch =  node.getTextContent();
+                  } else if(node.getNodeName().equals("ch_en")){
+                      ch_cn =  node.getTextContent();
+                    }
+  
+              }
+              
+               if (StringUtil.isNull(id)) 
+            	   break;
+               
+               if (StringUtil.isNull(ko)) 
+            	   break;
+               
+               if (StringUtil.isNull(en)) 
+            	   en = ko;
+               
+               if (StringUtil.isNull(ja)) 
+            	   ja = ko;
+               
+               if (StringUtil.isNull(ch)) 
+            	   ch = ko;
+               
+               if (StringUtil.isNull(ch_cn)) 
+            	   ch_cn = ko;
+                              
+               this.kolangmap.put(id, ko);
+               this.japanlangmap.put(id, ja);
+               this.enlangmap.put(id, en);
+               this.chlangmap.put(id, ch);
+               this.ch_cnlangmap.put(id, ch_cn);
+          }
+
+    	  
+    	} catch (Exception ex) {
+    		
+    		
+    	}
     	
     }
     
@@ -107,18 +173,20 @@ public class Langxml {
 	
 	public HashMap getMap(String lang)
 	{
-		if (lang.toLowerCase() == "korea") {
+		
+		this.lang = lang;
+		if (lang.toLowerCase() == "ko") {
 			
 			 return kolangmap;
 		}
 		
-		if (lang.toLowerCase() == "japan") {
+		if (lang.toLowerCase() == "ja") {
 			
-			 return kolangmap;
+			 return japanlangmap;
 		}
 		
 
-		if (lang.toLowerCase() == "english") {
+		if (lang.toLowerCase() == "en") {
 			
 			 return enlangmap;
 		}
