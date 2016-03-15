@@ -65,7 +65,7 @@
          AND
          	class_isDeleted='N'
         ORDER BY
-            no DESC
+            class_no DESC
 	</select>
 	<!-- 목록보기 (과목별)-->
 	<select id="getlistofsub" resultType="ClassListData" parameterType="String">
@@ -86,7 +86,7 @@
         AND
          	class_isDeleted='N' 
         ORDER BY
-            no DESC			
+            class_no DESC			
 	</select>
 	
 
