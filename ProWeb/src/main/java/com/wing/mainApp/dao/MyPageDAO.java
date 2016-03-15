@@ -42,6 +42,13 @@ public class MyPageDAO {
 	}
 	
 	/*
+	 * 보여줘 안보여줘
+	 */
+	public void visionREP(MyPageData data) {
+		sqlSession.update("mypage.repvision", data);
+	}
+	
+	/*
 	 * 회원정지
 	 */
 	public void stopREP(String str) {

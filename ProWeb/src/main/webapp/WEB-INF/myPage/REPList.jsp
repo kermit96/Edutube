@@ -9,7 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
 	<script>
-	function Sex(no){
+	function StopUser(no){
 		location.href="../myPage/REPUserstop.do?no="+no;
 	}
 	</script>
@@ -26,6 +26,7 @@
 				<td>신고글 번호</td>
 				<td>회원정지</td>
 			</tr>
+			
 			<c:forEach var="temp" items="${LIST}">
 				<tr>
 				<td>${temp.id}</td>
@@ -35,7 +36,7 @@
 				<td>${temp.bcode}</td>
 				<td>${temp.bno}</td>
 				<td>
-					<input type="button" value="정지" id="sBtn"  Onclick="JavaScript:Sex(${temp.no})"/>
+					<input type="button" value="정지" id="sBtn"  Onclick="JavaScript:StopUser(${temp.no})"/>
 				</td>
 				</tr>
 			</c:forEach>

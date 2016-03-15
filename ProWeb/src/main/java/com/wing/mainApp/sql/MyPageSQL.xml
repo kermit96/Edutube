@@ -21,19 +21,22 @@
 <!-- 신고 데이터 목록보기 질의 -->
 	<select id="repselect"  resultType="mdata">
 		SELECT
-			REP_no		AS		NO,
-			MEM_id 		AS		ID,
-			REP_code	AS 	CODE,
-			REP_bcode	AS		BCODE,
-			REP_bno 	AS 	BNO,
-			REP_reid 	AS		REPID,
-			REP_cDate AS		WDATE
+			r.REP_no		AS		no,
+			r.MEM_id 		AS		id,
+			r.REP_code		AS 	code,
+			r.REP_bcode	AS		bcode,
+			r.REP_bno 		AS 	bno,
+			r.REP_reid 		AS		repid,
+			r.REP_cDate 	AS		wdate,
+			m.MEM_block	AS 	block
 		FROM
-			REPORT
+			REPORT r, MEMBER m
 		WHERE
-			REP_isDeleted= 'N'
+			 r.REP_isDeleted= 'N'
+            AND m.Mem_id = r.Mem_id
+            AND R.REP_ISDELETED = 'N'
 		ORDER BY
-			REP_no ASC
+			r.REP_no ASC
 	</select>
 <!-- 회원정지 질의 -->
 	<update id="userstop" parameterType="java.lang.String">
@@ -43,15 +46,23 @@
 			mem_block = 'F'
 		WHERE
 			mem_id= #{repid}
+	</update>
+<!-- 보여줘 안보여줘 -->
+<update id="repvision" parameterType="java.lang.Integer">
+		UPDATE
+			REPORT
+		SET
+			REP_isDeleted = 'Y'
+		WHERE
+			REP_no= #{no}
 	</update> 
 <!-- 정지시킬 ID 알아오기 -->
 	<select id="selectrepid" parameterType="java.lang.Integer" resultType="java.lang.String">
 		SELECT
-			REP_REID AS repid
+			REP_REID AS REPID
 		FROM
 			REPORT
 		WHERE
 			REP_NO =#{no}
-	
 	</select>	
 </mapper>

@@ -207,9 +207,12 @@ public class MyPageController {
 	public ModelAndView REPWrite(MyPageData data) {
 		ModelAndView mv = new ModelAndView();
 
+		System.out.println(data.repid);
 		mDao.insertREP(data);
+		System.out.println(data.repid);
+		
 		// 뷰를 부른다
-		RedirectView rv = new RedirectView("../myPage/REPList.do");
+		RedirectView rv = new RedirectView("myPageMain.do");
 		mv.setView(rv);
 		return mv;
 	}
@@ -218,7 +221,7 @@ public class MyPageController {
 	 * 신고목록보기 
 	 */
 	@RequestMapping("/myPage/REPList")
-	public ModelAndView REPList(HttpServletRequest req) {
+	public ModelAndView REPList(HttpServletRequest req, Member data, HttpSession session) {
 		ModelAndView	mv = new ModelAndView();
 		String	strPage = req.getParameter("nowPage");
 		int			nowPage = 0;
@@ -236,8 +239,10 @@ public class MyPageController {
 		ArrayList result = new ArrayList();
 		for(int i = 0; i < total; i++) {
 			MyPageData		temp = (MyPageData)list.get(i);
+			System.out.println("adfasdfas"+temp.block);
 			result.add(temp);
 		}
+		
 		
 		mv.addObject("LIST", result);
 		mv.setViewName("myPage/REPList");
@@ -252,13 +257,11 @@ public class MyPageController {
 	public ModelAndView REPUserStop(MyPageData data, HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView();
 		
-		
 		String strNo = req.getParameter("no");
 		int no = Integer.parseInt(strNo);
-		System.out.println(no);
 		String repId = mDao.selectRepid(no);
-		System.out.println(repId);
 		mDao.stopREP(repId);
+		mDao.visionREP(data);
 		
 		RedirectView	rv = new RedirectView("../myPage/REPList.do");
 		mv.setView(rv);

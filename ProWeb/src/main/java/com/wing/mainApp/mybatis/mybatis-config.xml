@@ -23,6 +23,7 @@
 		<typeAlias alias="subdata" type="com.wing.mainApp.data.SubjectData" />
 		<typeAlias alias="appdata" type="com.wing.mainApp.data.ApplyData" />
 		<typeAlias alias="mediadata" type="com.wing.mainApp.data.MediaData" />
+		<typeAlias alias="mdata" type="com.wing.mainApp.data.MyPageData" />
 	</typeAliases>
 	
 	<mappers>
@@ -36,6 +37,8 @@
 		<mapper resource="/com/wing/mainApp/sql/IntroInfoSQL.xml" />
 		<mapper resource="/com/wing/mainApp/sql/CommonSQL.xml" />
 		<mapper resource="/com/wing/mainApp/sql/ApplySQL.xml" />
+		<mapper resource="/com/wing/mainApp/sql/MyPageSQL.xml" />
+		<mapper resource="/com/wing/mainApp/sql/SearchSQL.xml" />
 	</mappers>
 
 </configuration>
