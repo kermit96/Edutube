@@ -5,6 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta property="og:site_name" content="EduTube"/>
+	<meta property="og:image" content="http://192.168.56.103:8080/edutube/resources/img/logo.png">	
+	<meta property="og:title" content="[${DATA.code}]${DATA.title}" />	
+	
 <title>EduTube</title>
 <!--CSS-->
 <link rel="stylesheet" href="/edutube/resources/CSS/bootstrap.min.css">
@@ -24,6 +29,14 @@
 
 <!--스크립트-->
 <script>
+
+	/*페북 공유*/
+	function faceShare(){
+		window.open("https://www.facebook.com/sharer/sharer.php"
+				+"?u="+encodeURIComponent(window.location.href)			
+		);
+	}
+	
 	function moContent(){
 		location.href="../ClassList/ClassModifyForm.do?code=${CODE}&nowPage=${nowPage}&oriNo=${DATA.no}";
 	}
@@ -135,7 +148,7 @@
 	
 	/*댓글 리스트 끝*/
 	
-	/*댓글 삭제&수정*/
+	/*댓글 삭제*/
 		function deleteReply(num) {	
 		
 		var check = confirm("정말 댓글을 삭제하시겠습니까?");
@@ -145,6 +158,31 @@
 			
 			$.ajax({
 				url:"../ClassList/ReplyDelete.do",
+				data:"&reno="+no+"&temp="+new Date(),
+				type:"POST",			
+				success: function(data){				
+					getReList("last");
+				},
+				error: function(){
+					alert("이거나오면 안되는데....");
+				}
+			});
+		 }
+		 else{
+			 return;
+		 }
+	}
+	
+		/*댓글 수정*/
+		function modiReply(num) {	
+		
+		var check = confirm("정말 댓글을 삭제하시겠습니까?");
+		
+		 if(check){		
+			var no=num;
+			
+			$.ajax({
+				url:"../ClassList/ReplyModi.do",
 				data:"&reno="+no+"&temp="+new Date(),
 				type:"POST",			
 				success: function(data){				
@@ -233,6 +271,7 @@
 }
 #utilBar00{
 	float:right;
+	text-align:right;
 	width:800px;
 	height:100%;
 	margin:0 auto;
@@ -275,6 +314,10 @@ p#cheer{
 	background-color:#ecf0f5;
 }
 textarea#relplybody{
+	width:600px;
+	resize:none;
+}
+textarea#modibody{
 	width:600px;
 	resize:none;
 }
@@ -330,12 +373,13 @@ textarea#relplybody{
 						<a class="button button-yellow" onClick="JavaScript:moContent();"><i class="fa fa-clock-o"></i>수정하기</a>
 						<a class="button button-red" onClick="JavaScript:delContent();"><i class="fa fa-times"></i>삭제하기</a>
 						</c:if>						
-						<a class="button button-orange" onClick="JavaScript:goClassList();" id="ListBtn" >목록으로</a>	
+						<a class="button button-orange" onClick="JavaScript:goClassList();" id="ListBtn" >목록으로</a>
+						<a class="button button-purple" onClick="JavaScript:faceShare();"><i class="fa fa-facebook-official"></i>공유하기</a>
 					</div>
 					
-					<div id="replyWF">
-					<h2>댓글 남기기</h2>
+					<div id="replyWF">					
 						<div id="replybox">
+							<p>&nbsp;</p>
 							<form id="reFrm" name="reFrm" method="POST">							
 							<textarea class="form-group" rows="4" id="relplybody"  name="relplybody" required></textarea>
 							</form>

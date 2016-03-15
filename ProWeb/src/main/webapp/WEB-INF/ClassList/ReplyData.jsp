@@ -12,7 +12,7 @@
 							            <span class="time"><i class="fa fa-clock-o"></i> ${recontent.realdate}</span>							
 							            <h3 class="timeline-header"><i class="fa fa-android"></i>No : ${recontent.reno}&nbsp;<a href="#">${recontent.renick}</a></h3>
 							
-							            <div class="timeline-body">
+							            <div class="timeline-body" id="modiDiv">
 							               ${recontent.realbody}
 							            </div>
 							

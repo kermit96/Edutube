@@ -103,6 +103,8 @@
 				
 				</ul>
 				
+				<a href="/edutube/ClassList/test.do">테스트</a>
+				
 			</div><!--  실제로 들어갈 내용 -->
 			
 		</div><!-- 메뉴바 밑 감싸기 -->

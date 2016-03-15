@@ -194,7 +194,7 @@ a.logC:hover {
 		</ul>
 	</div>
 
-
+</div><!-- 이게 들어가야 03/15 노란색줄 수정 된거 -->
 
 <script src="/edutube/resources/JS/classie.js"></script>
 <script src="/edutube/resources/JS/selectFx.js"></script>

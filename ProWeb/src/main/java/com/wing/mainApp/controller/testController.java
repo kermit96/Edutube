@@ -18,6 +18,15 @@ public class testController {
 		return mv;		
 	}
 	
+	@RequestMapping("/ClassList/test")
+	public ModelAndView test(){
+	
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("ClassList/test");
+		return mv;		
+	}
+	
 	@RequestMapping("/Sch/debugList")
 	public ModelAndView debugList(){
 	
