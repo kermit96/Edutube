@@ -14,7 +14,7 @@
 		<typeAlias alias="String" type="java.lang.String" />
 		<typeAlias alias="Alist" type="java.util.ArrayList" />
 		<typeAlias alias="Hmap" type="java.util.HashMap" />
-		<typeAlias alias="ClassListData" type="com.wing.mainApp.data.ClassListData" />
+     	<typeAlias alias="ClassListData" type="com.wing.mainApp.data.ClassListData" />		
 		<typeAlias alias="schData" type="com.wing.mainApp.data.ScheduleData" />				
 		<typeAlias alias="dwdata" type="com.wing.mainApp.data.DownLoadData" />	
 		<typeAlias alias="cbdata" type="com.wing.mainApp.data.BoardData" />
@@ -22,8 +22,8 @@
 		<typeAlias alias="idata" type="com.wing.mainApp.data.IntroInfoData" />
 		<typeAlias alias="subdata" type="com.wing.mainApp.data.SubjectData" />
 		<typeAlias alias="appdata" type="com.wing.mainApp.data.ApplyData" />
-		<typeAlias alias="mediadata" type="com.wing.mainApp.data.MediaData" />
-		<typeAlias alias="replydata" type="com.wing.mainApp.data.ReplyData" />
+		<typeAlias alias="mediadata" type="com.wing.mainApp.data.MediaData" /> 
+		<typeAlias alias="replydata" type="com.wing.mainApp.data.ReplyData" /> 
 		
 	</typeAliases>
 	
