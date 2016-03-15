@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -53,6 +54,7 @@
 		table {
 			width:100%;
 			border-collapse:collapse;
+			
 			font-size:16px; /*글꼴 크기*/
 			line-height:24px;/*줄 간격*/
 		}		
@@ -66,6 +68,7 @@
 		}
 		</style>
 		<script>
+			//	상세보기 요청을 해줄 함수
 			//	상세보기 요청을 해줄 함수
 			function goDetail(orino) {
 				//	매개변수	선택한 글의 번호가 기억될 예정이다.
@@ -124,6 +127,7 @@
 						</select>
 						<input type="text" id="content" name="content">
 						<input type="button" value="검색" id="sBtn" class="btn btn-primary btn-sm">
+						<input type="button" id="wBtn" value="글쓰기" class="btn btn-primary btn-sm">
 					</form>
 				</td>
 			</tr>
@@ -153,7 +157,7 @@
 					</td>
 					<!-- <td>${temp.notice_body}</td>  -->
 					<td id="dday" class="text-center">${DATA.mem_id}</td>
-					<td class="text-center">${DATA.notice_date}</td>
+					<td class="text-center"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${DATA.notice_date}"/></td>
 			 </tr>
 			
 		   	<c:forEach	var="temp" items="${LIST}">
@@ -164,7 +168,7 @@
 						</td>
 						<!-- <td>${temp.notice_body}</td>  -->
 						<td class="text-center">${temp.mem_id}</td>
-						<td class="text-center">${temp.notice_date}</td>				
+						<td class="text-center"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${temp.notice_date}"/></td>				
 					</tr>
 			</c:forEach>
 			</c:if>	
@@ -184,7 +188,12 @@
 							<a href="../Notice/NoticeList.do?nowPage=${PINFO.startPage - 1}">[이 전]</a>
 						</c:if>
 						<c:forEach var="temp" begin="${PINFO.startPage}" end="${PINFO.endPage}">
-							<a href="../Notice/NoticeList.do?nowPage=${temp}">[ ${temp} ]</a>
+							<c:if test="${temp eq PINFO.nowPage}">
+								[${temp}]
+							</c:if>
+							<c:if test="${temp ne PINFO.nowPage}">
+								<a href="../Notice/NoticeList.do?nowPage=${temp}">[ ${temp} ]</a>
+							</c:if>
 						</c:forEach>
 						<c:if test="${PINFO.endPage eq PINFO.totalPage}">
 							[다 음]
@@ -192,20 +201,11 @@
 						<c:if test="${PINFO.endPage ne PINFO.totalPage}">
 							<a href="../Notice/NoticeList.do?nowPage=${PINFO.endPage + 1}">[다 음]</a>
 						</c:if>
-					    <a href="../Notice/NoticeList.do?nowPage=${PINFO.totalPage}">[마지막]</a> -->
+					    <a href="../Notice/NoticeList.do?nowPage=${PINFO.totalPage}">[마지막]</a>
 					</td>
 				</tr>
 			</table>		
 <!-- 	기타 부가 기능 -->
-<c:if test="${sessionScope.ID eq DATA.mem_id}">
-			<table border="1" width="80%" >
-				<tr id="tr_bot">
-					<td align="center">
-						<input type="button" id="wBtn" value="글쓰기" class="btn btn-primary btn-sm">
-					</td>
-				</tr>
-			</table>
-</c:if>
 			</div>
 		</div>
 	</div>	

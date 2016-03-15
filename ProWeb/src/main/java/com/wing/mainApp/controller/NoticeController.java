@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-
 import com.wing.mainApp.dao.NoticeDAO;
 import com.wing.mainApp.data.NoticeData;
 import com.wing.mainApp.util.PageUtil;
@@ -81,23 +80,35 @@ public class NoticeController {
 			//
 			int max_no = nDao.noticeMax();
 			System.out.println("max_no="+max_no);
-						
 			int	total = nDao.getTotal(1);
+			System.out.println("total="+total);
 			PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
-			pInfo.calcInfo();
-						
+			pInfo.calcInfo();			
+									
 			int	start = (pInfo.nowPage - 1) * pInfo.pageList + 1;
 			int	end = start + pInfo.pageList - 1;
+			System.out.println("start="+start);
+			System.out.println("end="+end);
 			
 			if(end > pInfo.totalCount) {
 				end = pInfo.totalCount;
+				System.out.println("pInfo.totalCount="+end);
+				
 			}
-			
+			/*
+			ArrayList	result = new ArrayList();
+			for(int i = start; i <= end; i++) {
+				NoticeData	temp = (NoticeData)list.get(i);
+				result.add(temp);
+			}
+			*/
 			HashMap	map = new HashMap();
 			map.put("start", start);
 			map.put("end", end);
 			
+
 			ArrayList	list = nDao.selectNoticeList(map);
+			
 			NoticeData  data1= nDao.selectFinalList(max_no);			
 			//	뷰를 선택한다.
 			//	뷰에게 전달할 내용을 준다.
@@ -233,8 +244,7 @@ public class NoticeController {
 			return mv;
 		}
 		else {
-			//	�닔�젙�쓣 �븯�뒗 寃쎌슦�씠�떎.
-			//	�닔�젙�븷 �뜲�씠�꽣瑜� 爰쇰궡�꽌 酉곗뿉寃� �븣�젮以��떎.
+			
 			result = nDao.selectView(oriNo);
 		}
 
@@ -255,9 +265,7 @@ public class NoticeController {
 		System.out.println("mem_id="+data.getMem_id());
 		System.out.println("notice_body="+data.getNotice_body());
 		nDao.updateNotice(data);
-		System.out.println("Modifyfff");
-		
-		//	酉곕뒗 �긽�꽭蹂닿린瑜� �떎�떆 遺덈윭以��떎.
+						
 		RedirectView	rv = new RedirectView("../Notice/NoticeList.do");
 		rv.addStaticAttribute("oriNo", data.getNotice_no());
 		rv.addStaticAttribute("nowPage", data.getNowPage());

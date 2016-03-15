@@ -21,10 +21,12 @@
 			intro_body,
 			intro_path AS gimg2  
 		FROM
-			Introduce 
+			(SELECT
+				rownum AS RNO, t2.*
+			FROM
+				(SELECT * FROM introduce WHERE intro_isDeleted='Y' ORDER BY intro_no DESC) t2)	
 		WHERE
-		    intro_isDeleted = 'Y'		   	   
-		ORDER BY intro_no DESC		
+		RNO BETWEEN #{start} AND #{end}			
 	</select>
 <!-- 언어 소개글 질의 -->
 <select id="selectkorlang"		resultType="idata"

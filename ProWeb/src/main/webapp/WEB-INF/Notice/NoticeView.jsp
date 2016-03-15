@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -129,7 +130,7 @@
 					<td class="text-center">${DATA.notice_title}</td>
 					<td class="text-center">${DATA.notice_body}</td>
 					<td class="text-center">${DATA.mem_id}</td>
-					<td class="text-center">${DATA.notice_date}</td>				
+					<td class="text-center"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${DATA.notice_date}"/></td>							
 			   </tr>		
 		</table>
 			<table border="1" width="80%" align="center">
