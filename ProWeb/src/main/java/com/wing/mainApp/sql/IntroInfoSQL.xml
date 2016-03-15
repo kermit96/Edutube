@@ -9,7 +9,7 @@
 			Introduce
 		VALUES
 			((SELECT NVL(MAX(intro_no), 0) + 1 FROM Introduce),
-			#{mem_id}, #{intro_title}, #{intro_body},SYSDATE,#{gimg2},'test','10','tt', SYSDATE,'N')
+			#{mem_id}, #{intro_title}, #{intro_body},SYSDATE,#{gimg2},'test','tt','10',SYSDATE,'N')
 	</insert>
 <!-- 	강사 소개글  질의	-->
 	<select id="selectIntroList"		resultType="idata"
