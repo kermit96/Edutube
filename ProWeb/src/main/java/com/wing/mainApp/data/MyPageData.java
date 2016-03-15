@@ -10,6 +10,7 @@ public class MyPageData {
 	public int		bno;
 	public int		no;
 	public Date	wdate;
+	public String	block;
 	
 	public String getId() {
 		return id;
@@ -52,6 +53,12 @@ public class MyPageData {
 	}
 	public void setBno(int bno) {
 		this.bno = bno;
+	}
+	public String getBlock() {
+		return block;
+	}
+	public void setBlock(String block) {
+		this.block = block;
 	}
 	
 }

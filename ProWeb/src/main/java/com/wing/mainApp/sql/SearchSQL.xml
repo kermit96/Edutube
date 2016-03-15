@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="search">
+<!-- 메인 검색데이터 갯수 구하기 질의 -->
+	<select id="searchcount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+		SELECT
+			COUNT(*)		AS CNT
+		FROM
+			CLASS
+		WHERE
+			<if test="kind == 'title'">
+				QA_title LIKE '%' || #{searchBox} || '%'
+			</if>
+	</select>
+
+<!-- 메인 검색질의 -->
+	<select id="mainsearch" resultType="ClassListData" parameterType="java.util.HashMap">
+		SELECT
+			CLASS_no		AS		NO,
+   			SUB_code		AS		CODE,
+   			MEM_id			AS		ID,
+   			CLASS_title		AS		TITLE,
+   			CLASS_body	AS		BODY,
+   			CLASS_date	AS		WDATE,
+   			CLASS_good	AS		GOOD,
+   			CLASS_lang	AS		LANG
+		FROM
+			CLASS
+		WHERE
+			CLASS_isDeleted = 'N'
+			<choose>
+				<when test="kind eq 'title'">
+					AND	CLASS_title LIKE '%' || #{searchBox} || '%'
+				</when>  
+			</choose>
+		ORDER BY
+			CLASS_NO DESC
+	</select>
+</mapper>
