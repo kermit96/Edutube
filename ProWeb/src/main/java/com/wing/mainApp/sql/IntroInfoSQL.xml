@@ -17,6 +17,7 @@
 		SELECT
 			intro_no,
 			mem_id,
+			mem_nick,
 			intro_title,
 			intro_body,
 			intro_path AS gimg2  
@@ -24,7 +25,7 @@
 			(SELECT
 				rownum AS RNO, t2.*
 			FROM
-				(SELECT * FROM introduce WHERE intro_isDeleted='N' ORDER BY intro_no DESC) t2)	
+				(SELECT i.*,mem_nick FROM introduce i,member m WHERE i.intro_isDeleted='N' AND m.mem_isDeleted='N' ORDER BY intro_no DESC) t2)	
 		WHERE
 		RNO BETWEEN #{start} AND #{end}			
 	</select>

@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class IntroInfoData {
 	private int    intro_no; /* �Ұ� ��ȣ */
 	private String mem_id;       /* ȸ�� ���̴� */
+	private String mem_nick;
 	private String intro_title;  /* �Ұ� ���� */
 	private String intro_body;   /* �Ұ� ���� */
 	private Date   intro_date;     /* �Ұ� �ۼ��� */
@@ -23,7 +24,13 @@ public class IntroInfoData {
 	private	String			gimg1;
 	private	String			gimg2;
 	private int	nowPage;
-			
+	
+	public String getMem_nick() {
+		return mem_nick;
+	}
+	public void setMem_nick(String mem_nick) {
+		this.mem_nick = mem_nick;
+	}		
 	public int getNowPage() {
 		return nowPage;
 	}

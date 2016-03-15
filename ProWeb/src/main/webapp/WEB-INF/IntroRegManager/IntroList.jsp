@@ -147,7 +147,7 @@
 	  		<c:forEach var="temp" items="${LIST}" varStatus="status">
 		    <div class="col-md-4">
 		      <a href="../IntroRegManager/IntroView.do?nowPage=${PINFO.nowPage}&oriNo=${temp.intro_no}">
-			  ID :${temp.mem_id}
+			  ID :${temp.mem_nick}
 		      <img src="../gimgs/${temp.gimg2}" class="img-circle" width="100" height="100">
 		      <!-- <td class="text-center">${temp.intro_body}</td>  -->
 		      </a>
