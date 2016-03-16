@@ -347,8 +347,17 @@ public class ClassListController {
 		
 		
 		ClassListData map = lDao.selectModi(oriNo);
-		ArrayList result = lDao.getSubList();		
+		ArrayList result = lDao.getSubList();
 		
+		ArrayList mList = lDao.selectMediaList(oriNo);
+		
+		boolean isExist = true;
+		if(mList==null){
+			isExist=false;
+		}
+				
+		mv.addObject("mList",mList);
+		mv.addObject("isExist", isExist);
 		mv.addObject("oriNO",oriNo);
 		mv.addObject("DATA", map);
 		mv.addObject("SUBLIST",result);
@@ -390,16 +399,34 @@ public class ClassListController {
 			nowPage = Integer.parseInt(strpage);
 		}
 		
-		// 동영상 주소가 있는 경우
-		int kind = 1;
-		String url = data.mediaURL.replaceAll("\\s", "");
+		/**
+		 * 동영상 변경 X = No
+		 * 동영상 수정 = Mo
+		 * 동영상 삭제 = De
+		 * 동영상 추가 = Ne
+		 * */
+		String mkind=req.getParameter("mKind");
+				
+		int kind = 0;
 		
-		// 동영상 주소가 없는 경우
-		if(url == null || url.equals("")){			
-			kind = 0;
+		if(mkind.equals("No")){
+			kind=1;
+		}
+		else if(mkind.equals("Mo")){
+			kind=2;
+		}
+		else if(mkind.equals("De")){
+			kind=3;
+		}
+		else if(mkind.equals("Ne")){
+			kind=4;
+		}
+		else{
+			
 		}
 		
-		lDao.updateclass(data);
+		
+		lDao.updateclass(data,kind);
 		
 		mv.addObject("code",listcode);
 		mv.addObject("oriNO",oriNo);

@@ -103,8 +103,10 @@ public class ClassListDAO {
 	 * */
 	
 	// 수정 함수
-	public void updateclass(ClassListData data) {
+	public void updateclass(ClassListData data,int kind) {
+		if(kind==1){
 		sqlSession.update("clist.updateclass", data);
+		}
 	}
 	// 현재 등록할 강의 맥스넘버 구하기
 	public int getMaxNO(){
