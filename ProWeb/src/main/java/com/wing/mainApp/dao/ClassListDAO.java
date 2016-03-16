@@ -192,5 +192,9 @@ public class ClassListDAO {
 	public String getRebody(int reno){
 		return sqlSession.selectOne("clist.getRebody", reno);
 	}
+	/*댓글수정*/
+	public void updateReply(ReplyData data){
+		sqlSession.update("clist.updateReply",data);
+	}
 	
 }

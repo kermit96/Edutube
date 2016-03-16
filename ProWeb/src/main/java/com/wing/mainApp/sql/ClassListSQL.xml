@@ -290,6 +290,16 @@
 	</select>
 	
 	<!--  댓글 수정 -->
+	<update id="updateReply" parameterType="replydata">
+		UPDATE
+			Reply
+		SET
+			re_body=#{rebody},
+			re_date=SYSDATE
+		Where
+			re_no=#{reno}	
+	</update>	
+	
 	<!--  댓글 내용 -->
 	<select id="getRebody" parameterType="int" resultType="String">
 		SELECT

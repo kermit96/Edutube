@@ -52,25 +52,7 @@
 	function goClassList(){
 		location.href="../ClassList/ClassList.do?nowPage=${nowPage}&code=${CODE}";
 	}
-	
-	$(document).ready(	function() {
-		$("#rewBtn").click(function() {
-			
-				/* 유효성검사 */
-					$relplybody=$("#relplybody").val();					
-					$relplybody=$relplybody.replace(/^\s+|\s+$/g,"");
-										
-					$relplybody = $("#relplybody").val();
-						if ($relplybody == "") {
-							alert("본문을 입력해 주세요");
-							return;
-					}
-			
-				$("#reFrm").attr("action",
-					"../ClassList/ClassReplyWrite.do?code=${CODE}&nowPage=${nowPage}&oriNo=${DATA.no}");
-				$("#reFrm").submit();
-		});
-	});
+
 		
 	/* 좋아요 처리 */
 	$(document).ready(function(){
@@ -130,15 +112,18 @@
 		});		
 	}
 	
+	/*댓글쓰기*/
 	function writeReply(num) {				
 		var no=num;
 		$content=$("#relplybody").val();
+		
 		$.ajax({
 			url:"../ClassList/ClassReplyWrite.do",
 			data:"relplybody="+$content+"&oriNo="+no+"&temp="+new Date(),
 			type:"POST",			
 			success: function(data){				
 				getReList("last");
+				$("#relplybody").value("");
 			},
 			error: function(){
 				alert("이거나오면 안되는데....");
@@ -155,13 +140,14 @@
 		
 		 if(check){		
 			var no=num;
+			var rePage=$("#rePage").val();
 			
 			$.ajax({
 				url:"../ClassList/ReplyDelete.do",
 				data:"&reno="+no+"&temp="+new Date(),
 				type:"POST",			
 				success: function(data){				
-					getReList("last");
+					getReList(rePage);
 				},
 				error: function(){
 					alert("이거나오면 안되는데....");
@@ -177,6 +163,8 @@
 		function modiFormReply(no,body) {
 							
 			var reno=no;
+			
+			$("#modiUtilDiv"+reno).empty();
 												
 			$.ajax({
 				url:"./ClassTextArea.do",
@@ -194,8 +182,32 @@
 		 
 		}
 		/*댓글 수정하기*/
-		function modiReply(data){
+		function modiReply(no){
 			
+			var reno=no;
+			var rebody=$("#relplymodi"+reno).val();
+			var rePage=$("#rePage").val();
+			
+			
+			/* 유효성검사 */								
+			rebody=rebody.replace(/^\s+|\s+$/g,"");
+			
+			if (rebody == "") {
+				alert("본문을 입력해 주세요");
+				return;
+			}
+						
+			$.ajax({
+				url:"./ReplyModi.do",
+				data:"&reno="+reno+"&rebody="+rebody+"&temp="+new Date(),
+				type:"POST",				
+				success: function(data){				
+					getReList(rePage);
+				},
+				error: function(){
+					alert("이거나오면 안되는데....");
+				}
+			});		
 		}
 	
 </script>
@@ -290,14 +302,19 @@
 p#title{
 	font-family: 나눔고딕, 'NanumGothic';
 	font-size: 24px;
-	font color: black;
+	font-color: black;
 	font-weight: plane;
 }
 p#cheer{
 	font-family: 나눔고딕, 'NanumGothic';
 	font-size: 18px;
-	font color: black;
+	font-color: black;
 	font-weight: plane;
+}
+.timeline-body{
+	font-family: 나눔고딕, 'NanumGothic';
+	font-color: black;
+	font-weight: plane;	
 }
 #replyWF{
 	width:800px;
@@ -333,7 +350,8 @@ textarea#modibody{
 #FormRe{
 	float:left;
 }
-textarea#relplymodi{
+
+.modiFFF{
 	width:600px;
 	resize:none;
 }

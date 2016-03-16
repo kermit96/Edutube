@@ -563,11 +563,12 @@ public class ClassListController {
 		}
 		
 		ArrayList	result = new ArrayList();
-		for(int i = start; i <= end; i++) {
-			ReplyData	temp = (ReplyData)list.get(i);
+		for(int i = start; i <= end; i++) {			
+			ReplyData	temp = (ReplyData)list.get(i);			
 			result.add(temp);
 		}
 		
+		mv.addObject("REPAGE",rePage);
 		mv.addObject("PINFO",pInfo);
 		mv.addObject("reDATA",result);
 		mv.setViewName("ClassList/ReplyData");
@@ -621,9 +622,26 @@ public class ClassListController {
 	
 	//댓글 수정
 		@RequestMapping("/ClassList/ReplyModi")
-		public ModelAndView modiReply(HttpServletRequest req){
+	public ModelAndView modiReply(HttpServletRequest req,HttpSession session){
+		ModelAndView mv = new ModelAndView();
+		
+		/*비회원 로그인고*/
+		if(!SessionUtil.isSession(session)) {
+			RedirectView	rv = new RedirectView("/");
+			mv.setView(rv);
+			return mv;
+		}
+		
+		ReplyData data = new ReplyData();
+		String	strreNo = req.getParameter("reno");
+		int	reNO = Integer.parseInt(strreNo);
+		data.reno=reNO;
+		data.rebody=req.getParameter("rebody");
+				
+		lDao.updateReply(data);
 			
-		return null;
+		mv.setViewName("ClassList/ClassReplyCommon");	
+		return mv;
 	}
 	
 }
