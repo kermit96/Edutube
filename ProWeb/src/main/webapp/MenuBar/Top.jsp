@@ -164,7 +164,7 @@ a.logC:hover {
 				<c:if test="${sessionScope.ID ne null}">
 
 					<div id="state_logout">
-						<a href="JavaScript:goLogout()" class="logC">${LANGDATA.top_member}</a>&nbsp;&nbsp;<a href="JavaScript:goInfo()"
+						<a href="JavaScript:goLogout()" class="logC">${LANGDATA.top_logout}</a>&nbsp;&nbsp;<a href="JavaScript:goInfo()"
 							class="logC">${LANGDATA.top_mypage}</a>
 							<select id="lang" name="lang" onchange="goLanguage()">
 							<option value="ko">한국어</option>
