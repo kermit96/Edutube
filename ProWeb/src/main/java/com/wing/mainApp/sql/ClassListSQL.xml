@@ -292,5 +292,12 @@
 	<!--  댓글 수정 -->
 	
 	<!--  댓글 삭제 -->
-
+	<update id="deleteReply" parameterType="int">
+	update
+		reply
+	SET
+		re_isDeleted = 'Y'
+	WHERE
+		re_no=#{reno}
+	</update>
 </mapper>

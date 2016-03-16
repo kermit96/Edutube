@@ -17,7 +17,7 @@
 
 <div id='cssmenu2'>
 <ul>
-   <li><a href='#'>과목별 검색</a></li>
+   <li><a href='/edutube/ClassList/ClassList.do'>전체 목록</a></li>
    <li class='active has-sub'><a href='#'>언어</a>
       <ul>
          <li><a href="../ClassList/ClassList.do?code=langkor">한국어</a></li>

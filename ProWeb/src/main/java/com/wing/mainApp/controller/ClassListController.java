@@ -495,30 +495,16 @@ public class ClassListController {
 		String nick = (String) session.getAttribute("NICKNAME");
 		String	strNo = req.getParameter("oriNo");
 		int	oriNo = Integer.parseInt(strNo);
-		String listcode = req.getParameter("code");
-		
-		String strpage = req.getParameter("nowPage");
-		int	nowPage = 0;
-		if(StringUtil.isNull(strpage)){
-			nowPage = 1;
-		}
-		else {
-			nowPage = Integer.parseInt(strpage);
-		}
-		
+				
 		ReplyData data = new ReplyData();
 		data.orino = oriNo;
 		data.reid = id;
 		data.renick = nick;
 		data.rebody = req.getParameter("relplybody");
 		
-				
 		lDao.insertReply(data);
 		
-		mv.addObject("nowPage",nowPage);
-		mv.addObject("oriNO",oriNo);
-		mv.addObject("CODE",listcode);
-		mv.setViewName("ClassList/ClassReplyWrite");
+		mv.setViewName("ClassList/ClassReplyCommon");
 		
 		return mv;
 	}
@@ -533,20 +519,23 @@ public class ClassListController {
 		
 		/*비회원 로그인고*/
 		if(!SessionUtil.isSession(session)) {
-			RedirectView	rv = new RedirectView("../member/login.do?returnurl=%2Fedutube%2Fmain.do");
+			RedirectView	rv = new RedirectView("/");
 			mv.setView(rv);
 			return mv;
 		}
 		
 		/**필요한 값 받아오기*/
 		
-		String	strNo = req.getParameter("oriNo");
+		String	strNo = req.getParameter("oriNo");		
 		int	oriNo = Integer.parseInt(strNo);
-		
+				
+		boolean isInit = false;
 		
 		String strpage = req.getParameter("rePage");
+				
 		int	rePage = 0;
-		if(StringUtil.isNull(strpage)){
+		if(StringUtil.isNull(strpage) || strpage.equals("last")){
+			isInit = true;
 			rePage = 1;
 		}
 		else {
@@ -558,6 +547,12 @@ public class ClassListController {
 		PagingUtil	pInfo = new PagingUtil(rePage, retotal, 10, 5);
 		pInfo.pagingProc();
 		
+		if(isInit == true){
+			rePage = pInfo.pageNum;
+			pInfo = new PagingUtil(rePage, retotal,10,5);
+			pInfo.pagingProc();
+		}
+				
 		// 댓글 불러오기
 		ArrayList	list = lDao.getReplyList(oriNo);
 		
@@ -573,11 +568,62 @@ public class ClassListController {
 			result.add(temp);
 		}
 		
-		
+		mv.addObject("PINFO",pInfo);
 		mv.addObject("reDATA",result);
 		mv.setViewName("ClassList/ReplyData");
 		
 		return mv;
+	}
+	
+	//댓글 삭제
+	@RequestMapping("/ClassList/ReplyDelete")
+	public ModelAndView deleteReply(HttpServletRequest req,HttpSession session){
+		ModelAndView mv = new ModelAndView();
+		
+		/*비회원 로그인고*/
+		if(!SessionUtil.isSession(session)) {
+			RedirectView	rv = new RedirectView("/");
+			mv.setView(rv);
+			return mv;
+		}
+		
+		String strno = req.getParameter("reno");
+		int no = Integer.parseInt(strno);
+		
+		lDao.deleteReply(no);
+				
+		mv.setViewName("ClassList/ClassReplyCommon");
+		
+		return mv;
+	}
+	//댓글 수정폼 요청
+	@RequestMapping("/ClassList/ClassTextArea")
+	public ModelAndView addTextArea(HttpServletRequest req,HttpSession session){
+		ModelAndView mv = new ModelAndView();
+		
+		/*비회원 로그인고*/
+		if(!SessionUtil.isSession(session)) {
+			RedirectView	rv = new RedirectView("/");
+			mv.setView(rv);
+			return mv;
+		}
+		
+		String strreno=req.getParameter("reno");
+		int reno=Integer.parseInt(strreno);
+		String rebody=req.getParameter("rebody");
+		
+		mv.addObject("reno",reno);
+		mv.addObject("rebody",rebody);
+		mv.setViewName("ClassList/ClassTextArea");
+		
+		return mv;
+	}
+	
+	//댓글 수정
+		@RequestMapping("/ClassList/ReplyModi")
+		public ModelAndView modiReply(HttpServletRequest req){
+			
+		return null;
 	}
 	
 }

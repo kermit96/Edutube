@@ -5,6 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta property="og:site_name" content="EduTube"/>
+	<meta property="og:image" content="http://192.168.56.103:8080/edutube/resources/img/logo.png">	
+	<meta property="og:title" content="[${DATA.code}]${DATA.title}" />	
+	
 <title>EduTube</title>
 <!--CSS-->
 <link rel="stylesheet" href="/edutube/resources/CSS/bootstrap.min.css">
@@ -24,17 +29,28 @@
 
 <!--스크립트-->
 <script>
+
+	/*페북 공유*/
+	function faceShare(){
+		window.open("https://www.facebook.com/sharer/sharer.php"
+				+"?u="+encodeURIComponent(window.location.href)			
+		);
+	}
+	
 	function moContent(){
 		location.href="../ClassList/ClassModifyForm.do?code=${CODE}&nowPage=${nowPage}&oriNo=${DATA.no}";
 	}
 	function delContent(){
-		location.href="../ClassList/ClassDelete.do?nowPage=${nowPage}&code=${CODE}&oriNo=${DATA.no}";
+		var check = confirm("정말 글을 삭제하시겠습니까?");
+		if(check){
+			location.href="../ClassList/ClassDelete.do?nowPage=${nowPage}&code=${CODE}&oriNo=${DATA.no}";
+		}
+		else{
+			return;
+		}
 	}
 	function goClassList(){
 		location.href="../ClassList/ClassList.do?nowPage=${nowPage}&code=${CODE}";
-	}
-	function goWriteRe(){
-		loacation.href="../ClassList/ClassReplyWrite.do?code=${CODE}&nowPage=${nowPage}&oriNo=${DATA.no}";
 	}
 	
 	$(document).ready(	function() {
@@ -77,26 +93,112 @@
 	}); /*좋아요 처리 끝*/
 	
 	/*댓글보기*/
-		function getReList() {
-				
-				//	이 함수가 실행되면(단추를 누르면...)
-				//	ajax를 통해서	AjaxResp.jsp를 서버에 요청해서 달라고 한다.
-				$.ajax({
-					url:"../ClassList/ReplyList.do",
-					data:"oriNo=${DATA.no}&temp=" + new Date(),
-					type:"GET",
-					dataType:"html",
-					success: function(data){
-						$("#replyListDiv").html(data);
-					},
-					error: function(){
-						alert("이거나오면 안되는데....");
-					}
-				});
-				//	이제 필요한 속성을 쓰면 된다.
-				//	속성의 순서는 관계가 없다.
-				//	필요한 속성만 골라서 쓰면 된다.
+	$(document).ready(function(){
+		getReListD(1);		
+	});
+	
+	function getReList(num) {				
+		var rePage=num;				
+		$.ajax({
+			url:"../ClassList/ReplyList.do",
+			data:"oriNo=${DATA.no}&rePage="+rePage+"&temp="+new Date(),
+			type:"GET",
+			dataType:"html",
+			success: function(data){
+				$("#replyListDiv").html(data);
+				document.body.scrollTop = document.body.scrollHeight;
+			},
+			error: function(){
+				alert("이거나오면 안되는데....");
 			}
+		});		
+	}
+	
+	function getReListD(num) {				
+		var rePage=num;				
+		$.ajax({
+			url:"../ClassList/ReplyList.do",
+			data:"oriNo=${DATA.no}&rePage="+rePage+"&temp=" + new Date(),
+			type:"GET",
+			dataType:"html",
+			success: function(data){
+				$("#replyListDiv").html(data);				
+			},
+			error: function(){
+				alert("이거나오면 안되는데....");
+			}
+		});		
+	}
+	
+	function writeReply(num) {				
+		var no=num;
+		$content=$("#relplybody").val();
+		$.ajax({
+			url:"../ClassList/ClassReplyWrite.do",
+			data:"relplybody="+$content+"&oriNo="+no+"&temp="+new Date(),
+			type:"POST",			
+			success: function(data){				
+				getReList("last");
+			},
+			error: function(){
+				alert("이거나오면 안되는데....");
+			}
+		});		
+	}
+	
+	/*댓글 리스트 끝*/
+	
+	/*댓글 삭제*/
+		function deleteReply(num) {	
+		
+		var check = confirm("정말 댓글을 삭제하시겠습니까?");
+		
+		 if(check){		
+			var no=num;
+			
+			$.ajax({
+				url:"../ClassList/ReplyDelete.do",
+				data:"&reno="+no+"&temp="+new Date(),
+				type:"POST",			
+				success: function(data){				
+					getReList("last");
+				},
+				error: function(){
+					alert("이거나오면 안되는데....");
+				}
+			});
+		 }
+		 else{
+			 return;
+		 }
+	}
+	
+		/*댓글 수정 폼요청*/
+		function modiFormReply(no) {
+			
+			alert('야호');
+				
+			var reno=no;
+			
+			$.ajax({
+				url:"./ClassList/ClassTextArea.do",
+				data:"&reno="+reno+"&temp="+new Date(),
+				type:"GET",
+				dataType:"html",
+				success: function(data){				
+					var	divLocation = document.getElementById("modiDiv");
+					divLocation.innerHTML = data;
+				},
+				error: function(){
+					alert("이거나오면 안되는데....");
+				}
+			});		
+		 
+		}
+		/*댓글 수정하기*/
+		function modiReply(data){
+			
+		}
 	
 </script>
 
@@ -171,6 +273,7 @@
 }
 #utilBar00{
 	float:right;
+	text-align:right;
 	width:800px;
 	height:100%;
 	margin:0 auto;
@@ -205,16 +308,32 @@ p#cheer{
 	padding:20px;
 	border-bottom:2px solid orange;
 }
-
+#replybox{
+	width:800px;
+	height:250px;
+}
+/*댓글 배경*/
 #replyList{
 	width:800px;
 	height:100%;
 	margin:0 auto;
-	background-color:#B6CDDF;
+	background-color:#ecf0f5;
 }
 textarea#relplybody{
 	width:600px;
 	resize:none;
+}
+textarea#modibody{
+	width:600px;
+	resize:none;
+}
+#replyPagingDiv{
+	width:800px;
+	margin:0 auto;
+	text-align:center;
+}
+#FormRe{
+	float:left;
 }
 
 </style>
@@ -263,32 +382,26 @@ textarea#relplybody{
 						<a class="button button-yellow" onClick="JavaScript:moContent();"><i class="fa fa-clock-o"></i>수정하기</a>
 						<a class="button button-red" onClick="JavaScript:delContent();"><i class="fa fa-times"></i>삭제하기</a>
 						</c:if>						
-						<a class="button button-orange" onClick="JavaScript:goClassList();" id="ListBtn" >목록으로</a>	
+						<a class="button button-orange" onClick="JavaScript:goClassList();" id="ListBtn" >목록으로</a>
+						<a class="button button-purple" onClick="JavaScript:faceShare();"><i class="fa fa-facebook-official"></i>공유하기</a>
 					</div>
 					
-					<div id="replyWF">
-					<h2>댓글 남기기</h2>
+					<div id="replyWF">					
 						<div id="replybox">
-							<form id="reFrm" name="reFrm" method="POST">							
-							<textarea class="form-group" rows="4" id="relplybody"  name="relplybody" required></textarea>
-							</form>
-							<a class="button button-green" id="rewBtn"><i class="fa fa-check"></i>
+							<p>&nbsp;</p>
+							<div id="FormRe">
+								<form id="reFrm" name="reFrm" method="POST">							
+								<textarea class="form-group" rows="4" id="relplybody"  name="relplybody" required></textarea>
+								</form>
+							</div>
+							<a class="button button-green" onClick="JavaScript:writeReply(${DATA.no});"><i class="fa fa-check"></i>
 							댓글 쓰기</a>
 						</div>
 					</div>
 					
 					<div id="replyList">
-						<div id="replyListDiv">
-							
-						</div>	
-					
-						<div id="replyPagingDiv">
-							댓글 페이징
-						</div>
-						<div id="replyUtil">
-							<a class="button button-green" id="rewBtn" onClick="JavaScript:getReList();"><i class="fa fa-check"></i>
-							댓글 보기</a>
-						</div>				
+						<div id="replyListDiv">							
+						</div>								
 					</div>				
 
 				</div><!--  viewmain 끝 -->
