@@ -174,19 +174,17 @@
 	}
 	
 		/*댓글 수정 폼요청*/
-		function modiFormReply(no) {
-			
-			alert('야호');
-				
+		function modiFormReply(no,body) {
+							
 			var reno=no;
-			
+												
 			$.ajax({
-				url:"./ClassList/ClassTextArea.do",
+				url:"./ClassTextArea.do",
 				data:"&reno="+reno+"&temp="+new Date(),
 				type:"GET",
 				dataType:"html",
 				success: function(data){				
-					var	divLocation = document.getElementById("modiDiv");
+					var	divLocation = document.getElementById("modiDiv"+reno);
 					divLocation.innerHTML = data;
 				},
 				error: function(){
@@ -334,6 +332,10 @@ textarea#modibody{
 }
 #FormRe{
 	float:left;
+}
+textarea#relplymodi{
+	width:600px;
+	resize:none;
 }
 
 </style>

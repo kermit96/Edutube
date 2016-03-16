@@ -610,8 +610,8 @@ public class ClassListController {
 		
 		String strreno=req.getParameter("reno");
 		int reno=Integer.parseInt(strreno);
-		String rebody=req.getParameter("rebody");
-		
+		String rebody=lDao.getRebody(reno);
+						
 		mv.addObject("reno",reno);
 		mv.addObject("rebody",rebody);
 		mv.setViewName("ClassList/ClassTextArea");

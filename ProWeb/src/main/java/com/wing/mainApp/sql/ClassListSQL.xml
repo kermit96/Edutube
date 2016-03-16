@@ -290,6 +290,15 @@
 	</select>
 	
 	<!--  댓글 수정 -->
+	<!--  댓글 내용 -->
+	<select id="getRebody" parameterType="int" resultType="String">
+		SELECT
+			re_body AS rebody
+		FROM
+			reply
+		WHERE
+			re_no=#{reno}	
+	</select>
 	
 	<!--  댓글 삭제 -->
 	<update id="deleteReply" parameterType="int">

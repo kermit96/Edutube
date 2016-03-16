@@ -12,11 +12,11 @@
 							            <span class="time"><i class="fa fa-clock-o"></i> ${recontent.realdate}</span>							
 							            <h3 class="timeline-header"><i class="fa fa-android"></i>No : ${recontent.reno}&nbsp;<a href="#">${recontent.renick}</a></h3>
 							
-							            <div class="timeline-body" id="modiDiv">
+							            <div class="timeline-body" id="modiDiv${recontent.reno}">
 							               ${recontent.realbody}
 							            </div>
 							
-							            <div class="timeline-footer">
+							            <div class="timeline-footer" id="modiUtilDiv${recontent.reno}">
 							            	<c:if test="${sessionScope.ID eq recontent.reid}">
 							                <a class="btn btn-warning btn-flat btn-xs" onClick="JavaScript:modiFormReply(${recontent.reno});">수정하기</a>&nbsp;
 							                <a class="btn btn-danger btn-xs" onClick="JavaScript:deleteReply(${recontent.reno});">삭제하기</a>
