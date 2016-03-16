@@ -64,13 +64,14 @@
 		
 		if (userid == "") {
 			
-		   	alert("userid 를 입력해 주시기 바랍니다.");
+		   	alert("${LANGDATA.member_inputid}");
 			return;
 		}
 		
         if (password == "") {
 			
-		   	alert("password 를 입력해 주시기 바랍니다.");
+		   	// alert("password 를 입력해 주시기 바랍니다.");
+		   	alert("${LANGDATA.member_inputpassword}");
 			return;
 		}
 		
@@ -127,7 +128,10 @@
 	        <td><input type="password" id="password" placeholder="password">    </td> 	        
 	      </tr>
 	      <tr> 
-	         <td colspan="2" align="center"> <button id="login"> 로그인 </button>   <button id="makeid"> 가입 </button>  <button id="findmember"> ID/PASSWORD 찾기 </button>  </td>
+	         <td colspan="2" align="center"> <button id="login">
+	         ${LANGDATA.member_login}</button>   
+	         <button id="makeid"> ${LANGDATA.member_member_join} </button> 
+	          <button id="findmember"> ${LANGDATA.member_idpasswordfind} </button>  </td>
 	      </tr>
 	      	      
 	      </table>   

@@ -2,8 +2,8 @@
 <Language>
  <Lang>
    <id>top_edu</id>
-   <ko>에듀 튜브 </ko>
-   <ja>에듀 튜브  </ja>
+   <ko>Edu Tube </ko>
+   <ja>Edu Tube </ja>
    <en>Edu Tube </en>
    <ch>Edu Tube</ch>
    <ch_cn>Edu Tube</ch_cn>
@@ -51,47 +51,47 @@
  <Lang>
  <id>top_intro</id>
    <ko>에듀튜브 소개</ko>
-   <ja>에듀튜브 소개</ja>
-   <en>에듀튜브 소개</en>
-   <ch>에듀튜브 소개</ch>
-   <ch_cn>에듀튜브 소개</ch_cn>
+   <ja>エデュチューブ紹介</ja>
+   <en>About Edu tube</en>
+   <ch>關於埃杜管</ch>
+   <ch_cn>关于埃杜管</ch_cn>
  </Lang>
  
  <Lang>
  <id>top_notify</id>
    <ko>공지 사항</ko>
-   <ja>공지 사항</ja>
-   <en>공지 사항</en>
-   <ch>공지 사항</ch>
-   <ch_cn>공지 사항</ch_cn>
+   <ja>お知らせ</ja>
+   <en>Notice</en>
+   <ch>通知</ch>
+   <ch_cn>通知</ch_cn>
  </Lang> 
  
  
  <Lang>
  <id>top_instructor</id>
    <ko>강사 소개</ko>
-   <ja>강사 소개</ja>
-   <en>강사 소개</en>
-   <ch>강사 소개</ch>
-   <ch_cn>강사 소개</ch_cn>
+   <ja>講師紹介</ja>
+   <en>About the instructor</en>
+   <ch>關於教練</ch>
+   <ch_cn>关于教练</ch_cn>
  </Lang> 
  
  <Lang>
  <id>top_instructor_dir</id>
    <ko>강의 목록</ko>
-   <ja>강의 목록</ja>
-   <en>강의 목록</en>
-   <ch>강의 목록</ch>
-   <ch_cn>강의 목록</ch_cn>
+   <ja>講義リスト</ja>
+   <en>Lecture List</en>
+   <ch>講座列表</ch>
+   <ch_cn>讲座列表</ch_cn>
  </Lang> 
  
  <Lang>
  <id>top_file</id>
    <ko>자료실</ko>
-   <ja>자료실</ja>
-   <en>자료실</en>
-   <ch>자료실</ch>
-   <ch_cn>자료실</ch_cn>
+   <ja>アーカイブ</ja>
+   <en>Resources</en>
+   <ch>資源</ch>
+   <ch_cn>资源</ch_cn>
  </Lang> 
  
    
@@ -117,10 +117,10 @@
  <Lang>
  <id>top_search</id>
    <ko>검색어를 입력해주세요</ko>
-   <ja>검색어를 입력해주세요</ja>
-   <en>검색어를 입력해주세요</en>
-   <ch>검색어를 입력해주세요</ch>
-   <ch_cn>검색어를 입력해주세요</ch_cn>
+   <ja>検索用語を入力してください</ja>
+   <en>Please enter a search term</en>
+   <ch>請輸入搜索詞</ch>
+   <ch_cn>请输入搜索词</ch_cn>
  </Lang> 
  
 </Language>

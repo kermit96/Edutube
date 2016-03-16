@@ -138,7 +138,7 @@
 		var verifypassword = $("#repassword").val();
 		
 		if (newpassword != verifypassword) {
-            alert("같은 password 를 입력해 주시기 바랍니다.");		              
+            alert("${LANGDATA.samepassword}");		              
 		    return;
 		}
 		 
@@ -157,7 +157,7 @@
 	 	            },
 	 	            
 	 	            success:function(data){	 	            	    
-	 	            	 alert("암호를 수정했습니다.");	 	            	             	              
+	 	            	 alert("${LANGDATA.member_changepassword}");	 	            	             	              
 	 	            },
 	 	            error:function(request,status,error){
 	 	                 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -215,25 +215,29 @@
 		 		
 		 		  if (name == "") 
 		 		  {
-		 			     alert("이름을 입력해 주시기 바랍니다");	  
+		 			     // alert("이름을 입력해 주시기 바랍니다");
+		 			     alert("${LANGDATA.inputname}");
 		 				 return;		 				 
 		 		  }
 		 		  
 		 		  if (nickname == "") 
 		 		  {
-		 			     alert("닉네임을 입력해 주시기 바랍니다");	  
+		 			   //  alert("닉네임을 입력해 주시기 바랍니다");
+		 			   alert("${LANGDATA.member_inputnickname}");
 		 				 return;			  			  
 		 		  }
 		 		  
 		 		  if (email == "") 
 		 		  {
-		 			     alert("이 메일을 입력해 주시기 바랍니다.");	  
+		 			     // alert("이 메일을 입력해 주시기 바랍니다.");
+		 			     alert("${LANGDATA.member_inputemail}");
 		 				 return;			  			  
 		 		  }
 		 		  
 		 		  if (tel == "") 
 		 		  {
-		 			   alert("전화 번호를 입력해 주시기 바랍니다.");	  
+		 			//    alert("전화 번호를 입력해 주시기 바랍니다.");
+		 			alert("${LANGDATA.member_inputtel");
 		 			   return;			  			  		  
 		 		  }
  		  
@@ -255,7 +259,8 @@
 		 	            
 		 	            success:function(data){
 		 	            	    
-		 	            	 alert("수정 했습니다.");
+		 	            	 // alert("수정 했습니다.");
+		 	            	alert("${LANGDATA.member_changemsg}");
 		 	            	             	              
 		 	            },
 		 	            error:function(request,status,error){
@@ -283,22 +288,22 @@
 </head>
 <body>
 <div class="container">
-  <h2>유저 정보 변경</h2>
+  <h2>${LANGDATA.member_usermodify}</h2>
   <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#changeuserinfo">유저 정보 변경</a></li>
-    <li><a data-toggle="tab" href="#changepassword">비밀 번호 변경</a></li>
+    <li class="active"><a data-toggle="tab" href="#changeuserinfo">${LANGDATA.member_personalmodify}</a></li>
+    <li><a data-toggle="tab" href="#changepassword">${LANGDATA.member_changepassword}<</a></li>
   </ul>
 
   <div class="tab-content">
     <div id="changeuserinfo" class="tab-pane fade in active">
-      <h3>개인 정보 변경</h3>
+      <h3>${LANGDATA.member_personalmodify}</h3>
       <table>      
       <tr> 
-        <td>닉네임 </td>
+        <td>${LANGDATA.member_nickname}</td>
         <td><input  type="text"   id="mem_nick"  value="${member.mem_nick}"> <div id="checknickname"> </div> </td>
       </tr>       
       <tr> 
-        <td>이름 </td>
+        <td>${LANGDATA.member_nickname} </td>
         <td><input  type="text"   id="mem_name"   value="${member.mem_name}" > </td>
       </tr> 
       <tr>
@@ -307,45 +312,45 @@
        </tr>
        
        <tr>
-        <td>전화 번호</td>
+        <td>${LANGDATA.member_tel}</td>
         <td> <input  type="text"   id="mem_tel"   value="${member.mem_tel}"  > </td>
        </tr>
        
        <tr>
-       <td> 주소</td>
+       <td>${LANGDATA.member_addr}</td>
        <td>
-        <input type="text" id="mem_addrCode"   name="mem_addrCode"  value="${member.mem_addrCode}"   placeholder="우편번호">
-			    <input type="button" id="addrfind"     value="우편번호 찾기"><br>
-			    <input type="text" id="mem_addr"  name="mem_addr"   id="mem_addr"  value="${member.mem_addr}"   placeholder="주소">
-			    <input type="text" id="mem_detailaddr"  name="mem_detailaddr"  id="mem_detailaddr"  value="${member.mem_detailaddr}"   placeholder="상세주소">
+        <input type="text" id="mem_addrCode"   name="mem_addrCode"  value=""   placeholder="${LANGDATA.member_post}">
+			    <input type="button" id="addrfind"     value="${LANGDATA.member_postfind"><br>
+			    <input type="text" id="mem_addr"  name="mem_addr"   id="mem_addr"  value="${member.mem_addr}"   placeholder="${LANGDATA.member_addr}">
+			    <input type="text" id="mem_detailaddr"  name="mem_detailaddr"  id="mem_detailaddr"  value="${member.mem_detailaddr}"   placeholder="${LANGDATA.member_addrmore}">
 	    </td>		    			 
        
        </tr>       
               
        <tr>
-       <td colspan="2"><button id="changemember">변경   </button> </td>
+       <td colspan="2"><button id="changemember">${LANGDATA.member_change} </button> </td>
        </tr>
       </table>
       
     </div>
     <div id="changepassword" class="tab-pane fade">
-      <h3>비밀 번호 변경</h3>
+      <h3>${LANGDATA.member_passwordchange}</h3>
              <table>
       <tr> 
         <td>old password </td>
         <td><input  type="text"   id="oldpassword"> </td>
       </tr> 
       <tr>
-        <td>새 password </td>
+        <td> ${LANGDATA.member_newpassword} </td>
         <td><input  type="text"   id="newpassword">  </td>
        </tr>
        
        <tr>
-        <td>password 확인</td>
+        <td>${LANGDATA.member_verifypassword}</td>
         <td> <input  type="text"   id="repassword">    </td>
        </tr>       
        <tr>
-       <td colspan="2"><button id="changepasswordbutton">변경   </button> </td>
+       <td colspan="2"><button id="changepasswordbutton">${LANGDATA.member_change}    </button> </td>
        </tr>
       </table>      
     </div>

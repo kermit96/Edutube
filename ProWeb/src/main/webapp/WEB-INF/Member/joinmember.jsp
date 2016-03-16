@@ -44,11 +44,13 @@
 				success : function(data) {
 
 					if (data.result) {
-						$("#checkid").html("사용할수 없는 ID 입니다. ");
+					//	$("#checkid").html("사용할수 없는 ID 입니다. ");
+						$("#checkid").html("${LANGDATA.membercheckidfail}");
 						$("#mem_id").focus();
 					} else {
 
-						$("#checkid").html("사용할수 있는 ID 입니다. ");
+						// $("#checkid").html("사용할수 있는 ID 입니다. ");
+						$("#checkid").html("${LANGDATA.membercheckidsuccess}");
 					}
 				},
 				error : function(request, status, error) {
@@ -79,10 +81,12 @@
 
 				success : function(data) {
 					if (data.result) {
-						$("#checknickname").html("사용할수 없는 nickname 입니다. ");
+				//		$("#checknickname").html("사용할수 없는 nickname 입니다. ");
+						$("#checknickname").html("${LANGDATA.memberchecknickfail}");
 						$("#mem_nick").focus();
 					} else {
-						$("#checknickname").html("사용할수 있는 nickname 입니다. ");
+						// $("#checknickname").html("사용할수 있는 nickname 입니다. ");
+						$("#checknickname").html("${LANGDATA.memberchecknicksuccess}");
 					}
 				},
 				error : function(request, status, error) {
@@ -135,33 +139,42 @@
 					var tel = $("#mem_tel").val().trim();
 
 					if (name == "") {
-						alert("이름을 입력해 주시기 바랍니다");
+						// alert("이름을 입력해 주시기 바랍니다");
+						
+						alert("${LANGDATA.member_inputname}");
 						return;
 
 					}
 
 					if (nickname == "") {
-						alert("닉네임을 입력해 주시기 바랍니다");
+						// alert("닉네임을 입력해 주시기 바랍니다");
+						alert("${LANGDATA.member_inputnickname}");
 						return;
 					}
 
 					if (email == "") {
-						alert("이 메일을 입력해 주시기 바랍니다.");
+						// alert("이 메일을 입력해 주시기 바랍니다.");
+						alert("${LANGDATA.member_inputemail}");
 						return;
 					}
 
 					if (tel == "") {
-						alert("전화 번호를 입력해 주시기 바랍니다.");
+						//alert("전화 번호를 입력해 주시기 바랍니다.");
+						alert("${LANGDATA.member_inputtel}");
 						return;
 					}
 
 					if (id == "") {
-						alert("아이디를 입력해 주시기 바랍니다.");
+						alert("${LANGDATA.member_inputid}");
 						return;
 					}
-
+					
+					if (password =="") {
+						alert("${LANGDATA.member_inputpassword}");
+					}
 					if (password != repassword) {
-						alert("password 는 일치 해야 합니다. ")
+						// alert("password 는 일치 해야 합니다. ")
+						alert("${LANGDATA.member_samepassword}");
 						return;
 					}
 
@@ -273,7 +286,7 @@
 </head>
 <body>
 	<div id='EduContainer' align="center">
-		<h2>EduTube 회원 가입</h2>
+		<h2>${LANGDATA.member_joinmember}</h2>
 		<br>
 		<form id="target" method="post"
 			action="../member/joinmemberprocess.do">
@@ -283,13 +296,13 @@
 				<tr>
 					<td>ID</td>
 					<td><input type="text" id="mem_id" name="mem_id"
-						placeholder="아이디 입력">
+						placeholder="${LANGDATA.member_idinputmsg}">
 						<div id="checkid"></div></td>
 				</tr>
 
 				<tr>
-					<td>비밀 번호</td>
-					<td><input type="password" id="password" placeholder="비밀 번호"
+					<td>${LANGDATA.member_passwordstr}</td>
+					<td><input type="password" id="password" placeholder="${LANGDATA.member_passwordstr}"
 						title="Password must contain at least 6 characters, including UPPER/lowercase and numbers"
 						type="text" required
 						pattern="^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*()])[a-zA-Z0-9!@#$%^&*()]{7,40}$"
@@ -300,30 +313,30 @@
 				</tr>
 
 				<tr>
-					<td>비밀 번호 확인</td>
+					<td>${LANGDATA.member_verypasswordstr}</td>
 					<td><input type="password" id="repassword"
-						placeholder="비밀 번호 확인"></td>
+						placeholder="${LANGDATA.member_verypasswordstr}"></td>
 				</tr>
 
 
 
 				<tr>
-					<td>이름</td>
+					<td>${LANGDATA.member_name}</td>
 					<td><input type="text" id="mem_name" name="mem_name"
-						placeholder="이름"></td>
+						placeholder="${LANGDATA.member_name}"></td>
 				</tr>
 
 				<tr>
-					<td>닉네임</td>
+					<td>${LANGDATA.member_nickname}</td>
 					<td><input type="text" id="mem_nick" name="mem_nick"
-						placeholder="닉네임">
+						placeholder="${LANGDATA.member_nickname}">
 						<div id="checknickname"></div></td>
 				</tr>
 
 				<tr>
-					<td>전화 번호</td>
+					<td>${LANGDATA.member_tel}</td>
 					<td><input type="tel" id="mem_tel" name="mem_tel"
-						placeholder="전화 번호"></td>
+						placeholder="${LANGDATA.member_tel}"></td>
 				</tr>
 
 				<tr>
@@ -334,19 +347,19 @@
 
 				<tr>
 
-					<td>주소</td>
+					<td>${LANGDATA.member_addr}</td>
 					<td><input type="text" id="mem_addrCode" name="mem_addrCode"
-						placeholder="우편번호"> <input type="button" id="addrfind"
-						value="우편번호 찾기"><br> <input type="text" id="mem_addr"
-						name="mem_addr" id="mem_addr" placeholder="주소"> <input
+						placeholder=" ${LANGDATA.member_post}"> <input type="button" id="addrfind"
+						value="${LANGDATA.member_postfind}"><br> <input type="text" id="mem_addr"
+						name="mem_addr" id="mem_addr" placeholder="${LANGDATA.member_addr}"> <input
 						type="text" id="mem_detailaddr" name="mem_detailaddr"
-						placeholder="상세주소"></td>
+						placeholder="${LANGDATA.member_addrmore}"></td>
 				</tr>
 
 				<tr>
 					<td colspan="2" align="center"><input type="button"
-						id="register" value="등록"> <input type="button" id="cancel"
-						value="취소"></td>
+						id="register" value="${LANGDATA.member_reg}"> <input type="button" id="cancel"
+						value="${LANGDATA.member_cancel}"></td>
 				</tr>
 
 			</table>

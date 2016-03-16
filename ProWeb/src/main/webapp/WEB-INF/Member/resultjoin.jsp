@@ -41,8 +41,8 @@
 </head>
 <body>
           <div  align="center" > 
-                 가입 했습니다. <br>
-                  <button id="ok" > 확인 </button>                         
+                 ${LANGDATA.member_joinstr } <br>
+                  <button id="ok" > ${LANGDATA.member_ok } </button>                         
           </div>
 </body>
 </html>
