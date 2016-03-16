@@ -173,30 +173,32 @@
 		 }
 	}
 	
-		/*댓글 수정*/
-		function modiReply(num) {	
-		
-		var check = confirm("정말 댓글을 삭제하시겠습니까?");
-		
-		 if(check){		
-			var no=num;
+		/*댓글 수정 폼요청*/
+		function modiFormReply(no) {
+			
+			alert('야호');
+				
+			var reno=no;
 			
 			$.ajax({
-				url:"../ClassList/ReplyModi.do",
-				data:"&reno="+no+"&temp="+new Date(),
-				type:"POST",			
+				url:"./ClassList/ClassTextArea.do",
+				data:"&reno="+reno+"&temp="+new Date(),
+				type:"GET",
+				dataType:"html",
 				success: function(data){				
-					getReList("last");
+					var	divLocation = document.getElementById("modiDiv");
+					divLocation.innerHTML = data;
 				},
 				error: function(){
 					alert("이거나오면 안되는데....");
 				}
-			});
-		 }
-		 else{
-			 return;
-		 }
-	}
+			});		
+		 
+		}
+		/*댓글 수정하기*/
+		function modiReply(data){
+			
+		}
 	
 </script>
 
@@ -306,6 +308,10 @@ p#cheer{
 	padding:20px;
 	border-bottom:2px solid orange;
 }
+#replybox{
+	width:800px;
+	height:250px;
+}
 /*댓글 배경*/
 #replyList{
 	width:800px;
@@ -325,6 +331,9 @@ textarea#modibody{
 	width:800px;
 	margin:0 auto;
 	text-align:center;
+}
+#FormRe{
+	float:left;
 }
 
 </style>
@@ -380,9 +389,11 @@ textarea#modibody{
 					<div id="replyWF">					
 						<div id="replybox">
 							<p>&nbsp;</p>
-							<form id="reFrm" name="reFrm" method="POST">							
-							<textarea class="form-group" rows="4" id="relplybody"  name="relplybody" required></textarea>
-							</form>
+							<div id="FormRe">
+								<form id="reFrm" name="reFrm" method="POST">							
+								<textarea class="form-group" rows="4" id="relplybody"  name="relplybody" required></textarea>
+								</form>
+							</div>
 							<a class="button button-green" onClick="JavaScript:writeReply(${DATA.no});"><i class="fa fa-check"></i>
 							댓글 쓰기</a>
 						</div>

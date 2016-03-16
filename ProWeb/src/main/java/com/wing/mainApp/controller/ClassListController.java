@@ -596,6 +596,28 @@ public class ClassListController {
 		
 		return mv;
 	}
+	//댓글 수정폼 요청
+	@RequestMapping("/ClassList/ClassTextArea")
+	public ModelAndView addTextArea(HttpServletRequest req,HttpSession session){
+		ModelAndView mv = new ModelAndView();
+		
+		/*비회원 로그인고*/
+		if(!SessionUtil.isSession(session)) {
+			RedirectView	rv = new RedirectView("/");
+			mv.setView(rv);
+			return mv;
+		}
+		
+		String strreno=req.getParameter("reno");
+		int reno=Integer.parseInt(strreno);
+		String rebody=req.getParameter("rebody");
+		
+		mv.addObject("reno",reno);
+		mv.addObject("rebody",rebody);
+		mv.setViewName("ClassList/ClassTextArea");
+		
+		return mv;
+	}
 	
 	//댓글 수정
 		@RequestMapping("/ClassList/ReplyModi")

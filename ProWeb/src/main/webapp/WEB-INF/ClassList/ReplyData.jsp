@@ -18,7 +18,7 @@
 							
 							            <div class="timeline-footer">
 							            	<c:if test="${sessionScope.ID eq recontent.reid}">
-							                <a class="btn btn-warning btn-flat btn-xs">수정하기</a>&nbsp;
+							                <a class="btn btn-warning btn-flat btn-xs" onClick="JavaScript:modiFormReply(${recontent.reno});">수정하기</a>&nbsp;
 							                <a class="btn btn-danger btn-xs" onClick="JavaScript:deleteReply(${recontent.reno});">삭제하기</a>
 							                </c:if>
 							            </div>

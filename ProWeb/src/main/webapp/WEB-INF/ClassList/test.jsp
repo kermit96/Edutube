@@ -20,12 +20,7 @@
 	var count = 1; 
 	var num = 1; 
 
-	function addBox (x) {
-		$
-		
-	    var Commentext = '<p><textarea NAME="Comment' + count++ + '" rows="5" cols="50" style="background-color:#F5F5F5">textarea '+num++ +'<\/textarea>';
-	    #bbb.insertAdjacentHTML('beforeEnd', Commentext)	   
-	}
+	
 	</script>
 	
 	<!--Never Delete "EduContainer" style tag-->
