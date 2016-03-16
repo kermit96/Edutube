@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -145,16 +144,16 @@
 		  <div class="row">
 		    <c:if test="${not empty LIST}">
 	  		<c:forEach var="temp" items="${LIST}" varStatus="status">
-		    <div class="col-md-4">
-		      <a href="../IntroRegManager/IntroView.do?nowPage=${PINFO.nowPage}&oriNo=${temp.intro_no}">
-			  ID :${temp.mem_nick}
-		      <img src="../gimgs/${temp.gimg2}" class="img-circle" width="100" height="100">
-		      <!-- <td class="text-center">${temp.intro_body}</td>  -->
-		      </a>
-		      <br>
-		      <a href='#'>강의 일정</a>
-		      <br> <br> <br>  <br>  <br>
-		    </div>	
+			    <div class="col-md-4">
+			      <a href="../IntroRegManager/IntroView.do?nowPage=${PINFO.nowPage}&oriNo=${temp.intro_no}">
+				  ID :${temp.mem_nick}
+			      <img src="../gimgs/${temp.gimg2}" class="img-circle" width="100" height="100">
+			      <!-- <td class="text-center">${temp.intro_body}</td>  -->
+			      </a>
+			      <br>
+			      <a href='#'>강의 일정</a>
+			      <br> <br> <br>  <br>  <br>
+			    </div>		
 		      </c:forEach>
 	   </c:if>		    
 		  </div>	
@@ -163,6 +162,7 @@
 			<tr>
 				<td align="center">
 				<!-- 	[처음][이전][1][2][3][4][5][다음][마지막] -->
+					<a href="../IntroRegManager/IntroList.do?nowPage=1">[처  음]</a>
 					<c:if test="${PINFO.startPage eq 1}">
 							[이 전]
 					</c:if>
@@ -183,6 +183,7 @@
 					<c:if test="${PINFO.endPage ne PINFO.totalPage}">
 						<a href="../IntroRegManager/IntroList.do?nowPage=${PINFO.endPage + 1}">[다 음]</a>
 					</c:if>
+					 <a href="../IntroRegManager/IntroList.do?nowPage=${PINFO.totalPage}">[마지막]</a>
 				</td>
 			</tr>
 	  </table>

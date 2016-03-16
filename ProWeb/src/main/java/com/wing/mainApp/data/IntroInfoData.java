@@ -5,19 +5,18 @@ import java.util.Date;
 import org.springframework.web.multipart.MultipartFile;
 
 public class IntroInfoData {
-	private int    intro_no; /* �Ұ� ��ȣ */
-	private String mem_id;       /* ȸ�� ���̴� */
+	private int    intro_no; 
+	private String mem_id;       
 	private String mem_nick;
-	private String intro_title;  /* �Ұ� ���� */
-	private String intro_body;   /* �Ұ� ���� */
-	private Date   intro_date;     /* �Ұ� �ۼ��� */
-	private String intro_path;     /* ���� ��� * /
-	private String intro_oriName;  /*���� �̸� */ 
-	private int    intro_length;     /*���� ���� */
-	private Date   intro_cDate;    /* ������ ���� ��¥ */
-	private int    intro_isDeleted; /* �Ұ� ���� ���� */
+	private String intro_title;  
+	private String intro_body;   
+	private Date   intro_date;     
+	private String intro_path;     
+	private String intro_oriName;   
+	private int    intro_length;     
+	private Date   intro_cDate;    
+	private int    intro_isDeleted; 
 	
-	//���� ���� ���� �����
 	public	MultipartFile	gimg;
 	public	MultipartFile	upfile;
 	public  MultipartFile[]	files;
