@@ -174,8 +174,7 @@ public class ClassListDAO {
 	/*댓글 갯수*/
 	public int getReTotal(int orino){
 		return sqlSession.selectOne("clist.getRetotal",orino);
-	}
-	
+	}	
 	/*댓글 등록*/
 	public void insertReply(ReplyData data){
 		sqlSession.insert("clist.insertReply", data);
@@ -188,6 +187,14 @@ public class ClassListDAO {
 	/*댓글 삭제*/
 	public void deleteReply(int reno){
 		sqlSession.update("clist.deleteReply",reno);
+	}
+	/*댓글내용(수정폼)*/
+	public String getRebody(int reno){
+		return sqlSession.selectOne("clist.getRebody", reno);
+	}
+	/*댓글수정*/
+	public void updateReply(ReplyData data){
+		sqlSession.update("clist.updateReply",data);
 	}
 	
 }

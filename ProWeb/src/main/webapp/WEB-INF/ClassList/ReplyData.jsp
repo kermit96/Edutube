@@ -12,11 +12,9 @@
 							            <span class="time"><i class="fa fa-clock-o"></i> ${recontent.realdate}</span>							
 							            <h3 class="timeline-header"><i class="fa fa-android"></i>No : ${recontent.reno}&nbsp;<a href="#">${recontent.renick}</a></h3>
 							
-							            <div class="timeline-body" id="modiDiv">
-							               ${recontent.realbody}
-							            </div>
+							            <div class="timeline-body" id="modiDiv${recontent.reno}"><XMP>${recontent.realbody}</XMP></div>
 							
-							            <div class="timeline-footer">
+							            <div class="timeline-footer" id="modiUtilDiv${recontent.reno}">
 							            	<c:if test="${sessionScope.ID eq recontent.reid}">
 							                <a class="btn btn-warning btn-flat btn-xs" onClick="JavaScript:modiFormReply(${recontent.reno});">수정하기</a>&nbsp;
 							                <a class="btn btn-danger btn-xs" onClick="JavaScript:deleteReply(${recontent.reno});">삭제하기</a>
@@ -48,7 +46,8 @@
 									<li><a href="JavaScript:getReList(${PINFO.endPage + 1})">다음</a></li>		
 								</c:if>								
 								
-							</ul>		
+							</ul>
+							<input id="rePage" name="rePage" value="${REPAGE}" type="hidden" />		
 						</div>						
 					
 						

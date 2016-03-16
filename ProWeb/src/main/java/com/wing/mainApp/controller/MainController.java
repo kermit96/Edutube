@@ -20,7 +20,7 @@ public class MainController {
 		String id =(String) session.getAttribute("ID");
 		StringBuffer buff = new StringBuffer();
 		if(id==null || id.length()==0){
-			System.out.println("null이당!!!");
+			
 		}
 		else{
 			buff.append(id);
