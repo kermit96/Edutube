@@ -1,0 +1,60 @@
+language  설정 하는 방법 
+
+/WEB-INF/conf/lang 에  xml 파일를 만든다 . 
+파일 형식은   다음과 같다.
+<Language>
+ <Lang>
+   <id> id  </id>
+   <kr> 한국어  </kr>
+   <ja> 일본어</ja>
+   <en> 영어   </en>
+   <ch>  중국어 번체</ch>
+   <ch_cn> 중국어 간체 </ch_cn>
+ </Lang> 
+</Language>
+
+  id : 구별자   다른 파일의 id 와 중복되지 않게 주의 해야 한다
+  kr  : 한국어 
+  ja   : 일본어
+  en    : 영어 
+  ch     : 중국어 번체
+  ch_en : 중국어 간체 
+
+
+jsp 파일에서는  ${LANGDATA.id} 형식을 쓴다
+여기서 id 는  xml 의 id 이다.
+
+예> 
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Language>
+ <Lang>
+   <id>memberchecknickfail</id>
+   <kr>사용할수 없는 nickname 입니다. </kr>
+   <ja>사용할수 없는 nickname 입니다. </ja>
+   <en>사용할수 없는 nickname 입니다. </en>
+   <ch>사용할수 없는 nickname 입니다. </ch>
+   <ch_cn>사용할수 없는 nickname 입니다. </ch_cn>
+ </Lang>
+ 
+ <Lang>
+ <id>memberchecknicksuccess</id>
+   <kr>사용할수 있는 nickname 입니다.</kr>
+   <ja></ja>
+   <en></en>
+   <ch></ch>
+   <ch_cn></ch_cn>
+ </Lang>
+ 
+</Language>
+
+ xml 파일이 이렇게 되어 있으면   
+ jsp 파일은  ${LANGDATA.memberchecknickfail} 로 처리 하면 된다.
+
+
+ java 파일에서는  HttpServletRequest 의 getParameter 함수를 사용하면 된다.
+ parameter 는  "LANGDATA" 이고 return 값은 hashmap 이고  
+xml 에서는 정의한 id 를 가지고  
+
+
+

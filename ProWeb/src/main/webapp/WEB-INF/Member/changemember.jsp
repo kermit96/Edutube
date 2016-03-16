@@ -34,22 +34,24 @@
 		var nick  =   $("#mem_nick").val();
 	
 	    try {
+	    	
 	        $.ajax({
 	            url:"../member/ajax/samenickname.do",
 	            async:false,
 	            type:'post',
 	            dataType:'json',
 	            cache:false,
+	            
 	            data:{nickname:nick},
 	            
 	            success:function(data){
 	            	
 	            	 if (data.result)
 	                 {   
-	            		 $("#checknickname").html("#{LANGDATA.unusenickname}");
+	            		 $("#checknickname").html("${LANGDATA.memberchecknickfail}");
 	            		 $("#mem_nick").focus();		 
 	            	 } else {            	
-	            		 $("#checknickname").html("사용할수 있는 nickname 입니다. ");
+	            		 $("#checknickname").html("${LANGDATA.memberchecknicksuccess}");
 	            	 }            	              
 	            },
 	            error:function(request,status,error){
@@ -349,6 +351,6 @@
     </div>
   </div>
 </div>
-
+ 
 </body>
 </html>

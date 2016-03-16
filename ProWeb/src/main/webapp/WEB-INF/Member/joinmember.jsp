@@ -76,14 +76,13 @@
 				data : {
 					nickname : nick
 				},
- 
+
 				success : function(data) {
 					if (data.result) {
-						// un user
-						$("#checknickname").html("${LANGDATA.unusenickname}");
+						$("#checknickname").html("사용할수 없는 nickname 입니다. ");
 						$("#mem_nick").focus();
 					} else {
-						$("#checknickname").html("${LANGDATA.usenickname}");
+						$("#checknickname").html("사용할수 있는 nickname 입니다. ");
 					}
 				},
 				error : function(request, status, error) {
