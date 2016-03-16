@@ -199,7 +199,11 @@ a.logC:hover {
 		</ul>
 	</div>
 
+<<<<<<< HEAD
 </div><!-- 이게 들어가야 03/15 노란색줄 수정 된거 -->
+=======
+    
+>>>>>>> branch 'master' of https://github.com/Nepro73/EduTube.git
 
 <script src="/edutube/resources/JS/classie.js"></script>
 <script src="/edutube/resources/JS/selectFx.js"></script>

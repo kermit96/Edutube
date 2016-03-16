@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,8 +21,7 @@
 		
 	<!--Never Delete "EduContainer" style tag-->
 <style>
-	
-		#EduContainer{
+	#EduContainer{
 				width:1200px;
 				position: absolute;
 				left: 50%;
@@ -44,28 +44,29 @@
 			clear:both;
 			width:150px;			
 		}
-		
-	</style>
-	<style type="text/css">
-	    #Table{
-			background-color: MistyRose;<!--Joon -->
+		<!--JOON CSS-->
+		th,td {
+			background:white;/*배경색*/
 		}
-		#tr_top{
-			background:rgb(114, 235, 125);
-			text-align:center;
+		table td, th {
+			border:#d3d3d3 solid 1px;/*경계선 색상 스타일 굵기 */
 		}
-		#page{
-			background-color: MistyRose;
+		table {
+			width:100%;
+			border-collapse:collapse;
+			
+			font-size:16px; /*글꼴 크기*/
+			line-height:24px;/*줄 간격*/
+		}		
+		a{
+			text-decoration:none; /* 링크 밑줄 없애기 */
+			color:black; /*글 색상*/
 		}
-		h3 {
-			text-align:center;
+		a:HOVER {
+			text-decoration:underline; /* 밑줄 
+			color:green;			/*글 색상*/
 		}
-		
-		table, th, td {
-   		border: 1px solid black text-align:center;
-		}
-				
-	</style>	
+		</style>
 	<script>		    
 			
 			$(document).ready(function(){
@@ -116,29 +117,37 @@
 			<input type="hidden" id="nowPage" name="nowPage" value="${NOWPAGE}">
 		</form>
 		 <!-- 	목록 보여주기 -->
-		<table border="1" width="80%" align="center">
-				<tr id="tr_top">
-					<th id="tr_top" class="text-center">번호</th>
-					<th id="tr_top" class="text-center">제목</th>
-					<th id="tr_top" class="text-center">글내용</th>
-					<th id="tr_top" class="text-center">글쓴이</th>
-					<th id="tr_top" class="text-center">작성일</th>
+		 <table width="80%" border="1" align="center" id='Table'>
+				<tr>
+					<th class="text-center">글번호</th>
+					<td colspan="5"><input type="text" value="${DATA.notice_no}" readonly>
 				</tr>
-	    	   	<tr>
-					<td class="text-center">${DATA.notice_no}</td>
-					<td class="text-center">${DATA.notice_title}</td>
-					<td class="text-center">${DATA.notice_body}</td>
-					<td class="text-center">${DATA.mem_id}</td>
-					<td class="text-center">${DATA.notice_date}</td>				
-			   </tr>		
-		</table>
-			<table border="1" width="80%" align="center">
-				<tr id="tr_bot">
+				<tr>
+					<th class="text-center">글쓴이</th>
+					<td colspan="5"><input type="text" value="${DATA.mem_id}" readonly>
+				</tr>
+				<tr>
+					<th class="text-center">제목</th>
+					<td colspan="5"><input type="text" value="${DATA.notice_title}" readonly>
+				</tr>
+				<tr>
+				    <th class="text-center">공지 글</th>
+					<td colspan="5">
+						<textarea cols="40" rows="10" id="body" name="notice_body"  style="width:100%; height:200px" readonly>${DATA.notice_body}</textarea>
+					</td>
+				</tr>
+				<tr>
+					<th class="text-center">작성일</th>
+					<td colspan="5"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${DATA.notice_date}"/></td>
+				</tr>
+				
+			</table>		
+		
+			<table border="1" align="center">
+				<tr>
 					<td align="center">					
-<c:if test="${sessionScope.ID eq DATA.mem_id}">
 					<input type="button" value="수정하기" id="mBtn" class="btn btn-primary btn-sm">
 					<input type="button" value="삭제하기" id="dBtn" class="btn btn-primary btn-sm">					
-</c:if>
 					<input type="button" value="목록보기" id="lBtn" class="btn btn-primary btn-sm">					
 					</td>
 				</tr>

@@ -26,11 +26,18 @@ public class NoticeDAO {
 		}
 	}
 	
-	public ArrayList selectNoticeList(HashMap map) {
+	//public ArrayList selectNoticeList(HashMap map) {
+	public ArrayList selectNoticeList() {
 		
 		//ArrayList	result = (ArrayList)sqlSession.selectList("notice.getlist",map);
 		//return result;
 		return (ArrayList)sqlSession.selectList("notice.getlist");
+	}
+	//public ArrayList selectNoticeList(HashMap map) {
+	public ArrayList selectNoticeList(HashMap map) {
+			
+			
+		return (ArrayList)sqlSession.selectList("notice.getlist",map);
 	}
 	
 	public NoticeData selectFinalList(int NO) {
@@ -81,7 +88,10 @@ public class NoticeDAO {
 	}
 	
 	public int noticeMax(){
-		return (int)sqlSession.selectOne("notice.noticemax");
+		//System.out.println("noticeMax");
+		int temp=(int)sqlSession.selectOne("notice.noticemax");
+		System.out.println("max="+temp);
+		return temp;
 	}
 		
 	/*

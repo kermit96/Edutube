@@ -9,7 +9,7 @@
 			Introduce
 		VALUES
 			((SELECT NVL(MAX(intro_no), 0) + 1 FROM Introduce),
-			#{mem_id}, #{intro_title}, #{intro_body},SYSDATE,#{gimg2},'test','10', SYSDATE,'Y')
+			#{mem_id}, #{intro_title}, #{intro_body},SYSDATE,#{gimg2},'test','tt','10',SYSDATE,'N')
 	</insert>
 <!-- 	강사 소개글  질의	-->
 	<select id="selectIntroList"		resultType="idata"
@@ -17,14 +17,17 @@
 		SELECT
 			intro_no,
 			mem_id,
+			mem_nick,
 			intro_title,
 			intro_body,
 			intro_path AS gimg2  
 		FROM
-			Introduce 
+			(SELECT
+				rownum AS RNO, t2.*
+			FROM
+				(SELECT i.*,mem_nick FROM introduce i,member m WHERE i.intro_isDeleted='N' AND m.mem_isDeleted='N' AND i.mem_id=m.mem_id ORDER BY intro_no DESC) t2)	
 		WHERE
-		    intro_isDeleted = 'Y'		   	   
-		ORDER BY intro_no DESC		
+		RNO BETWEEN #{start} AND #{end}			
 	</select>
 <!-- 언어 소개글 질의 -->
 <select id="selectkorlang"		resultType="idata"
@@ -222,7 +225,7 @@
 		UPDATE
 			Introduce
 		SET
-			intro_isDeleted = 'N'
+			intro_isDeleted = 'Y'
 		WHERE
 			intro_no = #{NO}
 	</update>
@@ -236,7 +239,7 @@
 		FROM
 			Introduce
 		WHERE
-			intro_isDeleted = 'Y'
+			intro_isDeleted = 'N'
 			AND
 			<if test="kind eq 'title'">
 				intro_title LIKE '%' || #{CONTENT} || '%'
@@ -264,7 +267,7 @@
 		FROM
 			Introduce
 		WHERE
-			intro_isDeleted = 'Y'
+			intro_isDeleted = 'N'
 			<choose>
 				<when test="kind eq 'title'">
 			AND	intro_title LIKE '%' || #{CONTENT} || '%'

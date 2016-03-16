@@ -137,6 +137,7 @@ public class IntroRegController {
 		map.put("end", end);
 		
 		ArrayList	list = iDao.selectIntroList(map);
+		//ArrayList	list = iDao.selectIntroList(map);
 	
 		mv.addObject("PINFO", pInfo);
 		mv.addObject("LIST", list);

@@ -20,8 +20,7 @@
 	
 	<!--Never Delete "EduContainer" style tag-->
 	<style>
-	
-		#EduContainer{
+	#EduContainer{
 				width:1200px;
 				position: absolute;
 				left: 50%;
@@ -46,7 +45,7 @@
 		}
 		<!--JOON CSS-->
 		th,td {
-			background:yellowgreen;/*배경색*/
+			background:white;/*배경색*/
 		}
 		table td, th {
 			border:#d3d3d3 solid 1px;/*경계선 색상 스타일 굵기 */
@@ -54,6 +53,7 @@
 		table {
 			width:100%;
 			border-collapse:collapse;
+			
 			font-size:16px; /*글꼴 크기*/
 			line-height:24px;/*줄 간격*/
 		}		
@@ -65,8 +65,7 @@
 			text-decoration:underline; /* 밑줄 
 			color:green;			/*글 색상*/
 		}
-				
-	</style>
+		</style>
 
 <script>
 			$(document).ready(function(){
@@ -126,23 +125,23 @@
 			<input type="hidden" name="nowPage" value="${NOWPAGE}">
 			<table border="1" align="center" width="50%">
 				<tr>
-					<td>글쓴이</td>
-					<td><input type="text" id="writer" name="mem_id" value="${DATA.mem_id}" disabled></td>
+					<th class="text-center">글쓴이</th>
+					<td colspan="5"><input type="text" id="writer" name="mem_id" value="${DATA.mem_id}" readonly></td>
 				</tr>
 				<tr>
-					<td>제목</td>
-					<td>
+					<th class="text-center">제목</th>
+					<td colspan="5">
 						<input type="text" id="title" name="notice_title" value="${DATA.notice_title}">
 					</td>
 				</tr>
 				<tr>
-					<td>내용</td>
-					<td>
-						<textarea id="body" name="notice_body">${DATA.notice_body}</textarea>
+					<th class="text-center">내용</th>
+					<td colspan="5">
+						<textarea cols="40" rows="10" id="body" name="notice_body">${DATA.notice_body}</textarea>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center" id="lbtn">
+					<td colspan="5" align="center" id="lbtn">
 						<input type="button" id="mBtn" value="수정하기" class="btn btn-primary btn-sm">
 						<input type="reset" value="다시작성"  class="btn btn-primary btn-sm">
 						<input type="button" value="목록" id="lBtn" class="btn btn-primary btn-sm">
