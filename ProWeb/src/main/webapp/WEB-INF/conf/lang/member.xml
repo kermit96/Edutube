@@ -2,7 +2,7 @@
 <Language>
  <Lang>
    <id>memberchecknickfail</id>
-   <kr>사용할수 없는 nickname 입니다. </kr>
+   <ko>사용할수 없는 nickname 입니다. </ko>
    <ja>사용할수 없는 nickname 입니다. </ja>
    <en>사용할수 없는 nickname 입니다. </en>
    <ch>사용할수 없는 nickname 입니다. </ch>
@@ -11,7 +11,7 @@
  
  <Lang>
  <id>memberchecknicksuccess</id>
-   <kr>사용할수 있는 nickname 입니다.</kr>
+   <ko>사용할수 있는 nickname 입니다.</ko>
    <ja></ja>
    <en></en>
    <ch></ch>

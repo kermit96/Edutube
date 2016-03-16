@@ -2,7 +2,7 @@
 <Language>
  <Lang>
    <id>top_edu</id>
-   <kr>에듀 튜브 </kr>
+   <ko>에듀 튜브 </ko>
    <ja>에듀 튜브  </ja>
    <en>Edu Tube </en>
    <ch>Edu Tube</ch>
@@ -11,7 +11,7 @@
  
  <Lang>
  <id>top_login</id>
-   <kr>로그인</kr>
+   <ko>로그인</ko>
    <ja>login</ja>
    <en>login</en>
    <ch>login</ch>
@@ -20,7 +20,7 @@
 
  <Lang>
  <id>top_logout</id>
-   <kr>로그아웃</kr>
+   <ko>로그아웃</ko>
    <ja>logout</ja>
    <en>logout</en>
    <ch>logout</ch>
@@ -30,7 +30,7 @@
 
  <Lang>
  <id>top_member</id>
-   <kr>회원가입</kr>
+   <ko>회원가입</ko>
    <ja>Join</ja>
    <en>Join</en>
    <ch>Join</ch>
@@ -40,7 +40,7 @@
 
  <Lang>
  <id>top_mypage</id>
-   <kr>마이페이지</kr>
+   <ko>마이페이지</ko>
    <ja>MyPage</ja>
    <en>MyPage</en>
    <ch>MyPage</ch>
@@ -50,7 +50,7 @@
  
  <Lang>
  <id>top_intro</id>
-   <kr>에듀튜브 소개</kr>
+   <ko>에듀튜브 소개</ko>
    <ja>에듀튜브 소개</ja>
    <en>에듀튜브 소개</en>
    <ch>에듀튜브 소개</ch>
@@ -59,7 +59,7 @@
  
  <Lang>
  <id>top_notify</id>
-   <kr>공지 사항</kr>
+   <ko>공지 사항</ko>
    <ja>공지 사항</ja>
    <en>공지 사항</en>
    <ch>공지 사항</ch>
@@ -69,7 +69,7 @@
  
  <Lang>
  <id>top_instructor</id>
-   <kr>강사 소개</kr>
+   <ko>강사 소개</ko>
    <ja>강사 소개</ja>
    <en>강사 소개</en>
    <ch>강사 소개</ch>
@@ -78,7 +78,7 @@
  
  <Lang>
  <id>top_instructor_dir</id>
-   <kr>강의 목록</kr>
+   <ko>강의 목록</ko>
    <ja>강의 목록</ja>
    <en>강의 목록</en>
    <ch>강의 목록</ch>
@@ -87,7 +87,7 @@
  
  <Lang>
  <id>top_file</id>
-   <kr>자료실</kr>
+   <ko>자료실</ko>
    <ja>자료실</ja>
    <en>자료실</en>
    <ch>자료실</ch>
@@ -97,7 +97,7 @@
  
  <Lang>
  <id>top_test</id>
-   <kr>테스트</kr>
+   <ko>테스트</ko>
    <ja>Test</ja>
    <en>Test</en>
    <ch>Test</ch>
@@ -107,7 +107,7 @@
  
  <Lang>
  <id>top_admin</id>
-   <kr>관리자</kr>
+   <ko>관리자</ko>
    <ja>admin</ja>
    <en>admin</en>
    <ch>admin</ch>
@@ -116,7 +116,7 @@
  
  <Lang>
  <id>top_search</id>
-   <kr>검색어를 입력해주세요</kr>
+   <ko>검색어를 입력해주세요</ko>
    <ja>검색어를 입력해주세요</ja>
    <en>검색어를 입력해주세요</en>
    <ch>검색어를 입력해주세요</ch>

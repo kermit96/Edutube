@@ -61,7 +61,7 @@ public class Langxml {
     	  Document doc = dBuilder.parse(filename);
     	  doc.getDocumentElement().normalize();
     	  
-    	  NodeList descNodes = doc.getElementsByTagName("lang");
+    	  NodeList descNodes = doc.getElementsByTagName("Lang");
     	  
 
     		 
@@ -99,10 +99,10 @@ public class Langxml {
               }
               
                if (StringUtil.isNull(id)) 
-            	   break;
+            	   continue;
                
                if (StringUtil.isNull(ko)) 
-            	   break;
+            	   continue;
                
                if (StringUtil.isNull(en)) 
             	   en = ko;

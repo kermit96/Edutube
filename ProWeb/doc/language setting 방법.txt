@@ -5,7 +5,7 @@ language  설정 하는 방법
 <Language>
  <Lang>
    <id> id  </id>
-   <kr> 한국어  </kr>
+   <ko> 한국어  </ko>
    <ja> 일본어</ja>
    <en> 영어   </en>
    <ch>  중국어 번체</ch>
@@ -14,7 +14,7 @@ language  설정 하는 방법
 </Language>
 
   id : 구별자   다른 파일의 id 와 중복되지 않게 주의 해야 한다
-  kr  : 한국어 
+  ko  : 한국어 
   ja   : 일본어
   en    : 영어 
   ch     : 중국어 번체
@@ -30,7 +30,7 @@ jsp 파일에서는  ${LANGDATA.id} 형식을 쓴다
 <Language>
  <Lang>
    <id>memberchecknickfail</id>
-   <kr>사용할수 없는 nickname 입니다. </kr>
+   <ko>사용할수 없는 nickname 입니다. </ko>
    <ja>사용할수 없는 nickname 입니다. </ja>
    <en>사용할수 없는 nickname 입니다. </en>
    <ch>사용할수 없는 nickname 입니다. </ch>
@@ -39,7 +39,7 @@ jsp 파일에서는  ${LANGDATA.id} 형식을 쓴다
  
  <Lang>
  <id>memberchecknicksuccess</id>
-   <kr>사용할수 있는 nickname 입니다.</kr>
+   <ko>사용할수 있는 nickname 입니다.</ko>
    <ja></ja>
    <en></en>
    <ch></ch>
@@ -54,7 +54,7 @@ jsp 파일에서는  ${LANGDATA.id} 형식을 쓴다
 
  java 파일에서는  HttpServletRequest 의 getParameter 함수를 사용하면 된다.
  parameter 는  "LANGDATA" 이고 return 값은 hashmap 이고  
-xml 에서는 정의한 id 를 가지고  
+xml 에서는 정의한 id 를 가지고 사용한다.  
 
 
 

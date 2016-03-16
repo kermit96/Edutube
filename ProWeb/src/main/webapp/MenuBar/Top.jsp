@@ -8,7 +8,7 @@
 	</c:if>
 
 <!DOCTYPE html>
-<title>에듀 튜브</title>
+<title>${LANGDATA.top_edu}</title>
 
 <!--  파피콘 넣기 -->
 <link rel="shortcut icon" href="/edutube/favicon.ico"
@@ -147,7 +147,7 @@ a.logC:hover {
 				<c:if test="${sessionScope.ID eq null}">
 
 					<div id="state_login">
-						<a href="JavaScript:goLogin();" class="logC">로그인</a>&nbsp;&nbsp;<a href="JavaScript:memberJoin()" class="logC">회원가입</a>
+						<a href="JavaScript:goLogin();" class="logC">${LANGDATA.top_login}</a>&nbsp;&nbsp;<a href="JavaScript:memberJoin()" class="logC">${LANGDATA.top_member}</a>
 						
 						<select id="lang" name="lang" onchange="goLanguage()">
 							<option value="ko"> 한국어</option>
@@ -164,10 +164,10 @@ a.logC:hover {
 				<c:if test="${sessionScope.ID ne null}">
 
 					<div id="state_logout">
-						<a href="JavaScript:goLogout()" class="logC">로그아웃</a>&nbsp;&nbsp;<a href="JavaScript:goInfo()"
-							class="logC">마이페이지</a>
+						<a href="JavaScript:goLogout()" class="logC">${LANGDATA.top_member}</a>&nbsp;&nbsp;<a href="JavaScript:goInfo()"
+							class="logC">${LANGDATA.top_mypage}</a>
 							<select id="lang" name="lang" onchange="goLanguage()">
-							<option value="ko"> 한국어</option>
+							<option value="ko">한국어</option>
 							<option value="en">English</option>
 							<option value="ja">日本語</option>
 							<option value="ch">中國(繁體)</option>
@@ -182,16 +182,19 @@ a.logC:hover {
 
 	<div id='cssmenu'>
 		<ul>
-			<li><a href="JavaScript:goHomeIntro()"><span>에듀튜브 소개</span></a></li>
-			<li><a href="JavaScript:goNotice()"><span>공지 사항</span></a></li>
-			<li><a href="JavaScript:goLecIntro()"><span>강사 소개</span></a></li>
-			<li><a href="JavaScript:goClasses()"><span>강의 목록</span></a></li>
-			<li><a href="JavaScript:goDownload()"><span>자료실</span></a></li>
+		
+		
+			<li><a href="JavaScript:goHomeIntro()"><span>${LANGDATA.top_intro}</span></a></li>
+			<li><a href="JavaScript:goNotice()"><span>${LANGDATA.top_notify}</span></a></li>
+			<li><a href="JavaScript:goLecIntro()"><span>${LANGDATA.top_notify}</span></a></li>
+			<li><a href="JavaScript:goClasses()"><span>${LANGDATA.top_instructor_dir}</span></a></li>
+			<li><a href="JavaScript:goDownload()"><span>${LANGDATA.top_file}</span></a></li>
 			<li><a href="JavaScript:goFAQ()"><span>FAQ</span></a></li>
 			<li><a href="JavaScript:goQA()"><span>QA</span></a></li>			
-			<li class='last'><a href="JavaScript:goTest()"><span>테스트</span></a></li>
+			<li class='last'><a href="JavaScript:goTest()"><span>${LANGDATA.top_test}</span></a></li>
+					 
 			<c:if test="${isAdmin==true}">
- 				<li class='last'><a href="/edutube/AdminPage/AdminMain.do"><span>관리자</span></a></li>	
+ 				<li class='last'><a href="/edutube/AdminPage/AdminMain.do"><span>${LANGDATA.top_admin}</span></a></li>	
 			</c:if>
 		</ul>
 	</div>
@@ -227,7 +230,8 @@ a.logC:hover {
 			$searchWord=$searchWord.replace(/^\s+|\s+$/g,"");
 
 			if($searchWord==""){
-				alert('검색어를 입력해주세욜');
+			//	alert('검색어를 입력해주세욜');
+				alert('${LANGDATA.top_search}');
 				return;
 			}			
 			$("#searchFrm").attr("action", "/edutube/Search/SearchForm.do");
