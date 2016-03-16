@@ -177,30 +177,7 @@ public class Langxml {
 	
 	public HashMap getMap()
 	{
-		if (lang.toLowerCase().equals("ko")) {
-			
-			 return kolangmap;
-		}
-		
-		if (lang.toLowerCase().equals("ja")) {
-			
-			 return japanlangmap;
-		}
-
-		if (lang.toLowerCase().equals("en")) {		
-			
-			 return enlangmap;
-		}
-
-		if (lang.toLowerCase().equals("ch")) {	
-			 return chlangmap;
-		}
-		
-		if (lang.toLowerCase().equals("ch_cn")) {
-			 return ch_cnlangmap;
-		}
-
-		return kolangmap;
+		return getMap(this.lang);
 		
 	}
 	
