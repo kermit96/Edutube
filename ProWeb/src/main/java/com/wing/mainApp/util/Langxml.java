@@ -75,17 +75,11 @@ public class Langxml {
         	 String  ch_cn = "";
         	  
               for(Node node = descNodes.item(i).getFirstChild(); node!=null; node=node.getNextSibling()){ //첫번째 자식을 시작으로 마지막까지 다음 형제를 실행
-   
-            	  
-            	  System.out.println("node="+node.getNodeName());
             	  
                   if(node.getNodeName().equals("id")){
-                	  id = node.getTextContent();       
-                	  System.out.println("id="+id);
+                	  id = node.getTextContent();                       	
                     }else if(node.getNodeName().equals("ko")){
-                    	ko = node.getTextContent();
-                    	System.out.println("ko="+ko);
-                    	
+                    	ko = node.getTextContent();                                       	
                   }else if(node.getNodeName().equals("ja")){
                       ja =  node.getTextContent();
                   }else if(node.getNodeName().equals("ch")){
