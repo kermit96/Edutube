@@ -90,13 +90,42 @@
 		 <script type="text/javascript">
 		    $(document).ready(function(){
 		        setInterval(function(){
-		                  var blink = document.getElementById("dday");
+		                  var blink = document.getElementById("top_not");
 		            blink.style.visibility = blink.style.visibility == "" ? "hidden" : ""
 		        }, 800);
 		    })
-    	 </script>				
+    	 </script>
+    	 <script type="text/javascript">
+			
+			var theText = document.getElementById("top_not");
+			
+			function nextSize(i,incMethod,textLength)
+			{
+			if (incMethod == 1) return (72*Math.abs( Math.sin(i/(textLength/3.14))) );
+			if (incMethod == 2) return (255*Math.abs( Math.cos(i/(textLength/3.14))));
+			}
+			
+			function sizeCycle(text,method,dis)
+			{
+				output = "";
+				for (i = 0; i < text.length; i++)
+				{
+					size = parseInt(nextSize(i +dis,method,text.length));
+					output += "<font style='font-size: "+ size +"pt'>" +text.substring(i,i+1)+ "</font>";
+				}
+				theDiv.innerHTML = output;
+			}
+			
+			function doWave(n) 
+			{   
+				sizeCycle(theText,1,n);
+				if (n > theText.length) {n=0}
+				setTimeout("doWave(" + (n+1) + ")", 50);
+			}
+		</script>				
 </head>
-<body onload="startBlink()">
+<!--  <body onload="startBlink()"> -->
+<body onload="doWave(3)"> 
 <div id='EduContainer'>
 
 <%-- <c:if test="${sessionScope.ADMIN ne 'Y'}">
@@ -151,12 +180,12 @@
 	   		<c:if test="${not empty LIST}">
 	   		
 	   		 <tr>
-			    	<td class="text-center" ><strong>최신 공지</strong></td>
-					<td  id="dday" class="text-center" style="background-color:#0FFFFF" >
+			    	<td id="ttop_not" class="text-center" ><strong>최신 공지</strong></td>
+					<td id="top_not" class="text-center" style="background-color:#0FFFFF" >
 							<a href="../Notice/NoticeView.do?nowPage=${PINFO.nowPage}&oriNo=${DATA.notice_no}"><blink>${DATA.notice_title}</blink></a>
 					</td>
 					<!-- <td>${temp.notice_body}</td>  -->
-					<td id="dday" class="text-center">${DATA.mem_id}</td>
+					<td id="ttop_not" class="text-center">${DATA.mem_id}</td>
 					<td class="text-center"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${DATA.notice_date}"/></td>
 			 </tr>
 			

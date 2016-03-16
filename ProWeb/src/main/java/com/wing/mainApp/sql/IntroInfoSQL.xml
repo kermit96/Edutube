@@ -25,7 +25,7 @@
 			(SELECT
 				rownum AS RNO, t2.*
 			FROM
-				(SELECT i.*,mem_nick FROM introduce i,member m WHERE i.intro_isDeleted='N' AND m.mem_isDeleted='N' ORDER BY intro_no DESC) t2)	
+				(SELECT i.*,mem_nick FROM introduce i,member m WHERE i.intro_isDeleted='N' AND m.mem_isDeleted='N' AND i.mem_id=m.mem_id ORDER BY intro_no DESC) t2)	
 		WHERE
 		RNO BETWEEN #{start} AND #{end}			
 	</select>

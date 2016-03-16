@@ -146,7 +146,7 @@
 	   <c:forEach var="temp" items="${LIST}" varStatus="status">
 			<tr>
 				<td class="text-center">
-					<a href="../IntroRegManager/IntroView.do?intro_no=${temp.intro_no}">${temp.intro_no}</a>
+					<a href="../IntroRegManager/IntroView.do?nowPage=${PINFO.nowPage}&oriNo=${temp.intro_no}">${temp.intro_no}</a>
 				</td>
 				<td class="text-center">
 					<img src="../gimgs/${temp.gimg2}" width="100" height="100">
