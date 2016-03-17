@@ -7,9 +7,9 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 
-public class chatHandler extends TextWebSocketHandler {
+public class ChatHandler extends TextWebSocketHandler {
 	
-	public chatHandler()
+	public ChatHandler()
 	{
 		super();
 	

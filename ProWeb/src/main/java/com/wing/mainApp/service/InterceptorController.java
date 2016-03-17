@@ -53,7 +53,7 @@ public class InterceptorController extends HandlerInterceptorAdapter  {
 		  }
 		  
 		  
-		  System.out.println("lang = "+lang);
+
 		  
 		   HashMap map = Langxml.load(lang);    
 	

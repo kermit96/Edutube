@@ -40,7 +40,7 @@ public class Langxml {
     public String []GetXmlList(String dir)  
     {
     	
-    	System.out.println(dir);
+
     	File file = new File(dir);
         String[] list = file.list(new FilenameFilter()
         {
@@ -86,7 +86,7 @@ public class Langxml {
                       ja =  node.getTextContent();
                   }else if(node.getNodeName().equals("ch")){
                     ch =  node.getTextContent();
-                  } else if(node.getNodeName().equals("ch_en")){
+                  } else if(node.getNodeName().equals("ch_cn")){
                       ch_cn =  node.getTextContent();
                     } else if(node.getNodeName().equals("en")){
                         en =  node.getTextContent();

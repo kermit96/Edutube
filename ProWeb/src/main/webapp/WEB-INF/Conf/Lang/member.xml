@@ -270,7 +270,7 @@
  
  <Lang>
     <id>member_idinputmsg</id>
-    <ko>IDを入力</ko>
+    <ko>ID입력</ko>
     <ja>使用できないnicknameです。 </ja>
     <en>Enter ID </en>
     <ch>輸入ID</ch>

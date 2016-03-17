@@ -11,7 +11,7 @@
     <websocket:mapping handler="chatHandler" path="/chat/chating.do" />
 </websocket:handlers>
  
-<bean id="chatHandler" class="com.wing.mainApp.controller.chatHandler"/>
+<bean id="chatHandler" class="com.wing.mainApp.controller.ChatHandler"/>
  
 </beans>
 
