@@ -39,6 +39,8 @@ public class Langxml {
     
     public String []GetXmlList(String dir)  
     {
+    	
+    	System.out.println(dir);
     	File file = new File(dir);
         String[] list = file.list(new FilenameFilter()
         {
@@ -158,7 +160,7 @@ public class Langxml {
 
   
 		String sConfPath="";
-		sConfPath = sPath + File.separator + "conf"+File.separator +"lang";				
+		sConfPath = sPath + File.separator + "Conf"+File.separator +"Lang";				
 
 		return sConfPath;		
 	}
