@@ -62,4 +62,16 @@ public class ApplyDAO {
 	public HashMap isFile(int no){
 		return (HashMap) sqlSession.selectOne("app.isFile",no);
 	}
+	// 강사 등록(소개페이지)
+	public void insertIntro(ApplyData data){
+		sqlSession.insert("app.insertint",data);
+	}
+	// 강사 등록(lec테이블)
+	public void insertLec(ApplyData data){
+		sqlSession.insert("app.insertlec",data);
+	}
+	// 강사 등록을 위한 정보 검색
+	public ApplyData selectAll(String id){
+		return (ApplyData) sqlSession.selectOne("app.selectall",id);
+	}
 }

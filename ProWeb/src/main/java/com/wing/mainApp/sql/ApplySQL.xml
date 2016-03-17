@@ -94,4 +94,29 @@
 		WHERE
 			Apply_NO = #{no}
 	</select>
+<!-- 강사 등록 정보 -->
+	<select id="selectall" parameterType="java.lang.String" resultType="appdata">
+		SELECT
+			SUB_CODE AS code,
+			MEM_ID AS id,
+			APPLY_BODY AS body
+		FROM
+			APPLY
+		WHERE
+			MEM_ID = #{id}
+	</select>
+<!-- 강사등록 introduce -->
+	<insert id="insertint" parameterType="appdata">
+		INSERT
+			INTO
+		INTRODUCE (Intro_NO, Mem_ID, Intro_TITLE, Intro_BODY)
+			VALUES((SELECT NVL(MAX(INTRO_NO),0)+1 FROM INTRODUCE), #{id}, #{title}, #{body})
+	</insert>
+<!-- 강사등록 lec -->
+	<insert id="insertlec" parameterType="appdata">
+		INSERT
+			INTO
+		LECTURER (LEC_NO, Mem_ID, SUB_CODE)
+			VALUES((SELECT NVL(MAX(LEC_NO),0)+1 FROM LECTURER), #{id}, #{code})
+	</insert>
 </mapper>

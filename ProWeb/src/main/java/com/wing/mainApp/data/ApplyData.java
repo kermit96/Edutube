@@ -17,9 +17,16 @@ public class ApplyData {
 	private Date cdate;
 	private String nal;
 	private MultipartFile afile;
+	private String title;
 	
 	
 	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	public MultipartFile getAfile() {
 		return afile;
 	}

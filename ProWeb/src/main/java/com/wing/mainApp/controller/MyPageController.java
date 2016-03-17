@@ -125,7 +125,7 @@ public class MyPageController {
 	}
 	// 강사 승인
 	@RequestMapping("Apply/acceptApply")
-	public ModelAndView acceptApply(HttpServletRequest req){
+	public ModelAndView acceptApply(HttpServletRequest req, ApplyData data){
 		ModelAndView mv = new ModelAndView();
 		
 		String strNo = req.getParameter("no");
@@ -144,6 +144,12 @@ public class MyPageController {
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
+		data = aDao.selectAll(id);
+		data.setTitle("안녕하세요 "+data.getId()+" 강사 입니다.");
+		// 강사테이블에 insert
+		aDao.insertIntro(data);
+		aDao.insertLec(data);
+		
 		mv.setViewName("Apply/ApplyList.do");		
 		return mv;
 	}
