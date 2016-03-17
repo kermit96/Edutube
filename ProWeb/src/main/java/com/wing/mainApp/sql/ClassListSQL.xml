@@ -148,14 +148,11 @@
             class_title    AS title,
             class_body    AS body,
             mem_id         AS id,
-            sub_code AS code,            
-            v.video_url  AS mediaURL
+            sub_code AS code
         FROM
-            class c,video v
+            class
         where
-            c.CLASS_NO = #{NO}
-        AND
-            c.class_no = v.class_no
+            CLASS_NO = #{NO}
 	</select>
 	
 	<!--  봤던글 검색 -->

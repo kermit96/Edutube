@@ -35,8 +35,7 @@
 	$(document).ready(	function() {
 
 			$('#title').val('${DATA.title}');
-			$('#mediaURL').val('${DATA.mediaURL}');
-		
+					
 			$("#modifyClass").click(function() {
 				
 					$mediaURL=$("#mediaURL").val();					
@@ -62,6 +61,8 @@
 					$("#classForm").submit();
 				});
 	});
+	
+	/*동영상 삭제&수정시 실행할 스크립트*/
 	
 
 </script>
@@ -96,19 +97,20 @@
 }
 div#formMain{
 	width:800px;
-	height:600px;
+	height:650px;
 	margin-left: auto;
-	margin-right: auto;
+	margin-right: auto;	
 }
 	
-	textarea#body{
-		width:750px;
-		height:400px;
-		resize:none;
-	}
+textarea#body{
+	width:750px;
+	height:400px;
+	resize:none;
+}
 
 div#writeUtilD{
-	width:800px;	
+	width:800px;
+	margin-top:10px;	
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -123,15 +125,24 @@ div#selectD{
 	width:150px;
 }
 div#mediaDIV{
-	width:800px;
+	width:800px;	
 	margin-top:20px;
 }
-p#mediaURLp{
+div#mediaURLp{
 	float:left;
-	width:150px;
+	width:100px;
 }
+div#mediaBox{
+	float:left;
+	width:350px;
+}
+div#mediaUtil{
+	float:left;
+	width:250px;
+}
+
 input#mediaURL{
-	width:500px;
+	width:350px;
 }
 
 input#title{
@@ -159,7 +170,7 @@ input#title{
 					<!--  숨겨놓을것 -->
 					<input id="id" name="id" value="${sessionScope.ID}" type="hidden" />
 					<input id="nick" name="nick" value="${sessionScope.NICKNAME}" type="hidden" />
-					
+					<input id="mKind" name="mKind" value="No" type="hidden" />
 					
 						<!-- Text input-->
 						<div class="control-group" id="formTop">
@@ -189,9 +200,20 @@ input#title{
 							</div>
 						</div>
 						
-						<div id="mediaDIV">
-							<p id="mediaURLp">동영상 주소</p>													
-							<input id="mediaURL" name="mediaURL" type="text" >	
+						<div id="mediaDIV">							
+							<div id="mediaURLp">동영상 주소</div>	
+								<c:if test="${isExist==true}">	
+									<c:forEach var="mList" items="${mList}">
+										<div id="mediaBox">																				
+										${mList.mediaURL}
+										</div>
+										<div id="mediaUtil">버튼</div>								
+									</c:forEach>
+								</c:if>
+								<c:if test="${isExist==false}">
+									<div id="mediaBox"></div>
+									<div id="mediaUtil">버튼</div>		
+								</c:if>	
 						</div>
 
 					</fieldset>
