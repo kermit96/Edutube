@@ -143,6 +143,9 @@
     function goChnLang(){
     	location.href="/edutube/IntroRegManager/IntroChnLang.do";
     }
+    function goEngLang(){
+    	location.href="/edutube/IntroRegManager/IntroEngLang.do";
+    }
     function goKorCook(){
     	location.href="/edutube/IntroRegManager/IntroKorCook.do";
     }

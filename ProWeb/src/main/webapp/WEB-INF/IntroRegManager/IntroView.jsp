@@ -6,19 +6,42 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
+	<title>강사 소개</title>
 	<!--  Favicon (Main Icon) -->
 	<link rel="shortcut icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
 	<link rel="icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	
 	<!--CSS-->
+	<link rel="stylesheet" href="/edutube/resources/CSS/bootstrap.min.css">
+	<link rel="stylesheet" href="/edutube/resources/CSS/customB.css">
+	<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
 
 	<!--JS-->
+	<script src="/edutube/resources/JS/jquery-2.1.4.min.js"></script>
+	<script src="/edutube/resources/JS/bootstrap.min.js"></script>
 	
 	<!--CustomScript-->
-		
+		<script>		    
+			
+			$(document).ready(function(){
+				$("#mBtn").click(function(){					
+					$(location).attr("href", "../IntroRegManager/IntroModifyForm.do?oriNo=${DATA.intro_no}&nowPage=${NOWPAGE}");
+				});
+			});
+			$(document).ready(function(){
+				$("#dBtn").click(function(){
+					$(location).attr("href", "../IntroRegManager/IntroDelete.do?oriNo=${DATA.intro_no}&nowPage=${NOWPAGE}");
+				});
+				
+			});
+			$(document).ready(function(){
+				$("#lBtn").click(function(){
+					$(location).attr("href", "../IntroRegManager/IntroList.do?nowPage=${NOWPAGE}");
+				});
+				
+			});
+			
+	</script>		
 	<!--Never Delete "EduContainer" style tag-->
 	<style>
 	#EduContainer{
@@ -44,7 +67,11 @@
 			clear:both;
 			width:150px;			
 		}
-		<!--JOON CSS-->
+		#realContent{
+			width:700px;
+			margin: 0 auto;			
+		}
+		/* JOON CSS */
 		th,td {
 			background:white;/*배경색*/
 		}
@@ -70,28 +97,28 @@
 			background:rgb(114, 235, 125);
 			text-align:center;
 		}
+		#imgD{
+			float:left;
+			width:200px;
+		}
+		#nickD{
+			width:100px;
+		}
+		#topWrapper{
+			width:700px;
+			margin:0 auto;
+		}
+		#titleD{
+			clear:both;
+			width:700px;
+		}
+		#bodyD{
+			width:700px;
+		}
+		
+		
 		</style>
-	<script>		    
-			
-			$(document).ready(function(){
-				$("#mBtn").click(function(){					
-					$(location).attr("href", "../IntroRegManager/IntroModifyForm.do?oriNo=${DATA.intro_no}&nowPage=${NOWPAGE}");
-				});
-			});
-			$(document).ready(function(){
-				$("#dBtn").click(function(){
-					$(location).attr("href", "../IntroRegManager/IntroDelete.do?oriNo=${DATA.intro_no}&nowPage=${NOWPAGE}");
-				});
-				
-			});
-			$(document).ready(function(){
-				$("#lBtn").click(function(){
-					$(location).attr("href", "../IntroRegManager/IntroList.do?nowPage=${NOWPAGE}");
-				});
-				
-			});
-			
-	</script>	
+
 </head>
 <body>
 <div id='EduContainer'>
@@ -120,37 +147,40 @@
 			<input type="hidden" id="oriNo" name="oriNo" value="${DATA.mem_id}">
 			<input type="hidden" id="nowPage" name="nowPage" value="${NOWPAGE}">
 		</form>
-		 <!-- 	목록 보여주기 -->
-		<table border="1" align="center">
-				<tr id="tr_top">
-					<th class="text-center">번호</th>
-					<th class="text-center">사진</th>
-					<th class="text-center">제목</th>
-					<th class="text-center">글내용</th>
-					<th class="text-center">글쓴이</th>
-					<th class="text-center">작성일</th>
-				</tr>
-	    	   	<tr>
-					<td class="text-center">${DATA.intro_no}</td>
-					<td class="text-center">
-						<img src="../gimgs/${DATA.gimg2}" width="100" height="100"></td>
-					<td class="text-center">${DATA.intro_title}</td>
-					<th class="text-center">${DATA.intro_body}</th>
-					<td class="text-center">${DATA.mem_id}</td>
-					<td class="text-center"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${DATA.intro_date}"/></td>				
-			   </tr>		
-		</table>
+		<div id="realContent">
+			<div id="topWrapper">
+				<div id="imgD">
+					<img src="../gimgs/${DATA.gimg2}" width="100" height="100">
+				</div>
+				<div id="nickD">
+					닉네임 : ${DATA.mem_nick}					
+				</div>
+			</div>
+			<div id="titleD">
+				${DATA.intro_title}
+			</div>
+			<div id="bodyD">
+				${DATA.intro_body}
+			</div>
+			<div id="schD">
+			
+			</div>
+			
+			
 			<table border="1" align="center">
 				<tr id="tr_top">
 					<td align="center">					
-
-					<input type="button" value="수정하기" id="mBtn" class="btn btn-primary btn-sm">
-					<input type="button" value="삭제하기" id="dBtn" class="btn btn-primary btn-sm">					
-
-					<input type="button" value="목록보기" id="lBtn" class="btn btn-primary btn-sm">					
+					<c:if test="${sessionScope.ID eq DATA.mem_id}">
+						<input type="button" value="수정하기" id="mBtn" class="btn btn-primary btn-sm">
+						<input type="button" value="삭제하기" id="dBtn" class="btn btn-primary btn-sm">
+					</c:if>	
+						<input type="button" value="목록보기" id="lBtn" class="btn btn-primary btn-sm">
+										
 					</td>
 				</tr>
-			</table>
+			</table>	
+		
+		</div>
 
 		</div>
 	</div>		 

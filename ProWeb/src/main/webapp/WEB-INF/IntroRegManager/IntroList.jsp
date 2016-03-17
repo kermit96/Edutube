@@ -87,7 +87,12 @@
 			$("#sfrm").submit();
 		});
 		
+		
 	});
+	
+	function sex(no){
+		window.open("../Message/MsgForm.do?no="+no,"sexsex","width=200, height=260, resizable=no, toolbar=no, location=no,scrollbars=yes");
+	}
 	
 	</script>
 </head>
@@ -157,7 +162,7 @@
 			      <!-- <td class="text-center">${temp.intro_body}</td>  -->
 			      </a>
 			      <br>
-			      <a href='#'>강의 일정</a>
+			      <a href='JavaScript:sex(${temp.intro_no})'>쪽지 보내기</a>
 			      <br> <br> <br>  <br>  <br>
 			    </div>		
 		     </c:forEach>

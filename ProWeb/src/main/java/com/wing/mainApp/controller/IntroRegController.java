@@ -223,44 +223,7 @@ public class IntroRegController {
 		mv.setViewName("IntroRegManager/IntroSmallList");
 		return mv;
 	}
-	@RequestMapping("/IntroRegManager/IntroEngLang")
-	public ModelAndView		introEngList(HttpServletRequest req, HttpSession session,IntroInfoData data) {
-		ModelAndView		mv = new ModelAndView();
-		
-		//System.out.println("IntroKorLang");		
-		String	strPage = req.getParameter("nowPage");
-		int		nowPage = 0;
-		if(StringUtil.isNull(strPage)) {
-			nowPage = 1;
-		}
-		else {
-			nowPage = Integer.parseInt(strPage);
-		}
-		int	total = iDao.getTotal(1);
-		PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
-		pInfo.calcInfo();
-				
-		int	start = (pInfo.nowPage - 1) * pInfo.pageList + 1;
-		int	end = start + pInfo.pageList - 1;
-		
-		if(end > pInfo.totalCount) {
-			end = pInfo.totalCount;
-		}
-		/*
-		HashMap	map = new HashMap();
-		map.put("start", start);
-		map.put("end", end);
-		*/
-		String lang = "japlang";
-		HashMap	map = new HashMap();
-		map.put("lang",lang );
-		ArrayList	list = iDao.selectIntroSub(map);
-		
-		mv.addObject("PINFO", pInfo);
-		mv.addObject("LIST", list);
-		mv.setViewName("IntroRegManager/IntroSmallList");
-		return mv;
-	}
+	
 	@RequestMapping("/IntroRegManager/IntroChnLang")
 	public ModelAndView		introChnList(HttpServletRequest req, HttpSession session,IntroInfoData data) {
 		ModelAndView		mv = new ModelAndView();
@@ -291,6 +254,45 @@ public class IntroRegController {
 		map.put("end", end);
 		*/
 		String lang = "chnlang";
+		HashMap	map = new HashMap();
+		map.put("lang",lang );
+		ArrayList	list = iDao.selectIntroSub(map);
+		
+		mv.addObject("PINFO", pInfo);
+		mv.addObject("LIST", list);
+		mv.setViewName("IntroRegManager/IntroSmallList");
+		return mv;
+	}
+	@RequestMapping("/IntroRegManager/IntroEngLang")
+	public ModelAndView		introEngList(HttpServletRequest req, HttpSession session,IntroInfoData data) {
+		ModelAndView		mv = new ModelAndView();
+		
+		System.out.println("IntroKorLang");		
+		String	strPage = req.getParameter("nowPage");
+		int		nowPage = 0;
+		if(StringUtil.isNull(strPage)) {
+			nowPage = 1;
+		}
+		else {
+			nowPage = Integer.parseInt(strPage);
+		}
+		int	total = iDao.getTotal(1);
+		PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
+		pInfo.calcInfo();
+				
+		int	start = (pInfo.nowPage - 1) * pInfo.pageList + 1;
+		int	end = start + pInfo.pageList - 1;
+		
+		if(end > pInfo.totalCount) {
+			end = pInfo.totalCount;
+		}
+		
+		/*
+		HashMap	map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		*/
+		String lang = "englang";
 		HashMap	map = new HashMap();
 		map.put("lang",lang );
 		ArrayList	list = iDao.selectIntroSub(map);

@@ -201,18 +201,21 @@
 	</select>
 	<!-- 	게시물 상세보기 질의 -->
 	<select id="introview" resultType="idata" parameterType="java.util.HashMap">
-		SELECT
-			intro_no,
-			intro_path AS gimg2, 
-			mem_id,
-			intro_title,
-			intro_body,
-			intro_date,
-			intro_cdate			
-		FROM
-			Introduce
-		WHERE 
-			intro_no = #{NO}			
+        SELECT
+            intro_no,
+            intro_path AS gimg2, 
+            i.mem_id AS mem_id, 
+            m.mem_nick AS mem_nick,
+            intro_title,
+            intro_body,
+            intro_date,
+            intro_cdate            
+        FROM
+            Introduce i,member m
+        WHERE 
+            intro_no =#{NO}
+        AND
+            i.mem_id = m.mem_id      		
 	</select>
 <select id="isupdate" resultType="java.lang.Integer" 
 												parameterType="java.util.HashMap">

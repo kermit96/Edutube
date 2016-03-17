@@ -10,11 +10,11 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class InfoController {
 	
-	@RequestMapping("Info/infoMain.do")
+	@RequestMapping("Info/InfoMain.do")
 	public ModelAndView infomain(){
 		ModelAndView 	mv = new ModelAndView();
 		
-		mv.setViewName("Info/infomain");
+		mv.setViewName("Info/Infomain");
 		return mv;
 	}
 	@RequestMapping("/Info/info.do")
@@ -28,14 +28,14 @@ public class InfoController {
 	public ModelAndView map(HttpServletRequest req, HttpSession session){
 		ModelAndView 	mv = new ModelAndView();
 		
-		mv.setViewName("Info/map");
+		mv.setViewName("Info/Map");
 		return mv;
 	}
 	@RequestMapping("/Info/use.do")
 	public ModelAndView use(HttpServletRequest req, HttpSession session){
 		ModelAndView 	mv = new ModelAndView();
 		
-		mv.setViewName("Info/use");
+		mv.setViewName("Info/Use");
 		return mv;
 	}
 	
