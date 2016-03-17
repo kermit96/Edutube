@@ -23,6 +23,8 @@
  		<!--스크립트-->
 	<!--  sha256 script  -->
 <script type="text/javascript" src="../resources/JS/sha256.js"> </script>
+<!--   memebr 관리  -->
+ 	<script src="../resources/JS/member.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
  	
 	<!--스크립트-->
@@ -162,6 +164,13 @@
 		    return;
 		}
 		 
+		if (!checkpassword(newpassword))
+		{						
+			alert("${LANGDATA.member_badpassword}");
+			return;
+		}
+
+		
 		oldpassword = Sha256.hash(oldpassword);
 		newpassword = Sha256.hash(newpassword);
 		

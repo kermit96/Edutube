@@ -93,7 +93,8 @@
 		
 		if (id == "") {
 		//    alert("아이디를 입력해 주시기 바랍니다.")
-		    alert("아이디를 입력해 주시기 바랍니다.")
+		    // alert("아이디를 입력해 주시기 바랍니다.")
+		       alert("${LANGDATA.member_inputid}")
 			return;
 		}
 		

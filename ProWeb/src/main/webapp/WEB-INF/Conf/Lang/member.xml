@@ -425,4 +425,13 @@
    <ch_cn>确认 </ch_cn>
  </Lang>
  
+ <Lang>
+   <id>member_badpassword</id>
+   <ko>6자이상 40자 이하  그리고 영문자 1이상 숫자 1이상  특수문자 1이상 입력해야 합니다</ko>
+   <ja>6文字以上40文字以下とアルファベット1以上の数字1以上の特殊文字1以上入力する必要があります </ja>
+   <en>6 characters over 40 characters or less, and one or more letters at least one number must be entered at least one special character</en>
+   <ch>6個字符超過40個字符或更少，並且一個或多個字母至少一個數字必須輸入至少一個特殊字符</ch>
+   <ch_cn>6个字符超过40个字符或更少，并且一个或多个字母至少一个数字必须输入至少一个特殊字符</ch_cn>
+ </Lang>
+
 </Language>

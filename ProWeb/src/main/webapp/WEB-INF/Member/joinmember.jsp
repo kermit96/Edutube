@@ -16,10 +16,12 @@
 <!--JS-->
 <script src="../resources/JS/jquery-2.1.4.min.js"></script>
 <script src="../resources/JS/bootstrap.min.js"></script>
-
+<script src="../resources/JS/member.js"></script>
 <!--스크립트-->
 <!--  sha256 script  -->
 <script type="text/javascript" src="../resources/JS/sha256.js">
+
+
 	
 </script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -138,6 +140,9 @@
 
 					var tel = $("#mem_tel").val().trim();
 
+					 
+					
+					
 					if (name == "") {
 						// alert("이름을 입력해 주시기 바랍니다");
 						
@@ -177,6 +182,12 @@
 						alert("${LANGDATA.member_samepassword}");
 						return;
 					}
+					
+					if (!checkpassword(password))
+					{						
+						alert("${LANGDATA.member_badpassword}");
+						return;
+					}
 
 					$("#mem_pass").val(Sha256.hash(password));
 
@@ -198,28 +209,8 @@
 		}
 	}
 
-	function checkpassword(input) {
-
-		/*	
-		 var decimal=  /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])(%$?!.*()\s).{6,15}$/;
-		
-		 if(inputmatch(decimal))   
-		 {   
-		
-		 return true;  
-		 }
-		
-		 else  
-		 {   
-		
-		 return false;  
-		
-		 }   
-		
-		
-		 return false;
-		 */
-	}
+	
+	
 
 	function daumaddrfind() {
 
