@@ -16,6 +16,7 @@ public class IntroInfoData {
 	private int    intro_length;     
 	private Date   intro_cDate;    
 	private int    intro_isDeleted; 
+	public String realbody;
 	
 	public	MultipartFile	gimg;
 	public	MultipartFile	upfile;
@@ -121,6 +122,10 @@ public class IntroInfoData {
 	}
 	public void setIntro_isDeleted(int intro_isDeleted) {
 		this.intro_isDeleted = intro_isDeleted;
+	}
+	/**BR태그 넣기*/
+	public String getRealbody(){
+		return intro_body.replaceAll("\r\n", "<br>");
 	}
 	
 }

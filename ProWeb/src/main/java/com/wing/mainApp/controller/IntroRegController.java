@@ -109,7 +109,7 @@ public class IntroRegController {
 			return mv;
 		}
 		*/	
-		System.out.println("IntroList");
+		
 		
 		String	strPage = req.getParameter("nowPage");
 		int		nowPage = 0;
@@ -589,7 +589,7 @@ public class IntroRegController {
 			String	strPage = req.getParameter("nowPage");
 			int		nowPage = 0;
 			String	strNo = req.getParameter("oriNo");
-			System.out.println("strNo=" +strNo);
+			
 			int	oriNo = Integer.parseInt(strNo);
 			//	
 			if(StringUtil.isNull(strPage)) {
@@ -616,7 +616,7 @@ public class IntroRegController {
 			
 			IntroInfoData	temp= iDao.selectView(oriNo);	
 			String id = temp.getMem_id();
-			System.out.println("아이ㅏ이이이이"+id);
+			
 			//System.out.println("temp="+temp.getNotice_title());
 			//	뷰를 선택한다.
 			//	뷰에게 전달할 내용을 준다.
@@ -708,8 +708,7 @@ public class IntroRegController {
 			result = iDao.selectView(oriNo);
 		}
 
-		mv.addObject("DATA", result);
-		System.out.println("mem_id="+result.getMem_id());
+		mv.addObject("DATA", result);		
 		mv.addObject("NOWPAGE", nowPage);
 		mv.setViewName("IntroRegManager/IntroModifyForm");
 		return mv;
@@ -717,7 +716,7 @@ public class IntroRegController {
 	@RequestMapping("/IntroRegManager/IntroModify")
 	public ModelAndView	introModify(HttpSession session,IntroInfoData data,HttpServletRequest req) {
 		ModelAndView		mv = new ModelAndView();
-		System.out.println("Modifyfffdfdfdfd");
+	
 		/*
 		if(!SessionUtil.isSession(session)) {
 			RedirectView	rv = new RedirectView("../Member/Login.do");

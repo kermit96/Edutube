@@ -42,7 +42,13 @@
 				});
 				
 			});
-			
+			$(document).ready(function(){
+				$("#modiSCH").click(function(){
+					
+					$(location).attr("href","../Sch/SchModiForm.do?mid=${DATA.mem_id}");
+					
+				}); 
+			});
 	</script>
 		
 	<!--Never Delete "EduContainer" style tag-->
@@ -195,11 +201,23 @@
 
 									});
 				</script>
+				
+			<table align="center">
+				<tr id="tr_top">
+					<td align="center">					
+						<c:if test="${sessionScope.ID eq DATA.mem_id}">
+							<a class="button button-blue" id = "modiSCH" ><i class="fa fa-globe"></i>일정 수정하기</a>
+							<input type="hidden" value="${DATA.mem_id}"	id="mid" name="mid">						
+						</c:if>	
+					</td>
+				</tr>
+			</table>		
+				
 			<div id="titleD">
 				${DATA.intro_title}
 			</div>
 			<div id="bodyD">
-				${DATA.intro_body}
+				${DATA.realbody}
 			</div>
 			
 			

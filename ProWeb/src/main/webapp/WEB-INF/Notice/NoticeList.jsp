@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Insert title here</title>
+		<title>에듀튜브 공지사항</title>
 		<!--  Favicon (Main Icon) -->
 	 <link rel="shortcut icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
 	<link rel="icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
@@ -31,19 +31,14 @@
 				width:1200px;
 		}	
 		#centerPage{
-			float:right;
+			margin:0 auto;
 			position: relative;					
 			width:980px;
 			height:100%;
 			padding:10px;
 			font-size:16px;					
 		}
-		#sideBarDiv{
-			float:left;
-			border-top:solid 1px white;
-			clear:both;
-			width:150px;			
-		}
+	
 		<!--JOON CSS-->
 		th,td {
 			background:white;/*배경색*/
@@ -117,9 +112,7 @@
 	</div>	
 	<div id="Main">
 		<!-- This area is Body Part -->
-		<div id="sideBarDiv">
-			<jsp:include page="/MenuBar/NoticeSide.jsp" flush="false" />
-		</div>
+		
 		
 		<div id="centerPage"> 
 	<h4 align="center" ><strong>공지사항</strong></h4>
