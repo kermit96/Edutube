@@ -615,9 +615,12 @@ public class IntroRegController {
 			map.put("end", end);
 			
 			IntroInfoData	temp= iDao.selectView(oriNo);	
+			String id = temp.getMem_id();
+			System.out.println("아이ㅏ이이이이"+id);
 			//System.out.println("temp="+temp.getNotice_title());
 			//	뷰를 선택한다.
 			//	뷰에게 전달할 내용을 준다.
+			mv.addObject("ID",id);
 			mv.addObject("PINFO", pInfo);
 			mv.addObject("DATA", temp);
 			mv.addObject("oriNo", oriNo);

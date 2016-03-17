@@ -15,10 +15,12 @@
 	<link rel="stylesheet" href="/edutube/resources/CSS/bootstrap.min.css">
 	<link rel="stylesheet" href="/edutube/resources/CSS/customB.css">
 	<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+	<link rel="stylesheet" href="/edutube/resources/CSS/monthly.css">
 
 	<!--JS-->
 	<script src="/edutube/resources/JS/jquery-2.1.4.min.js"></script>
 	<script src="/edutube/resources/JS/bootstrap.min.js"></script>
+	<script type="text/javascript"	src="/edutube/resources/JS/monthly.js"></script>
 	
 	<!--CustomScript-->
 		<script>		    
@@ -41,7 +43,8 @@
 				
 			});
 			
-	</script>		
+	</script>
+		
 	<!--Never Delete "EduContainer" style tag-->
 	<style>
 	#EduContainer{
@@ -72,19 +75,7 @@
 			margin: 0 auto;			
 		}
 		/* JOON CSS */
-		th,td {
-			background:white;/*배경색*/
-		}
-		table td, th {
-			border:#d3d3d3 solid 1px;/*경계선 색상 스타일 굵기 */
-		}
-		table {
-			width:100%;
-			border-collapse:collapse;
-			
-			font-size:16px; /*글꼴 크기*/
-			line-height:24px;/*줄 간격*/
-		}		
+
 		a{
 			text-decoration:none; /* 링크 밑줄 없애기 */
 			color:black; /*글 색상*/
@@ -93,10 +84,7 @@
 			text-decoration:underline; /* 밑줄 
 			color:green;			/*글 색상*/
 		}
-		#tr_top{
-			background:rgb(114, 235, 125);
-			text-align:center;
-		}
+	
 		#imgD{
 			float:left;
 			width:200px;
@@ -111,12 +99,28 @@
 		#titleD{
 			clear:both;
 			width:700px;
+			border-top:2px solid silver;
+			border-bottom:2px solid silver;
+			padding:20px;
 		}
 		#bodyD{
 			width:700px;
+			height:500px;
+			padding:20px;
 		}
-		
-		
+		#schD{
+			width:700px;
+		}
+		#temp{
+			margin-top:50px;
+		}
+
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:20px 10px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:20px 10px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;}
+.tg .tg-i7wz{font-size:20px}
+.tg .tg-yw4l{vertical-align:top}
+
 		</style>
 
 </head>
@@ -150,24 +154,57 @@
 		<div id="realContent">
 			<div id="topWrapper">
 				<div id="imgD">
-					<img src="../gimgs/${DATA.gimg2}" width="100" height="100">
-				</div>
-				<div id="nickD">
-					닉네임 : ${DATA.mem_nick}					
-				</div>
+					
+				<table class="tg" style="undefined;table-layout: fixed; width: 407px">
+				<colgroup>
+				<col style="width: 194px">
+				<col style="width: 213px">
+				</colgroup>
+				  <tr>
+				    <th class="tg-i7wz"><img src="../gimgs/${DATA.gimg2}" width="200" height="200" ></th>
+				    <th class="tg-031e">닉네임 : ${DATA.mem_nick}</th>
+				  </tr>
+				
+				</table>														
+				</div>				
 			</div>
+		
+			<div style="width: 100%; max-width: 600px; display: inline-block;">
+					<div class="monthly" id="mycalendar"></div>
+				</div>
+				<script type="text/javascript"
+					src="/edutube/resources/JS/monthly.js"></script>
+				<script>
+					$(window)
+							.load(
+									function() {
+
+										$('#mycalendar').monthly({
+											mode : 'event',
+											xmlUrl : '/edutube/Sch/loadEvents.do?lecMid=${ID}'
+										});
+
+								 		switch (window.location.protocol) {
+										case 'http:':
+										case 'https:':
+											// running on a server, should be good.
+											break;
+										case 'file:':
+											alert('Just a heads-up, events will not work when run locally.');
+										} 
+
+									});
+				</script>
 			<div id="titleD">
 				${DATA.intro_title}
 			</div>
 			<div id="bodyD">
 				${DATA.intro_body}
 			</div>
-			<div id="schD">
-			
-			</div>
 			
 			
-			<table border="1" align="center">
+			
+			<table align="center">
 				<tr id="tr_top">
 					<td align="center">					
 					<c:if test="${sessionScope.ID eq DATA.mem_id}">
@@ -179,6 +216,10 @@
 					</td>
 				</tr>
 			</table>	
+			
+			<div id="temp">
+			&nbsp;
+			</div>
 		
 		</div>
 

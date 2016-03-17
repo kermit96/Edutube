@@ -5,26 +5,23 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>EduTube</title>
-<!--CSS-->
-<link rel="stylesheet" href="/edutube/resources/CSS/bootstrap.min.css">
+<title>강사 스케쥴</title>
 
-<!--  파피콘 넣기 -->
+<!--  Favicon (Main Icon) -->
 <link rel="shortcut icon" href="/edutube/favicon.ico"
 	type="image/x-icon" />
 <link rel="icon" href="/edutube/favicon.ico" type="image/x-icon" />
-<!--  검색바 -->
 
+<!--CSS-->
+<link rel="stylesheet" href="/edutube/resources/CSS/monthly.css">
 <!--JS-->
-<script src="/edutube/resources/JS/jquery-2.1.4.min.js"></script>
-<script src="/edutube/resources/JS/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="/edutube/resources/JS/jquery-2.1.4.min.js"></script>
 
-<!--스크립트-->
-<script>
+<!--CustomScript-->
 
-</script>
 
-<!--  스타일 -->
+<!--Never Delete "EduContainer" style tag-->
 <style>
 #EduContainer {
 	width: 1200px;
@@ -33,49 +30,62 @@
 	margin-left: -600px;
 }
 
-#main {
-	width: 1200px;
-}
-
-#centerPage {
+#sch {
+	width: 900px;
 	float: right;
-	position: relative;
-	width: 980px;
-	height: 100%;
-	padding: 10px;
-	font-size: 16px;
 }
-
-#sideBarDiv {
-	float: left;
-	border-top: solid 1px white;
-	clear: both;
-	width: 150px;
-}
-
 </style>
+
 </head>
 <body>
+
 	<div id='EduContainer'>
+
 		<div id='top'>
 			<jsp:include page="/MenuBar/Top.jsp" flush="false" />
 		</div>
 
 		<div id="Main">
 			<!-- This area is Body Part -->
-			<div id="sideBarDiv">
-				<jsp:include page="/MenuBar/ClassSide.jsp" flush="false" />
-			</div> <!--  사이드바 -->
+			<div id="sideBar"></div>
 
-			<div id="centerPage">
-				<!-- 게시판이나 글쓰기폼 같은게 들어감 -->
-			</div><!--  실제로 들어갈 내용 -->
-			
-		</div><!-- 메뉴바 밑 감싸기 -->
+			<div id="sch">
+				<a href="./events.jsp">링크 주소 테스트</a>
+				<h2>강사 스케쥴</h2>
+				<div style="width: 100%; max-width: 600px; display: inline-block;">
+					<div class="monthly" id="mycalendar"></div>
+				</div>
+				<script type="text/javascript"
+					src="/edutube/resources/JS/monthly.js"></script>
+				<script>
+					$(window)
+							.load(
+									function() {
 
-	</div><!-- 전체 감싸기 -->
+										$('#mycalendar').monthly({
+											mode : 'event',
+											xmlUrl : '/edutube/Sch/loadEvents.do?lecMid=${ID}'
+										});
 
+								 		switch (window.location.protocol) {
+										case 'http:':
+										case 'https:':
+											// running on a server, should be good.
+											break;
+										case 'file:':
+											alert('Just a heads-up, events will not work when run locally.');
+										} 
 
+									});
+				</script>
+			</div>
+
+		</div>
+
+	</div>
 
 </body>
 </html>
+
+
+
