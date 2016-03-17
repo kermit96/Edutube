@@ -1,12 +1,14 @@
 package com.wing.mainApp.controller;
 
 import java.io.PrintWriter;
-import java.util.HashMap;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -88,7 +90,7 @@ void CheckUserid(HttpServletRequest req, HttpServletResponse res)
 	 
 	 
 	 
-	 System.out.println("userid="+userid);
+
 	 if (dao.isSameuserid(userid) == 0) {
 		 
        ret = false;
@@ -150,7 +152,7 @@ void CheckUserid(HttpServletRequest req, HttpServletResponse res)
 	   String name=req.getParameter("name");
 	   String email=req.getParameter("email");
 	   
-	   System.out.println("userid"+userid);
+
 	   
 	   if (StringUtil.isNull(userid)) {		   		   
 		   return;
@@ -235,6 +237,30 @@ void CheckUserid(HttpServletRequest req, HttpServletResponse res)
    }
    
    
+   public  String encodeURIComponent(String s)
+   {
+     String result = null;
+  
+     try
+     {
+       result = URLEncoder.encode(s, "UTF-8")
+                          .replaceAll("\\+", "%20")
+                          .replaceAll("\\%21", "!")
+                          .replaceAll("\\%27", "'")
+                          .replaceAll("\\%28", "(")
+                          .replaceAll("\\%29", ")")
+                          .replaceAll("\\%7E", "~");
+     }
+  
+     // This exception should never occur.
+     catch (UnsupportedEncodingException e)
+     {
+       result = s;
+     }
+  
+     return result;
+   }
+   
    
    
    @RequestMapping("/member/changeuserinfo")
@@ -243,8 +269,14 @@ void CheckUserid(HttpServletRequest req, HttpServletResponse res)
 	   ModelAndView vm = new ModelAndView();
 	   
 	   String userid = (String)ses.getAttribute("ID");
-	   if (userid == null) 
-		   return null;
+	   if (userid == null) { 
+		   		   
+		  RedirectView redirect = new  RedirectView("../member/login.do?returnurl="+ 
+				  encodeURIComponent(req.getContextPath()+"/member/changeuserinfo.do"));
+	
+		  vm.setView(redirect);
+		  return vm;
+	   }
 	   
 	   Member member = dao.getMember(userid);
 	   

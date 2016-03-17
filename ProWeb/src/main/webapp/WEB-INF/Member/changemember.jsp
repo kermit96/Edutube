@@ -137,6 +137,26 @@
 		var newpassword = $("#newpassword").val();
 		var verifypassword = $("#repassword").val();
 		
+		if (oldpassword != "") {
+            alert("${LANGDATA.member_inputpassword}");
+            $("#oldpassword").focus();
+		    return;
+		}
+		
+		if (oldpassword != "") {
+            alert("${LANGDATA.member_inputpassword}");		              
+		    return;
+		}
+		
+		
+		if (newpassword != "") {
+            alert("${LANGDATA.samepassword}");		              
+		    return;
+		}
+
+	
+		
+		
 		if (newpassword != verifypassword) {
             alert("${LANGDATA.samepassword}");		              
 		    return;
@@ -237,7 +257,7 @@
 		 		  if (tel == "") 
 		 		  {
 		 			//    alert("전화 번호를 입력해 주시기 바랍니다.");
-		 			alert("${LANGDATA.member_inputtel");
+		 			alert("${LANGDATA.member_inputtel}");
 		 			   return;			  			  		  
 		 		  }
  		  
@@ -320,7 +340,7 @@
        <td>${LANGDATA.member_addr}</td>
        <td>
         <input type="text" id="mem_addrCode"   name="mem_addrCode"  value=""   placeholder="${LANGDATA.member_post}">
-			    <input type="button" id="addrfind"     value="${LANGDATA.member_postfind"><br>
+			    <input type="button" id="addrfind"     value="${LANGDATA.member_postfind}"><br>
 			    <input type="text" id="mem_addr"  name="mem_addr"   id="mem_addr"  value="${member.mem_addr}"   placeholder="${LANGDATA.member_addr}">
 			    <input type="text" id="mem_detailaddr"  name="mem_detailaddr"  id="mem_detailaddr"  value="${member.mem_detailaddr}"   placeholder="${LANGDATA.member_addrmore}">
 	    </td>		    			 

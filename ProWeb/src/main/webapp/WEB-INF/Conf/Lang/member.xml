@@ -84,7 +84,7 @@
  </Lang>
  
  
-     <Lang>
+   <Lang>
    <id>member_inputpassword</id>
    <ko>password 를 입력해 주시기 바랍니다.</ko>
    <ja>passwordを入力してください。 </ja>
@@ -276,9 +276,7 @@
     <ch>輸入ID</ch>
     <ch_cn>输入ID</ch_cn>
  </Lang>
- 
- 
- 
+
    <Lang>
    <id>member_newpassword</id>
    <ko>새 password</ko>
@@ -336,20 +334,20 @@
  
     <Lang>
    <id>member_idpasswordfind</id>
-   <ko>ID/PASSWORD 찾기</ko>
-   <ja>使用できないnicknameです。 </ja>
-   <en>Unavailable nickname. </en>
-   <ch>不可用暱稱。</ch>
-   <ch_cn>不可用昵称。 </ch_cn>
+   <ko>ID / PASSWORD 찾기</ko>
+   <ja>ID/ PASSWORDを検索 </ja>
+   <en>ID / PASSWORD Find </en>
+   <ch>ID /密碼查詢</ch>
+   <ch_cn>ID /密码查询 </ch_cn>
  </Lang>
  
      <Lang>
    <id>member_join</id>
-   <ko>ID/PASSWORD 찾기</ko>
-   <ja>ID/ PASSWORDを検索</ja>
-   <en>ID / PASSWORD Find</en>
-   <ch>ID /密碼查詢</ch>
-   <ch_cn>ID /密码查询 </ch_cn>
+   <ko>가입</ko>
+   <ja>登録</ja>
+   <en>Join</en>
+   <ch>報名</ch>
+   <ch_cn>报名 </ch_cn>
  </Lang>
  
  

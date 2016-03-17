@@ -156,18 +156,18 @@
 </head>
 <body>
 <div class="container">
-  <h2>{LANGDATA.member_idpasswordfind}</h2>
+  <h2>${LANGDATA.member_idpasswordfind}</h2>
   <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#findiddiv">{LANGDATA.member_idfind} </a></li>
-    <li><a data-toggle="tab" href="#findpassworddiv">{LANGDATA.member_passwordfind}</a></li>
+    <li class="active"><a data-toggle="tab" href="#findiddiv">${LANGDATA.member_idfind} </a></li>
+    <li><a data-toggle="tab" href="#findpassworddiv">${LANGDATA.member_passwordfind}</a></li>
   </ul>
 
   <div class="tab-content">
     <div id="findiddiv" class="tab-pane fade in active">
-      <h3>{LANGDATA.member_idfind} </h3>
+      <h3>${LANGDATA.member_idfind} </h3>
       <table>      
       <tr> 
-        <td>{LANGDATA.member_name} </td>
+        <td>${LANGDATA.member_name} </td>
         <td><input  type="text"   id="name"  >  </td>
       </tr>       
       
