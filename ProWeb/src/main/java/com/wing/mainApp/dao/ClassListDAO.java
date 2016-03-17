@@ -103,10 +103,23 @@ public class ClassListDAO {
 	 * */
 	
 	// 수정 함수
-	public void updateclass(ClassListData data,int kind) {
+	public void updateclass(ClassListData data,int kind,MediaData mdData) {
 		if(kind==1){
-		sqlSession.update("clist.updateclass", data);
+			sqlSession.update("clist.updateclass", data);
 		}
+		else if(kind==2){//수정
+			sqlSession.update("clist.updateclass", data);
+			sqlSession.update("clist.modiVideo",mdData);
+		}
+		else if(kind==3){//삭제
+			sqlSession.update("clist.updateclass", data);
+			sqlSession.delete("clist.deleteVideo",mdData);
+		}
+		else if(kind==4){//추가
+			sqlSession.update("clist.updateclass", data);
+			sqlSession.insert("clist.insertVideo",mdData);
+		}
+		
 	}
 	// 현재 등록할 강의 맥스넘버 구하기
 	public int getMaxNO(){
