@@ -28,7 +28,7 @@ public class EduSessionListener implements HttpSessionListener {
          // TODO Auto-generated method stub
     	HttpSession  session = se.getSession();
     	String id = session.getId();
-    	System.out.println("session="+id);
+ //   	System.out.println("session="+id);
     	map.put(id, session);
     	
     	    	    	
@@ -42,7 +42,6 @@ public class EduSessionListener implements HttpSessionListener {
     	
     	HttpSession  session = se.getSession();
     	String id = session.getId();    	
-    	System.out.println("session remove="+id);
     	map.remove(id);
     	
     }
