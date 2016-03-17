@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -215,9 +214,7 @@ void CheckUserid(HttpServletRequest req, HttpServletResponse res)
    ModelAndView joinMemberProcess(Member member, HttpServletResponse res)
   {
 	   ModelAndView vm = new ModelAndView();
-	   
-	   System.out.println(member.getMem_addrCode());
-	   System.out.println(member.getMem_id());
+
 	   dao.joinmember(member);
 
 	   vm.setViewName("/Member/resultjoin");	   
@@ -229,9 +226,7 @@ void CheckUserid(HttpServletRequest req, HttpServletResponse res)
    ModelAndView joinMemberProcess(HttpServletResponse res)
   {
 	   ModelAndView vm = new ModelAndView();
-	   
-       
-	   
+
 	   vm.setViewName("/Member/findmember");	   
 	   return vm;
    }
@@ -271,9 +266,10 @@ void CheckUserid(HttpServletRequest req, HttpServletResponse res)
 	   String userid = (String)ses.getAttribute("ID");
 	   if (userid == null) { 
 		   		   
-		  RedirectView redirect = new  RedirectView("../member/login.do?returnurl="+ 
-				  encodeURIComponent(req.getContextPath()+"/member/changeuserinfo.do"));
+		  RedirectView redirect = new  RedirectView("../member/login.do"); 
 	
+		  redirect.addStaticAttribute("returnurl", req.getContextPath()+"/member/changeuserinfo.do");
+		  
 		  vm.setView(redirect);
 		  return vm;
 	   }
