@@ -41,6 +41,16 @@ public class MyPageController {
 		mv.setViewName("myPage/myPageMain");
 		return mv;
 	}
+	// 관리자에서 리스트 보는 폼
+	@RequestMapping("Apply/ApplyList")
+	public ModelAndView ApplyList(){
+		ModelAndView mv = new ModelAndView();
+		ArrayList list = aDao.selectTeacher();
+		
+		mv.addObject("LISTS",list);
+		mv.setViewName("Apply/ApplyList");
+		return mv;
+	}
 
 	// 강사 신청 폼
 	@RequestMapping("Apply/ApplyForm")
@@ -53,11 +63,10 @@ public class MyPageController {
 		if (nal.equals("A")) {
 			// 관리자
 			System.out.println("관리자");
-			ArrayList list = aDao.selectTeacher();
-			
-			mv.addObject("LISTS",list);
-			mv.setViewName("Apply/ApplyList");
+			RedirectView view = new RedirectView("../Apply/ApplyList.do");
+			mv.setView(view);
 			return mv;
+			
 		} else if (nal.equals("L")) {
 			// 강사
 			System.out.println("강사");
@@ -120,7 +129,7 @@ public class MyPageController {
 	      System.out.println("---------insertBoard-----------");
 
 	      aDao.insertApply(data);
-		mv.setViewName("Apply/waitApply.do");
+	    mv.setViewName("Apply/waitApply");
 		return mv;
 	}
 	// 강사 승인
@@ -150,7 +159,8 @@ public class MyPageController {
 		aDao.insertIntro(data);
 		aDao.insertLec(data);
 		
-		mv.setViewName("Apply/ApplyList.do");		
+		RedirectView view = new RedirectView("../Apply/ApplyList.do");
+		mv.setView(view);	
 		return mv;
 	}
 	// 강사 거절
@@ -175,7 +185,8 @@ public class MyPageController {
 		
 		// 신청되어있는 데이터를 지운다.
 		aDao.deleterec(no);
-		mv.setViewName("Apply/ApplyList.do");		
+		RedirectView view = new RedirectView("../Apply/ApplyList.do");
+		mv.setView(view);
 		return mv;
 	}
 	// 첨부파일 다운로드 
