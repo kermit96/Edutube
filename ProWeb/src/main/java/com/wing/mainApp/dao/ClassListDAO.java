@@ -15,10 +15,6 @@ import com.wing.mainApp.data.ReplyData;
 
 @Repository
 public class ClassListDAO {
-	/**
-	 * 여기부터 진짜 자료
-	 * */
-	
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	// 총데이터 수 구하기 요청
@@ -215,8 +211,5 @@ public class ClassListDAO {
 	public void updateReply(ReplyData data){
 		sqlSession.update("clist.updateReply",data);
 	}
-	/**
-	 * 이게 없으면 풀 제대로 안된거
-	 * */
 	
 }

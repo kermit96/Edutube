@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -53,6 +54,7 @@
 		table {
 			width:100%;
 			border-collapse:collapse;
+			
 			font-size:16px; /*글꼴 크기*/
 			line-height:24px;/*줄 간격*/
 		}		
@@ -64,8 +66,13 @@
 			text-decoration:underline; /* 밑줄 
 			color:green;			/*글 색상*/
 		}
+		#tr_top{
+			background:rgb(114, 235, 125);
+			text-align:center;
+		}
 		</style>
 		<script>
+			//	상세보기 요청을 해줄 함수
 			//	상세보기 요청을 해줄 함수
 			function goDetail(orino) {
 				//	매개변수	선택한 글의 번호가 기억될 예정이다.
@@ -74,6 +81,11 @@
 			$(document).ready(function(){
 				$("#sBtn").click(function() {
 					//	검색단어가 입력되었는지 무결성 검사하고....
+					$content = $("#content").val();
+					if($content == ""){
+						alert("검색어를 입력해 주세요");
+						return;
+					}
 					$("#sfrm").attr("action", "../Notice/NoticeSearch.do");
 					$("#sfrm").submit();
 				});
@@ -87,13 +99,13 @@
 		 <script type="text/javascript">
 		    $(document).ready(function(){
 		        setInterval(function(){
-		                  var blink = document.getElementById("dday");
+		                  var blink = document.getElementById("top_not");
 		            blink.style.visibility = blink.style.visibility == "" ? "hidden" : ""
 		        }, 800);
 		    })
-    	 </script>				
+    	 </script>    				
 </head>
-<body onload="startBlink()">
+<body> 
 <div id='EduContainer'>
 
 <%-- <c:if test="${sessionScope.ADMIN ne 'Y'}">
@@ -110,7 +122,7 @@
 		</div>
 		
 		<div id="centerPage"> 
-	<h4 align="center" ><strong>공지 사항</strong></h4>
+	<h4 align="center" ><strong>공지사항</strong></h4>
 <!-- 	검색기능 -->
 		<table border="1" align="center" >
 			<tr>
@@ -118,24 +130,25 @@
 					<form method="POST" id="sfrm">
 						<select id="kind" name="kind">
 							<option value="title">제목</option>
-							<option value="body">본문</option>
-							<option value="mem_id" >글쓴이</option>
-							<option value="both">제목 + 본문</option>
+							<option value="body">내용</option>
+							<option value="mem_id" >아이디</option>
+							<option value="both">제목+내용</option>
 						</select>
 						<input type="text" id="content" name="content">
 						<input type="button" value="검색" id="sBtn" class="btn btn-primary btn-sm">
+						<input type="button" id="wBtn" value="글쓰기" class="btn btn-primary btn-sm">
 					</form>
 				</td>
 			</tr>
 		</table>
 <!-- 	목록 보여주기 -->
-			<table border="1" width="80%" align="center">
+			<table border="1" align="center">
 				<tr id="tr_top">
 					<th class="text-center">번호</th>
 					<th class="text-center">제목</th>
 					<!-- <th class="text-center">글내용</th> -->
-					<th class="text-center">글쓴이</th>
-					<th class="text-center">작성일</th>
+					<th class="text-center">아이디</th>
+					<th class="text-center">날짜</th>
 				</tr>
 	    	<c:if test="${empty LIST}">
 				<tr>
@@ -145,17 +158,15 @@
 				</tr>			   
 	  		</c:if>			
 	   		<c:if test="${not empty LIST}">
-	   		
 	   		 <tr>
-			    	<td class="text-center" ><strong>최신 공지</strong></td>
-					<td  id="dday" class="text-center" style="background-color:#0FFFFF" >
-							<a href="../Notice/NoticeView.do?nowPage=${PINFO.nowPage}&oriNo=${DATA.notice_no}"><blink>${DATA.notice_title}</blink></a>
+			    	<td class="text-center" style="background-color:rgb(222, 207, 60);color:red" ><strong id="top_not" >최근 공지</strong></td>
+					<td class="text-center" >
+							<a href="../Notice/NoticeView.do?nowPage=${PINFO.nowPage}&oriNo=${DATA.notice_no}">${DATA.notice_title}</a>
 					</td>
 					<!-- <td>${temp.notice_body}</td>  -->
-					<td id="dday" class="text-center">${DATA.mem_id}</td>
-					<td class="text-center">${DATA.notice_date}</td>
-			 </tr>
-			
+					<td id="ttop_not" class="text-center">${DATA.mem_id}</td>
+					<td class="text-center"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${DATA.notice_date}"/></td>
+			 </tr>			
 		   	<c:forEach	var="temp" items="${LIST}">
 					<tr>
 						<td class="text-center">${temp.notice_no}</td>
@@ -164,7 +175,7 @@
 						</td>
 						<!-- <td>${temp.notice_body}</td>  -->
 						<td class="text-center">${temp.mem_id}</td>
-						<td class="text-center">${temp.notice_date}</td>				
+						<td class="text-center"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${temp.notice_date}"/></td>				
 					</tr>
 			</c:forEach>
 			</c:if>	
@@ -176,36 +187,32 @@
 				<tr>
 					<td align="center">
 					<!-- 	[처음][이전][1][2][3][4][5][다음][마지막] -->
-					    <a href="../Notice/NoticeList.do?nowPage=1">[처  음]</a>
+					    <a href="../Notice/NoticeList.do?nowPage=1">[처음]</a>
 						<c:if test="${PINFO.startPage eq 1}">
-							[이 전]
+							[이전]
 						</c:if>
 						<c:if test="${PINFO.startPage ne 1}">
-							<a href="../Notice/NoticeList.do?nowPage=${PINFO.startPage - 1}">[이 전]</a>
+							<a href="../Notice/NoticeList.do?nowPage=${PINFO.startPage - 1}">[이전]</a>
 						</c:if>
 						<c:forEach var="temp" begin="${PINFO.startPage}" end="${PINFO.endPage}">
-							<a href="../Notice/NoticeList.do?nowPage=${temp}">[ ${temp} ]</a>
+							<c:if test="${temp eq PINFO.nowPage}">
+								[${temp}]
+							</c:if>
+							<c:if test="${temp ne PINFO.nowPage}">
+								<a href="../Notice/NoticeList.do?nowPage=${temp}">[ ${temp} ]</a>
+							</c:if>
 						</c:forEach>
 						<c:if test="${PINFO.endPage eq PINFO.totalPage}">
-							[다 음]
+							[다음]
 						</c:if>
 						<c:if test="${PINFO.endPage ne PINFO.totalPage}">
-							<a href="../Notice/NoticeList.do?nowPage=${PINFO.endPage + 1}">[다 음]</a>
+							<a href="../Notice/NoticeList.do?nowPage=${PINFO.endPage + 1}">[다음]</a>
 						</c:if>
-					    <a href="../Notice/NoticeList.do?nowPage=${PINFO.totalPage}">[마지막]</a> -->
+					    <a href="../Notice/NoticeList.do?nowPage=${PINFO.totalPage}">[마지막]</a>
 					</td>
 				</tr>
 			</table>		
 <!-- 	기타 부가 기능 -->
-<c:if test="${sessionScope.ID eq DATA.mem_id}">
-			<table border="1" width="80%" >
-				<tr id="tr_bot">
-					<td align="center">
-						<input type="button" id="wBtn" value="글쓰기" class="btn btn-primary btn-sm">
-					</td>
-				</tr>
-			</table>
-</c:if>
 			</div>
 		</div>
 	</div>	

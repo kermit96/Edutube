@@ -135,5 +135,5 @@ public class IntroInfoDAO {
 	public ArrayList getSearch(HashMap map) {
 		return (ArrayList) sqlSession.selectList("intromanager.searchintro", map);
 	}
-		
+	
 }

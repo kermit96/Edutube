@@ -21,7 +21,7 @@ public class ScheduleController {
 	public ModelAndView schduleList(){
 		ModelAndView mv = new ModelAndView();
 		
-		
+		// 달력 있는 페이지 호출
 		mv.setViewName("/Sch/SchList");		
 		return mv;
 	}
@@ -32,10 +32,10 @@ public class ScheduleController {
 		
 		ModelAndView mv = new ModelAndView(); 
 		String id = req.getParameter("lecMid");			
-		
+		// 일정 호출	한뒤	
 		ArrayList list = schdao.selectEvents(id);			
 				
-	
+		// events.jsp (xml 형태) 에 저장
 		mv.addObject("eventL",list);
 		mv.setViewName("/Sch/events");
 		

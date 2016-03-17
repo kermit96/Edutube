@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,8 +21,7 @@
 		
 	<!--Never Delete "EduContainer" style tag-->
 	<style>
-	
-		#EduContainer{
+	#EduContainer{
 				width:1200px;
 				position: absolute;
 				left: 50%;
@@ -44,28 +44,33 @@
 			clear:both;
 			width:150px;			
 		}
-		
-	</style>
-	<style type="text/css">
-	    #Table{
-			background-color: MistyRose;<!--Joon -->
+		<!--JOON CSS-->
+		th,td {
+			background:white;/*배경색*/
+		}
+		table td, th {
+			border:#d3d3d3 solid 1px;/*경계선 색상 스타일 굵기 */
+		}
+		table {
+			width:100%;
+			border-collapse:collapse;
+			
+			font-size:16px; /*글꼴 크기*/
+			line-height:24px;/*줄 간격*/
+		}		
+		a{
+			text-decoration:none; /* 링크 밑줄 없애기 */
+			color:black; /*글 색상*/
+		}
+		a:HOVER {
+			text-decoration:underline; /* 밑줄 
+			color:green;			/*글 색상*/
 		}
 		#tr_top{
 			background:rgb(114, 235, 125);
 			text-align:center;
 		}
-		#page{
-			background-color: MistyRose;
-		}
-		h3 {
-			text-align:center;
-		}
-		
-		table, th, td {
-   		border: 1px solid black text-align:center;
-		}
-				
-	</style>	
+		</style>
 	<script>		    
 			
 			$(document).ready(function(){
@@ -116,14 +121,14 @@
 			<input type="hidden" id="nowPage" name="nowPage" value="${NOWPAGE}">
 		</form>
 		 <!-- 	목록 보여주기 -->
-		<table border="1" width="80%" align="center">
-				<tr>
-					<th  id="tr_top" class="text-center">번호</th>
-					<th  id="tr_top" class="text-center">사진</th>
-					<th  id="tr_top" class="text-center">제목</th>
-					<th  id="tr_top" class="text-center">글내용</th>
-					<th  id="tr_top" class="text-center">글쓴이</th>
-					<th  id="tr_top" class="text-center">작성일</th>
+		<table border="1" align="center">
+				<tr id="tr_top">
+					<th class="text-center">번호</th>
+					<th class="text-center">사진</th>
+					<th class="text-center">제목</th>
+					<th class="text-center">글내용</th>
+					<th class="text-center">글쓴이</th>
+					<th class="text-center">작성일</th>
 				</tr>
 	    	   	<tr>
 					<td class="text-center">${DATA.intro_no}</td>
@@ -132,11 +137,11 @@
 					<td class="text-center">${DATA.intro_title}</td>
 					<th class="text-center">${DATA.intro_body}</th>
 					<td class="text-center">${DATA.mem_id}</td>
-					<td class="text-center">${DATA.intro_date}</td>				
+					<td class="text-center"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${DATA.intro_date}"/></td>				
 			   </tr>		
 		</table>
-			<table border="1" width="80%" align="center">
-				<tr id="tr_bot">
+			<table border="1" align="center">
+				<tr id="tr_top">
 					<td align="center">					
 
 					<input type="button" value="수정하기" id="mBtn" class="btn btn-primary btn-sm">

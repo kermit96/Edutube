@@ -14,12 +14,7 @@ public class NoticeData {
 	private int notice_isDeleted;
 	public int		nowPage;
 	
-	//�씪諛� DB �옉�뾽�뿉�꽌�뒗 �궇吏쒖� �떆媛꾩쓣 �뵲濡� 諛쏆븘�꽌 泥섎━�빐�빞 �븯�뒗�뜲
-	//myBatis�뒗 �궡遺��쟻�쑝濡� �궇吏쒖� �떆媛꾩쓣 �떎 諛쏆븘�꽌 臾띠뼱�꽌 泥섎━�빐 以��떎.
-	//洹몃윭誘�濡� myBatis瑜� �궗�슜�븷 �븣�뒗 援녹씠 �궇吏쒖� �떆媛꾩쓣 �뵲濡� 諛쏆쓣 �븘�슂媛� �뾾�떎.
-	//���떊�뿉 myBatis�뒗 �궇吏쒖� �떆媛꾩쓣 ���꽕�엫�쑝濡� 異쒕젰�븯誘�濡� 臾몄젣媛� �깮湲� �닔 �엳�떎.
-	//蹂��닔�쓽 �씠由꾩� �씪遺��윭 �뤌�쓽 name �냽�꽦怨� 媛숆쾶 �뻽�떎.
-		//洹몃옒�빞 set �븿�닔媛� �옄�룞�쑝濡� 留뚮뱾�뼱吏꾨떎.
+	
 	public String	nick;
 	
 	public int getNotice_no() {
@@ -76,11 +71,6 @@ public class NoticeData {
 	public void setNowPage(int nowPage) {
 		this.nowPage = nowPage;
 	}
-
-//	�궇吏쒖� �떆媛꾩쓣 �썝�븯�뒗 �삎�깭濡� 蹂�寃쏀빐�꽌 異쒕젰�븷 �닔 �엳�뒗 getXXX�븿�닔瑜�
-	//	�젣�옉�빐 二쇱뼱�빞 �븳�떎.
-	//	�씠 �씠濡좎� 異쒕젰�쓣 �떎瑜� 諛⑹떇�쑝濡� �븯怨좎옄 �븯硫� getXXX�븿�닔瑜� 留뚮뱾�뼱�꽌
-	//	�궗�슜�븳�떎...	�씪�뒗 �씠濡좎뿉 �뵲瑜멸쾬�씠�떎.
 	public String getDatetime() {
 		return StringUtil.getDateTimeStr(notice_date);
 	}

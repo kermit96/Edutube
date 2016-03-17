@@ -40,7 +40,7 @@ public class NoticeController {
 	/*
 	 * 	
 	 */
-	@RequestMapping("/Notice/NoticeReg")
+	@RequestMapping(value = "/Notice/NoticeReg",produces="text/plain;charset=UTF-8")
 	public ModelAndView	noticeWrite(HttpSession session, NoticeData data) {
 		ModelAndView		mv = new ModelAndView();
 		if(!SessionUtil.isSession(session)) {
@@ -58,7 +58,7 @@ public class NoticeController {
 		mv.setView(rv);
 		return mv;
 	}
-	@RequestMapping("/Notice/NoticeList")
+	@RequestMapping(value="/Notice/NoticeList",produces="text/plain;charset=UTF-8")
 	public ModelAndView		noticeList(HttpServletRequest req, HttpSession session,NoticeData data) {
 		ModelAndView		mv = new ModelAndView();
 		    //로그인한 사람만 목록을 보여주고 싶으면.....
@@ -81,23 +81,35 @@ public class NoticeController {
 			//
 			int max_no = nDao.noticeMax();
 			System.out.println("max_no="+max_no);
-						
 			int	total = nDao.getTotal(1);
+			System.out.println("total="+total);
 			PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
-			pInfo.calcInfo();
-						
+			pInfo.calcInfo();			
+									
 			int	start = (pInfo.nowPage - 1) * pInfo.pageList + 1;
 			int	end = start + pInfo.pageList - 1;
+			System.out.println("start="+start);
+			System.out.println("end="+end);
 			
 			if(end > pInfo.totalCount) {
 				end = pInfo.totalCount;
+				System.out.println("pInfo.totalCount="+end);
+				
 			}
-			
+			/*
+			ArrayList	result = new ArrayList();
+			for(int i = start; i <= end; i++) {
+				NoticeData	temp = (NoticeData)list.get(i);
+				result.add(temp);
+			}
+			*/
 			HashMap	map = new HashMap();
 			map.put("start", start);
 			map.put("end", end);
 			
+
 			ArrayList	list = nDao.selectNoticeList(map);
+			
 			NoticeData  data1= nDao.selectFinalList(max_no);			
 			//	뷰를 선택한다.
 			//	뷰에게 전달할 내용을 준다.
@@ -233,8 +245,7 @@ public class NoticeController {
 			return mv;
 		}
 		else {
-			//	�닔�젙�쓣 �븯�뒗 寃쎌슦�씠�떎.
-			//	�닔�젙�븷 �뜲�씠�꽣瑜� 爰쇰궡�꽌 酉곗뿉寃� �븣�젮以��떎.
+			
 			result = nDao.selectView(oriNo);
 		}
 
@@ -255,9 +266,7 @@ public class NoticeController {
 		System.out.println("mem_id="+data.getMem_id());
 		System.out.println("notice_body="+data.getNotice_body());
 		nDao.updateNotice(data);
-		System.out.println("Modifyfff");
-		
-		//	酉곕뒗 �긽�꽭蹂닿린瑜� �떎�떆 遺덈윭以��떎.
+						
 		RedirectView	rv = new RedirectView("../Notice/NoticeList.do");
 		rv.addStaticAttribute("oriNo", data.getNotice_no());
 		rv.addStaticAttribute("nowPage", data.getNowPage());
@@ -345,6 +354,7 @@ public class NoticeController {
 		else {
 			nowPage = Integer.parseInt(strPage);
 		}
+		
 		String	kind = req.getParameter("kind");
 		String	content = req.getParameter("content");
 		
@@ -364,21 +374,33 @@ public class NoticeController {
 		
 		//		
 		HashMap	map = new HashMap();
+		//map.put("start", start);
+		//map.put("end", end);		
 		map.put("kind", kind);
 		map.put("CONTENT", content);
 		int	count = nDao.getSearchCount(map);
-		System.out.println("fdfdfcount ="+count);
+		//System.out.println("fdfdfcount ="+count);
 		PageUtil	pInfo = new PageUtil(nowPage, count, 5, 5);
+		pInfo.calcInfo();		
 //		pInfo.calcInfo2();
-		System.out.println("Notic rchfdfd");
+		//System.out.println("Notic rchfdfd");
 		//	
 		ArrayList	list = nDao.getSearch(map);
+	
+		for(Object obj :list  ) {
+			
+			NoticeData map2 = (NoticeData)obj;
+			System.out.println(map2.getMem_id());			
+		}
+		
 		
 		ArrayList	result = new ArrayList();
 		if(list.size() != 0) {
 			//	
 			int		start = (pInfo.nowPage - 1) * pInfo.pageList;
 			int		end = start + pInfo.pageList - 1;
+			System.out.println("endpage="+pInfo.endPage);
+			System.out.println("end="+end);
 			//	
 			if(end >= list.size()) {
 				end = list.size() - 1;
@@ -388,7 +410,7 @@ public class NoticeController {
 			}
 		}
 		//	
-		System.out.println("NoticeSearch");
+		//System.out.println("NoticeSearch");
 		mv.addObject("PINFO", pInfo);
 		mv.addObject("LIST", result);
 		mv.setViewName("Notice/NoticeSearch");

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="msg">
+	<!-- 메세지 보내기 -->
+	<insert id="sendmsg" parameterType="msgdata">
+		INSERT
+		INTO
+			Message
+		VALUES
+			((SELECT NVL(MAX(msg_no), 0) + 1 FROM Message), #{toid}, #{body}, #{fromid}, SYSDATE, 'N')
+	</insert>
+	<!-- 받는사람 가져오기 -->
+	<select id="selectid" resultType="java.lang.String" parameterType="java.lang.Integer">
+		SELECT
+			Mem_ID AS toid
+		FROM
+			IntroDuce
+		WHERE
+			Intro_No = #{no}
+	</select>
+	<!-- 받은 메세지 리스트 -->
+	<select id="selectmsglist" parameterType="java.lang.String" resultType="msgdata">
+		SELECT
+			Msg_NO AS no,
+			Mem_FROM AS fromid,
+			Msg_BODY AS body,
+			Msg_IsCom AS com
+		FROM
+			Message
+		WHERE
+			Mem_ID = #{id}
+		ORDER BY Msg_NO DESC
+	</select>
+	<!-- 메세지 상세보기 -->
+	<select id="msgView" parameterType="java.lang.Integer" resultType="msgdata">
+		SELECT
+			Mem_FROM AS fromid,
+			Mem_Id AS toid,
+			Msg_BODY AS body
+		FROM
+			Message
+		WHERE
+			Msg_NO = #{no}
+	</select>
+	<!-- 보낸 메세지 리스트 -->
+	<select id="selectsemsglist" parameterType="java.lang.String" resultType="msgdata">
+		SELECT
+			Msg_NO AS no,
+			Mem_ID AS toid,
+			Msg_BODY AS body,
+			Msg_IsCom AS com
+		FROM
+			Message
+		WHERE
+			Mem_FROM = #{id}
+	</select>
+	<!-- 메세지 확인 변경 -->
+	<update id="msgcom" parameterType="java.lang.Integer">
+		UPDATE
+			MESSAGE
+		SET
+			MSG_ISCOM = 'Y'
+		WHERE
+			MSG_NO = #{no}
+	</update>
+	<!-- 메세지 삭제 -->
+	<delete id="delm" parameterType="java.lang.Integer">
+		DELETE
+			FROM
+		Message
+			WHERE
+		MSg_No = #{no}
+	</delete>
+</mapper>
