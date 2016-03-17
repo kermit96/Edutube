@@ -316,4 +316,31 @@
 	WHERE
 		re_no=#{reno}
 	</update>
+	
+	<!--  동영상 (수정) -->
+	<update id="modiVideo" parameterType="mediadata">
+	update
+		video
+	SET
+		video_url=#{mediaURL}
+	WHERE
+		video_no=#{mediaNO}		
+	</update>
+	
+	<!--  동영상 (삭제) -->	
+	<delete id="deleteVideo" parameterType="mediadata">
+	Delete
+	From Video
+	WHERE
+		video_no=#{mediaNO}	
+	</delete>
+	
+	<!--  동영상 (추가) -->
+	<insert id="insertVideo" parameterType="mediadata">
+	Insert
+	Into 
+		video
+	Values ((SELECT NVL(MAX(video_no), 0) + 1 FROM video),#{no},#{mediaURL})	
+	</insert>
+	
 </mapper>

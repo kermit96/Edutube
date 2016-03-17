@@ -37,10 +37,7 @@
 			$('#title').val('${DATA.title}');
 					
 			$("#modifyClass").click(function() {
-				
-					$mediaURL=$("#mediaURL").val();					
-					$mediaURL=$mediaURL.replace(/^\s+|\s+$/g,"");
-										
+						
 					$title = $("#title").val();
 						if ($title == "") {
 							alert("제목을 입력해 주세요");
@@ -63,7 +60,25 @@
 	});
 	
 	/*동영상 삭제&수정시 실행할 스크립트*/
-	
+	/* 추가 */
+	function MediaAdd(){		
+		$('#mKind').val('Ad');		
+		var DivLocation = document.getElementById("mediaBox");
+		var TextBox = "<input id='mediaSp' name='mediaSp' type='text' required>";
+		DivLocation.innerHTML  = TextBox;		
+	}	
+	/* 수정*/
+	function MediaModi(){		
+		$('#mKind').val('Mo');		
+		var DivLocation = document.getElementById("mediaBox");
+		var TextBox = "<input id='mediaSp' name='mediaSp' type='text' required>";
+		DivLocation.innerHTML  = TextBox;
+	}
+	/* 삭제*/
+	function MediaDelete(){		
+		$('#mKind').val('De');		
+		$('#mediaBox').empty();		
+	}
 
 </script>
 
@@ -149,6 +164,11 @@ input#title{
 	width:500px;
 }
 
+input#mediaSp{
+	width:350px;
+}
+
+
 </style>
 </head>
 <body>
@@ -204,15 +224,19 @@ input#title{
 							<div id="mediaURLp">동영상 주소</div>	
 								<c:if test="${isExist==true}">	
 									<c:forEach var="mList" items="${mList}">
-										<div id="mediaBox">																				
+									<input id="VideoNo" name="VideoNo" value="${mList.mediaNO}" type="hidden" />
+										<div id="mediaBox">																																								
 										${mList.mediaURL}
 										</div>
-										<div id="mediaUtil">버튼</div>								
+										<div id="mediaUtil">
+										&nbsp;<a href="JavaScript:MediaModi()"><i class="fa fa-wrench"></i>수정하기</a>&nbsp;
+										<a href="JavaScript:MediaDelete()"><i class="fa fa-trash"></i>삭제하기</a>
+										</div>								
 									</c:forEach>
 								</c:if>
 								<c:if test="${isExist==false}">
 									<div id="mediaBox"></div>
-									<div id="mediaUtil">버튼</div>		
+									<div id="mediaUtil">&nbsp;<a href="JavaScript:MediaAdd();"><i class="fa fa-plus"></i>추가하기</a></div>		
 								</c:if>	
 						</div>
 

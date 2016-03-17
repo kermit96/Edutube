@@ -14,6 +14,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.wing.mainApp.dao.ClassListDAO;
 import com.wing.mainApp.data.ClassListData;
+import com.wing.mainApp.data.MediaData;
 import com.wing.mainApp.data.ReplyData;
 import com.wing.mainApp.util.PagingUtil;
 import com.wing.mainApp.util.SessionUtil;
@@ -352,10 +353,10 @@ public class ClassListController {
 		ArrayList mList = lDao.selectMediaList(oriNo);
 		
 		boolean isExist = true;
-		if(mList==null){
+		if(mList==null || mList.size() == 0){
 			isExist=false;
 		}
-				
+		
 		mv.addObject("mList",mList);
 		mv.addObject("isExist", isExist);
 		mv.addObject("oriNO",oriNo);
@@ -409,24 +410,34 @@ public class ClassListController {
 				
 		int kind = 0;
 		
+		MediaData mdData= new MediaData();
+				
 		if(mkind.equals("No")){
 			kind=1;
 		}
 		else if(mkind.equals("Mo")){
 			kind=2;
+			String tempNo = req.getParameter("VideoNo");
+			int realNo = Integer.parseInt(tempNo);
+			mdData.mediaNO=realNo;
+			mdData.mediaURL=req.getParameter("mediaSp");
 		}
 		else if(mkind.equals("De")){
+			String tempNo = req.getParameter("VideoNo");
+			int realNo = Integer.parseInt(tempNo);
+			mdData.mediaNO=realNo;
 			kind=3;
 		}
-		else if(mkind.equals("Ne")){
+		else if(mkind.equals("Ad")){
 			kind=4;
+			mdData.no=oriNo;
+			mdData.mediaURL=req.getParameter("mediaSp");
 		}
 		else{
-			
+			System.out.println("시스템오류(수정하기)");
 		}
 		
-		
-		lDao.updateclass(data,kind);
+		lDao.updateclass(data,kind,mdData);
 		
 		mv.addObject("code",listcode);
 		mv.addObject("oriNO",oriNo);
