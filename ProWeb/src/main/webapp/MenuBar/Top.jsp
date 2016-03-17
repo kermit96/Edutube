@@ -154,7 +154,7 @@ a.logC:hover {
 							<option value="en">English</option>
 							<option value="ja">日本語</option>
 							<option value="ch">中國(繁體)</option>
-							<option value="ch_en">中国()简体)</option>
+							<option value="ch_en">中国(简体)</option>
 						</select>
 						
 					</div>
@@ -171,7 +171,7 @@ a.logC:hover {
 							<option value="en">English</option>
 							<option value="ja">日本語</option>
 							<option value="ch">中國(繁體)</option>
-							<option value="ch_en">中国()简体)</option>
+							<option value="ch_en">中国(简体)</option>
 						</select>
 					</div>
 					</c:if>	
