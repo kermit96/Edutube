@@ -129,7 +129,11 @@
 						</select>
 						<input type="text" id="content" name="content">
 						<input type="button" value="검색" id="sBtn" class="btn btn-primary btn-sm">
+						<c:if test="${sessionScope.NAL eq 'A'}">
 						<input type="button" id="wBtn" value="글쓰기" class="btn btn-primary btn-sm">
+						</c:if>
+ 	
+
 					</form>
 				</td>
 			</tr>
