@@ -21,7 +21,7 @@
 	<!--CustomScript-->
 	
 	<!--Never Delete "EduContainer" style tag-->
-	<style>
+		<style>
 	
 		#EduContainer{
 				width:1200px;
@@ -48,7 +48,7 @@
 		}
 		<!--JOON CSS-->
 		th,td {
-			background:yellowgreen;/*배경색*/
+			background:white;/*배경색*/
 		}
 		table td, th {
 			border:#d3d3d3 solid 1px;/*경계선 색상 스타일 굵기 */
@@ -56,6 +56,7 @@
 		table {
 			width:100%;
 			border-collapse:collapse;
+			
 			font-size:16px; /*글꼴 크기*/
 			line-height:24px;/*줄 간격*/
 		}		
@@ -67,15 +68,31 @@
 			text-decoration:underline; /* 밑줄 
 			color:green;			/*글 색상*/
 		}
-		
-	</style>
+		#tr_top{
+			background:rgb(114, 235, 125);
+			text-align:center;
+		}
+		</style>
 	
 		<script>
 			$(document).ready(function(){
-				$("#wBtn").click(function(){
-					
-					//	이제 무결성 검사하고...
-									
+				$("#wBtn").click(function(){					
+					//	이제 무결성 검사
+					$writer = $("#writer").val();
+					if($writer == ""){
+						alert("글쓴이를 입력해 주세요");
+						return;
+					}
+					$title = $("#title").val();
+					if($title == ""){
+						alert("제목을 입력해 주세요");
+						return;
+					}
+					$body = $("#body").val();
+					if($body == ""){
+						alert("내용을 입력해 주세요");
+						return;
+					}
 					$("#frm").attr("action", "../Notice/NoticeReg.do");
 					$("#frm").submit();
 				});
@@ -114,23 +131,23 @@
 		<form method="POST" id="frm" action="" enctype="multipart/form-data">
 			<table width="80%" border="1" align="center" id='Table'>
 				<tr>
-					<td class="text-center">글쓴이</td>
+					<th id="tr_top" class="text-center">아이디</th>
 					<td colspan="3"><input type="text" name="mem_id" id="writer" value="${sessionScope.ID}" disabled>
 				</tr>
 				<tr>
-					<td class="text-center">제목</td>
-					<td colspan="3"><input type="text" name="notice_title" id="title" value=${DATA.notice_title}>
+					<th id="tr_top" class="text-center">제목</th>
+					<td colspan="3"><input type="text" name="notice_title" id="title" value="${DATA.notice_title}">
 				</tr>
 				<tr>
-				    <td class="text-center">공지 글</td>
+				    <th id="tr_top" class="text-center">내용</th>
 					<td colspan="3">
-						<textarea cols="80" rows="10" id="body" name="notice_body"  value=${DATA.notice_body}style="width:100%; height:200px"></textarea>
+						<textarea cols="80" rows="10" id="body" name="notice_body" style="width:100%; height:200px">${DATA.notice_body}</textarea>
 					</td>
 				</tr>
 				<tr>
 					<td align="center" colspan="3">
-						<input type="button" value="글쓰기" id="wBtn" class="btn btn-primary btn-sm">
-						<input type="reset" value="다시작성" id="rfBtn" class="btn btn-primary btn-sm">
+						<input type="button" value="글쓴이" id="wBtn" class="btn btn-primary btn-sm">
+						<input type="reset" value="다시쓰기" id="rfBtn" class="btn btn-primary btn-sm">
 						<input type="button" value="목록" id="lBtn"   class="btn btn-primary btn-sm">
 					</td>
 				</tr>

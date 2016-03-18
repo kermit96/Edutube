@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
+
 import com.wing.mainApp.dao.NoticeDAO;
 import com.wing.mainApp.data.NoticeData;
 import com.wing.mainApp.util.PageUtil;
@@ -39,7 +40,7 @@ public class NoticeController {
 	/*
 	 * 	
 	 */
-	@RequestMapping("/Notice/NoticeReg")
+	@RequestMapping(value = "/Notice/NoticeReg",produces="text/plain;charset=UTF-8")
 	public ModelAndView	noticeWrite(HttpSession session, NoticeData data) {
 		ModelAndView		mv = new ModelAndView();
 		if(!SessionUtil.isSession(session)) {
@@ -57,7 +58,7 @@ public class NoticeController {
 		mv.setView(rv);
 		return mv;
 	}
-	@RequestMapping("/Notice/NoticeList")
+	@RequestMapping(value="/Notice/NoticeList",produces="text/plain;charset=UTF-8")
 	public ModelAndView		noticeList(HttpServletRequest req, HttpSession session,NoticeData data) {
 		ModelAndView		mv = new ModelAndView();
 		    //로그인한 사람만 목록을 보여주고 싶으면.....
@@ -353,6 +354,7 @@ public class NoticeController {
 		else {
 			nowPage = Integer.parseInt(strPage);
 		}
+		
 		String	kind = req.getParameter("kind");
 		String	content = req.getParameter("content");
 		
@@ -372,21 +374,33 @@ public class NoticeController {
 		
 		//		
 		HashMap	map = new HashMap();
+		//map.put("start", start);
+		//map.put("end", end);		
 		map.put("kind", kind);
 		map.put("CONTENT", content);
 		int	count = nDao.getSearchCount(map);
-		System.out.println("fdfdfcount ="+count);
+		//System.out.println("fdfdfcount ="+count);
 		PageUtil	pInfo = new PageUtil(nowPage, count, 5, 5);
+		pInfo.calcInfo();		
 //		pInfo.calcInfo2();
-		System.out.println("Notic rchfdfd");
+		//System.out.println("Notic rchfdfd");
 		//	
 		ArrayList	list = nDao.getSearch(map);
+	
+		for(Object obj :list  ) {
+			
+			NoticeData map2 = (NoticeData)obj;
+			System.out.println(map2.getMem_id());			
+		}
+		
 		
 		ArrayList	result = new ArrayList();
 		if(list.size() != 0) {
 			//	
 			int		start = (pInfo.nowPage - 1) * pInfo.pageList;
 			int		end = start + pInfo.pageList - 1;
+			System.out.println("endpage="+pInfo.endPage);
+			System.out.println("end="+end);
 			//	
 			if(end >= list.size()) {
 				end = list.size() - 1;
@@ -396,7 +410,7 @@ public class NoticeController {
 			}
 		}
 		//	
-		System.out.println("NoticeSearch");
+		//System.out.println("NoticeSearch");
 		mv.addObject("PINFO", pInfo);
 		mv.addObject("LIST", result);
 		mv.setViewName("Notice/NoticeSearch");

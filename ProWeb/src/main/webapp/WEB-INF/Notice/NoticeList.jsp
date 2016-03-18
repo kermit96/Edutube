@@ -66,6 +66,10 @@
 			text-decoration:underline; /* 밑줄 
 			color:green;			/*글 색상*/
 		}
+		#tr_top{
+			background:rgb(114, 235, 125);
+			text-align:center;
+		}
 		</style>
 		<script>
 			//	상세보기 요청을 해줄 함수
@@ -77,6 +81,11 @@
 			$(document).ready(function(){
 				$("#sBtn").click(function() {
 					//	검색단어가 입력되었는지 무결성 검사하고....
+					$content = $("#content").val();
+					if($content == ""){
+						alert("검색어를 입력해 주세요");
+						return;
+					}
 					$("#sfrm").attr("action", "../Notice/NoticeSearch.do");
 					$("#sfrm").submit();
 				});
@@ -94,38 +103,9 @@
 		            blink.style.visibility = blink.style.visibility == "" ? "hidden" : ""
 		        }, 800);
 		    })
-    	 </script>
-    	 <script type="text/javascript">
-			
-			var theText = document.getElementById("top_not");
-			
-			function nextSize(i,incMethod,textLength)
-			{
-			if (incMethod == 1) return (72*Math.abs( Math.sin(i/(textLength/3.14))) );
-			if (incMethod == 2) return (255*Math.abs( Math.cos(i/(textLength/3.14))));
-			}
-			
-			function sizeCycle(text,method,dis)
-			{
-				output = "";
-				for (i = 0; i < text.length; i++)
-				{
-					size = parseInt(nextSize(i +dis,method,text.length));
-					output += "<font style='font-size: "+ size +"pt'>" +text.substring(i,i+1)+ "</font>";
-				}
-				theDiv.innerHTML = output;
-			}
-			
-			function doWave(n) 
-			{   
-				sizeCycle(theText,1,n);
-				if (n > theText.length) {n=0}
-				setTimeout("doWave(" + (n+1) + ")", 50);
-			}
-		</script>				
+    	 </script>    				
 </head>
-<!--  <body onload="startBlink()"> -->
-<body onload="doWave(3)"> 
+<body> 
 <div id='EduContainer'>
 
 <%-- <c:if test="${sessionScope.ADMIN ne 'Y'}">
@@ -142,7 +122,7 @@
 		</div>
 		
 		<div id="centerPage"> 
-	<h4 align="center" ><strong>공지 사항</strong></h4>
+	<h4 align="center" ><strong>공지사항</strong></h4>
 <!-- 	검색기능 -->
 		<table border="1" align="center" >
 			<tr>
@@ -150,9 +130,9 @@
 					<form method="POST" id="sfrm">
 						<select id="kind" name="kind">
 							<option value="title">제목</option>
-							<option value="body">본문</option>
-							<option value="mem_id" >글쓴이</option>
-							<option value="both">제목 + 본문</option>
+							<option value="body">내용</option>
+							<option value="mem_id" >아이디</option>
+							<option value="both">제목+내용</option>
 						</select>
 						<input type="text" id="content" name="content">
 						<input type="button" value="검색" id="sBtn" class="btn btn-primary btn-sm">
@@ -162,13 +142,13 @@
 			</tr>
 		</table>
 <!-- 	목록 보여주기 -->
-			<table border="1" width="80%" align="center">
+			<table border="1" align="center">
 				<tr id="tr_top">
 					<th class="text-center">번호</th>
 					<th class="text-center">제목</th>
 					<!-- <th class="text-center">글내용</th> -->
-					<th class="text-center">글쓴이</th>
-					<th class="text-center">작성일</th>
+					<th class="text-center">아이디</th>
+					<th class="text-center">날짜</th>
 				</tr>
 	    	<c:if test="${empty LIST}">
 				<tr>
@@ -178,17 +158,15 @@
 				</tr>			   
 	  		</c:if>			
 	   		<c:if test="${not empty LIST}">
-	   		
 	   		 <tr>
-			    	<td id="ttop_not" class="text-center" ><strong>최신 공지</strong></td>
-					<td id="top_not" class="text-center" style="background-color:#0FFFFF" >
-							<a href="../Notice/NoticeView.do?nowPage=${PINFO.nowPage}&oriNo=${DATA.notice_no}"><blink>${DATA.notice_title}</blink></a>
+			    	<td class="text-center" style="background-color:rgb(222, 207, 60);color:red" ><strong id="top_not" >최근 공지</strong></td>
+					<td class="text-center" >
+							<a href="../Notice/NoticeView.do?nowPage=${PINFO.nowPage}&oriNo=${DATA.notice_no}">${DATA.notice_title}</a>
 					</td>
 					<!-- <td>${temp.notice_body}</td>  -->
 					<td id="ttop_not" class="text-center">${DATA.mem_id}</td>
 					<td class="text-center"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${DATA.notice_date}"/></td>
-			 </tr>
-			
+			 </tr>			
 		   	<c:forEach	var="temp" items="${LIST}">
 					<tr>
 						<td class="text-center">${temp.notice_no}</td>
@@ -209,12 +187,12 @@
 				<tr>
 					<td align="center">
 					<!-- 	[처음][이전][1][2][3][4][5][다음][마지막] -->
-					    <a href="../Notice/NoticeList.do?nowPage=1">[처  음]</a>
+					    <a href="../Notice/NoticeList.do?nowPage=1">[처음]</a>
 						<c:if test="${PINFO.startPage eq 1}">
-							[이 전]
+							[이전]
 						</c:if>
 						<c:if test="${PINFO.startPage ne 1}">
-							<a href="../Notice/NoticeList.do?nowPage=${PINFO.startPage - 1}">[이 전]</a>
+							<a href="../Notice/NoticeList.do?nowPage=${PINFO.startPage - 1}">[이전]</a>
 						</c:if>
 						<c:forEach var="temp" begin="${PINFO.startPage}" end="${PINFO.endPage}">
 							<c:if test="${temp eq PINFO.nowPage}">
@@ -225,10 +203,10 @@
 							</c:if>
 						</c:forEach>
 						<c:if test="${PINFO.endPage eq PINFO.totalPage}">
-							[다 음]
+							[다음]
 						</c:if>
 						<c:if test="${PINFO.endPage ne PINFO.totalPage}">
-							<a href="../Notice/NoticeList.do?nowPage=${PINFO.endPage + 1}">[다 음]</a>
+							<a href="../Notice/NoticeList.do?nowPage=${PINFO.endPage + 1}">[다음]</a>
 						</c:if>
 					    <a href="../Notice/NoticeList.do?nowPage=${PINFO.totalPage}">[마지막]</a>
 					</td>

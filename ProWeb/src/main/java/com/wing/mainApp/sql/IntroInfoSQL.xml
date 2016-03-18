@@ -25,7 +25,11 @@
 			(SELECT
 				rownum AS RNO, t2.*
 			FROM
-				(SELECT i.*,mem_nick FROM introduce i,member m WHERE i.intro_isDeleted='N' AND m.mem_isDeleted='N' AND i.mem_id=m.mem_id ORDER BY intro_no DESC) t2)	
+				(SELECT i.*,m.mem_nick as mem_nick FROM introduce i,member m
+			WHERE 
+				i.mem_id=m.mem_id AND i.intro_IsDeleted='N' AND m.mem_IsDeleted='N'
+			ORDER BY i.intro_no DESC) t2
+			)	
 		WHERE
 		RNO BETWEEN #{start} AND #{end}			
 	</select>
@@ -35,12 +39,27 @@
 		SELECT
 			i.intro_no,
 			i.mem_id,
+			m.mem_nick,
 			i.intro_title,
 			i.intro_body,
 			i.intro_path AS gimg2  
 		FROM
-		    (select * from lecturer where sub_code like 'langkor') l,introduce i			
-		where l.mem_id = i.mem_id 
+		    (select * from lecturer where sub_code like 'langkor') l,introduce i,member m			
+		where l.mem_id = i.mem_id AND i.mem_id=m.mem_id AND i.intro_IsDeleted='N' AND m.mem_IsDeleted='N'
+	<!--    mem_id = (select mem_id from lecturer where sub_code like 'langkor')  -->	
+	</select>
+<select id="selectenglang"		resultType="idata"
+										parameterType="java.util.HashMap">
+		SELECT
+			i.intro_no,
+			i.mem_id,
+			m.mem_nick,
+			i.intro_title,
+			i.intro_body,
+			i.intro_path AS gimg2  
+		FROM
+		    (select * from lecturer where sub_code like 'langeng') l,introduce i,member m			
+		where l.mem_id = i.mem_id AND i.mem_id=m.mem_id AND i.intro_IsDeleted='N' AND m.mem_IsDeleted='N'
 	<!--    mem_id = (select mem_id from lecturer where sub_code like 'langkor')  -->	
 	</select>
 <select id="selectjaplang"		resultType="idata"
@@ -48,12 +67,13 @@
 		SELECT
 			i.intro_no,
 			i.mem_id,
+			m.mem_nick,
 			i.intro_title,
 			i.intro_body,
 			i.intro_path AS gimg2  
 		FROM
-		    (select * from lecturer where sub_code like 'langjap') l,introduce i			
-		where l.mem_id = i.mem_id 
+		    (select * from lecturer where sub_code like 'langjap') l,introduce i,member m			
+		where l.mem_id = i.mem_id AND i.mem_id=m.mem_id AND i.intro_IsDeleted='N' AND m.mem_IsDeleted='N' 
 	<!--    mem_id = (select mem_id from lecturer where sub_code like 'langjap')  -->	
 	</select>
 <select id="selectchnlang"		resultType="idata"
@@ -61,12 +81,13 @@
 		SELECT
 			i.intro_no,
 			i.mem_id,
+			m.mem_nick,
 			i.intro_title,
 			i.intro_body,
 			i.intro_path AS gimg2  
 		FROM
-		    (select * from lecturer where sub_code like 'langchn') l,introduce i			
-		where l.mem_id = i.mem_id 
+		    (select * from lecturer where sub_code like 'langchn') l,introduce i,member m			
+		where l.mem_id = i.mem_id AND i.mem_id=m.mem_id AND i.intro_IsDeleted='N' AND m.mem_IsDeleted='N' 
 	<!--    mem_id = (select mem_id from lecturer where sub_code like 'langchn')  -->	
 </select>
 <select id="selectclang"		resultType="idata"
@@ -74,84 +95,91 @@
 		SELECT
 			i.intro_no,
 			i.mem_id,
+			m.mem_nick,
 			i.intro_title,
 			i.intro_body,
 			i.intro_path AS gimg2  
 		FROM
-		    (select * from lecturer where sub_code like 'progclang') l,introduce i			
-		where l.mem_id = i.mem_id 	
+		    (select * from lecturer where sub_code like 'progclang') l,introduce i,member m			
+		where l.mem_id = i.mem_id AND i.mem_id=m.mem_id AND i.intro_IsDeleted='N' AND m.mem_IsDeleted='N'  	
 	</select>
 	<select id="selectjavalang"		resultType="idata"
 										parameterType="java.util.HashMap">
 		SELECT
 			i.intro_no,
 			i.mem_id,
+			m.mem_nick,
 			i.intro_title,
 			i.intro_body,
 			i.intro_path AS gimg2  
 		FROM
-		    (select * from lecturer where sub_code like 'progjava') l,introduce i			
-		where l.mem_id = i.mem_id 
+		    (select * from lecturer where sub_code like 'progjava') l,introduce i,member m			
+		where l.mem_id = i.mem_id AND i.mem_id=m.mem_id AND i.intro_IsDeleted='N' AND m.mem_IsDeleted='N' 
 	</select>
 	<select id="selectphplang"		resultType="idata"
 										parameterType="java.util.HashMap">
 		SELECT
 			i.intro_no,
 			i.mem_id,
+			m.mem_nick,
 			i.intro_title,
 			i.intro_body,
 			i.intro_path AS gimg2  
 		FROM
-		    (select * from lecturer where sub_code like 'progphp') l,introduce i			
-		where l.mem_id = i.mem_id 
+		    (select * from lecturer where sub_code like 'progphp') l,introduce i,member m			
+		where l.mem_id = i.mem_id AND i.mem_id=m.mem_id AND i.intro_IsDeleted='N' AND m.mem_IsDeleted='N'  
 	</select>
 	<select id="selectcookkor"		resultType="idata"
 										parameterType="java.util.HashMap">
 		SELECT
 			i.intro_no,
 			i.mem_id,
+			m.mem_nick,
 			i.intro_title,
 			i.intro_body,
 			i.intro_path AS gimg2  
 		FROM
-		    (select * from lecturer where sub_code like 'cookkor') l,introduce i			
-		where l.mem_id = i.mem_id 
+		    (select * from lecturer where sub_code like 'cookkor') l,introduce i,member m			
+		where l.mem_id = i.mem_id AND i.mem_id=m.mem_id AND i.intro_IsDeleted='N' AND m.mem_IsDeleted='N' 
 	</select>
 	<select id="selectcookjap"		resultType="idata"
 										parameterType="java.util.HashMap">
 		SELECT
 			i.intro_no,
 			i.mem_id,
+			m.mem_nick,
 			i.intro_title,
 			i.intro_body,
 			i.intro_path AS gimg2  
 		FROM
-		    (select * from lecturer where sub_code like 'cookjap') l,introduce i			
-		where l.mem_id = i.mem_id 
+		    (select * from lecturer where sub_code like 'cookjap') l,introduce i,member m			
+		where l.mem_id = i.mem_id AND i.mem_id=m.mem_id AND i.intro_IsDeleted='N' AND m.mem_IsDeleted='N' 
 	</select>
 	<select id="selectcookchn"		resultType="idata"
 										parameterType="java.util.HashMap">
 		SELECT
 			i.intro_no,
 			i.mem_id,
+			m.mem_nick,
 			i.intro_title,
 			i.intro_body,
 			i.intro_path AS gimg2  
 		FROM
-		    (select * from lecturer where sub_code like 'cookchn') l,introduce i			
-		where l.mem_id = i.mem_id 
+		    (select * from lecturer where sub_code like 'cookchn') l,introduce i,member m				
+		where l.mem_id = i.mem_id AND i.mem_id=m.mem_id AND i.intro_IsDeleted='N' AND m.mem_IsDeleted='N'  
 	</select>
 	<select id="selectcookwest"		resultType="idata"
 										parameterType="java.util.HashMap">
 		SELECT
 			i.intro_no,
 			i.mem_id,
+			m.mem_nick,
 			i.intro_title,
 			i.intro_body,
 			i.intro_path AS gimg2  
 		FROM
-		    (select * from lecturer where sub_code like 'cookwest') l,introduce i			
-		where l.mem_id = i.mem_id 
+		    (select * from lecturer where sub_code like 'cookwest') l,introduce i,member m			
+		where l.mem_id = i.mem_id AND i.mem_id=m.mem_id AND i.intro_IsDeleted='N' AND m.mem_IsDeleted='N'  
 	</select>
 		
 <!-- 	총 데이터 개수 구하기 질의 -->	
@@ -167,8 +195,9 @@
 		SELECT
 			COUNT(*) AS TOTAL
 		FROM
-			Introduce
-				
+			(SELECT * FROM lecturer l,introduce i
+			 WHERE lec_IsDeleted='N' AND intro_IsDeleted='N' AND l.mem_id=i.mem_id)
+					
 	</select>
 	<!-- 	게시물 상세보기 질의 -->
 	<select id="introview" resultType="idata" parameterType="java.util.HashMap">
@@ -237,21 +266,24 @@
 		SELECT
 			COUNT(*) AS CNT
 		FROM
-			Introduce
+			introduce i,member m,lecturer l
 		WHERE
-			intro_isDeleted = 'N'
+			i.intro_isDeleted = 'N'
+			AND l.lec_isDeleted = 'N'
+			AND m.mem_id=i.mem_id
+			AND i.mem_id=l.mem_id
 			AND
 			<if test="kind eq 'title'">
-				intro_title LIKE '%' || #{CONTENT} || '%'
+				i.intro_title LIKE '%' || #{CONTENT} || '%'
 			</if>
 	 		<if test="kind eq 'body'">
-				intro_body LIKE '%' || #{CONTENT} || '%'
+				i.intro_body LIKE '%' || #{CONTENT} || '%'
 			</if>
-			<if test="kind eq 'mem_id'">
-				mem_id LIKE '%' || #{CONTENT} || '%'
+			<if test="kind eq 'mem_nick'">
+				m.mem_nick LIKE '%' || #{CONTENT} || '%'
 			</if>
 			<if test="kind eq 'both'">
-				intro_title LIKE '%' || #{CONTENT} || '%' OR intro_body LIKE '%' || #{CONTENT} || '%'
+				i.intro_title LIKE '%' || #{CONTENT} || '%' OR i.intro_body LIKE '%' || #{CONTENT} || '%'
 			</if>
 	</select>
 <!-- 	 검색 데이터 구하기 질의 -->	
@@ -261,13 +293,18 @@
 			intro_no,
 			intro_path AS gimg2, 
 			Introduce.mem_id,
+			m.mem_nick,
 			intro_title,
 			intro_body,
 			intro_date		
 		FROM
-			Introduce
+			Introduce,member m,lecturer l
 		WHERE
 			intro_isDeleted = 'N'
+			AND m.mem_isDeleted = 'N'
+			AND l.lec_isDeleted = 'N'
+			AND Introduce.mem_id = m.mem_id
+			AND Introduce.mem_id = l.mem_id
 			<choose>
 				<when test="kind eq 'title'">
 			AND	intro_title LIKE '%' || #{CONTENT} || '%'
@@ -275,8 +312,8 @@
 				<when test="kind eq 'body'">
 			AND	intro_body LIKE '%' || #{CONTENT} || '%'
 				</when>
-				<when test="kind eq 'Introduce.mem_id'">
-			AND	Introduce.mem_id LIKE '%' || #{CONTENT} || '%'
+				<when test="kind eq 'mem_nick'">
+			AND	m.mem_nick LIKE '%' || #{CONTENT} || '%'
 				</when>
 				<otherwise>
 			AND	(intro_title LIKE '%' || #{CONTENT} || '%' OR intro_body LIKE '%' || #{CONTENT} || '%') 					
