@@ -43,6 +43,8 @@
 		#asd{
 		
 		}
+		.th.ts {
+		}
 	</style>
 	</head>
 	<body>

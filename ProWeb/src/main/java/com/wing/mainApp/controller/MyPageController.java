@@ -37,7 +37,7 @@ public class MyPageController {
 	@RequestMapping("myPage/myPageMain")
 	public ModelAndView myPageMain() {
 		ModelAndView mv = new ModelAndView();
-
+     
 		mv.setViewName("myPage/myPageMain");
 		return mv;
 	}

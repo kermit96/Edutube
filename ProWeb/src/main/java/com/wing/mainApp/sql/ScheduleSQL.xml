@@ -13,7 +13,7 @@
 			sch2_name AS name,
 			sch2_startDate AS sdate,
 			sch2_endDate AS edate
-		From 
+		From  
 			schedule2
 		Where 
 			sch2_isDeleted = 'N'

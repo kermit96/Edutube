@@ -1,8 +1,7 @@
 package com.wing.mainApp.controller;
 
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -89,7 +88,7 @@ void CheckUserid(HttpServletRequest req, HttpServletResponse res)
 	 
 	 
 	 
-
+	 System.out.println("userid="+userid);
 	 if (dao.isSameuserid(userid) == 0) {
 		 
        ret = false;
@@ -151,7 +150,7 @@ void CheckUserid(HttpServletRequest req, HttpServletResponse res)
 	   String name=req.getParameter("name");
 	   String email=req.getParameter("email");
 	   
-
+	   System.out.println("userid"+userid);
 	   
 	   if (StringUtil.isNull(userid)) {		   		   
 		   return;
@@ -214,7 +213,9 @@ void CheckUserid(HttpServletRequest req, HttpServletResponse res)
    ModelAndView joinMemberProcess(Member member, HttpServletResponse res)
   {
 	   ModelAndView vm = new ModelAndView();
-
+	   
+	   System.out.println(member.getMem_addrCode());
+	   System.out.println(member.getMem_id());
 	   dao.joinmember(member);
 
 	   vm.setViewName("/Member/resultjoin");	   
@@ -226,35 +227,13 @@ void CheckUserid(HttpServletRequest req, HttpServletResponse res)
    ModelAndView joinMemberProcess(HttpServletResponse res)
   {
 	   ModelAndView vm = new ModelAndView();
-
+	   
+       
+	   
 	   vm.setViewName("/Member/findmember");	   
 	   return vm;
    }
    
-   
-   public  String encodeURIComponent(String s)
-   {
-     String result = null;
-  
-     try
-     {
-       result = URLEncoder.encode(s, "UTF-8")
-                          .replaceAll("\\+", "%20")
-                          .replaceAll("\\%21", "!")
-                          .replaceAll("\\%27", "'")
-                          .replaceAll("\\%28", "(")
-                          .replaceAll("\\%29", ")")
-                          .replaceAll("\\%7E", "~");
-     }
-  
-     // This exception should never occur.
-     catch (UnsupportedEncodingException e)
-     {
-       result = s;
-     }
-  
-     return result;
-   }
    
    
    
@@ -264,15 +243,8 @@ void CheckUserid(HttpServletRequest req, HttpServletResponse res)
 	   ModelAndView vm = new ModelAndView();
 	   
 	   String userid = (String)ses.getAttribute("ID");
-	   if (userid == null) { 
-		   		   
-		  RedirectView redirect = new  RedirectView("../member/login.do"); 
-	
-		  redirect.addStaticAttribute("returnurl", req.getContextPath()+"/member/changeuserinfo.do");
-		  
-		  vm.setView(redirect);
-		  return vm;
-	   }
+	   if (userid == null) 
+		   return null;
 	   
 	   Member member = dao.getMember(userid);
 	   

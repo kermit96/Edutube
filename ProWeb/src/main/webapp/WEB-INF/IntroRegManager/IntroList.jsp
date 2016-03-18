@@ -6,7 +6,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
 	name="viewport" content="width=device-width, initial-scale=0">
-	<title>Insert title here</title>
+	<title>강사 소개</title>
 	<!--  Favicon (Main Icon) -->
 	<link rel="shortcut icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
 	<link rel="icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
@@ -44,7 +44,7 @@
 			clear:both;
 			width:150px;			
 		}
-		<!--JOON CSS-->
+		/*JOON CSS*/
 		th,td {
 			background:white;/*배경색*/
 		}
@@ -77,11 +77,22 @@
 			//$("#sfrm").submit();
 		});
 		$("#sBtn").click(function() {
+			//수정 다시할 것
+			$content = $("#content").val();
+			if($content == ""){
+				alert("검색어를 입력해 주세요");
+				return;
+			}
 			$("#sfrm").attr("action", "../IntroRegManager/IntroSearch.do");
 			$("#sfrm").submit();
 		});
 		
+		
 	});
+	
+	function sex(no){
+		window.open("../Message/MsgForm.do?no="+no,"sexsex","width=200, height=260, resizable=no, toolbar=no, location=no,scrollbars=yes");
+	}
 	
 	</script>
 </head>
@@ -98,7 +109,7 @@
 				<jsp:include page="/MenuBar/IntroSide.jsp" flush="false" />
 			</div>
 			<div id="centerPage">
-				<h4 align="center" ><strong>전체 리스트</strong></h4>
+				<h4 align="center" ><strong>강사 리스트</strong></h4>
 <!-- 	검색 기능 폼 
 
 	    <form method="POST" id="sFrm">
@@ -130,7 +141,7 @@
 						<select id="kind" name="kind">
 							<option value="title">제목</option>
 							<option value="body">본문</option>
-							<option value="mem_id" >강사 ID</option>
+							<option value="mem_nick" >강사 NICK</option>
 							<option value="both">제목 + 본문</option>
 						</select>
 						<input type="text" id="content" name="content">
@@ -146,19 +157,19 @@
 	  		<c:forEach var="temp" items="${LIST}" varStatus="status">
 			    <div class="col-md-4">
 			      <a href="../IntroRegManager/IntroView.do?nowPage=${PINFO.nowPage}&oriNo=${temp.intro_no}">
-				  ID :${temp.mem_nick}
+				  NICK :${temp.mem_nick}
 			      <img src="../gimgs/${temp.gimg2}" class="img-circle" width="100" height="100">
 			      <!-- <td class="text-center">${temp.intro_body}</td>  -->
 			      </a>
 			      <br>
-			      <a href='#'>강의 일정</a>
+			      <a href='JavaScript:sex(${temp.intro_no})'>쪽지 보내기</a>
 			      <br> <br> <br>  <br>  <br>
 			    </div>		
-		      </c:forEach>
+		     </c:forEach>
 	   </c:if>		    
 		  </div>	
 	  <!-- 	페이지 이동 기능 -->
-	  <table border="1" align="center" width="80%">
+	  <table border="1" align="center" >
 			<tr>
 				<td align="center">
 				<!-- 	[처음][이전][1][2][3][4][5][다음][마지막] -->

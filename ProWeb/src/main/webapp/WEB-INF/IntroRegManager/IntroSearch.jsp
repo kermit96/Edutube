@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +21,7 @@
 	<!--CustomScript-->
 	
 	<!--Never Delete "EduContainer" style tag-->
-	<style>
+		<style>
 	
 		#EduContainer{
 				width:1200px;
@@ -46,8 +46,33 @@
 			clear:both;
 			width:150px;			
 		}
-		
-	</style>
+		<!--JOON CSS-->
+		th,td {
+			background:white;/*배경색*/
+		}
+		table td, th {
+			border:#d3d3d3 solid 1px;/*경계선 색상 스타일 굵기 */
+		}
+		table {
+			width:100%;
+			border-collapse:collapse;
+			
+			font-size:16px; /*글꼴 크기*/
+			line-height:24px;/*줄 간격*/
+		}		
+		a{
+			text-decoration:none; /* 링크 밑줄 없애기 */
+			color:black; /*글 색상*/
+		}
+		a:HOVER {
+			text-decoration:underline; /* 밑줄 
+			color:green;			/*글 색상*/
+		}
+		#tr_top{
+			background:rgb(114, 235, 125);
+			text-align:center;
+		}
+		</style>
 		<script>
 			function goDetail(orino) {
 			//	매개변수	선택한 글의 번호가 기억될 예정이다.
@@ -76,20 +101,19 @@
 	<div id="Main">
 		<!-- This area is Body Part -->
 		<div id="sideBarDiv">
-			<jsp:include page="/MenuBar/IntroSide.jsp" flush="false" />
+			<jsp:include page="/MenuBar/NoticeSide.jsp" flush="false" />
 		</div>
 		
 		<div id="centerPage"> 
-		<h4 align="center" ><strong>강사 검색 </strong></h4>
+		<h4 align="center" ><strong>강사 검색 결과 </strong></h4>
 <!-- 	검색 폼 -->
 <!-- 	목록 출력 -->
-		<table border="1" align="center" width="80%">
-			<tr>
-				<th>번호</th>
-				<th>사진</th>
-				<th>제목</th>
-				<th>글쓴이</th>
-				<th>작성일</th>				
+		<table border="1" align="center" >
+			<tr id="tr_top">
+				<th class="text-center">번호</th>
+				<th class="text-center">제목</th>
+				<th class="text-center">글쓴이</th>
+				<th class="text-center">작성일</th>				
 			</tr>
 		<c:if test="${empty LIST}">
 			<tr>
@@ -101,21 +125,18 @@
 		<c:if test="${not empty LIST}">
 			<c:forEach var="temp" items="${LIST}">
 				<tr>
-					<td>${temp.intro_no}</td>
+					<td class="text-center">${temp.intro_no}</td>
 					<td class="text-center">
-					<img src="../gimgs/${temp.gimg2}" width="100" height="100">
-					</td>
-					<td>
 						 <a href="JavaScript:goDetail(${temp.intro_no})">${temp.intro_title}</a>
 					</td>
-					<td>${temp.mem_id}</td>
-					<td>${temp.intro_date}</td>					
+					<td class="text-center">${temp.mem_id}</td>
+					<td class="text-center"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${temp.intro_date}"/></td>					
 				</tr>
 			</c:forEach>
 		</c:if>
 		</table>
 <!-- 	페이지 이동 기능 -->
-		<table border="1" align="center" width="80%">
+		<table border="1" align="center">
 			<tr>
 				<td align="center">
 				<!-- 	[처음][이전][1][2][3][4][5][다음][마지막] -->
@@ -126,8 +147,13 @@
 					<c:if test="${PINFO.startPage ne 1}">
 						<a href="../IntroRegManager/IntroSearch.do?nowPage=${PINFO.startPage - 1}">[이 전]</a>
 					</c:if>
-					<c:forEach var="temp" begin="${PINFO.startPage}" end="${PINFO.endPage}">
-						<a href="../IntroRegManager/IntroSearch.do?nowPage=${temp}">[ ${temp} ]</a>
+					<c:forEach var="temp1" begin="${PINFO.startPage}" end="${PINFO.endPage}">
+						<c:if test="${temp1 eq PINFO.nowPage}">
+								[${temp1}]
+						</c:if>
+						<c:if test="${temp1 ne PINFO.nowPage}">
+							<a href="..//IntroRegManager/IntroSearch.do?nowPage=${temp1}">[ ${temp1} ]</a>
+						</c:if>
 					</c:forEach>
 					<c:if test="${PINFO.endPage eq PINFO.totalPage}">
 						[다 음]
@@ -139,17 +165,17 @@
 				</td>
 			</tr>
 		</table>
-		<table border="1" width="80%" align="center">
-					<tr id="tr_bot">
+					<table border="1" align="center">
+				<tr id="tr_bot">
 					<td align="center">		
 					 <input type="hidden" value="이전 검색" id="bBtn" class="btn btn-primary btn-sm">					
-					 <input type="button" value="목록보기" id="lBtn" class="btn btn-primary btn-sm">					
+					<input type="button" value="목록보기" id="lBtn" class="btn btn-primary btn-sm">					
 					</td>
-				    </tr>
-		</table>	
+				</tr>
+			</table>
 		</div>
 	</div>		 
  </div>
 <!-- 	기타 부가기능 -->
-</body>
+	</body>
 </html>

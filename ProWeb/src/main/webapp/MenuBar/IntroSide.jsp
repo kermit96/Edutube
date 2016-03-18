@@ -33,6 +33,7 @@
          <li class='has-sub'><a href="JavaScript:goKorLang()">한국어</a></li>
          <li class='has-sub'><a href="JavaScript:goJapLang()">일본어</a></li>
          <li class='has-sub'><a href="JavaScript:goChnLang()">중국어</a></li>
+         <li class='has-sub'><a href="JavaScript:goEngLang()">영어</a></li>         
       </ul>
    </li>
     <li class='active has-sub'><a href="#">요리</a>

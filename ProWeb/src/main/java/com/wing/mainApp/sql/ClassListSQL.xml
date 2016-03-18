@@ -24,7 +24,7 @@
 	
 	
 	<!-- 게시물 등록 (동영상 없는 경우)-->
-	<insert id="classinsert" parameterType="ClassListData">
+	<insert id="classinsert" parameterType="cldata">
 		INSERT
 		INTO
 			class (class_no,sub_code,mem_id,mem_nick,class_title,class_body)
@@ -32,7 +32,7 @@
 			((SELECT NVL(MAX(class_no), 0) + 1 FROM class),#{code},#{id},#{nick},#{title},#{body})
 	</insert>
 	<!-- 게시물 등록 (동영상 있는 경우)-->
- 	<insert id="classinsertM" parameterType="ClassListData">
+ 	<insert id="classinsertM" parameterType="cldata">
 		INSERT
 		INTO
 			video
@@ -47,7 +47,7 @@
 	
 	
 	<!-- 목록보기 (전체용)-->
-	<select id="getlist" resultType="ClassListData">
+	<select id="getlist" resultType="cldata">
         SELECT
             class_no    AS no,
             s.sub_name AS code,
@@ -66,7 +66,7 @@
             no DESC
 	</select>
 	<!-- 목록보기 (과목별)-->
-	<select id="getlistofsub" resultType="ClassListData" parameterType="String">
+	<select id="getlistofsub" resultType="cldata" parameterType="String">
 		        SELECT
             class_no    AS no,
             s.sub_name AS code,
@@ -90,7 +90,7 @@
 
 	
 	<!-- 상세보기 -->
-	<select id="classview" resultType="ClassListData" parameterType="int">
+	<select id="classview" resultType="cldata" parameterType="int">
         SELECT
             class_no         AS no,
             class_title    AS title,
@@ -121,7 +121,7 @@
 	</select>
 	
 	<!-- 수정 질의 -->
-	<update id="updateclass" parameterType="ClassListData">
+	<update id="updateclass" parameterType="cldata">
 		UPDATE
 			class
 		SET
@@ -143,7 +143,7 @@
 	</update>
 	
 	<!-- 수정하기 폼요청시 -->
-	<select id="classmodi" resultType="ClassListData" parameterType="int">
+	<select id="classmodi" resultType="cldata" parameterType="int">
         SELECT
             class_title    AS title,
             class_body    AS body,

@@ -221,5 +221,5 @@ public class Langxml {
 		Langxml xml =  getinstance();				
 		return  xml.getMap(lang); 
 	}
-	
+	 
 }

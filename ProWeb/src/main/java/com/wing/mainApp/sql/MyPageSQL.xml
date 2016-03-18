@@ -11,7 +11,7 @@
 	</insert>
 <!-- 신고 데이터 갯수 구하기 질의 -->
 	<select id="gettotal" resultType="java.lang.Integer">
-		SELECT
+		SELECT 
 			COUNT(*)	AS		TOTAL
 		FROM
 			REPORT

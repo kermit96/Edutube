@@ -25,6 +25,7 @@
 		<typeAlias alias="mediadata" type="com.wing.mainApp.data.MediaData" /> 
 		<typeAlias alias="mdata" type="com.wing.mainApp.data.MyPageData" />
 		<typeAlias alias="replydata" type="com.wing.mainApp.data.ReplyData" /> 
+		<typeAlias alias="msgdata" type="com.wing.mainApp.data.MessageData" />
 		</typeAliases>
 	
 	<mappers>

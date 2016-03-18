@@ -222,7 +222,7 @@ body { background-image: url("resources/img/bg.jpg");}
 	</div>
 	
 	
-		
+		 
 	<div id="EduFooter">
 		<jsp:include page="/MenuBar/footer.jsp" flush="true"/>
 	</div>

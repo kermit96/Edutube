@@ -42,6 +42,7 @@ public class MyPageDAO {
 	}
 	
 	/*
+<<<<<<< HEAD
 	 * 보여줘 안보여줘
 	 */
 	public void visionREP(MyPageData data) {
@@ -49,6 +50,8 @@ public class MyPageDAO {
 	}
 	
 	/*
+=======
+>>>>>>> branch 'master' of https://github.com/Nepro73/EduTube.git
 	 * 회원정지
 	 */
 	public void stopREP(String str) {

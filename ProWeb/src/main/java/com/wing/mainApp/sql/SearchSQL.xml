@@ -8,32 +8,82 @@
 		FROM
 			CLASS
 		WHERE
-			<if test="kind == 'title'">
-				QA_title LIKE '%' || #{searchBox} || '%'
-			</if>
+				CLASS_title LIKE '%' || #{SEARCHBOX} || '%'
 	</select>
-
 <!-- 메인 검색질의 -->
-	<select id="mainsearch" resultType="ClassListData" parameterType="java.util.HashMap">
+	<select id="mainsearch" resultType="cldata" parameterType="java.util.HashMap">
 		SELECT
-			CLASS_no		AS		NO,
-   			SUB_code		AS		CODE,
-   			MEM_id			AS		ID,
-   			CLASS_title		AS		TITLE,
-   			CLASS_body	AS		BODY,
-   			CLASS_date	AS		WDATE,
-   			CLASS_good	AS		GOOD,
-   			CLASS_lang	AS		LANG
+			class_no    	AS no,
+            s.sub_name	AS code,
+            class_title    	AS title,
+            mem_nick    	AS nick,
+            class_date   	AS wdate,
+            class_good 	AS good,
+            class_hit 		As hit            
 		FROM
-			CLASS
+			class c,subject s
 		WHERE
-			CLASS_isDeleted = 'N'
-			<choose>
-				<when test="kind eq 'title'">
-					AND	CLASS_title LIKE '%' || #{searchBox} || '%'
-				</when>  
-			</choose>
+				CLASS_isDeleted = 'N'
+		AND	CLASS_title LIKE '%' || #{SEARCHBOX} || '%'
+		AND  s.sub_code = c.sub_code
 		ORDER BY
 			CLASS_NO DESC
 	</select>
+<!-- 재검색 데이터갯수 구하기 -->
+	<select id="researchcount1" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        SELECT
+            COUNT(*)        AS CNT
+        FROM
+            CLASS
+        WHERE        	
+                CLASS_title LIKE '%' || #{RESEARCHBOX} || '%'
+                AND SUB_code = #{code}           
+	</select>
+		<select id="researchcount2" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        SELECT
+            COUNT(*)        AS CNT
+        FROM
+            CLASS
+        WHERE    
+            	mem_nick LIKE '%' || #{RESEARCHBOX} || '%'
+           
+	</select>
+<!-- 상세검색질의 -->
+	<select id="mainresearch1" resultType="cldata" parameterType="java.util.HashMap">
+		SELECT
+			class_no    	AS no,
+            s.sub_name	AS code,
+            class_title    	AS title,
+            mem_nick    	AS nick,
+            class_date   	AS wdate,
+            class_good 	AS good,
+            class_hit 		As hit            
+		FROM
+			class c,subject s
+		WHERE
+				CLASS_isDeleted = 'N'
+				AND	CLASS_title LIKE '%' || #{RESEARCHBOX} || '%'
+				AND	c.SUB_code = #{code}
+				AND c.sub_code = s.sub_code				
+		ORDER BY
+			CLASS_NO DESC
+	</select>
+<select id="mainresearch2" resultType="cldata" parameterType="java.util.HashMap">
+		SELECT
+			class_no    	AS no,
+            s.sub_name	AS code,
+            class_title    	AS title,
+            mem_nick    	AS nick,
+            class_date   	AS wdate,
+            class_good 	AS good,
+            class_hit 		As hit            
+		FROM
+			class c,subject s
+		WHERE
+			CLASS_isDeleted = 'N'
+			AND c.mem_nick LIKE '%' || #{RESEARCHBOX} || '%'
+			AND c.sub_code = s.sub_code
+		ORDER BY
+			CLASS_NO DESC
+</select>
 </mapper>

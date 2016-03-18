@@ -20,8 +20,7 @@
 	
 	<!--Never Delete "EduContainer" style tag-->
 	<style>
-	
-		#EduContainer{
+	#EduContainer{
 				width:1200px;
 				position: absolute;
 				left: 50%;
@@ -46,7 +45,7 @@
 		}
 		<!--JOON CSS-->
 		th,td {
-			background:yellowgreen;/*배경색*/
+			background:white;/*배경색*/
 		}
 		table td, th {
 			border:#d3d3d3 solid 1px;/*경계선 색상 스타일 굵기 */
@@ -54,6 +53,7 @@
 		table {
 			width:100%;
 			border-collapse:collapse;
+			
 			font-size:16px; /*글꼴 크기*/
 			line-height:24px;/*줄 간격*/
 		}		
@@ -65,8 +65,11 @@
 			text-decoration:underline; /* 밑줄 
 			color:green;			/*글 색상*/
 		}
-				
-	</style>			
+		#tr_top{
+			background:rgb(114, 235, 125);
+			text-align:center;
+		}
+		</style>			
 
 <script>
 			$(document).ready(function(){
@@ -146,25 +149,25 @@
 			<input type="hidden" name="intro_no" value="${DATA.intro_no}">
 			<input type="hidden" name="nowPage" value="${NOWPAGE}">
 			<!--  강사 소개글 등록 폼 -->
-			<table width="80%" border="1" align="center">
+			<table border="1" align="center">
 				<tr>
-					<td class="text-center">강사 ID</td>
+					<td id="tr_top" class="text-center">강사 ID</td>
 					<td><input type="text" id="mem_id" name="mem_id" value="${sessionScope.ID}" disabled ></td>
 				</tr>
 				<tr>
-					<td class="text-center">제목</td>
+					<td id="tr_top" class="text-center">제목</td>
 					<td><input type="text" id="intro_title" name="intro_title" value="${DATA.intro_title}"></td>
 				</tr>
 				<tr>
-					<td class="text-center">소개 본문</td>
+					<td id="tr_top" class="text-center">소개 본문</td>
 					<td><textarea cols="80" rows="10" id="intro_body" name="intro_body">${DATA.intro_body}</textarea></td>
 				</tr>
 				<tr>
-					<td class="text-center">기존 사진</td>
+					<td id="tr_top" class="text-center">기존 사진</td>
 					<td id="old_img">${DATA.gimg2}</td>
 				</tr>
 				<tr>
-					<td class="text-center">사진 변경</td>
+					<td id="tr_top" class="text-center">사진 변경</td>
 					<td><input type="file" id="new_img" name="gimg"></td>
 				</tr>
 				

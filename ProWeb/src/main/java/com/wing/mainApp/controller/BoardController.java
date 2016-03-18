@@ -79,8 +79,9 @@ public class BoardController {
 	 * FAQ 등록 요청(관리자)
 	 */
 	@RequestMapping("/CustomerBoard/FAQBoardWrite")
-	public ModelAndView FAQBoardWrite(HttpServletRequest req, BoardData data) {
+	public ModelAndView FAQBoardWrite(HttpServletRequest req, BoardData data,HttpSession session) {
 		ModelAndView mv = new ModelAndView();
+		data.id = (String) session.getAttribute("ID");
 		
 		bDao.insertFAQ(data);
 		// 뷰를 부른다

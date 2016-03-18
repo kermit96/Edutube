@@ -66,6 +66,10 @@
 			text-decoration:underline; /* 밑줄 
 			color:green;			/*글 색상*/
 		}
+		#tr_top{
+			background:rgb(114, 235, 125);
+			text-align:center;
+		}
 		</style>
 	<script>		    
 			
@@ -107,7 +111,7 @@
 		</div>
 		
 		<div id="centerPage"> 
-		<h4 align="center" ><strong>공지 상세 보기 </strong></h4>
+		<h4 align="center" ><strong>상세보기</strong></h4>
 	<!-- 	
 		수정하기 폼 요청에 필요한 데이터를 POST 방식으로 보내기 위한 임시 폼이다. 
 		이 안에 요청에 필요한 모든 데이터를 hidden으로 만들어 놓으면 된다.
@@ -119,25 +123,25 @@
 		 <!-- 	목록 보여주기 -->
 		 <table width="80%" border="1" align="center" id='Table'>
 				<tr>
-					<th class="text-center">글번호</th>
+					<th id="tr_top" class="text-center">번호</th>
 					<td colspan="5"><input type="text" value="${DATA.notice_no}" readonly>
 				</tr>
 				<tr>
-					<th class="text-center">글쓴이</th>
+					<th id="tr_top" class="text-center">아이디</th>
 					<td colspan="5"><input type="text" value="${DATA.mem_id}" readonly>
 				</tr>
 				<tr>
-					<th class="text-center">제목</th>
+					<th id="tr_top" class="text-center">제목</th>
 					<td colspan="5"><input type="text" value="${DATA.notice_title}" readonly>
 				</tr>
 				<tr>
-				    <th class="text-center">공지 글</th>
+				    <th id="tr_top" class="text-center">내용</th>
 					<td colspan="5">
 						<textarea cols="40" rows="10" id="body" name="notice_body"  style="width:100%; height:200px" readonly>${DATA.notice_body}</textarea>
 					</td>
 				</tr>
 				<tr>
-					<th class="text-center">작성일</th>
+					<th id="tr_top" class="text-center">날짜</th>
 					<td colspan="5"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${DATA.notice_date}"/></td>
 				</tr>
 				
@@ -148,7 +152,7 @@
 					<td align="center">					
 					<input type="button" value="수정하기" id="mBtn" class="btn btn-primary btn-sm">
 					<input type="button" value="삭제하기" id="dBtn" class="btn btn-primary btn-sm">					
-					<input type="button" value="목록보기" id="lBtn" class="btn btn-primary btn-sm">					
+					<input type="button" value="목록" id="lBtn" class="btn btn-primary btn-sm">					
 					</td>
 				</tr>
 			</table>

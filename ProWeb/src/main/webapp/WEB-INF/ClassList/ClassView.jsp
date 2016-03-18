@@ -4,12 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	
-	<meta property="og:site_name" content="EduTube"/>
-	<meta property="og:image" content="http://192.168.56.103:8080/edutube/resources/img/logo.png">	
-	<meta property="og:title" content="[${DATA.code}]${DATA.title}" />	
-	
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta property="fb:app_id" content="187037911676127" />
+		<meta property="og:type" content="website" />
+         <meta property="og:title" content="EduTube" />
+         <meta property="og:url" content="http://192.168.56.103:8080/edutube/" />
+         <meta property="og:description" content="모든이의 강의" />
+         <meta property="og:image" content="http://i.imgur.com/JN99KWN.png" />
+         
 <title>EduTube</title>
 <!--CSS-->
 <link rel="stylesheet" href="/edutube/resources/CSS/bootstrap.min.css">
@@ -32,8 +34,7 @@
 
 	/*페북 공유*/
 	function faceShare(){
-		window.open("https://www.facebook.com/sharer/sharer.php"
-				+"?u="+encodeURIComponent(window.location.href)			
+		window.open("https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(self.location.href)			
 		);
 	}
 	
@@ -359,6 +360,26 @@ textarea#modibody{
 </style>
 </head>
 <body>
+<!-- 페북 -->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '187037911676127',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+<!-- 끝 -->
+
 	<div id='EduContainer'>
 		<div id='top'>
 			<jsp:include page="/MenuBar/Top.jsp" flush="false" />
@@ -404,6 +425,7 @@ textarea#modibody{
 						</c:if>						
 						<a class="button button-orange" onClick="JavaScript:goClassList();" id="ListBtn" >목록으로</a>
 						<a class="button button-purple" onClick="JavaScript:faceShare();"><i class="fa fa-facebook-official"></i>공유하기</a>
+						<%-- <div class="fb-share-button" data-href="ClassView.do?nowPage=${nowPage}&oriNO=${DATA.no}&code=${CODE}" data-layout="button_count"></div> --%>
 					</div>
 					
 					<div id="replyWF">					

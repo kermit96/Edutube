@@ -109,7 +109,7 @@ public class IntroRegController {
 			return mv;
 		}
 		*/	
-		System.out.println("IntroList");
+		
 		
 		String	strPage = req.getParameter("nowPage");
 		int		nowPage = 0;
@@ -120,8 +120,9 @@ public class IntroRegController {
 		else {
 			nowPage = Integer.parseInt(strPage);
 		}
-		//
-		int	total = iDao.selectTotal();
+		
+		int	total = iDao.getTotal(1);
+		System.out.println("total="+total);
 		PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
 		pInfo.calcInfo();
 		
@@ -137,6 +138,7 @@ public class IntroRegController {
 		map.put("end", end);
 		
 		ArrayList	list = iDao.selectIntroList(map);
+		//ArrayList	list = iDao.selectIntroList(map);
 	
 		mv.addObject("PINFO", pInfo);
 		mv.addObject("LIST", list);
@@ -156,7 +158,7 @@ public class IntroRegController {
 		else {
 			nowPage = Integer.parseInt(strPage);
 		}
-		int	total = iDao.selectTotal();
+		int	total = iDao.getTotal(1);
 		PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
 		pInfo.calcInfo();
 				
@@ -196,7 +198,7 @@ public class IntroRegController {
 		else {
 			nowPage = Integer.parseInt(strPage);
 		}
-		int	total = iDao.selectTotal();
+		int	total = iDao.getTotal(1);
 		PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
 		pInfo.calcInfo();
 				
@@ -221,6 +223,7 @@ public class IntroRegController {
 		mv.setViewName("IntroRegManager/IntroSmallList");
 		return mv;
 	}
+	
 	@RequestMapping("/IntroRegManager/IntroChnLang")
 	public ModelAndView		introChnList(HttpServletRequest req, HttpSession session,IntroInfoData data) {
 		ModelAndView		mv = new ModelAndView();
@@ -234,7 +237,7 @@ public class IntroRegController {
 		else {
 			nowPage = Integer.parseInt(strPage);
 		}
-		int	total = iDao.selectTotal();
+		int	total = iDao.getTotal(1);
 		PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
 		pInfo.calcInfo();
 				
@@ -260,6 +263,45 @@ public class IntroRegController {
 		mv.setViewName("IntroRegManager/IntroSmallList");
 		return mv;
 	}
+	@RequestMapping("/IntroRegManager/IntroEngLang")
+	public ModelAndView		introEngList(HttpServletRequest req, HttpSession session,IntroInfoData data) {
+		ModelAndView		mv = new ModelAndView();
+		
+		System.out.println("IntroKorLang");		
+		String	strPage = req.getParameter("nowPage");
+		int		nowPage = 0;
+		if(StringUtil.isNull(strPage)) {
+			nowPage = 1;
+		}
+		else {
+			nowPage = Integer.parseInt(strPage);
+		}
+		int	total = iDao.getTotal(1);
+		PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
+		pInfo.calcInfo();
+				
+		int	start = (pInfo.nowPage - 1) * pInfo.pageList + 1;
+		int	end = start + pInfo.pageList - 1;
+		
+		if(end > pInfo.totalCount) {
+			end = pInfo.totalCount;
+		}
+		
+		/*
+		HashMap	map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		*/
+		String lang = "englang";
+		HashMap	map = new HashMap();
+		map.put("lang",lang );
+		ArrayList	list = iDao.selectIntroSub(map);
+		
+		mv.addObject("PINFO", pInfo);
+		mv.addObject("LIST", list);
+		mv.setViewName("IntroRegManager/IntroSmallList");
+		return mv;
+	}
 	@RequestMapping("/IntroRegManager/IntroJavaLang")
 	public ModelAndView		introJavaList(HttpServletRequest req, HttpSession session,IntroInfoData data) {
 		ModelAndView		mv = new ModelAndView();
@@ -273,7 +315,7 @@ public class IntroRegController {
 		else {
 			nowPage = Integer.parseInt(strPage);
 		}
-		int	total = iDao.selectTotal();
+		int	total = iDao.getTotal(1);
 		PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
 		pInfo.calcInfo();
 				
@@ -312,7 +354,7 @@ public class IntroRegController {
 		else {
 			nowPage = Integer.parseInt(strPage);
 		}
-		int	total = iDao.selectTotal();
+		int	total = iDao.getTotal(1);
 		PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
 		pInfo.calcInfo();
 				
@@ -351,7 +393,7 @@ public class IntroRegController {
 		else {
 			nowPage = Integer.parseInt(strPage);
 		}
-		int	total = iDao.selectTotal();
+		int	total = iDao.getTotal(1);
 		PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
 		pInfo.calcInfo();
 				
@@ -390,7 +432,7 @@ public class IntroRegController {
 		else {
 			nowPage = Integer.parseInt(strPage);
 		}
-		int	total = iDao.selectTotal();
+		int	total = iDao.getTotal(1);
 		PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
 		pInfo.calcInfo();
 				
@@ -429,7 +471,7 @@ public class IntroRegController {
 		else {
 			nowPage = Integer.parseInt(strPage);
 		}
-		int	total = iDao.selectTotal();
+		int	total = iDao.getTotal(1);
 		PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
 		pInfo.calcInfo();
 				
@@ -468,7 +510,7 @@ public class IntroRegController {
 		else {
 			nowPage = Integer.parseInt(strPage);
 		}
-		int	total = iDao.selectTotal();
+		int	total = iDao.getTotal(1);
 		PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
 		pInfo.calcInfo();
 				
@@ -507,7 +549,7 @@ public class IntroRegController {
 		else {
 			nowPage = Integer.parseInt(strPage);
 		}
-		int	total = iDao.selectTotal();
+		int	total = iDao.getTotal(1);
 		PageUtil	pInfo = new PageUtil(nowPage, total, 5, 5);
 		pInfo.calcInfo();
 				
@@ -547,7 +589,7 @@ public class IntroRegController {
 			String	strPage = req.getParameter("nowPage");
 			int		nowPage = 0;
 			String	strNo = req.getParameter("oriNo");
-			System.out.println("strNo=" +strNo);
+			
 			int	oriNo = Integer.parseInt(strNo);
 			//	
 			if(StringUtil.isNull(strPage)) {
@@ -573,9 +615,12 @@ public class IntroRegController {
 			map.put("end", end);
 			
 			IntroInfoData	temp= iDao.selectView(oriNo);	
+			String id = temp.getMem_id();
+			
 			//System.out.println("temp="+temp.getNotice_title());
 			//	뷰를 선택한다.
 			//	뷰에게 전달할 내용을 준다.
+			mv.addObject("ID",id);
 			mv.addObject("PINFO", pInfo);
 			mv.addObject("DATA", temp);
 			mv.addObject("oriNo", oriNo);
@@ -663,8 +708,7 @@ public class IntroRegController {
 			result = iDao.selectView(oriNo);
 		}
 
-		mv.addObject("DATA", result);
-		System.out.println("mem_id="+result.getMem_id());
+		mv.addObject("DATA", result);		
 		mv.addObject("NOWPAGE", nowPage);
 		mv.setViewName("IntroRegManager/IntroModifyForm");
 		return mv;
@@ -672,7 +716,7 @@ public class IntroRegController {
 	@RequestMapping("/IntroRegManager/IntroModify")
 	public ModelAndView	introModify(HttpSession session,IntroInfoData data,HttpServletRequest req) {
 		ModelAndView		mv = new ModelAndView();
-		System.out.println("Modifyfffdfdfdfd");
+	
 		/*
 		if(!SessionUtil.isSession(session)) {
 			RedirectView	rv = new RedirectView("../Member/Login.do");
@@ -822,26 +866,28 @@ public class IntroRegController {
 		map.put("kind", kind);
 		map.put("CONTENT", content);
 		int	count = iDao.getSearchCount(map);
-		System.out.println("S="+count);
+		//System.out.println("S="+count);
 		PageUtil	pInfo = new PageUtil(nowPage, count, 5, 5);
+		pInfo.calcInfo();
 		//pInfo.calcInfo2();
-		System.out.println("IntroSearch");
+		//System.out.println("IntroSearch");
 		//	
 		ArrayList	list = iDao.getSearch(map);
-		/*
+		
 		for(Object obj :list  ) {
 			
 			IntroInfoData map2 = (IntroInfoData)obj;
-			System.out.println(map2.getMem_id());			
+//			System.out.println(map2.getMem_nick());			
 		}
-		*/
-		
+			
 		ArrayList	result = new ArrayList();		
 		
 		if(list.size() != 0) {
 			//	
 			int		start = (pInfo.nowPage - 1) * pInfo.pageList;
 			int		end = start + pInfo.pageList - 1;
+			System.out.println("endpage="+pInfo.endPage);
+			System.out.println("end="+end);
 			//	
 			if(end >= list.size()) {
 				end = list.size() - 1;
