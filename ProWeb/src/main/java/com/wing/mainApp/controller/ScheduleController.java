@@ -13,6 +13,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.wing.mainApp.dao.ScheduleDAO;
 import com.wing.mainApp.util.SessionUtil;
+import com.wing.mainApp.util.StringUtil;
 
 @Controller
 public class ScheduleController {
@@ -48,11 +49,16 @@ public class ScheduleController {
 		return mv;
 	}
 	
+	/**
+	 * 
+	 * 스케쥴 리스트
+	**/
+	
 	@SuppressWarnings("rawtypes")
-	@RequestMapping("/Sch/SchModiForm")
+	@RequestMapping("/Sch/SchModiList")
 	public ModelAndView modiSch(HttpServletRequest req,HttpSession session){
 		ModelAndView mv = new  ModelAndView();
-				
+	
 		/*비회원 로그인고*/
 		if(!SessionUtil.isSession(session)) {
 			RedirectView	rv = new RedirectView("../member/login.do?returnurl=%2Fedutube%2Fmain.do");
@@ -60,14 +66,38 @@ public class ScheduleController {
 			return mv;
 		}
 		
+		String	strPage = req.getParameter("nowPage");
+		int		nowPage = 0;
+		//	
+		if(StringUtil.isNull(strPage)) {
+			nowPage = 1;
+		}
+		else {
+			nowPage = Integer.parseInt(strPage);
+		}
+		String strno = req.getParameter("oriNo");
+		int oriNo = Integer.parseInt(strno);
+		
 		String mid = req.getParameter("mid");
 		ArrayList list = schdao.selectEvents(mid);	
 		
+		mv.addObject("orino",oriNo);
+		mv.addObject("nowPage",nowPage);
 		mv.addObject("eventList",list);
-		mv.setViewName("Sch/SchModiForm");
+		mv.setViewName("Sch/SchModiList");
 		
 		return mv;
 	}
+	/**
+	 *  스케쥴 삭제
+	 * */
+	@RequestMapping("/Sch/SchDelete")
+	public ModelAndView eventDelete(){
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
+	}
+	
 	
 	
 

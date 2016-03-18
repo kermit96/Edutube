@@ -45,7 +45,7 @@
 			$(document).ready(function(){
 				$("#modiSCH").click(function(){
 					
-					$(location).attr("href","../Sch/SchModiForm.do?mid=${DATA.mem_id}");
+					$(location).attr("href","../Sch/SchModiList.do?mid=${DATA.mem_id}&nowPage=${NOWPAGE}&oriNo=${DATA.intro_no}");
 					
 				}); 
 			});

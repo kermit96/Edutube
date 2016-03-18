@@ -16,13 +16,12 @@
 	<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
 	<link rel="stylesheet" href="/edutube/resources/CSS/bootstrap.min.css">
 	 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" href="/edutube/resources/Picker/bootstrap-material-datetimepicker.css">
+	<link rel="stylesheet" href="../resources/Picker/bootstrap-material-datetimepicker.css">
 	
 	<!--JS-->
-	<script src="/edutube/resources/JS/jquery-2.1.4.min.js"></script>
-	<script src="/edutube/resources/JS/bootstrap.min.js"></script>
-	<script src="/edutube/resources/JS/moment-with-locales.min.js"></script>
-	<script src="/edutube/resources/JS/bootstrap-material-datetimepicker.js"></script>
+	<script src="../resources/JS/jquery-2.1.4.min.js"></script>
+	<script src="../resources/JS/bootstrap.min.js"></script>
+	
 	
 	
 		
@@ -32,7 +31,7 @@
 	<!--Never Delete "EduContainer" style tag-->
 	<style>
 	
-			#EduContainer{
+		#EduContainer{
 				width:1200px;
 				position: absolute;
 				left: 50%;
@@ -72,6 +71,9 @@
 			width:600px;
 			border:1px solid black;
 		}
+		#eventTop{
+			padding:10px;
+		}
 	</style>
 	
 </head>
@@ -92,33 +94,29 @@
 		<div id="centerPage">
 			<div id="realContent">
 				<div id="eventTop" class="eventD">
-									여기다 뭘 넣지
+						종료된 일정은 불러오지 않습니다 :)
 				</div>
 				<div id="eventForm" class="eventD">
-				<c:forEach var="events" items="${eventList}">
-					${events.no}
-					${events.id}
-					${events.name}
-					${events.sdate1}
-					${events.edate1}
-				</c:forEach>
+			
 				</div>
 				<div id="eventAdd" class="eventD">
-					<input id="wdate"  name="wdate" type="text"  class="input-medium" placeholder="Date" readonly required>
+					<input type="text" id="wdate" class="form-control floating-label" readonly placeholder="Date">
 				</div>
 			</div>
-		</div>
-		
+		</div>		
 	</div>
 	 
 </div>
-<!--  피커 -->
 
+<!--  피커 -->
+<script src="../resources/JS/moment-with-locales.min.js"></script>
+<script src="../resources/JS/bootstrap-material-datetimepicker.js"></script>
 	<script type="text/javascript">
-	$(document).ready(function()
-			{
-				$('#wdate').bootstrapMaterialDatePicker
-				({
+	$(function()
+			{				
+				$('#wdate').bootstrapMaterialDatePicker				
+				({						
+					weakStart:0,
 					time: false
 				});
 			});
@@ -126,9 +124,6 @@
 
 </body>
 </html>
-
-
-
 
 
 
