@@ -186,7 +186,7 @@ a.logC:hover {
 		
 			<li><a href="JavaScript:goHomeIntro()"><span>${LANGDATA.top_intro}</span></a></li>
 			<li><a href="JavaScript:goNotice()"><span>${LANGDATA.top_notify}</span></a></li>
-			<li><a href="JavaScript:goLecIntro()"><span>${LANGDATA.top_notify}</span></a></li>
+			<li><a href="JavaScript:goLecIntro()"><span>${LANGDATA.top_instructor}</span></a></li>
 			<li><a href="JavaScript:goClasses()"><span>${LANGDATA.top_instructor_dir}</span></a></li>
 			<li><a href="JavaScript:goDownload()"><span>${LANGDATA.top_file}</span></a></li>
 			<li><a href="JavaScript:goFAQ()"><span>FAQ</span></a></li>
