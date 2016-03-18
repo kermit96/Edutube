@@ -24,7 +24,7 @@
 <script src="/edutube/resources/JS/jquery-2.1.4.min.js"></script>
 <script src="/edutube/resources/JS/bootstrap.min.js"></script>
 <script src="/edutube/resources/JS/Link.js"></script>
-
+<script src="/edutube/resources/JS/MessageScript.js"></script>
 
 
 <!--  Style -->
