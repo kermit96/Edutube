@@ -41,13 +41,8 @@
 </head>
 <body>
           <div  align="center" > 
-<<<<<<< HEAD
                  ${LANGDATA.member_joinstr } <br>
                   <button id="ok" > ${LANGDATA.member_ok } </button>                         
-=======
-                 가입 했습니다. <br>
-                  <button id="ok" > 확인 </button>                         
->>>>>>> branch 'master' of https://github.com/Nepro73/EduTube.git
           </div>
 </body>
 </html>

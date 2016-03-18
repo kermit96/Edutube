@@ -64,7 +64,6 @@
 		
 		if (userid == "") {
 			
-<<<<<<< HEAD
 		   	alert("${LANGDATA.member_inputid}");
 			return;
 		}
@@ -131,74 +130,8 @@
 	      <tr> 
 	         <td colspan="2" align="center"> <button id="login">
 	         ${LANGDATA.member_login}</button>   
-	         <button id="makeid"> ${LANGDATA.member_join} </button> 
+	         <button id="makeid"> ${LANGDATA.member_member_join} </button> 
 	          <button id="findmember"> ${LANGDATA.member_idpasswordfind} </button>  </td>
-=======
-		   	alert("userid 를 입력해 주시기 바랍니다.");
-			return;
-		}
-		
-        if (password == "") {
-			
-		   	alert("password 를 입력해 주시기 바랍니다.");
-			return;
-		}
-		
-        try {
-          password = Sha256.hash(password);
-        } catch (ex) {        	
-        	alert(ex);	
-        }
-        
-
-        try {
-        $.ajax({
-            url:"../member/ajax/login.do",
-            async:false,
-            type:'post',
-            dataType:'json',
-            cache:false,
-            data:{userid:userid,password:password  },
-            success:function(data){
-            	 if (data.isSuccess)
-                 {   
-            		 location.href="${returnurl}";            		 
-            	 } else {            		 
-            		 alert(data.failreason);
-            	 }            	              
-            },
-            error:function(request,status,error){
-                 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-               }
-            	                                    
-        });
-		
-        } catch (ex) {        	
-        	alert("ajax="+ex);
-        }
-	}
-	
-	</script>
-
-	
-</head>
-<body>
-<div id='EduContainer'  align="center">
-         <h2>EduTube LOGIN    </h2>
-	     <br>
-	      <table>
-	      <tr> 
-	      <td>  ID    </td>
-	        <td><input type="text" id="userid"   placeholder="userid" >    </td> 	        
-	      </tr>
-	      
-	      <tr> 
-	      <td>  PASSWORD    </td>
-	        <td><input type="password" id="password" placeholder="password">    </td> 	        
-	      </tr>
-	      <tr> 
-	         <td colspan="2" align="center"> <button id="login"> 로그인 </button>   <button id="makeid"> 가입 </button>  <button id="findmember"> ID/PASSWORD 찾기 </button>  </td>
->>>>>>> branch 'master' of https://github.com/Nepro73/EduTube.git
 	      </tr>
 	      	      
 	      </table>   
