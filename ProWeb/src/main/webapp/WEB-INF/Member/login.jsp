@@ -47,15 +47,7 @@
 		 window.open('../member/joinmember.do', "_blank" );
 	}
 	
-	
-	function findmember()
-	{
-		
-		 window.open('../member/findmember.do', "_blank" );
-		
-	}
-	
-	
+
 	function login()
 	{
 		
@@ -63,13 +55,13 @@
 		var password = $("#password").val().trim();
 		
 		if (userid == "") {
-			
-		   	alert("${LANGDATA.member_inputid}");
+
+           	alert("${LANGDATA.member_inputid}");
 			return;
 		}
 		
-        if (password == "") {
-			
+        if (password == "") 
+        {			
 		   	// alert("password 를 입력해 주시기 바랍니다.");
 		   	alert("${LANGDATA.member_inputpassword}");
 			return;
@@ -108,6 +100,16 @@
         	alert("ajax="+ex);
         }
 	}
+
+	
+	function findmember()
+	{
+		
+		 window.open('../member/findmember.do', "_blank" );
+		
+	}
+	
+	
 	
 	</script>
 
