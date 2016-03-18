@@ -34,14 +34,17 @@ public class InterceptorController extends HandlerInterceptorAdapter  {
 			// cookes 에서 값을 가졍 온다 .
 			  // 값이 없으면   lang 을 ko 로 하고  cookie 에 넣은다 .
 			  
-			  
-              for(Cookie cookie :cookes) {
-            	  if (cookie.getName().equals("LANG"))
-            	  {            		  
-            		  lang = cookie.getValue();
-            		  break;            		  
-            	  }            	  
-              }
+			  if(cookes != null ) {
+ 			  
+	              for(Cookie cookie :cookes) {
+	            	  if (cookie.getName().equals("LANG"))
+	            	  {            		  
+	            		  lang = cookie.getValue();
+	            		  break;            		  
+	            	  }            	  
+	                }
+              
+			  }
 			  
               if (StringUtil.isNull(lang)) {
             	  lang = "ko";

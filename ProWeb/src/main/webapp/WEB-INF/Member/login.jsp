@@ -130,7 +130,7 @@
 	      <tr> 
 	         <td colspan="2" align="center"> <button id="login">
 	         ${LANGDATA.member_login}</button>   
-	         <button id="makeid"> ${LANGDATA.member_member_join} </button> 
+	         <button id="makeid"> ${LANGDATA.member_join} </button> 
 	          <button id="findmember"> ${LANGDATA.member_idpasswordfind} </button>  </td>
 	      </tr>
 	      	      
