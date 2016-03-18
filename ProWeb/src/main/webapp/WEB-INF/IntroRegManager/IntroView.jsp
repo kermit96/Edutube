@@ -49,6 +49,29 @@
 					
 				}); 
 			});
+			
+			
+			/* 좋아요 처리 */
+			$(document).ready(function(){
+			$("#goodB").click(function(){
+				$.ajax({
+					url : "../IntroRegManager/IntroGood.do",
+					data : "oriNo=${DATA.intro_no}&temp=" + new Date(),
+					dataType : "xml",
+					type : "GET",
+					success : function(data) {
+						//	응답 결과를 좋아요 단추에 기록해준다.
+						$good = $(data).find("good").text();
+						$("#goodVal").html($good);				
+					},
+					error : function() {
+						alert("에러다");
+					}
+				});
+			});
+			}); /*좋아요 처리 끝*/
+		
+			
 	</script>
 		
 	<!--Never Delete "EduContainer" style tag-->
@@ -168,7 +191,10 @@
 				</colgroup>
 				  <tr>
 				    <th class="tg-i7wz"><img src="../gimgs/${DATA.gimg2}" width="200" height="200" ></th>
-				    <th class="tg-031e">닉네임 : ${DATA.mem_nick}</th>
+				    <th class="tg-031e">닉네임 : ${DATA.mem_nick}<br>
+				    <button class="btn btn-primary" type="button"  id="goodB" >
+				    <i class="fa fa-thumbs-o-up"></i>좋아요!<span class="badge" id="goodVal">${DATA.good}</span></button>
+				    </th>
 				  </tr>
 				
 				</table>														

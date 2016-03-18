@@ -208,8 +208,9 @@
             m.mem_nick AS mem_nick,
             intro_title,
             intro_body,
-            intro_date,
-            intro_cdate            
+            intro_date,            
+            intro_cdate,
+            intro_good AS good            
         FROM
             Introduce i,member m
         WHERE 
@@ -325,4 +326,56 @@
 		ORDER BY
 			intro_no DESC
 	</select>
+	
+	<!-- 좋아요 SQL -->
+		<!--  추천강사 검색 -->
+	<select id="shownogood" resultType="Hmap" parameterType="String">
+		select
+			mem_ID as ID,
+			lg_list as SHOWNO
+		From
+			lecGood
+		where
+			mem_ID=#{ID}	
+	</select>
+	
+	<!--  추천강사번호 업데이트 -->
+	<update id="updateshownogood" parameterType="Hmap">
+		UPDATE
+			lecGood
+		SET		
+			lg_list = #{NO}
+		WHERE
+			mem_ID=#{ID}
+	</update>
+	
+	<!--  최초로 본글이면 삽입 -->
+	<insert id ="insertshownogood" parameterType="Hmap">
+		INSERT
+		INTO
+			lecGood
+		Values
+			(#{ID},#{NO})		
+	</insert>
+	
+	<!--  실제로 추천수 증가 -->
+	<update id="updategood" parameterType="int">
+			UPDATE
+			introduce
+		SET
+			intro_good = intro_good + 1
+		WHERE
+			intro_no = #{NO}
+	</update>	
+	
+	<select id="selectGood" parameterType="int" resultType="int">
+		SELECT
+			intro_good
+		From
+			introduce
+		Where
+			intro_no=#{NO}		
+	</select>
+	
+	<!--  좋아요 SQL 끝 -->
 </mapper>

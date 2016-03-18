@@ -17,7 +17,14 @@ public class IntroInfoData {
 	private Date   intro_cDate;    
 	private int    intro_isDeleted; 
 	public String realbody;
+	public int good;
 	
+	public int getGood() {
+		return good;
+	}
+	public void setGood(int good) {
+		this.good = good;
+	}
 	public	MultipartFile	gimg;
 	public	MultipartFile	upfile;
 	public  MultipartFile[]	files;

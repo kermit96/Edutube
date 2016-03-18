@@ -905,5 +905,79 @@ public class IntroRegController {
 		return mv;
 	}
 	
+	/**
+	 * 좋아요 기능
+	 * */
+	/**
+	 * 좋아요 기능
+	 * */	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@RequestMapping("/IntroRegManager/IntroGood")
+	public ModelAndView	 classGood(HttpServletRequest req, HttpSession session) {
+		ModelAndView	mv = new ModelAndView();
+						
+		String	strNo = req.getParameter("oriNo");
+		int	oriNo = Integer.parseInt(strNo);
+				
+		String id = (String) session.getAttribute("ID");
+		
+		System.out.println("좋아요 강사 아이디:"+id);
+		System.out.println("소개 고유 넘버:"+oriNo);
+		
+		/**
+		 * 추천수 검사 시작
+		 * */
+		HashMap showMap = iDao.getShownoGood(id);
+		boolean isGood = false;
+		/*글자체를 처음 보는지?*/
+		if(showMap == null || showMap.isEmpty()){
+			// 이 사람은 가입해서 글을 처음 봄
+			isGood = true;
+			// 이 사람은 처음 글을 봤으므로 insert 시켜서 
+			// 다음번 글을 볼때는 검색이 되도록 해주어야 한다.
+			HashMap temp = new HashMap();
+			temp.put("ID", id);
+			temp.put("NO", ":"+oriNo+":");
+			iDao.updateShownoGood(temp, 2);
+		}
+		/* 한개 이상 글 본적이 있다. */
+		else{
+			// 뭔가 본 글이 존재한다.
+			String tempNo = ":" + oriNo + ":";
+			String dbNo = (String)showMap.get("SHOWNO");
+			int	index = dbNo.indexOf(tempNo);
+			
+			/* 이번 글은 안봤다*/
+			if(index == -1 ){
+				// 그런 글은 없어요
+				isGood = true;
+				// 이 사람이 다시 그 글을 볼때는 조회수 증가를 못하도록
+				// 현재 글 번호도 다시 넣어 줘야 겠당
+				HashMap temp = new HashMap();
+				temp.put("ID", id);
+				temp.put("NO", dbNo+tempNo);
+				iDao.updateShownoGood(temp, 1);
+			}
+			/*봤던 글이다*/
+			else{
+				// 그런 글 있음 (봤던 글)
+				isGood = false;
+			}
+		} // 점검 끝
+		
+		if(isGood){
+			iDao.updateGood(oriNo);
+		}
+		/**
+		 *  추천수 증가 검사 끝
+		 * */
+		int good = iDao.selectGood(oriNo);
+		
+		mv.addObject("GOOD",good);	
+		mv.setViewName("IntroRegManager/IntroGood");
+		
+		return mv;
+	}
+	
 }
 
