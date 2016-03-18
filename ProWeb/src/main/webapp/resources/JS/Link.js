@@ -138,6 +138,10 @@
     	//alert('KorLang');
     	location.href="/edutube/IntroRegManager/IntroKorLang.do";    
     }
+    function goEngLang(){
+    	//alert('KorLang');
+    	location.href="/edutube/IntroRegManager/IntroEngLang.do";    
+    }
     function goJapLang(){
     	location.href="/edutube/IntroRegManager/IntroJapLang.do";
     }

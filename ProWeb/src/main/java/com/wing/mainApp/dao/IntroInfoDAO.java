@@ -39,6 +39,9 @@ public class IntroInfoDAO {
 		if(map.get("lang")=="korlang"){
 			list = (ArrayList)sqlSession.selectList("intromanager.selectkorlang",map);
 		}
+		else if(map.get("lang")=="englang"){
+			list = (ArrayList)sqlSession.selectList("intromanager.selectenglang",map);
+		}
 		else if(map.get("lang")=="japlang"){
 			list =  (ArrayList)sqlSession.selectList("intromanager.selectjaplang",map);
 		}

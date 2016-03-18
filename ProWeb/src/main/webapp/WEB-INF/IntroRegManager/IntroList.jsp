@@ -6,7 +6,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
 	name="viewport" content="width=device-width, initial-scale=0">
-	<title>강사 소개</title>
+	<title>Insert title here</title>
 	<!--  Favicon (Main Icon) -->
 	<link rel="shortcut icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
 	<link rel="icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
@@ -44,7 +44,7 @@
 			clear:both;
 			width:150px;			
 		}
-		/*JOON CSS*/
+		<!--JOON CSS-->
 		th,td {
 			background:white;/*배경색*/
 		}
@@ -87,12 +87,7 @@
 			$("#sfrm").submit();
 		});
 		
-		
 	});
-	
-	function sex(no){
-		window.open("../Message/MsgForm.do?no="+no,"sexsex","width=200, height=260, resizable=no, toolbar=no, location=no,scrollbars=yes");
-	}
 	
 	</script>
 </head>
@@ -158,11 +153,16 @@
 			    <div class="col-md-4">
 			      <a href="../IntroRegManager/IntroView.do?nowPage=${PINFO.nowPage}&oriNo=${temp.intro_no}">
 				  NICK :${temp.mem_nick}
+				  <c:if test="${empty temp.gimg2}">
+					<img src="../gimgs/noimgae.png" class="img-circle" width="100%" height="100">
+				  </c:if>
+				  <c:if test="${not empty temp.gimg2}">
 			      <img src="../gimgs/${temp.gimg2}" class="img-circle" width="100" height="100">
+			      </c:if>
 			      <!-- <td class="text-center">${temp.intro_body}</td>  -->
 			      </a>
 			      <br>
-			      <a href='JavaScript:sex(${temp.intro_no})'>쪽지 보내기</a>
+			      <a href='#'>강의 일정</a>
 			      <br> <br> <br>  <br>  <br>
 			    </div>		
 		     </c:forEach>
