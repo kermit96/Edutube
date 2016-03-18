@@ -29,14 +29,14 @@
 	<!--CustomScript-->
 	<script>
 		function schAdd(){
-			
+			location.href="../Sch/SchAddForm.do?nowPage=${nowPage}&oriNo=${orino}&memid=${events.id}";
 		}
 		function gointroD(){
-			location.href="/edutube/IntroRegManager/IntroView.do?nowPage=${nowPage}&oriNo=${nowPage}";
+			location.href="/edutube/IntroRegManager/IntroView.do?nowPage=${nowPage}&oriNo=${orino}";
 		}
 		function delEvent(no){
-			var eventNo = no;
-			location.href="../Sch/SchDelete.do?nowPage=${nowPage}&oriNo=${nowPage}&eventNo=eventNo";
+			var eventNoo = no;			
+			location.href="../Sch/SchDelete.do?nowPage=${nowPage}&oriNo=${orino}&eventNo="+eventNoo;
 		}
 	
 	</script>
@@ -98,6 +98,9 @@
 	tbody tr td a:visited{
 		text-decoration: none;
 	}	
+	#delB{
+		width:100px;
+	}
 	</style>
 	<!-- ${orino} ${nowPage} -->
 	
@@ -130,6 +133,7 @@
 						<col style="width: 400px">
 						<col style="width: 120px">
 						<col style="width: 120px">
+						<col style="width: 100px">
 					</colgroup>
 
 					<!-- 컬럼 -->
@@ -138,7 +142,8 @@
 							<th>No</th>
 							<th>일정</th>
 							<th>시작날짜</th>
-							<th>종료날짜</th>							
+							<th>종료날짜</th>
+							<th></th>							
 						</tr>
 					</thead>
 
@@ -154,8 +159,8 @@
 								</td>
 								<td>${events.sdate1}</td>
 								<td>	${events.edate1}</td>
-								<td>
-								<a class="button button-red" onClick="JavaScript:delEvent(${events.no});"><i class="fa fa-times"></i>삭제하기</a>
+								<td>								
+								<button onClick="JavaScript:delEvent(${events.no});" id="delB">삭제하기</button>
 								</td>														
 							</tr>
 						</c:forEach>

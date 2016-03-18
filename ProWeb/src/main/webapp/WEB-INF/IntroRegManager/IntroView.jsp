@@ -229,8 +229,7 @@
 						<input type="button" value="수정하기" id="mBtn" class="btn btn-primary btn-sm">
 						<input type="button" value="삭제하기" id="dBtn" class="btn btn-primary btn-sm">
 					</c:if>	
-						<input type="button" value="목록보기" id="lBtn" class="btn btn-primary btn-sm">
-										
+						<input type="button" value="목록보기" id="lBtn" class="btn btn-primary btn-sm">										
 					</td>
 				</tr>
 			</table>	

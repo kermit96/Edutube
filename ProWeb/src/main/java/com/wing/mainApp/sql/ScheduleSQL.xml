@@ -20,4 +20,24 @@
 		AND
 			mem_id = #{id}
 	</select>
+	<!--  스케쥴 삭제 -->
+	<update id="deleteEven" parameterType="int">
+		Update
+			Schedule
+		Set
+			sch_isDeleted='Y'
+		Where
+			sch_no=#{no}		
+	</update>
+	<!--  스케쥴 추가 -->
+	<insert id="insertEvent" parameterType="schData">
+		Insert
+		INTO
+			Schedule	(sch_no,mem_id,sch_name,sch_startdate,sch_enddate)
+		Values
+			((SELECT NVL(MAX(sch_no), 0) + 1 FROM schedule),#{id},#{name},#{sdate},#{edate})	
+	
+	</insert>
+	
+	
 </mapper>
