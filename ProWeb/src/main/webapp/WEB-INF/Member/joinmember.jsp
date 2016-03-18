@@ -295,8 +295,7 @@
 						title="Password must contain at least 6 characters, including UPPER/lowercase and numbers"
 						type="text" required
 						pattern="^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*()])[a-zA-Z0-9!@#$%^&*()]{7,40}$"
-						onchange="
-	   this.setCustomValidity(this.validity.patternMismatch ? this.title : '');  ">
+						onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');  ">
 
 					</td>
 				</tr>
