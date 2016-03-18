@@ -114,7 +114,7 @@
 	
 </head>
 <body>
-<div id='EduContainer'  align="center">
+<div id='EduContainer'  align="center" >
          <h2>EduTube LOGIN    </h2>
 	     <br>
 	      <table>
