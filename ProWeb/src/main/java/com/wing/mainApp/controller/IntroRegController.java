@@ -24,6 +24,10 @@ import com.wing.mainApp.util.StringUtil;
 public class IntroRegController {
 	@Autowired
 	private IntroInfoDAO	iDao;//
+	
+	/**
+	 * 03/18 (이 주석이 있어야 완료 된것
+	 * */
 		
 	@RequestMapping("/IntroRegManager/IntroRegForm")
 	public ModelAndView	introRegForm(HttpSession session) {
@@ -920,10 +924,7 @@ public class IntroRegController {
 		int	oriNo = Integer.parseInt(strNo);
 				
 		String id = (String) session.getAttribute("ID");
-		
-		System.out.println("좋아요 강사 아이디:"+id);
-		System.out.println("소개 고유 넘버:"+oriNo);
-		
+				
 		/**
 		 * 추천수 검사 시작
 		 * */
@@ -978,6 +979,9 @@ public class IntroRegController {
 		
 		return mv;
 	}
+	/**
+	 * 03/18 (이 주석이 있어야 완료 된것
+	 * */
 	
 }
 

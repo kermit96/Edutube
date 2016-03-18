@@ -22,6 +22,10 @@ import com.wing.mainApp.util.StringUtil;
 @Controller
 public class ScheduleController {
 	
+	/**
+	 * 03/18 (이 주석이 있어야 완료 된것
+	 * */
+	
 	@Autowired
 	ScheduleDAO schdao;
 	
@@ -221,5 +225,8 @@ public class ScheduleController {
 		
 		return mv;
 	}
+	/**
+	 * 03/18 (이 주석이 있어야 완료 된것
+	 * */
 
 }

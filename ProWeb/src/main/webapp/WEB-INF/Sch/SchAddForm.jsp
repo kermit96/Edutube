@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<!-- 03/18 (이 주석이 있어야 완료 된것 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -205,7 +205,7 @@
 
 </body>
 </html>
-
+<!-- 03/18 (이 주석이 있어야 완료 된것 -->
 
 
 
