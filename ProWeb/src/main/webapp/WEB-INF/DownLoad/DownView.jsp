@@ -55,6 +55,22 @@
 	left: 50%;
 	margin-left: -600px;
 }
+#rcorners1 
+{
+   border-radius: 50px;
+   border: 1px solid #73AD21;
+   padding: 20px; 
+   width: 1000px;
+   height: 400px;
+}
+#rcorners2 
+{
+   border-radius: 50px;
+   border: 1px solid #73AD21;
+   padding: 20px; 
+   width: 1000px;
+   height: 30px;    
+}
 </style>
 
 </head>
@@ -69,7 +85,7 @@
 		<div id="Main">
 			<!-- This area is Body Part -->
 			<!-- 	상세보기 결과 -->
-			<table width="80%" border="1" align="center">
+			<table width="80%" border="1" align="center" id="rcorners1">
 				<tr>
 					<td>글번호</td>
 					<td>${VIEW.no}</td>
@@ -95,7 +111,7 @@
 		첨부 파일이 없을 수도 있다.
 -->
 			<c:if test="${not empty FILES}">
-				<table width="80%" border="1" align="center">
+				<table width="80%" border="1" align="center" id="rcorners2">
 					<c:forEach var="temp" items="${FILES}">
 						<tr>
 							<td><a href="../DownLoad/FileDownLoad.do?oriNo=${temp.no}">${temp.oriname}</a> ( <fmt:formatNumber value="${temp.len}"
@@ -106,7 +122,7 @@
 				</table>
 			</c:if>
 			<!-- 	기타기능 -->
-			<table border="1" width="80%" align="center">
+			<table border="1" width="80%" align="center" id="rcorners2">
 				<tr>
 					<td align="center"><c:if test="${VIEW.id eq sessionScope.ID}">
 							<input type="button" value="수정하기" id="mBtn">

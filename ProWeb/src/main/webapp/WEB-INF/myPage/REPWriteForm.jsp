@@ -27,10 +27,55 @@
 	
 	
 </script>
+<style>
+		#EduContainer{
+				width:1200px;
+				position: absolute;
+				left: 50%;
+				margin-left:-600px;				
+		}
+		#main{
+				width:1200px;
+		}	
+		#centerPage{
+			float:right;
+			position: relative;					
+			width:980px;
+			height:100%;
+			padding:10px;
+			font-size:16px;					
+		}
+		#sideBarDiv{
+			float:left;
+			border-top:solid 1px white;
+			clear:both;
+			width:150px;			
+		}
+		#realContent{
+			width:700px;
+			padding-top:50px;
+			padding-bottom:100px;
+			padding-right:100px;
+			padding-left:50px;			
+			margin: 0 auto;			
+		}	
+</style>
 </head>
 	<body>
-		<form method="POST" action="" id="rfrm" enctype="multipart/form-data">
-				<table width="70%" border="1" align="center">
+	
+	<div id='EduContainer'>
+	
+	<div id='top'>	
+		<jsp:include page="/MenuBar/Top.jsp" flush="false" />
+	</div>		
+		
+	<div id="main">
+				
+		<div id="centerPage">
+			<div id="realContent">
+			
+				<form method="POST" action="" id="rfrm" enctype="multipart/form-data">
+				<table border="1" align="center">
 					<tr>
 						<td align="center">신고 항목
 							<select id="code" name="code">
@@ -70,5 +115,14 @@
 					</tr>
 				</table>
 			</form>
+			
+			
+			</div>
+		</div>
+		
+	</div>
+	
+	</div>
+	
 	</body>
 </html>

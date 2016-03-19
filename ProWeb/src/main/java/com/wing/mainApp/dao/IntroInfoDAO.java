@@ -169,4 +169,8 @@ public class IntroInfoDAO {
 		return sqlSession.selectOne("intromanager.selectGood",NO);
 	}
 	
+	public ArrayList getGood(HashMap map) {
+		return (ArrayList)sqlSession.selectList("intromanager.getgood",map);
+	}
+	
 }

@@ -192,11 +192,7 @@ a.logC:hover {
 			<li><a href="JavaScript:goClasses()"><span>강의 목록</span></a></li>
 			<li><a href="JavaScript:goDownload()"><span>자료실</span></a></li>
 			<li><a href="JavaScript:goFAQ()"><span>FAQ</span></a></li>
-			<li><a href="JavaScript:goQA()"><span>QA</span></a></li>			
-			<li class='last'><a href="JavaScript:goTest()"><span>테스트</span></a></li>
-			<c:if test="${isAdmin==true}">
- 				<li class='last'><a href="/edutube/AdminPage/AdminMain.do"><span>관리자</span></a></li>	
-			</c:if>
+			<li  class='last'><a href="JavaScript:goQA()"><span>QA</span></a></li>
 		</ul>
 	</div>
 

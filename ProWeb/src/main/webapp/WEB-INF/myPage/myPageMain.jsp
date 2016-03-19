@@ -22,6 +22,34 @@
  	
 	<!--스크립트-->
 	<script>
+	
+	/*회원정보수정*/
+	function MchangeD(){
+		location.href="";
+	}
+	
+	/*회원신고*/	
+	function MreportD(){
+		location.href="../myPage/REPWriteForm.do";
+	}
+	
+		
+	/*강사신청*/	
+	function LapplyD(){		
+		location.href="../Apply/ApplyForm.do";
+	}
+		
+	/*회원관리*/	
+	function MemberMD (){
+		 location.href="../myPage/REPList.do";	
+	}
+		
+	/*강사승인*/	
+	function LcogD(){
+		location.href="../Apply/ApplyForm.do";		
+	}
+	
+	
 	</script>
 	
 	<!--  스타일 -->
@@ -102,25 +130,28 @@
 					</c:if>
 			</div>		
 				
+
 				
+					
 	
 				<!--  일반 회원 (정보 수정, 신고, 강사 신청) -->
 				<c:if test="${sessionScope.NAL eq 'N'}">
 				<div class="container"> 	
 				<div class="homeBox">
-					<div class="one_fourth">
+					<div class="one_fourth" id="MchangeD" onClick="JavaScript:MchangeD()">
 						<div class = "boxImage"><img src = "/edutube/resources/img/change.png"></div>	
 						<h2>Changing information</h2>			
 						<div class = "boxDescription"></div>	
 					</div>
 		
-					<div class="one_fourth">
+					<div class="one_fourth" id="MreportD" onClick="JavaScript:MreportD()">
 						<div class = "boxImage"><img src = "/edutube/resources/img/report.png"></div>	
 						<h2>Member Report</h2>
 						<div class = "boxDescription">Please report any manner without membership</div>				
 					</div>
 					
-					<div class="one_fourth">
+					<!-- 강사 신청 -->
+					<div class="one_fourth" id="LapplyD" onClick="JavaScript:LapplyD()">
 						<div class = "boxImage"><img src = "/edutube/resources/img/apply.png"></div>	
 						<h2>Apply Lecturer</h2>
 						<div class = "boxDescription"></div>				
@@ -135,13 +166,13 @@
 				<div class="homeBox">
 					<div id="normalD">
 						<!-- 정보변경, 리폿 -->
-						<div class="one_fourth">
+						<div class="one_fourth" id="MchangeD" onClick="JavaScript:MchangeD()">
 							<div class = "boxImage"><img src = "/edutube/resources/img/change.png"></div>	
 							<h2>Changing information</h2>
 							<div class = "boxDescription"></div>				
 						</div>
 		
-						<div class="one_fourth last">
+						<div class="one_fourth last" id="MreportD" onClick="JavaScript:MreportD()">
 							<div class = "boxImage"><img src = "/edutube/resources/img/report.png"></div>	
 							<h2>Member Report</h2>
 							<div class = "boxDescription">Please report any manner without membership</div>
@@ -151,13 +182,13 @@
 					<c:if test="${sessionScope.NAL eq 'A'}">
 					<!-- 회원 관리, 강사승인 -->
 					<div id="tempAdmin">
-						<div class="one_fourth last">
+						<div class="one_fourth last" id="MemberMD" onClick="JavaScript:MemberMD()">
 							<div class = "boxImage"><img src = "/edutube/resources/img/member.png"></div>	
 							<h2>Member Management</h2>
 							<div class = "boxDescription"></div>
 						</div>
 						
-						<div class="one_fourth last">
+						<div class="one_fourth last" id="LcogD" onClick="JavaScript:LcogD();">
 							<div class = "boxImage"><img src = "/edutube/resources/img/recog.png"></div>	
 							<h2>강사 승인</h2>
 							<div class = "boxDescription"></div>
