@@ -4,13 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta property="fb:app_id" content="187037911676127" />
-		<meta property="og:type" content="website" />
-         <meta property="og:title" content="EduTube" />
-         <meta property="og:url" content="http://192.168.56.103:8080/edutube/" />
-         <meta property="og:description" content="모든이의 강의" />
-         <meta property="og:image" content="http://i.imgur.com/JN99KWN.png" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="http://192.168.56.103:8080/edutube/" />
+		<meta property="og:title" content="에듀튜브" />
+		<meta property="og:description" content="" />
+		<meta property="og:image" content="http://i.imgur.com/JN99KWN.png" />
+
          
 <title>EduTube</title>
 <!--CSS-->
