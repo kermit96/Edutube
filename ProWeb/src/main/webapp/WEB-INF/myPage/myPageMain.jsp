@@ -25,7 +25,7 @@
 	
 	/*회원정보수정*/
 	function MchangeD(){
-		location.href="";
+		location.href="../member/changeuserinfo.do";
 	}
 	
 	/*회원신고*/	
