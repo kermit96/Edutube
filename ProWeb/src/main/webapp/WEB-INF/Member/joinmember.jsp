@@ -490,12 +490,7 @@ a.button:hover {
 
 				<tr>
 					<td>${LANGDATA.member_passwordstr}</td>
-					<td><input type="password" id="password" placeholder="${LANGDATA.member_passwordstr}"
-						title="Password must contain at least 6 characters, including UPPER/lowercase and numbers"
-						type="text" required
-						pattern="^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*()])[a-zA-Z0-9!@#$%^&*()]{7,40}$"
-						onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');  ">
-
+					<td><input type="password" id="password" placeholder="${LANGDATA.member_passwordstr}">
 					</td>
 				</tr>
 
@@ -552,26 +547,6 @@ a.button:hover {
 			</table>
 		</form>
 
-		
-			<div class="testbox">
-				<h1>회원가입</h1>
-
-				<form id="target" method="post"
-					action="../member/joinmemberprocess.do">
-					<hr>					
-					<hr>
-						<label id="icon" for="name"><i class="icon-envelope "></i></label>
-						<input type="text" name="name" id="name" placeholder="Email"	required /> 
-						<label id="icon" for="name"><i	class="icon-user"></i></label> 
-						<input type="text" name="name" id="name" 	placeholder="Name" required /> 
-						<label id="icon" for="name"><i	class="icon-shield"></i></label> 
-						<input type="password" name="name"id="name" placeholder="Password" required />
-					
-					<button class="btn btn-primary btn-block btn-flat" id="register">가입하기</button>
-				</form>
-			</div>
-
-		
 
 	</div>
 

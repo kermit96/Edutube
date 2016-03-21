@@ -425,6 +425,17 @@
    <ch_cn>确认 </ch_cn>
  </Lang>
  
+ 
+ <Lang>
+   <id>member_loginmsg</id>
+   <ko>Sign in to start your session</ko>
+   <ja>Sign in to start your session</ja>
+   <en>Sign in to start your session</en>
+   <ch>Sign in to start your session</ch>
+   <ch_cn>Sign in to start your session </ch_cn>
+ </Lang>
+ 
+ 
  <Lang>
    <id>member_badpassword</id>
    <ko>7자이상 40자 이하  그리고 영문자 1이상 숫자 1이상  특수문자 1이상 입력해야 합니다</ko>

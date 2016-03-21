@@ -110,7 +110,7 @@
         <a href="../main.do"><b>Edu</b>Tube</a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg">${LANGDATA.member_loginmsg}</p>
        	<!--  아이디 -->
           <div class="form-group has-feedback">
             <input type="text" class="form-control" placeholder="YourID" id="userid">
@@ -129,13 +129,14 @@
               </div>
             </div><!-- /.col -->
             <div class="col-xs-4">
-              <button class="btn btn-primary btn-block btn-flat" id="login">${LANGDATA.member_login}</button>
+              <button class="btn btn-primary btn-block btn-flat" id="login">${LANGDATA.member_login} </button>
             </div><!-- /.col -->
           </div>
              
 
-        <a href="JavaScript:findmember()" id="findmember">${LANGDATA.member_join}</a><br>
-        <a href="JavaScript:make()" class="text-center" id="makeid">${LANGDATA.member_idpasswordfind}</a>
+
+        <a href="JavaScript:findmember()" id="findmember">${LANGDATA.member_idpasswordfind} </a><br>
+        <a href="JavaScript:make()" class="text-center" id="makeid">${LANGDATA.member_join}</a>
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
