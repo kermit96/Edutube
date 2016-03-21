@@ -70,7 +70,7 @@ tr:nth-child(even) {
 
 th {
 	background-color: #f96e5b;
-	color: black;
+	color: white;
 	border: 1px solid white;
 }
 
@@ -113,9 +113,9 @@ tr>th {
 		<br><h1>QA 게시판</h1>
 			<table border="1" align="center" width="80%">
 				<tr>
-					<td>제목</td>
-					<td>글쓴이</td>
-					<td>작성일</td>
+					<th>제목</th>
+					<th>글쓴이</th>
+					<th>작성일</th>
 				</tr>
 				<c:forEach var="temp" items="${LIST}">
 					<tr>

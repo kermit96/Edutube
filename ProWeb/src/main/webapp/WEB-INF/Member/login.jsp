@@ -40,8 +40,7 @@
 
 	function make() {
 
-		// location.href = ;
-		window.open('../member/joinmember.do', "_blank");
+		location.href = "../member/joinmember.do";
 	}
 
 	function findmember() {
