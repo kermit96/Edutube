@@ -114,10 +114,11 @@
 			
 		 var html = loc.pathname+loc.search+loc.hash;
 		
-		 location.href="/edutube/member/memberjoin.do"+"?returnurl=" +encodeURIComponent(html);		
-
+		 location.href="/edutube/member/joinmember.do"+"?returnurl=" +encodeURIComponent(html);		
 	}	
 
+
+	
 
 	//과목별 강사 소개 링크
 	function goJavaLang()

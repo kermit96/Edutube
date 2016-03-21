@@ -28,8 +28,20 @@
 <script language="javascript">
 var id = "${sessionScope.ID}";
 $(document).ready(function(){
-	   //setInterval(msg,5000);   
+	setInterval(msg,3000); 
 });
+function msg(){
+	if(id==null|| id==""){
+			
+	}
+		
+	else if(id != null){
+		window.open("/edutube/Message/isMsg.do?id="+id,"hiddenframe","width=20, height=20, resizable=no, toolbar=no, location=no,scrollbars=yes");
+		/* location.href="/edutube/Message/isMsg.do?id="+id; */
+//		 200, 260
+	}
+//	setTimeout(msg, 7000);
+}
 </script>
 
 
@@ -153,7 +165,7 @@ a.logC:hover {
 				<c:if test="${sessionScope.ID eq null}">
 
 					<div id="state_login">
-						<a href="JavaScript:goLogin();" class="logC">로그인</a>&nbsp;&nbsp;<a href="JavaScript:joinmember()" class="logC">회원가입</a>
+						<a href="JavaScript:goLogin();" class="logC">로그인</a>&nbsp;&nbsp;<a href="JavaScript:memberJoin()" class="logC">회원가입</a>
 						<select id="lang" name="lang">
 							<option value="0" disabled selected>Language</option>
 							<option>Kor</option>
@@ -168,8 +180,8 @@ a.logC:hover {
 				<c:if test="${sessionScope.ID ne null}">
 
 					<div id="state_logout">
-						<a href="JavaScript:goLogout()" class="logC">로그아웃</a>&nbsp;&nbsp;<a href="JavaScript:goInfo()"
-							class="logC">마이페이지</a>
+						<a href="JavaScript:goLogout()" class="logC">로그아웃</a>&nbsp;&nbsp;
+						<a href="JavaScript:goInfo()" class="logC">마이페이지</a>
 							<select id="lang" name="lang">
 							<option value="0" disabled selected>Language</option>
 							<option>Kor</option>
@@ -239,3 +251,4 @@ a.logC:hover {
 	
 </script>
 
+<iframe width='1' height='1' name='hiddenframe' style="display:none"></iframe>

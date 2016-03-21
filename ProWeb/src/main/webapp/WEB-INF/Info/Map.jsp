@@ -27,15 +27,7 @@
 				position: absolute;
 				left: 50%;
 				margin-left:-600px;				
-		}
-		#EduFooter{
-				width:100%px;
-				margin:20px auto;
-				padding:20px;
-				background-color:#DDD;
-				text-align:right;
-				clear:both;
-		}
+		}		
 		#centerPage {
    				float: right;
    				position: relative;

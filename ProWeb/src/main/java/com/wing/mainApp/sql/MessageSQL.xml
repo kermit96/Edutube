@@ -18,6 +18,15 @@
 		WHERE
 			Intro_No = #{no}
 	</select>
+	<!-- 보낸 사람 알아내기 -->
+	<select id="selectmem" resultType="java.lang.String" parameterType="java.lang.Integer">
+		SELECT
+			Mem_ID AS toid
+		FROM
+			Message
+		WHERE
+			MSG_NO=#{no}
+	</select>
 	<!-- 받은 메세지 리스트 -->
 	<select id="selectmsglist" parameterType="java.lang.String" resultType="msgdata">
 		SELECT
@@ -29,6 +38,21 @@
 			Message
 		WHERE
 			Mem_ID = #{id}
+		AND MSG_ISCOM = 'Y'
+		ORDER BY Msg_NO DESC
+	</select>
+	<!-- 새로온 메세지 -->
+	<select id="selectmsglistn" parameterType="java.lang.String" resultType="msgdata">
+		SELECT
+			Msg_NO AS no,
+			Mem_FROM AS fromid,
+			Msg_BODY AS body,
+			Msg_IsCom AS com
+		FROM
+			Message
+		WHERE
+			Mem_ID = #{id}
+		AND MSG_ISCOM = 'N'
 		ORDER BY Msg_NO DESC
 	</select>
 	<!-- 메세지 상세보기 -->

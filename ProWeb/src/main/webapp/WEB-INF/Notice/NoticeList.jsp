@@ -29,6 +29,7 @@
 		}
 		#main{
 				width:1200px;
+				height:500px;
 		}	
 		#centerPage{
 			margin:0 auto;
@@ -37,6 +38,14 @@
 			height:100%;
 			padding:10px;
 			font-size:16px;					
+		}
+				#EduFooter{
+				width:100%px;
+				margin:20px auto;
+				padding:20px;
+				background-color:#DDD;
+				text-align:right;
+				clear:both;
 		}
 	
 		<!--JOON CSS-->
@@ -211,6 +220,12 @@
 			</table>		
 <!-- 	기타 부가 기능 -->
 			</div>
+			
+						<!--  푸터 -->
+			<div id="EduFooter">
+				<jsp:include page="/MenuBar/footer.jsp" flush="true"/>
+			</div>
+			
 		</div>
 	</div>	
 	</body>

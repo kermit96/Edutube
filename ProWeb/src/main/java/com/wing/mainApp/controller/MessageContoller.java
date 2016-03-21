@@ -46,10 +46,32 @@ public class MessageContoller {
 	public ModelAndView MsgReForm(HttpServletRequest req){
 		ModelAndView mv = new ModelAndView();
 		String id = req.getParameter("id");
+		// 메세지 리스트
 		ArrayList list = mDao.selectMsgList(id);
+		ArrayList list2 = mDao.selectMsgListn(id);
 		System.out.println("sex");
 		mv.addObject("LIST",list);
+		mv.addObject("LISTN",list2);
 		mv.setViewName("Message/MsgList");
+		return mv;
+	}
+	@RequestMapping("Message/isMsg")
+	public ModelAndView isMsg(HttpServletRequest req){
+		System.out.println("sex들어옴");
+		ModelAndView mv = new ModelAndView();
+		String id = req.getParameter("id");
+		System.out.println("메세지 검사 확인");
+		ArrayList result = mDao.selectMsgListn(id);
+		for(Object obj:result){
+			MessageData data = (MessageData)obj;
+			if(data.getCom().equals("N")){
+				System.out.println("메세지 있네");
+				mv.setViewName("Message/yesMsg");
+				return mv;
+			}
+		}
+		System.out.println("메세지 없음");
+		mv.setViewName("Message/notMsg");
 		return mv;
 	}
 	// 메세지 상세보기
@@ -57,12 +79,18 @@ public class MessageContoller {
 	public ModelAndView msgView(HttpServletRequest req){
 		ModelAndView mv = new ModelAndView();
 		String strNo = req.getParameter("no");
+		String id = req.getParameter("id");
 		System.out.println(strNo);
 		int no = Integer.parseInt(strNo);
 		MessageData data=mDao.msgView(no);
 		System.out.println("msgView 실행됫다");
 		// 확인여부 Y로 바꾸기
-		mDao.msgCom(no);
+		String realId = mDao.selectMem(no);
+		System.out.println(id);
+		System.out.println(realId);
+		if(id.equals(realId)){
+			mDao.msgCom(no);
+		}
 		mv.addObject("no",no);
 		mv.addObject("LIST",data);
 		mv.setViewName("Message/MsgView");

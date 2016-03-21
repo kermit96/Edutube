@@ -24,6 +24,10 @@ public class MessageDAO {
 	public ArrayList selectMsgList(String id){
 		return (ArrayList) sqlSession.selectList("msg.selectmsglist",id);
 	}
+	// 받은 새로운 쪽지 리스트
+	public ArrayList selectMsgListn(String id){
+		return (ArrayList) sqlSession.selectList("msg.selectmsglistn",id);
+		}
 	// 메세지 상세보기
 	public MessageData msgView(int no){
 		return (MessageData) sqlSession.selectOne("msg.msgView",no);
@@ -32,12 +36,16 @@ public class MessageDAO {
 	public ArrayList selectSeMsgList(String id){
 		return (ArrayList) sqlSession.selectList("msg.selectsemsglist",id);
 	} 
-	// 확인여부
+	// 메세지 확인
 	public void msgCom(int no){
 		sqlSession.update("msg.msgcom",no);
 	}
 	// 메세지 삭제
 	public void delM(int no){
 		sqlSession.delete("msg.delm",no);
+	}
+	// 보낸 사람 알아내기
+	public String selectMem(int no){
+		return sqlSession.selectOne("msg.selectmem",no);
 	}
 }

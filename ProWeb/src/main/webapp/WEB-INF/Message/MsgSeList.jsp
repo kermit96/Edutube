@@ -47,10 +47,74 @@
 	margin-left: -600px;
 }
 
+table {
+	border-collapse: collapse;
+	width: 20%;
+}
+
+th, td {
+	text-align: center;
+	padding: 2px;
+	height: 5px;
+}
+
+tr:nth-child(even) {
+	background-color: #f3f3f3
+}
+
+th {
+	background-color: #f96e5b;
+	color: white;
+	border: 1px solid white;
+}
+
+tr>th {
+	text-align: center;
+	border: 1px solid white;
+}
+
+#rcorners2 {
+	border: 1px solid white;
+	padding: 50px;
+	width: 1000px;
+}
+
+.button {
+	border-radius: 15px;
+	background-color: #f96e5b;
+	border: none;
+	color: white;
+	padding: 8px 16px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	margin: 2px 1px;
+	cursor: pointer;
+}
+
+.page {
+	text-align: right;
+	background-color: white;
+}
+
 textarea#body {
 	width: 250px;
 	height: 150px;
 	resize: none;
+}
+
+.bottom {
+	border-bottom-color: white;
+	width: 100px;
+	position: absolute;
+	left: 44.5%;
+}
+.round{
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+	border-bottom: 1px solid white;
+	background-color: white;
 }
 </style>
 
@@ -63,19 +127,19 @@ textarea#body {
 			<input type="hidden" id="fromid" name="fromid" value="${sessionScope.ID}">
 				<table width="20%" border="1" align="center">
 					<tr align="center">
-						<td width="30%">받은사람</td>
-						<td>내       용</td>
-						<td>확인여부</td>
+						<th width="30%">받은사람</th>
+						<th>내       용</th>
+						<th>확인여부</th>
 					</tr>
 					<c:forEach var="temp" items="${LIST}">
 					<tr>
 						<td align="center">${temp.toid}</td>
-						<td><a href="../Message/MsgView.do?no=${temp.no}">${temp.bodys}</a></td>
+						<td><a href="../Message/MsgView.do?no=${temp.no}&id=${sessionScope.ID}">${temp.bodys}</a></td>
 						<td>${temp.coms}</td>
 					</tr>
 					</c:forEach>
 					<tr>
-						<td colspan="3" align="center"><input type="button" value="받은메일함으로" id="smsg"></td>
+						<td colspan="3" align="center" class="round"><input type="button" value="받은메일함으로" id="smsg" class="button"></td>
 					</tr>
 				</table>
 			</form>
