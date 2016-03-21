@@ -65,7 +65,7 @@
 	
 	/*자료실*/
 	function goDownload(){
-		alert('자료실');
+	//	alert('자료실');
 		location.href="/edutube/DownLoad/DownMain.do";
 	}
 	
@@ -116,7 +116,7 @@
 		 var html = "/edutube/member/joinmember.do";
 		
 		 // location.href="/edutube/member/joinmember.do";
-		 window.open(html,"_blank");
+		 window.open(html,"memberjoin","width=460, height=400,toolbar=no");
 		 
 	}	
 
