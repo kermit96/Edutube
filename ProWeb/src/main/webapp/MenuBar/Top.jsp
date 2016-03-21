@@ -191,7 +191,7 @@ a.logC:hover {
 			<li><a href="JavaScript:goDownload()"><span>${LANGDATA.top_file}</span></a></li>
 			<li><a href="JavaScript:goFAQ()"><span>FAQ</span></a></li>
 			<li><a href="JavaScript:goQA()"><span>QA</span></a></li>			
-			<li class='last'><a href="JavaScript:goTest()"><span>${LANGDATA.top_test}</span></a></li>
+		<!--  test 제거함  -->
 					 
 			<c:if test="${isAdmin==true}">
  				<li class='last'><a href="/edutube/AdminPage/AdminMain.do"><span>${LANGDATA.top_admin}</span></a></li>	
