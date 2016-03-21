@@ -54,8 +54,9 @@ public class MyPageDAO {
 >>>>>>> branch 'master' of https://github.com/Nepro73/EduTube.git
 	 * 회원정지
 	 */
-	public void stopREP(String str) {
+	public void stopREP(String str,int no) {
 		sqlSession.update("mypage.userstop", str);
+		sqlSession.update("mypage.reportdelete",no);
 	}
 	
 	// id 알아내기

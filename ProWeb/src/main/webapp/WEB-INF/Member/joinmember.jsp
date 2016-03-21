@@ -531,17 +531,22 @@ a.button:hover {
 
 					<td>${LANGDATA.member_addr}</td>
 					<td><input type="text" id="mem_addrCode" name="mem_addrCode"
-						placeholder=" ${LANGDATA.member_post}"> <input type="button" id="addrfind"
-						value="${LANGDATA.member_postfind}"><br> <input type="text" id="mem_addr"
-						name="mem_addr" id="mem_addr" placeholder="${LANGDATA.member_addr}"> <input
+						placeholder=" ${LANGDATA.member_post}"> 
+						<input type="button" id="addrfind"
+						value="${LANGDATA.member_postfind}"><br> 
+						<input type="text" id="mem_addr"
+						name="mem_addr" id="mem_addr" placeholder="${LANGDATA.member_addr}"> 
+						<input
 						type="text" id="mem_detailaddr" name="mem_detailaddr"
 						placeholder="${LANGDATA.member_addrmore}"></td>
 				</tr>
 
 				<tr>
 					<td colspan="2" align="center"><input type="button"
-						id="register" value="${LANGDATA.member_reg}"> <input type="button" id="cancel"
-						value="${LANGDATA.member_cancel}"></td>
+						id="register" value="${LANGDATA.member_reg}"> 
+						<input type="button" id="cancel"
+						value="${LANGDATA.member_cancel}">
+						</td>
 				</tr>
 
 			</table>

@@ -26,6 +26,7 @@
     <!-- jQuery 2.1.4 -->
     <script src="/edutube/resources/JS/jquery-2.1.4.min.js"></script>
   	<script type="text/javascript" src="../resources/JS/sha256.js"></script>
+  	 <script type="text/javascript" src="../resources/JS/Link.js"></script>
   	
   	<script>
 	$(document).ready(function() {
@@ -41,12 +42,12 @@
 	function make() {
 
 		// location.href = ;
-		 window.open('../member/joinmember.do', "_blank" );
+//		 window.open('../member/joinmember.do', "_blank" );
 	}
  
 	function findmember() {
 
-		window.open('../member/findmember.do', "_blank");
+		window.open('../member/findmember.do', "findmember","width=460, height=400,toolbar=no");
  
 	}
 
@@ -136,7 +137,7 @@
 
 
         <a href="JavaScript:findmember()" id="findmember">${LANGDATA.member_idpasswordfind} </a><br>
-        <a href="JavaScript:make()" class="text-center" id="makeid">${LANGDATA.member_join}</a>
+        <a href="JavaScript:memberJoin()" class="text-center" id="makeid">${LANGDATA.member_join}</a>
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->

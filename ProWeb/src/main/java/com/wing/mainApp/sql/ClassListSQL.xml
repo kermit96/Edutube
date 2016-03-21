@@ -27,9 +27,9 @@
 	<insert id="classinsert" parameterType="cldata">
 		INSERT
 		INTO
-			class (class_no,sub_code,mem_id,mem_nick,class_title,class_body)
+			class (class_no,sub_code,mem_id,mem_nick,class_title,class_body,class_lang)
 		VALUES
-			((SELECT NVL(MAX(class_no), 0) + 1 FROM class),#{code},#{id},#{nick},#{title},#{body})
+			((SELECT NVL(MAX(class_no), 0) + 1 FROM class),#{code},#{id},#{nick},#{title},#{body},'kor')
 	</insert>
 	<!-- 게시물 등록 (동영상 있는 경우)-->
  	<insert id="classinsertM" parameterType="cldata">

@@ -63,7 +63,7 @@ html, body {
 	width: 45%;
 	height: 60px;
 	float: left;
-	padding-top: 15px;
+	padding-top: 15px; 
 }
 
 #utilBar {

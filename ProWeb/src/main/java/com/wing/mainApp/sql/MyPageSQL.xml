@@ -11,7 +11,7 @@
 	</insert>
 <!-- 신고 데이터 갯수 구하기 질의 -->
 	<select id="gettotal" resultType="java.lang.Integer">
-		SELECT 
+		SELECT
 			COUNT(*)	AS		TOTAL
 		FROM
 			REPORT
@@ -21,22 +21,19 @@
 <!-- 신고 데이터 목록보기 질의 -->
 	<select id="repselect"  resultType="mdata">
 		SELECT
-			r.REP_no		AS		no,
-			r.MEM_id 		AS		id,
-			r.REP_code		AS 	code,
-			r.REP_bcode	AS		bcode,
-			r.REP_bno 		AS 	bno,
-			r.REP_reid 		AS		repid,
-			r.REP_cDate 	AS		wdate,
-			m.MEM_block	AS 	block
+			REP_no		AS		NO,
+			MEM_id 		AS		ID,
+			REP_code	AS 	CODE,
+			REP_bcode	AS		BCODE,
+			REP_bno 	AS 	BNO,
+			REP_reid 	AS		REPID,
+			REP_cDate AS		WDATE
 		FROM
-			REPORT r, MEMBER m
+			REPORT
 		WHERE
-			 r.REP_isDeleted= 'N'
-            AND m.Mem_id = r.Mem_id
-            AND R.REP_ISDELETED = 'N'
+			REP_isDeleted= 'N'
 		ORDER BY
-			r.REP_no ASC
+			REP_no ASC
 	</select>
 <!-- 회원정지 질의 -->
 	<update id="userstop" parameterType="java.lang.String">
@@ -46,23 +43,28 @@
 			mem_block = 'F'
 		WHERE
 			mem_id= #{repid}
-	</update>
-<!-- 보여줘 안보여줘 -->
-<update id="repvision" parameterType="java.lang.Integer">
-		UPDATE
-			REPORT
-		SET
-			REP_isDeleted = 'Y'
-		WHERE
-			REP_no= #{no}
 	</update> 
 <!-- 정지시킬 ID 알아오기 -->
 	<select id="selectrepid" parameterType="java.lang.Integer" resultType="java.lang.String">
 		SELECT
-			REP_REID AS REPID
+			REP_REID AS repid
 		FROM
 			REPORT
 		WHERE
 			REP_NO =#{no}
+		And
+			rep_isDeleted='N'	
+	
 	</select>	
+	<!--  정지된 회원 보이지 않게 -->
+	<update id="reportdelete" parameterType="int">
+		Update
+			report
+		Set
+			rep_isDeleted='Y'
+		Where
+			rep_no=#{no}
+	</update>
+	
+	
 </mapper>

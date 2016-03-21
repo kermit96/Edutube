@@ -37,8 +37,18 @@ public class MyPageController {
 	@RequestMapping("myPage/myPageMain")
 	public ModelAndView myPageMain() {
 		ModelAndView mv = new ModelAndView();
-     
+
 		mv.setViewName("myPage/myPageMain");
+		return mv;
+	}
+	// 관리자에서 리스트 보는 폼
+	@RequestMapping("Apply/ApplyList")
+	public ModelAndView ApplyList(){
+		ModelAndView mv = new ModelAndView();
+		ArrayList list = aDao.selectTeacher();
+		
+		mv.addObject("LISTS",list);
+		mv.setViewName("Apply/ApplyList");
 		return mv;
 	}
 
@@ -53,11 +63,10 @@ public class MyPageController {
 		if (nal.equals("A")) {
 			// 관리자
 			System.out.println("관리자");
-			ArrayList list = aDao.selectTeacher();
-			
-			mv.addObject("LISTS",list);
-			mv.setViewName("Apply/ApplyList");
+			RedirectView view = new RedirectView("../Apply/ApplyList.do");
+			mv.setView(view);
 			return mv;
+			
 		} else if (nal.equals("L")) {
 			// 강사
 			System.out.println("강사");
@@ -120,12 +129,12 @@ public class MyPageController {
 	      System.out.println("---------insertBoard-----------");
 
 	      aDao.insertApply(data);
-		mv.setViewName("Apply/waitApply.do");
+	    mv.setViewName("Apply/waitApply");
 		return mv;
 	}
 	// 강사 승인
 	@RequestMapping("Apply/acceptApply")
-	public ModelAndView acceptApply(HttpServletRequest req){
+	public ModelAndView acceptApply(HttpServletRequest req, ApplyData data){
 		ModelAndView mv = new ModelAndView();
 		
 		String strNo = req.getParameter("no");
@@ -144,7 +153,14 @@ public class MyPageController {
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
-		mv.setViewName("Apply/ApplyList.do");		
+		data = aDao.selectAll(id);
+		data.setTitle("안녕하세요 "+data.getId()+" 강사 입니다.");
+		// 강사테이블에 insert
+		aDao.insertIntro(data);
+		aDao.insertLec(data);
+		
+		RedirectView view = new RedirectView("../Apply/ApplyList.do");
+		mv.setView(view);	
 		return mv;
 	}
 	// 강사 거절
@@ -169,7 +185,8 @@ public class MyPageController {
 		
 		// 신청되어있는 데이터를 지운다.
 		aDao.deleterec(no);
-		mv.setViewName("Apply/ApplyList.do");		
+		RedirectView view = new RedirectView("../Apply/ApplyList.do");
+		mv.setView(view);
 		return mv;
 	}
 	// 첨부파일 다운로드 
@@ -207,13 +224,10 @@ public class MyPageController {
 	public ModelAndView REPWrite(MyPageData data) {
 		ModelAndView mv = new ModelAndView();
 
-		System.out.println(data.repid);
 		mDao.insertREP(data);
-		System.out.println(data.repid);
-		
 		// 뷰를 부른다
-		RedirectView rv = new RedirectView("myPageMain.do");
-		mv.setView(rv);
+		
+		mv.setViewName("myPage/backpage");
 		return mv;
 	}
 	
@@ -221,7 +235,7 @@ public class MyPageController {
 	 * 신고목록보기 
 	 */
 	@RequestMapping("/myPage/REPList")
-	public ModelAndView REPList(HttpServletRequest req, Member data, HttpSession session) {
+	public ModelAndView REPList(HttpServletRequest req) {
 		ModelAndView	mv = new ModelAndView();
 		String	strPage = req.getParameter("nowPage");
 		int			nowPage = 0;
@@ -239,10 +253,8 @@ public class MyPageController {
 		ArrayList result = new ArrayList();
 		for(int i = 0; i < total; i++) {
 			MyPageData		temp = (MyPageData)list.get(i);
-			System.out.println("adfasdfas"+temp.block);
 			result.add(temp);
 		}
-		
 		
 		mv.addObject("LIST", result);
 		mv.setViewName("myPage/REPList");
@@ -257,11 +269,13 @@ public class MyPageController {
 	public ModelAndView REPUserStop(MyPageData data, HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView();
 		
+		
 		String strNo = req.getParameter("no");
 		int no = Integer.parseInt(strNo);
+		System.out.println(no);
 		String repId = mDao.selectRepid(no);
-		mDao.stopREP(repId);
-		mDao.visionREP(data);
+		System.out.println(repId);
+		mDao.stopREP(repId,no);
 		
 		RedirectView	rv = new RedirectView("../myPage/REPList.do");
 		mv.setView(rv);

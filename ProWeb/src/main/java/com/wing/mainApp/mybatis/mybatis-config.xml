@@ -14,19 +14,21 @@
 		<typeAlias alias="String" type="java.lang.String" />
 		<typeAlias alias="Alist" type="java.util.ArrayList" />
 		<typeAlias alias="Hmap" type="java.util.HashMap" />
-     	<typeAlias alias="cldata" type="com.wing.mainApp.data.ClassListData" />
-		<typeAlias alias="schData" type="com.wing.mainApp.data.ScheduleData" />				
+		<typeAlias alias="cldata" type="com.wing.mainApp.data.ClassListData" />
+		<typeAlias alias="schdata" type="com.wing.mainApp.data.ScheduleData" />				
 		<typeAlias alias="dwdata" type="com.wing.mainApp.data.DownLoadData" />	
 		<typeAlias alias="cbdata" type="com.wing.mainApp.data.BoardData" />
 		<typeAlias alias="ndata" type="com.wing.mainApp.data.NoticeData" /> 
 		<typeAlias alias="idata" type="com.wing.mainApp.data.IntroInfoData" />
 		<typeAlias alias="subdata" type="com.wing.mainApp.data.SubjectData" />
 		<typeAlias alias="appdata" type="com.wing.mainApp.data.ApplyData" />
-		<typeAlias alias="mediadata" type="com.wing.mainApp.data.MediaData" /> 
-		<typeAlias alias="mdata" type="com.wing.mainApp.data.MyPageData" />
-		<typeAlias alias="replydata" type="com.wing.mainApp.data.ReplyData" /> 
+		<typeAlias alias="mediadata" type="com.wing.mainApp.data.MediaData" />
+		<typeAlias alias="replydata" type="com.wing.mainApp.data.ReplyData" />
 		<typeAlias alias="msgdata" type="com.wing.mainApp.data.MessageData" />
-		</typeAliases>
+		<typeAlias alias="mdata" type="com.wing.mainApp.data.MyPageData" />
+		
+		
+	</typeAliases>
 	
 	<mappers>		
 		<mapper resource="/com/wing/mainApp/sql/ScheduleSQL.xml" />
@@ -38,6 +40,9 @@
 		<mapper resource="/com/wing/mainApp/sql/IntroInfoSQL.xml" />
 		<mapper resource="/com/wing/mainApp/sql/CommonSQL.xml" />
 		<mapper resource="/com/wing/mainApp/sql/ApplySQL.xml" />
+		<mapper resource="/com/wing/mainApp/sql/SearchSQL.xml" />
+		<mapper resource="/com/wing/mainApp/sql/MessageSQL.xml" />
+		<mapper resource="/com/wing/mainApp/sql/MyPageSQL.xml" />
 	</mappers>
 
 </configuration>

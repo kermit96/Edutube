@@ -144,9 +144,13 @@
 				</tr>
 				<tr>
 					<td align="center" colspan="3">
-						<input type="button" value="글쓴이" id="wBtn" class="btn btn-primary btn-sm">
+					<!--  비정상 접근 처리 -->
+					  
+						<c:if test="${sessionScope.NAL eq 'A'}">	
+						<input type="button" value="글쓰기" id="wBtn" class="btn btn-primary btn-sm">
 						<input type="reset" value="다시쓰기" id="rfBtn" class="btn btn-primary btn-sm">
 						<input type="button" value="목록" id="lBtn"   class="btn btn-primary btn-sm">
+						</c:if>
 					</td>
 				</tr>
 			</table>		

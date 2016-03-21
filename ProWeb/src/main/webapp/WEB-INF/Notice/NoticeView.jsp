@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
+	<title>EduTube</title>
 	<!--  Favicon (Main Icon) -->
 	<link rel="shortcut icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
 	<link rel="icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
@@ -106,9 +106,7 @@
 	
 	<div id="Main">
 		<!-- This area is Body Part -->
-		<div id="sideBarDiv">
-			<jsp:include page="/MenuBar/NoticeSide.jsp" flush="false" />
-		</div>
+		
 		
 		<div id="centerPage"> 
 		<h4 align="center" ><strong>상세보기</strong></h4>
@@ -149,10 +147,12 @@
 		
 			<table border="1" align="center">
 				<tr>
-					<td align="center">					
+					<td align="center">
+					<c:if test="${sessionScope.NAL eq 'A'}">						
 					<input type="button" value="수정하기" id="mBtn" class="btn btn-primary btn-sm">
 					<input type="button" value="삭제하기" id="dBtn" class="btn btn-primary btn-sm">					
-					<input type="button" value="목록" id="lBtn" class="btn btn-primary btn-sm">					
+					<input type="button" value="목록" id="lBtn" class="btn btn-primary btn-sm">	
+					</c:if>				
 					</td>
 				</tr>
 			</table>
