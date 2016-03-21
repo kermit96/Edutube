@@ -459,6 +459,7 @@ public class ClassListController {
 				
 		String id = (String) session.getAttribute("ID");
 		
+			
 		/**
 		 * 추천수 검사 시작
 		 * */

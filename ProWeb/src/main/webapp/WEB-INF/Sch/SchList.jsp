@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>강사 스케쥴</title>
+<!-- 03/18 (이 주석이 있어야 완료 된것 -->
 
 <!--  Favicon (Main Icon) -->
 <link rel="shortcut icon" href="/edutube/favicon.ico"
@@ -87,5 +88,5 @@
 </body>
 </html>
 
-
+<!-- 03/18 (이 주석이 있어야 완료 된것 -->
 

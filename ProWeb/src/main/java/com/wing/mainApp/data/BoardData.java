@@ -21,7 +21,16 @@ public class BoardData {
 	public String	nick;
 	public String 	nal;
 	public int 		nowPage;
+	public String bodys;
 	
+	public String getBodys(){
+		if(this.body.length() > 8){
+			return body.substring(1,8)+"...";
+		}
+		else{
+			return body;
+		}
+	}
 	public Date getWdate() {
 		return wdate;
 	}

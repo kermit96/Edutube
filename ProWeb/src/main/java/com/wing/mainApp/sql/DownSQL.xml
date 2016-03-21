@@ -22,9 +22,9 @@
 		FROM 
 			DownLoad
 		WHERE
-			Down_IsDeleted='N'		
+			Down_IsDeleted='N'
+		ORDER BY no DESC	
 	</select>
-	
 	
 	<!-- 일련번호 구하기 -->
 	<select id="selectMax"	resultType="java.lang.Integer">

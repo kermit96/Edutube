@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!-- DTD 파일을 설정한다. -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!--  루트 태그를 작성한다. -->
 <mapper namespace="sch">
+<!-- 03/18 (이 주석이 있어야 완료 된것 -->
 	<!--  이안에 필요한 질의 명령 만들기 -->
 	<select id="eventList" resultType="schData" parameterType="String">
 		SELECT 
@@ -20,4 +20,24 @@
 		AND
 			mem2_id = #{id}
 	</select>
+	<!--  스케쥴 삭제 -->
+	<update id="deleteEven" parameterType="int">
+		Update
+			Schedule
+		Set
+			sch_isDeleted='Y'
+		Where
+			sch_no=#{no}		
+	</update>
+	<!--  스케쥴 추가 -->
+	<insert id="insertEvent" parameterType="schData">
+		Insert
+		INTO
+			Schedule	(sch_no,mem_id,sch_name,sch_startdate,sch_enddate)
+		Values
+			((SELECT NVL(MAX(sch_no), 0) + 1 FROM schedule),#{id},#{name},#{sdate},#{edate})	
+	
+	</insert>
+	
+	<!-- 03/18 (이 주석이 있어야 완료 된것 -->
 </mapper>

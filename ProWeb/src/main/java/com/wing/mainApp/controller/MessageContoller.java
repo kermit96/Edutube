@@ -47,6 +47,7 @@ public class MessageContoller {
 		ModelAndView mv = new ModelAndView();
 		String id = req.getParameter("id");
 		ArrayList list = mDao.selectMsgList(id);
+		System.out.println("sex");
 		mv.addObject("LIST",list);
 		mv.setViewName("Message/MsgList");
 		return mv;

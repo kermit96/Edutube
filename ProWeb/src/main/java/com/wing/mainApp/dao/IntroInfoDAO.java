@@ -139,4 +139,41 @@ public class IntroInfoDAO {
 		return (ArrayList) sqlSession.selectList("intromanager.searchintro", map);
 	}
 	
+	
+	/**
+	 * 추천 SQL 
+	 * */
+	/*추천수 조회*/
+	@SuppressWarnings("rawtypes")
+	public HashMap getShownoGood(String ID){
+		return sqlSession.selectOne("intromanager.shownogood",ID);		
+	}
+	
+	/*본글 업데이트 혹은 삽입*/
+	@SuppressWarnings("rawtypes")
+	public void updateShownoGood(HashMap map,int kind){
+		// kind 1 이면 update, 2이면 insertt 를 실행 시키도록 한다.
+		if(kind == 1){
+			sqlSession.update("intromanager.updateshownogood",map);
+		}
+		else{
+			sqlSession.insert("intromanager.insertshownogood",map);
+		}		
+	}
+	
+	/*
+	 *  추천수 실제로 증가 시키기
+	 */
+	public void updateGood(int NO){
+		sqlSession.update("intromanager.updategood",NO);
+	}
+	/*추천수 조회*/
+	public int selectGood(int NO){
+		return sqlSession.selectOne("intromanager.selectGood",NO);
+	}
+	
+	public ArrayList getGood(HashMap map) {
+		return (ArrayList)sqlSession.selectList("intromanager.getgood",map);
+	}
+	
 }

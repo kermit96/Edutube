@@ -47,7 +47,7 @@
 	function findmember() {
 
 		window.open('../member/findmember.do', "_blank");
-
+ 
 	}
 
 	function login() {

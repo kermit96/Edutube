@@ -62,43 +62,43 @@ textarea#body {
  */
 body { background-image: url("resources/img/bg.jpg");} 
 
-.board { position:relative; display:inline-block; padding: 5px 100px 5px 100px;}
+.board { position:relative; display:inline-block; padding: 5px 80px 5px 80px;}
 
 .notice { float:left; padding-top:5px; width:475px; }
 .notice h3 {  clear:both; width:100%; display:inline-block; margin-bottom:10px; }
 .notice h3 span {  float:left; }
-.notice span.more {position:relative; left:425px; top:-155px;}
-.notice .title { clear:both; width:100%; display:inline-block; color:#6b6b6b; line-height:24px; }
-.notice .title dt { float:left; width:380px; }
+.notice span.more {position:relative; left:430px; top:-210px;}
+.notice .title { clear:both; width:100%; display:inline-block; color:#6b6b6b; line-height:10px; }
+.notice .title dt { float:left; width:380px; padding-bottom: 15px; }
 .notice .title dt a { padding-left:10px;}
-.notice .title dd { float:right; width:50px; font-size:11px; letter-spacing:-0.02em; }
+.notice .title dd { float:right; width:40px; font-size:11px; letter-spacing:-0.02em; }
 
 .class { float:right; padding-top:5px; width:475px; }
 .class h3 {  clear:both; width:100%; display:inline-block; margin-bottom:10px; }
 .class h3 span {  float:left; }
-.class span.more {position:relative; left:425px; top:-155px;}
-.class .title { clear:both; width:100%; display:inline-block; color:#6b6b6b; line-height:24px; }
-.class .title dt { float:left; width:380px; }
+.class span.more {position:relative; left:430px; top:-210px;}
+.class .title { clear:both; width:100%; display:inline-block; color:#6b6b6b; line-height:10px; }
+.class .title dt { float:left; width:380px; padding-bottom: 15px; }
 .class .title dt a { padding-left:10px;}
-.class .title dd { float:right; width:50px; font-size:11px; letter-spacing:-0.02em; }
+.class .title dd { float:right; width:40px; font-size:11px; letter-spacing:-0.02em; }
 
 .qa { float:left; padding-top:5px; width:475px;}
 .qa h3 {  clear:both; width:100%; display:inline-block; margin-bottom:10px; }
 .qa h3 span {  float:left; }
-.qa span.more {position:relative; left:425px; top:-155px;}
-.qa .title { clear:both; width:100%; display:inline-block; color:#6b6b6b; line-height:24px; }
-.qa .title dt { float:left; width:380px; }
+.qa span.more {position:relative; left:430px; top:-210px;}
+.qa .title { clear:both; width:100%; display:inline-block; color:#6b6b6b; line-height:10px; }
+.qa .title dt { float:left; width:380px; padding-bottom: 15px; }
 .qa .title dt a { padding-left:10px;}
-.qa .title dd { float:right; width:50px; font-size:11px; letter-spacing:-0.02em; }
+.qa .title dd { float:right; width:40px; font-size:11px; letter-spacing:-0.02em; }
 
 .data { float:right; padding-top:5px; width:475px; }
 .data h3 {  clear:both; width:100%; display:inline-block; margin-bottom:10px; }
 .data h3 span {  float:left; }
-.data span.more {position:relative; left:425px; top:-155px;}
-.data .title { clear:both; width:100%; display:inline-block; color:#6b6b6b; line-height:24px; }
-.data .title dt { float:left; width:380px; }
+.data span.more {position:relative; left:430px; top:-210px;}
+.data .title { clear:both; width:100%; display:inline-block; color:#6b6b6b; line-height:10px; }
+.data .title dt { float:left; width:380px; padding-bottom: 15px;}
 .data .title dt a { padding-left:10px;}
-.data .title dd { float:right; width:50px; font-size:11px; letter-spacing:-0.02em; }
+.data .title dd { float:right; width:40px; font-size:11px; letter-spacing:-0.02em; }
 
 .rank { float:center; padding: 5px 20px 5px 20px; width:600px;}
 .rank h3 {  clear:both; width:100%; display:inline-block; margin-bottom:10px; }
@@ -132,7 +132,50 @@ body { background-image: url("resources/img/bg.jpg");}
 	<h3><span><img src="resources/img/rank.jpg" alt="추천강사" /></span></h3>
 		<div class="title">
 		<table width="50%" align="center">
-  			<tr>
+		<tr>
+			<td><img src="resources/img/gg.jpg"></td>
+			<td><img src="resources/img/ss.jpg"></td>
+			<td><img src="resources/img/bb.jpg"></td>
+		</tr>
+		
+			<tr>
+			<c:forEach var="temp" items="${LIST}">
+				<td >
+					<img src="/edutube/gimgs/${temp.gimg2 }" width="100" height="100">
+				</td>
+				</c:forEach>
+			</tr>
+		
+			<tr>
+			<c:forEach var="temp" items="${LIST}">
+				<td>
+					${temp.mem_id}
+				</td>
+				</c:forEach>
+			</tr>
+			
+			<tr>
+			<c:forEach var="temp" items="${LIST}">
+				<td>
+					${temp.good}
+				</td>
+				</c:forEach>
+			</tr>
+		
+		
+		<%-- 	<c:forEach var="temp" items="${LIST}">
+			<tr>
+				<td>
+					<img src="../gimgs/${temp.gimg2}" width="100" height="100">
+				</td>
+			</tr>
+			<tr>
+				<td>${temp.mem_id}</td>
+			</tr>
+			<tr>
+				<td>${temp.good}</td>
+			</tr> --%>
+  			<!-- <tr>
     			<td><img src="resources/img/gg.jpg"></td>
     			<td><img src="resources/img/ss.jpg"></td>
     			<td><img src="resources/img/bb.jpg"></td>
@@ -151,7 +194,8 @@ body { background-image: url("resources/img/bg.jpg");}
 			    <td>20367</td>
 			    <td>17623</td>
 			    <td>13027</td>
-			  </tr>
+			  </tr> -->
+			  <%-- </c:forEach> --%>
 			</table>
 		</div>
 	</div>
@@ -164,11 +208,11 @@ body { background-image: url("resources/img/bg.jpg");}
 	<h3><span><img src="resources/img/notice.jpg" alt="공지사항" /></span></h3>
 		<div class="title">
 		<dl>
-			<dt><a href="#">글제목</a></dt><dd>작성일</dd>
-			<dt><a href="#">글제목</a></dt><dd>작성일</dd>
-			<dt><a href="#">글제목</a></dt><dd>작성일</dd>
-			<dt><a href="#">글제목</a></dt><dd>작성일</dd>
-			<dt><a href="#">글제목</a></dt><dd>작성일</dd>
+			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
+			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
+			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
+			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
+			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
 		</dl>
 		</div>
 		<span class="more"><a href="/edutube/Notice/NoticeList.do"><img src="resources/img/more.jpg" alt="더보기(공지사항)" /></a></span>
@@ -179,11 +223,11 @@ body { background-image: url("resources/img/bg.jpg");}
 	<h3><span><img src="resources/img/class.jpg" alt="강의목록" /></span></h3>
 		<div class="title">
 		<dl>
-			<dt><a href="#">글제목</a></dt><dd>작성일</dd>
-			<dt><a href="#">글제목</a></dt><dd>작성일</dd>
-			<dt><a href="#">글제목</a></dt><dd>작성일</dd>
-			<dt><a href="#">글제목</a></dt><dd>작성일</dd>
-			<dt><a href="#">글제목</a></dt><dd>작성일</dd>
+			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
+			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
+			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
+			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
+			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
 		</dl>
 		</div>
 		<span class="more"><a href="/edutube/ClassList/ClassList.do"><img src="resources/img/more.jpg" alt="더보기(강의게시물)" /></a></span>
@@ -194,11 +238,11 @@ body { background-image: url("resources/img/bg.jpg");}
 	<h3><span><img src="resources/img/data.jpg" alt="자료실" /></span></h3>
 		<div class="title">
 		<dl>
-			<dt><a href="#">글제목</a></dt><dd>작성일</dd>
-			<dt><a href="#">글제목</a></dt><dd>작성일</dd>
-			<dt><a href="#">글제목</a></dt><dd>작성일</dd>
-			<dt><a href="#">글제목</a></dt><dd>작성일</dd>
-			<dt><a href="#">글제목</a></dt><dd>작성일</dd>
+			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
+			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
+			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
+			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
+			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
 		</dl>
 		</div>
 		<span class="more"><a href="/edutube/DownLoad/DownMain.do"><img src="resources/img/more.jpg" alt="더보기(자료실)" /></a></span>
@@ -209,11 +253,11 @@ body { background-image: url("resources/img/bg.jpg");}
 	<h3><span><img src="resources/img/qa.jpg" alt="묻고답하기" /></span></h3>
 		<div class="title">
 		<dl>
-			<dt><a href="#">글제목</a></dt><dd>작성일</dd>
-			<dt><a href="#">글제목</a></dt><dd>작성일</dd>
-			<dt><a href="#">글제목</a></dt><dd>작성일</dd>
-			<dt><a href="#">글제목</a></dt><dd>작성일</dd>
-			<dt><a href="#">글제목</a></dt><dd>작성일</dd>
+			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
+			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
+			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
+			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
+			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
 		</dl>
 		</div>
 		<span class="more"><a href="/edutube/CustomerBoard/QABoardList.do"><img src="resources/img/more.jpg" alt="더보기(묻고답하기)" /></a></span>
@@ -222,7 +266,7 @@ body { background-image: url("resources/img/bg.jpg");}
 	</div>
 	
 	
-		 
+		
 	<div id="EduFooter">
 		<jsp:include page="/MenuBar/footer.jsp" flush="true"/>
 	</div>

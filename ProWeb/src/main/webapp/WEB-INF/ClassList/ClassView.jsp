@@ -4,13 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta property="fb:app_id" content="187037911676127" />
-		<meta property="og:type" content="website" />
-         <meta property="og:title" content="EduTube" />
-         <meta property="og:url" content="http://192.168.56.103:8080/edutube/" />
-         <meta property="og:description" content="모든이의 강의" />
-         <meta property="og:image" content="http://i.imgur.com/JN99KWN.png" />
+		
+<meta property="og:title" content='EduTube'/>
+<meta property="og:image" content='http://i.imgur.com/JN99KWN.png'/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content='EduTube'/>
+<meta property="og:url" content='www.naver.com'/>
+<meta property="og:description" content='페이지설명'/>  
+	
          
 <title>EduTube</title>
 <!--CSS-->
@@ -210,6 +211,28 @@
 				}
 			});		
 		}
+		
+		/*페북 테스트*/
+		function shareFacebook() {
+	var fullUrl;
+	var url = '페이지 URL';
+	var image = "http://i.imgur.com/JN99KWN.png";
+	var title = 'EduTube';
+	var summary = '페이지설명';
+
+	var pWidth = 640;
+	var pHeight = 380;
+	var pLeft = (screen.width - pWidth) / 2;
+	var pTop = (screen.height - pHeight) / 2;
+
+	fullUrl = 'http://www.facebook.com/share.php?s=100&p[url]='+ url 
+	       +'&p[images][0]='+ image 
+	       +'&p[title]='+ title 
+	       +'&p[summary]='+ summary;
+	fullUrl = fullUrl.split('#').join('%23');
+	fullUrl = encodeURI(fullUrl);
+	window.open(fullUrl,'','width='+ pWidth +',height='+ pHeight +',left='+ pLeft +',top='+ pTop +',location=no,menubar=no,status=no,scrollbars=no,resizable=no,titlebar=no,toolbar=no');
+}
 	
 </script>
 
@@ -360,24 +383,7 @@ textarea#modibody{
 </style>
 </head>
 <body>
-<!-- 페북 -->
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '187037911676127',
-      xfbml      : true,
-      version    : 'v2.5'
-    });
-  };
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
 <!-- 끝 -->
 
 	<div id='EduContainer'>
@@ -425,7 +431,7 @@ textarea#modibody{
 						</c:if>						
 						<a class="button button-orange" onClick="JavaScript:goClassList();" id="ListBtn" >목록으로</a>
 						<a class="button button-purple" onClick="JavaScript:faceShare();"><i class="fa fa-facebook-official"></i>공유하기</a>
-						<%-- <div class="fb-share-button" data-href="ClassView.do?nowPage=${nowPage}&oriNO=${DATA.no}&code=${CODE}" data-layout="button_count"></div> --%>
+						
 					</div>
 					
 					<div id="replyWF">					

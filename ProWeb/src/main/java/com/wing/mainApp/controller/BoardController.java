@@ -51,8 +51,10 @@ public class BoardController {
 			result.add(temp);
 		}
 		data.nal = (String) session.getAttribute("NAL");
+		String nal = data.nal;
 		
 		mv.addObject("LIST", result);
+		mv.addObject("NAL",nal);
 		mv.setViewName("CustomerBoard/FAQBoardList");
 		
 		return mv;
@@ -171,7 +173,7 @@ public class BoardController {
 	 * QA목록보기 
 	 */
 	@RequestMapping("/CustomerBoard/QABoardList")
-	public ModelAndView QABoardList(HttpServletRequest req, HttpSession session) {
+	public ModelAndView QABoardList(HttpServletRequest req, HttpSession session, BoardData data) {
 		ModelAndView mv = new ModelAndView();
 		
 		//	회원, 관리자만 사용할 수 있다.
@@ -211,6 +213,7 @@ public class BoardController {
 			BoardData		temp = (BoardData)list.get(i);
 			result.add(temp);
 		}
+		System.out.println(data.nal);
 		mv.addObject("PINFO", pInfo);
 		mv.addObject("LIST", result);
 		mv.setViewName("CustomerBoard/QABoardList");
