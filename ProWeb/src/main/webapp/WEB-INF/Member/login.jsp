@@ -43,7 +43,7 @@
 		// location.href = ;
 		 window.open('../member/joinmember.do', "_blank" );
 	}
-
+ 
 	function findmember() {
 
 		window.open('../member/findmember.do', "_blank");

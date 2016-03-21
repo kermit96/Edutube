@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>EduTube</title>
 	
 	<!--  Favicon (Main Icon) -->
 	<link rel="shortcut icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
@@ -122,9 +122,7 @@
 	
 	<div id="Main">
 		<!-- This area is Body Part -->
-		<div id="sideBarDiv">
-			<jsp:include page="/MenuBar/NoticeSide.jsp" flush="false" />
-		</div>
+		
 		
 		<div id="centerPage"> 
 		<h4 align="center" ><strong>공지 등록 </strong></h4>

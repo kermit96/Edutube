@@ -31,7 +31,7 @@
 <script>
 	$(document).ready(function() {
 		$("#result").click(function() {
-			alert($("#code").val());
+			
 			if($("#code").val()==0){
 				alert("코드값 입력해줘")
 				return;

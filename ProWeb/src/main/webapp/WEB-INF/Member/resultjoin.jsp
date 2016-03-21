@@ -34,7 +34,7 @@
   
     function ok() 
     {
-    	 window.close();    	
+    	 location.href="../main.do";
     }
   </script>
 
