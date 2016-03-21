@@ -52,6 +52,19 @@
 			REPORT
 		WHERE
 			REP_NO =#{no}
+		And
+			rep_isDeleted='N'	
 	
 	</select>	
+	<!--  정지된 회원 보이지 않게 -->
+	<update id="reportdelete" parameterType="int">
+		Update
+			report
+		Set
+			rep_isDeleted='Y'
+		Where
+			rep_no=#{no}
+	</update>
+	
+	
 </mapper>

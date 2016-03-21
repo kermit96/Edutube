@@ -14,7 +14,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>EduTube</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery.min.js"> </script>
 <script>
 $(function () {

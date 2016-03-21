@@ -48,7 +48,8 @@ public class ClassListDAO {
 			sqlSession.insert("clist.classinsert", data);
 		}
 		else{	
-			int tempNum = getMaxNO();			
+			int tempNum = getMaxNO();
+			System.out.println(data.code);
 			sqlSession.insert("clist.classinsert", data);
 			data.no = tempNum;
 			sqlSession.insert("clist.classinsertM", data);

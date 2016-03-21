@@ -17,6 +17,7 @@
 		FROM
 			Member where   mem_id = #{userid} and  mem_pass = #{password}
 			and mem_isDeleted = 'N'
+			and mem_block='N'
 	</select>
 	
 	<select id="getmember" resultType="com.wing.mainApp.data.Member" parameterType="java.util.HashMap" >

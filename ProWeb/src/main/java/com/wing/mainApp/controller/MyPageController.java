@@ -226,8 +226,8 @@ public class MyPageController {
 
 		mDao.insertREP(data);
 		// 뷰를 부른다
-		RedirectView rv = new RedirectView("../myPage/REPList.do");
-		mv.setView(rv);
+		
+		mv.setViewName("myPage/backpage");
 		return mv;
 	}
 	
@@ -275,7 +275,7 @@ public class MyPageController {
 		System.out.println(no);
 		String repId = mDao.selectRepid(no);
 		System.out.println(repId);
-		mDao.stopREP(repId);
+		mDao.stopREP(repId,no);
 		
 		RedirectView	rv = new RedirectView("../myPage/REPList.do");
 		mv.setView(rv);

@@ -14,7 +14,7 @@ public class InfoController {
 	public ModelAndView infomain(){
 		ModelAndView 	mv = new ModelAndView();
 		
-		mv.setViewName("Info/Infomain");
+		mv.setViewName("Info/InfoMain");
 		return mv;
 	}
 	@RequestMapping("/Info/info.do")
@@ -24,14 +24,14 @@ public class InfoController {
 		mv.setViewName("Info/info");
 		return mv;
 	}
-	@RequestMapping("/Info/map.do")
+	@RequestMapping("/Info/Map.do")
 	public ModelAndView map(HttpServletRequest req, HttpSession session){
 		ModelAndView 	mv = new ModelAndView();
 		
 		mv.setViewName("Info/Map");
 		return mv;
 	}
-	@RequestMapping("/Info/use.do")
+	@RequestMapping("/Info/Use.do")
 	public ModelAndView use(HttpServletRequest req, HttpSession session){
 		ModelAndView 	mv = new ModelAndView();
 		

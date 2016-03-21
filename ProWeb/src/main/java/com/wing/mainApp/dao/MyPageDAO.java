@@ -44,8 +44,9 @@ public class MyPageDAO {
 	/*
 	 * 회원정지
 	 */
-	public void stopREP(String str) {
+	public void stopREP(String str,int no) {
 		sqlSession.update("mypage.userstop", str);
+		sqlSession.update("mypage.reportdelete",no);
 	}
 	
 	// id 알아내기

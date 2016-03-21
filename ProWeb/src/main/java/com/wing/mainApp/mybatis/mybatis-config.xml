@@ -25,6 +25,8 @@
 		<typeAlias alias="mediadata" type="com.wing.mainApp.data.MediaData" />
 		<typeAlias alias="replydata" type="com.wing.mainApp.data.ReplyData" />
 		<typeAlias alias="msgdata" type="com.wing.mainApp.data.MessageData" />
+		<typeAlias alias="mdata" type="com.wing.mainApp.data.MyPageData" />
+		
 		
 	</typeAliases>
 	
@@ -40,6 +42,7 @@
 		<mapper resource="/com/wing/mainApp/sql/ApplySQL.xml" />
 		<mapper resource="/com/wing/mainApp/sql/SearchSQL.xml" />
 		<mapper resource="/com/wing/mainApp/sql/MessageSQL.xml" />
+		<mapper resource="/com/wing/mainApp/sql/MyPageSQL.xml" />
 	</mappers>
 
 </configuration>

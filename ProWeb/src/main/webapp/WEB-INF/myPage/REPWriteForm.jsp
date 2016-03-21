@@ -4,18 +4,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>EduTube</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script>
 	$(document).ready(function(){
 		$("#rBtn").click(function(){
 			
-			alert($("#code").val());
+			
 			if($("#code").val()==0){
 				alert("코드값 입력해줘")
 				return;
 			}
-			alert($("#bcode").val());
+			
 			if($("#bcode").val()==0){
 				alert("코드값 입력해줘")
 				return;

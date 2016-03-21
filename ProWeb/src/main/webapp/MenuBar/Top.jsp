@@ -28,7 +28,7 @@
 <script language="javascript">
 var id = "${sessionScope.ID}";
 $(document).ready(function(){
-	  /* setInterval(msg,1000); */  
+	   //setInterval(msg,5000);   
 });
 </script>
 

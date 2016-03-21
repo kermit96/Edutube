@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>EduTube</title>
 	
 	<!--  Favicon (Main Icon) -->
 	<link rel="shortcut icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
