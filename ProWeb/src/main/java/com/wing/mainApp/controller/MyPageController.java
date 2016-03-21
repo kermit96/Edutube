@@ -94,7 +94,7 @@ public class MyPageController {
 	@RequestMapping("Apply/ApplyProc")
 	public ModelAndView myPageHosts(ApplyData data){
 		ModelAndView mv = new ModelAndView();
-		String path = "E:\\Filesex";
+		String path = "D:\\testimg";
 		data.setPath(path);
 	      String oriname = "nulls";
 	      String savename = "nulls";

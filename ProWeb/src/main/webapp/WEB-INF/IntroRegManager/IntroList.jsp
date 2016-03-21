@@ -145,10 +145,7 @@
 							<option value="both">제목 + 본문</option>
 						</select>
 						<input type="text" id="content" name="content">
-						<input type="button" value="검색" id="sBtn" class="btn btn-primary btn-sm">
-							<c:if test="${sessionScope.NAL eq 'L'}">
- 								<input type="button" id="wBtn" value="글 추가" class="btn btn-primary btn-sm">
-							</c:if>
+						<input type="button" value="검색" id="sBtn" class="btn btn-primary btn-sm">						
 					</form>
 				</td>
 			</tr>

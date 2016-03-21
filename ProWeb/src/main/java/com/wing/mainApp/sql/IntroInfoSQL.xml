@@ -11,7 +11,7 @@
 			Introduce
 		VALUES
 			((SELECT NVL(MAX(intro_no), 0) + 1 FROM Introduce),
-			#{mem_id}, #{intro_title}, #{intro_body},SYSDATE,#{gimg2},'test','tt','10',SYSDATE,'N')
+			#{mem_id}, #{intro_title}, #{intro_body},SYSDATE,#{gimg2},'test','tt','10',SYSDATE,'N',0)
 	</insert>
 <!-- 	강사 소개글  질의	-->
 	<select id="selectIntroList"		resultType="idata"
@@ -381,15 +381,16 @@
 	
 	<!--  좋아요 SQL 끝 -->
 	<!-- 03/18 (이 주석이 있어야 완료 된것 -->
-	   <select id="getgood" resultType="idata" parameterType="java.util.HashMap">
-   SELECT
+	   <select id="getgood" resultType="idata" parameterType="java.util.HashMap"> 
+       SELECT * from    
+    (SELECT
         mem_id   ,
         intro_path AS gimg2,
         intro_good   AS good
     FROM
-        introduce
-    WHERE ROWNUM<![CDATA[<]]>= 3
-   ORDER BY intro_good DESC
+        introduce  
+   ORDER BY good DESC)
+   where rownum <![CDATA[<]]>= 3
    </select>
 	
 </mapper>
