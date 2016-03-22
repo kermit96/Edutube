@@ -41,7 +41,10 @@
 
 	function makeid() {
 
-		location.href = "../member/joinmember.do";
+	//	location.href = "../member/joinmember.do";
+	
+		window.open('../member/joinmember.do', "joinmember","width=450, height=700,toolbar=no");
+	
 		 // window.open('../member/joinmember.do', "_blank" );
 	}
  

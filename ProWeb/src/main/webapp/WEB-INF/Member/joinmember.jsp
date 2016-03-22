@@ -29,11 +29,14 @@
 
 <!--스크립트-->
 <!--  sha256 script  -->
-<script type="text/javascript" src="../resources/JS/sha256.js">
-<script type="text/javascript" src="../resources/JS/member.js">
+<script type="text/javascript" src="../resources/JS/sha256.js"></script>
+<script type="text/javascript" src="../resources/JS/member.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
+
 <script>
 	$(document).ready(function() {
+
 		init();
 	});
 
@@ -127,10 +130,16 @@
 
 			});
 
+
 			$("#addrfind").click(function() {
 
+         
 				daumaddrfind();
+				return;
+				
 			});
+			
+
 
 			$("#register").click(function() {
 			
@@ -197,7 +206,9 @@
 					
 					$("#mem_pass").val(Sha256.hash(password));
 
-					$("#target").submit();
+					$('form').attr({action:"../member/joinmemberprocess.do", method:"post"}).submit();
+					
+
 				} catch (ex) {
 
 					alert(ex);
@@ -219,6 +230,8 @@
 
 	function daumaddrfind() {
 
+		
+		try {
 		new daum.Postcode(
 				{
 					oncomplete : function(data) {
@@ -275,7 +288,11 @@
 						}
 					}
 				}).open();
-
+		} catch (ex) {
+			
+			alert("daum ex==>"+ex);
+			
+		}
 	}
 </script>
 
@@ -302,9 +319,8 @@ input{
 
       <div class="register-box-body">
         <p class="login-box-msg">Register a new membership</p>
-        <form id="target" method="post"
-			action="../member/joinmemberprocess.do">
-        <input type="hidden" id="mem_pass" name="mem_pass"/ >
+        <form id="target" method="post"  >
+        <input type="hidden" id="mem_pass" name="mem_pass">
         
           <div class="form-group has-feedback">
             <input type="text" id="mem_id" name="mem_id" class="form-control"
@@ -318,11 +334,7 @@ input{
 	   <!--  주석처리 (시연을 위해서 간단한 비밀번호 입력) -->
 	   <!-- pattern="^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*()])[a-zA-Z0-9!@#$%^&*()]{7,40}$" -->
  	               <input type="password" id="password" placeholder="${LANGDATA.member_passwordstr}" class="form-control"
-						title="Password must contain at least 6 characters, including UPPER/lowercase and numbers"
-						type="text" required	
-						pattern="^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*()])[a-zA-Z0-9!@#$%^&*()]{7,40}$"					
-						onchange="
-	   this.setCustomValidity(this.validity.patternMismatch ? this.title : '');  "> 
+						type="text" 	> 
 	   
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
@@ -364,7 +376,7 @@ input{
           <div id="addrDiv1">
           <input type="text" id="mem_addrCode" name="mem_addrCode" class="form-control"
 						placeholder="${LANGDATA.member_post}" readonly>
-          <button  id="addrfind" class="btn bg-purple btn-flat margin">${LANGDATA.member_postfind}</button>
+           <input type="button"  id="addrfind" class="btn bg-purple btn-flat margin" value="${LANGDATA.member_postfind}">           
           </div>
           <div id="addrDiv2">
            	<input type="text" id="mem_addr" class="form-control"
@@ -385,8 +397,8 @@ input{
               </div>
             </div><!-- /.col -->
             
-            <div class="col-xs-4">
-              <button class="btn btn-primary btn-block btn-flat" id="register">Register</button>
+            <div class="col-xs-4">              
+              <input type="button"  id="register" class="btn btn-primary btn-block btn-flat" value="Register">
             </div><!-- /.col -->
             
           </div>
