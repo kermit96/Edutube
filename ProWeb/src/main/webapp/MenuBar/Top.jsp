@@ -8,7 +8,7 @@
 	</c:if>
 
 <!DOCTYPE html>
-<title>${LANGDATA.top_edu}</title>
+<title>에듀 튜브</title>
 
 <!--  파피콘 넣기 -->
 <link rel="shortcut icon" href="/edutube/favicon.ico"
@@ -25,6 +25,24 @@
 <script src="/edutube/resources/JS/bootstrap.min.js"></script>
 <script src="/edutube/resources/JS/Link.js"></script>
 <script src="/edutube/resources/JS/MessageScript.js"></script>
+<script language="javascript">
+var id = "${sessionScope.ID}";
+$(document).ready(function(){
+	setInterval(msg,3000); 
+});
+function msg(){
+	if(id==null|| id==""){
+			
+	}
+		
+	else if(id != null){
+		window.open("/edutube/Message/isMsg.do?id="+id,"hiddenframe","width=20, height=20, resizable=no, toolbar=no, location=no,scrollbars=yes");
+		/* location.href="/edutube/Message/isMsg.do?id="+id; */
+//		 200, 260
+	}
+//	setTimeout(msg, 7000);
+}
+</script>
 
 
 <!--  Style -->
@@ -63,7 +81,7 @@ html, body {
 	width: 45%;
 	height: 60px;
 	float: left;
-	padding-top: 15px; 
+	padding-top: 15px;
 }
 
 #utilBar {
@@ -147,8 +165,7 @@ a.logC:hover {
 				<c:if test="${sessionScope.ID eq null}">
 
 					<div id="state_login">
-						<a href="JavaScript:goLogin();" class="logC">${LANGDATA.top_login}</a>&nbsp;&nbsp;<a href="JavaScript:memberJoin()" class="logC">${LANGDATA.top_member}</a>
-						
+					<a href="JavaScript:goLogin();" class="logC">${LANGDATA.top_login}</a>&nbsp;&nbsp;<a href="JavaScript:memberJoin()" class="logC">${LANGDATA.top_member}</a>						
 						<select id="lang" name="lang" onchange="goLanguage()">
 							<option value="ko"> 한국어</option>
 							<option value="en">English</option>
@@ -156,7 +173,6 @@ a.logC:hover {
 							<option value="ch">中國(繁體)</option>
 							<option value="ch_cn">中国(简体)</option>
 						</select>
-						
 					</div>
 				</c:if>
 
@@ -181,27 +197,20 @@ a.logC:hover {
 	</div>
 
 	<div id='cssmenu'>
-		<ul>
-		
-		
+		<ul>		
+			
 			<li><a href="JavaScript:goHomeIntro()"><span>${LANGDATA.top_intro}</span></a></li>
 			<li><a href="JavaScript:goNotice()"><span>${LANGDATA.top_notify}</span></a></li>
 			<li><a href="JavaScript:goLecIntro()"><span>${LANGDATA.top_instructor}</span></a></li>
 			<li><a href="JavaScript:goClasses()"><span>${LANGDATA.top_instructor_dir}</span></a></li>
 			<li><a href="JavaScript:goDownload()"><span>${LANGDATA.top_file}</span></a></li>
 			<li><a href="JavaScript:goFAQ()"><span>FAQ</span></a></li>
-			<li><a href="JavaScript:goQA()"><span>QA</span></a></li>			
-		<!--  test 제거함  -->
-					 
-			<c:if test="${isAdmin==true}">
- 				<li class='last'><a href="/edutube/AdminPage/AdminMain.do"><span>${LANGDATA.top_admin}</span></a></li>	
-			</c:if>
+			<li><a href="JavaScript:goQA()"><span>QA</span></a></li>	
+			
 		</ul>
 	</div>
-</div>
 
-<!-- 이게 들어가야 03/15 노란색줄 수정 된거 -->
-
+</div><!-- 이게 들어가야 03/15 노란색줄 수정 된거 -->
 
 <script src="/edutube/resources/JS/classie.js"></script>
 <script src="/edutube/resources/JS/selectFx.js"></script>
@@ -232,8 +241,8 @@ a.logC:hover {
 			$searchWord=$searchWord.replace(/^\s+|\s+$/g,"");
 
 			if($searchWord==""){
-			//	alert('검색어를 입력해주세욜');
-				alert('${LANGDATA.top_search}');
+				//	alert('검색어를 입력해주세욜');
+				alert('${LANGDATA.top_search}');	
 				return;
 			}			
 			$("#searchFrm").attr("action", "/edutube/Search/SearchForm.do");
@@ -241,39 +250,8 @@ a.logC:hover {
 			
 	}
 	
-	
-	var lang = "${sessionScope.LANG}";
-	
-	$("#lang").val(lang);
-	
-	
-	function goLanguage()
-	{		
-		var lang = $("#lang").val();
-        try {
-            $.ajax({
-                url:"/edutube/lang/changelang.do",
-                async:false,
-                type:'post',
-                dataType:'html',
-                cache:false,
-                data:{lang:lang},
-                success:function(data){
-                	// 재로딩
-                	location.href=location.href;         	              
-                },
-                error:function(request,status,error){
-                     alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                   }
-                	                                    
-            });
-    		
-            } catch (ex) {        	
-            	alert("ajax="+ex);
-            }
-		    
-	}
 
 	
 </script>
 
+<iframe width='1' height='1' name='hiddenframe' style="display:none"></iframe>

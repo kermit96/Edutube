@@ -4,16 +4,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Edu Tube</title>
+<title>Edu Tube | 회원가입</title>
 
 <!--CSS-->
 <!-- <link rel="stylesheet" href="../resources/CSS/bootstrap.min.css"> -->
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600'
 	rel='stylesheet' type='text/css'>
-<link
-	href="http://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css"
-	rel="stylesheet">
+<link rel="stylesheet" href="/edutube/resources/CSS/bootstrap.min.css">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css">
+ <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+     <link rel="stylesheet" href="/edutube/resources/CSS/AdminLTE.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="/edutube/resources/CSS/blue.css">
+ 
 <!--  파피콘 넣기 -->
 <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
 <link rel="icon" href="../favicon.ico" type="image/x-icon" />
@@ -26,8 +30,7 @@
 <!--스크립트-->
 <!--  sha256 script  -->
 <script type="text/javascript" src="../resources/JS/sha256.js">
-	
-</script>
+<script type="text/javascript" src="../resources/JS/member.js">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
 	$(document).ready(function() {
@@ -55,7 +58,7 @@
 						$("#mem_id").focus();
 					} else {
 
-						// $("#checkid").html("사용할수 있는 ID 입니다. ");
+					//	$("#checkid").html("사용할수 있는 ID 입니다. ");
 						$("#checkid").html("${LANGDATA.membercheckidsuccess}");
 					}
 				},
@@ -87,11 +90,11 @@
 
 				success : function(data) {
 					if (data.result) {
-				//		$("#checknickname").html("사용할수 없는 nickname 입니다. ");
-						$("#checknickname").html("${LANGDATA.memberchecknickfail}");
+		//				$("#checknickname").html("사용할수 없는 nickname 입니다. ");
+		                $("#checknickname").html("${LANGDATA.memberchecknickfail}");
 						$("#mem_nick").focus();
 					} else {
-						// $("#checknickname").html("사용할수 있는 nickname 입니다. ");
+					//	$("#checknickname").html("사용할수 있는 nickname 입니다. ");
 						$("#checknickname").html("${LANGDATA.memberchecknicksuccess}");
 					}
 				},
@@ -130,7 +133,7 @@
 			});
 
 			$("#register").click(function() {
-
+			
 				try {
 
 					var password = $("#password").val().trim();
@@ -144,36 +147,33 @@
 
 					var tel = $("#mem_tel").val().trim();
 
-					 
-					
-					
 					if (name == "") {
-						// alert("이름을 입력해 주시기 바랍니다");
-						
+					//	alert("이름을 입력해 주시기 바랍니다");
 						alert("${LANGDATA.member_inputname}");
 						return;
 
 					}
 
 					if (nickname == "") {
-						// alert("닉네임을 입력해 주시기 바랍니다");
+					//	alert("닉네임을 입력해 주시기 바랍니다");
 						alert("${LANGDATA.member_inputnickname}");
 						return;
 					}
 
 					if (email == "") {
-						// alert("이 메일을 입력해 주시기 바랍니다.");
+					//	alert("이 메일을 입력해 주시기 바랍니다.");
 						alert("${LANGDATA.member_inputemail}");
 						return;
 					}
 
 					if (tel == "") {
-						//alert("전화 번호를 입력해 주시기 바랍니다.");
-						alert("${LANGDATA.member_inputtel}");
+					//	alert("전화 번호를 입력해 주시기 바랍니다.");
+					    alert("${LANGDATA.member_inputtel}");
 						return;
 					}
 
 					if (id == "") {
+					//	alert("아이디를 입력해 주시기 바랍니다.");
 						alert("${LANGDATA.member_inputid}");
 						return;
 					}
@@ -181,18 +181,20 @@
 					if (password =="") {
 						alert("${LANGDATA.member_inputpassword}");
 					}
+
 					if (password != repassword) {
-						// alert("password 는 일치 해야 합니다. ")
-						alert("${LANGDATA.member_samepassword}");
+					//	alert("password 는 일치 해야 합니다. ")
+					    alert("${LANGDATA.member_samepassword}");
 						return;
 					}
+
 					
 					if (!checkpassword(password))
 					{						
 						alert("${LANGDATA.member_badpassword}");
 						return;
 					}
-
+					
 					$("#mem_pass").val(Sha256.hash(password));
 
 					$("#target").submit();
@@ -213,8 +215,7 @@
 		}
 	}
 
-	
-	
+
 
 	function daumaddrfind() {
 
@@ -279,281 +280,123 @@
 </script>
 
 <style>
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form,
-	fieldset, input, textarea, p, blockquote, th, td {
-	padding: 0;
-	margin: 0;
+#mem_addrCode{
+	width:120px;
+	float:left;
 }
-
-fieldset, img {
-	border: 0
+#addrfind{
+	width: 120px;
+	float:right;
 }
-
-ol, ul, li {
-	list-style: none
-}
-
-:focus {
-	outline: none
-}
-
-body, input, textarea, select {
-	font-family: 'Open Sans', sans-serif;
+input{
 	font-size: 16px;
-	color: #4c4c4c;
-}
-
-p {
-	font-size: 12px;
-	width: 150px;
-	display: inline-block;
-	margin-left: 18px;
-}
-
-h1 {
-	font-size: 32px;
-	font-weight: 300;
-	color: #4c4c4c;
-	text-align: center;
-	padding-top: 10px;
-	margin-bottom: 10px;
-}
-
-html {
-	background-color: #ffffff;
-}
-
-.testbox {
-	margin: 20px auto;
-	width: 343px;
-	height: 464px;
-	-webkit-border-radius: 8px/7px;
-	-moz-border-radius: 8px/7px;
-	border-radius: 8px/7px;
-	background-color: #ebebeb;
-	-webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
-	-moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
-	box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
-	border: solid 1px #cbc9c9;
-}
-
-input[type=radio] {
-	visibility: hidden;
-}
-
-form {
-	margin: 0 30px;
-}
-
-label.radio {
-	cursor: pointer;
-	text-indent: 35px;
-	overflow: visible;
-	display: inline-block;
-	position: relative;
-	margin-bottom: 15px;
-}
-
-label.radio:before {
-	background: #3a57af;
-	content: '';
-	position: absolute;
-	top: 2px;
-	left: 0;
-	width: 20px;
-	height: 20px;
-	border-radius: 100%;
-}
-
-label.radio:after {
-	opacity: 0;
-	content: '';
-	position: absolute;
-	width: 0.5em;
-	height: 0.25em;
-	background: transparent;
-	top: 7.5px;
-	left: 4.5px;
-	border: 3px solid #ffffff;
-	border-top: none;
-	border-right: none;
-	-webkit-transform: rotate(-45deg);
-	-moz-transform: rotate(-45deg);
-	-o-transform: rotate(-45deg);
-	-ms-transform: rotate(-45deg);
-	transform: rotate(-45deg);
-}
-
-input[type=radio]:checked+label:after {
-	opacity: 1;
-}
-
-hr {
-	color: #a9a9a9;
-	opacity: 0.3;
-}
-
-input[type=text], input[type=password] {
-	width: 200px;
-	height: 39px;
-	-webkit-border-radius: 0px 4px 4px 0px/5px 5px 4px 4px;
-	-moz-border-radius: 0px 4px 4px 0px/0px 0px 4px 4px;
-	border-radius: 0px 4px 4px 0px/5px 5px 4px 4px;
-	background-color: #fff;
-	-webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
-	-moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
-	box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
-	border: solid 1px #cbc9c9;
-	margin-left: -5px;
-	margin-top: 13px;
-	padding-left: 10px;
-}
-
-input[type=password] {
-	margin-bottom: 25px;
-}
-
-#icon {
-	display: inline-block;
-	width: 30px;
-	background-color: #3a57af;
-	padding: 8px 0px 8px 15px;
-	margin-left: 15px;
-	-webkit-border-radius: 4px 0px 0px 4px;
-	-moz-border-radius: 4px 0px 0px 4px;
-	border-radius: 4px 0px 0px 4px;
-	color: white;
-	-webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
-	-moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
-	box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
-	border: solid 0px #cbc9c9;
-}
-
-.gender {
-	margin-left: 30px;
-	margin-bottom: 30px;
-}
-
-.accounttype {
-	margin-left: 8px;
-	margin-top: 20px;
-}
-
-a.button {
-	font-size: 14px;
-	font-weight: 600;
-	color: white;
-	padding: 6px 25px 0px 20px;
-	margin: 10px 8px 20px 0px;
-	display: inline-block;
-	float: right;
-	text-decoration: none;
-	width: 50px;
-	height: 27px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	background-color: #3a57af;
-	-webkit-box-shadow: 0 3px rgba(58, 87, 175, .75);
-	-moz-box-shadow: 0 3px rgba(58, 87, 175, .75);
-	box-shadow: 0 3px rgba(58, 87, 175, .75);
-	transition: all 0.1s linear 0s;
-	top: 0px;
-	position: relative;
-}
-
-a.button:hover {
-	top: 3px;
-	background-color: #2e458b;
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	box-shadow: none;
 }
 </style>
 
 </head>
-<body>
-	<div id='EduContainer' align="center">
-		<h2>${LANGDATA.member_joinmember}</h2>
-		<br>
-		<form id="target" method="post"
+  <body class="hold-transition register-page">
+    <div class="register-box">
+      <div class="register-logo">
+        <a href="/edutube/main.do"><b>Edu</b>Tube</a>
+      </div>
+
+      <div class="register-box-body">
+        <p class="login-box-msg">Register a new membership</p>
+        <form id="target" method="post"
 			action="../member/joinmemberprocess.do">
-
-			<input type="hidden" id="mem_pass" name="mem_pass"/ >
-			<table>
-				<tr>
-					<td>ID</td>
-					<td><input type="text" id="mem_id" name="mem_id"
+        <input type="hidden" id="mem_pass" name="mem_pass"/ >
+        
+          <div class="form-group has-feedback">
+            <input type="text" id="mem_id" name="mem_id" class="form-control"
 						placeholder="${LANGDATA.member_idinputmsg}">
-						<div id="checkid"></div></td>
-				</tr>
-
-				<tr>
-					<td>${LANGDATA.member_passwordstr}</td>
-					<td><input type="password" id="password" placeholder="${LANGDATA.member_passwordstr}">
-					</td>
-				</tr>
-
-				<tr>
-					<td>${LANGDATA.member_verypasswordstr}</td>
-					<td><input type="password" id="repassword"
-						placeholder="${LANGDATA.member_verypasswordstr}"></td>
-				</tr>
-
-
-
-				<tr>
-					<td>${LANGDATA.member_name}</td>
-					<td><input type="text" id="mem_name" name="mem_name"
-						placeholder="${LANGDATA.member_name}"></td>
-				</tr>
-
-				<tr>
-					<td>${LANGDATA.member_nickname}</td>
-					<td><input type="text" id="mem_nick" name="mem_nick"
+						<div id="checkid"></div>
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+          </div>
+          
+   
+	   <div class="form-group has-feedback">
+	   <!--  주석처리 (시연을 위해서 간단한 비밀번호 입력) -->
+	   <!-- pattern="^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*()])[a-zA-Z0-9!@#$%^&*()]{7,40}$" -->
+ 	               <input type="password" id="password" placeholder="${LANGDATA.member_passwordstr}" class="form-control"
+						title="Password must contain at least 6 characters, including UPPER/lowercase and numbers"
+						type="text" required	
+						pattern="^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*()])[a-zA-Z0-9!@#$%^&*()]{7,40}$"					
+						onchange="
+	   this.setCustomValidity(this.validity.patternMismatch ? this.title : '');  "> 
+	   
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          </div>
+          
+          <div class="form-group has-feedback">
+            <input type="password" id="repassword" class="form-control"
+						placeholder="${LANGDATA.member_verypasswordstr}">
+            <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+          </div>
+          
+            <div class="form-group has-feedback">
+            <input type="text" id="mem_name" name="mem_name" class="form-control"
+						placeholder="${LANGDATA.member_name}">
+            <span class="glyphicon glyphicon-tag form-control-feedback"></span>
+          </div>
+          
+               <div class="form-group has-feedback">
+            <input type="text"  id="mem_nick" name="mem_nick" class="form-control"
 						placeholder="${LANGDATA.member_nickname}">
-						<div id="checknickname"></div></td>
-				</tr>
+            <span class="glyphicon glyphicon-paperclip form-control-feedback"></span>
+            <div id="checknickname"></div>
+          </div>
+          
+               <div class="form-group has-feedback">
+            <input type="tel" id="mem_tel" name="mem_tel" class="form-control"
+						placeholder="${LANGDATA.member_tel}">
+            <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+          </div>          
+              
+          <div class="form-group has-feedback">
+            <input type="email" id="mem_email" name="mem_email" class="form-control"
+						placeholder="e-mail">
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+          </div>
 
-				<tr>
-					<td>${LANGDATA.member_tel}</td>
-					<td><input type="tel" id="mem_tel" name="mem_tel"
-						placeholder="${LANGDATA.member_tel}"></td>
-				</tr>
+          
+          <!-- 우편번호 -->
+          
+          <div id="addrDiv1">
+          <input type="text" id="mem_addrCode" name="mem_addrCode" class="form-control"
+						placeholder="${LANGDATA.member_post}" readonly>
+          <button  id="addrfind" class="btn bg-purple btn-flat margin">${LANGDATA.member_postfind}</button>
+          </div>
+          <div id="addrDiv2">
+           	<input type="text" id="mem_addr" class="form-control"
+						name="mem_addr" id="mem_addr" placeholder="${LANGDATA.member_addr}" readonly>
+			
+          </div>
+          <div id="addrDiv3">
+          		<input
+						type="text" id="mem_detailaddr" name="mem_detailaddr" class="form-control"
+						placeholder="${LANGDATA.member_addrmore}">
+				<span class="glyphicon glyphicon-map-marker form-control-feedback"></span> 
+          </div>
+          
+          <div class="row">
+          
+            <div class="col-xs-8">
+              <div class="checkbox icheck">              
+              </div>
+            </div><!-- /.col -->
+            
+            <div class="col-xs-4">
+              <button class="btn btn-primary btn-block btn-flat" id="register">Register</button>
+            </div><!-- /.col -->
+            
+          </div>
+          
+        </form>
 
-				<tr>
-					<td>E-MAIl</td>
-					<td><input type="email" id="mem_email" name="mem_email"
-						placeholder="e-mail"></td>
-				</tr>
+       
+      </div><!-- /.form-box -->
+    </div><!-- /.register-box -->
 
-				<tr>
-
-					<td>${LANGDATA.member_addr}</td>
-					<td><input type="text" id="mem_addrCode" name="mem_addrCode"
-						placeholder=" ${LANGDATA.member_post}"> 
-						<input type="button" id="addrfind"
-						value="${LANGDATA.member_postfind}"><br> 
-						<input type="text" id="mem_addr"
-						name="mem_addr" id="mem_addr" placeholder="${LANGDATA.member_addr}"> 
-						<input
-						type="text" id="mem_detailaddr" name="mem_detailaddr"
-						placeholder="${LANGDATA.member_addrmore}"></td>
-				</tr>
-
-				<tr>
-					<td colspan="2" align="center"><input type="button"
-						id="register" value="${LANGDATA.member_reg}"> 
-						<input type="button" id="cancel"
-						value="${LANGDATA.member_cancel}">
-						</td>
-				</tr>
-
-			</table>
-		</form>
-
-
-	</div>
-
-</body>
+  
+  </body>
 </html>

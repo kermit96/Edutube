@@ -31,7 +31,7 @@
 <script>
 	$(document).ready(function() {
 		$("#result").click(function() {
-			
+			alert($("#code").val());
 			if($("#code").val()==0){
 				alert("코드값 입력해줘")
 				return;
@@ -50,7 +50,62 @@
 	left: 50%;
 	margin-left: -600px;
 }
-   textarea#body{
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td {
+	text-align: center;
+	padding: 8px;
+	height : 50px;
+}
+
+tr:nth-child(even) {
+	background-color: #f3f3f3
+}
+
+th {
+	background-color: #f96e5b;
+	color: white;
+}
+
+tr>th {
+	text-align: center;
+}
+
+#rcorners2 {
+	border: 0px solid white;
+	padding: 50px;
+	width: 1000px;
+}
+
+.button {
+	border-radius: 15px;
+	background-color: #f96e5b;
+	border: none;
+	color: white;
+	padding: 8px 16px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	margin: 2px 1px;
+	cursor: pointer;
+}
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.page {
+	text-align : right;
+	background-color: white;
+}
+ textarea#body{
       width:750px;
       height:400px;
       resize:none;
@@ -67,13 +122,13 @@
 		</div>
 
 		<div id="Main">
+		<br>
 			<!-- This area is Body Part -->
-			<p>강사신청이다</p>
 			<form method="POST" action="" id="applyfrm"
 				enctype="multipart/form-data">
 				<table width="70%" border="1" align="center">
 					<tr>
-						<td align="center">강의 종류</td>
+						<th align="center">강의 종류</th>
 						<td>
 							<select id="code" name="code">
 								<option value="langkor" selected>한국어</option>
@@ -91,36 +146,36 @@
 						</td>
 					</tr>
 					<tr>
-						<td align="center">이름</td>
+						<th align="center">이름</th>
 						<td><input type="text" id="name" name="clname"
 							value="${sessionScope.NAME}" readonly="readonly"></td>
 					</tr>
 					<tr>
-						<td align="center">아이디</td>
+						<th align="center">아이디</th>
 						<td><input type="text" id="id" name="id"
 							value="${sessionScope.ID}" readonly="readonly"></td>
 					</tr>
 					<tr>
-						<td align="center">닉네임</td>
+						<th align="center">닉네임</th>
 						<td><input type="text" id="nick" name="nick"
 							value="${sessionScope.NICKNAME}" readonly="readonly"></td>
 					</tr>
 					<tr>
-						<td align="center">전화번호</td>
+						<th align="center">전화번호</th>
 						<td><input type="text" id="tel" name="tel"
 							value="${sessionScope.TEL}" readonly="readonly"></td>
 					</tr>
 					<tr>
-						<td>경력 및 신청사유</td>
+						<th>경력 및 신청사유</th>
 						<td height="40%"><textarea id="body" name="body"></textarea></td>
 					</tr>
 					<tr>
-						<td>증명 자료</td>
+						<th>증명 자료</th>
 						<td><input type="file" id="afile" name="afile"></td>
 					</tr>
 					<tr align="center">
 						<td colspan="2"><input type="button" value="신청" id="result"
-							name="result"></td>
+							name="result" class="button"></td>
 					</tr>
 				</table>
 			</form>

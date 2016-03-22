@@ -48,10 +48,71 @@
 	margin-left: -600px;
 }
 
+table {
+	border-collapse: collapse;
+	width: 20%;
+}
+
+th, td {
+	text-align: center;
+	padding: 2px;
+	height: 5px;
+}
+
+tr:nth-child(even) {
+	background-color: #f3f3f3
+}
+
+th {
+	background-color: #f96e5b;
+	color: white;
+	border: 1px solid white;
+}
+
+tr>th {
+	text-align: center;
+	border: 1px solid white;
+}
+
+#rcorners2 {
+	border: 1px solid white;
+	padding: 50px;
+	width: 1000px;
+}
+
+.button {
+	border-radius: 15px;
+	background-color: #f96e5b;
+	border: none;
+	color: white;
+	padding: 8px 16px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	margin: 2px 1px;
+	cursor: pointer;
+}
+
+.page {
+	text-align: right;
+	background-color: white;
+}
+
 textarea#body {
 	width: 250px;
 	height: 150px;
 	resize: none;
+}
+
+.bottom {
+	border-bottom-color: white;
+	width: 100px;
+	position: absolute;
+	left: 44.5%;
+}
+.round{
+	border: 1px solid white;
 }
 </style>
 
@@ -66,18 +127,18 @@ textarea#body {
 			<input type="hidden" id="fromid" name="fromid" value="${sessionScope.ID}">
 				<table width="20%" border="1" align="center">
 					<tr>
-						<td>받는사람</td>
-						<td><input type="text" id="toid" name="toid" value="${toid}"
+						<th>받는사람</th>
+						<td class="round"><input type="text" id="toid" name="toid" value="${toid}"
 							readonly="readonly"></td>
 					</tr>
 					<tr>
-						<td>내용</td>
-						<td><textarea id="body" name="body"></textarea></td>
+						<th>내용</th>
+						<td class="round"><textarea id="body" name="body"></textarea></td>
 					</tr>
 					<tr>
-						<td colspan="2" align="center"><input type="button"
-							value="전송" id="send"> <input type="button" value="취소"
-							id="cancel"></td>
+						<td colspan="2" align="center" class="round"><input type="button"
+							value="전송" id="send" class="button"> <input type="button" value="취소"
+							id="cancel" class="button"></td>
 					</tr>
 				</table>
 			</form>

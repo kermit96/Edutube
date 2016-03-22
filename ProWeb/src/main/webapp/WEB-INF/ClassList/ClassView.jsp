@@ -54,7 +54,6 @@
 	function goClassList(){
 		location.href="../ClassList/ClassList.do?nowPage=${nowPage}&code=${CODE}";
 	}
-
 		
 	/* 좋아요 처리 */
 	$(document).ready(function(){

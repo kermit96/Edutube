@@ -65,7 +65,6 @@
 	
 	/*자료실*/
 	function goDownload(){
-	//	alert('자료실');
 		location.href="/edutube/DownLoad/DownMain.do";
 	}
 	

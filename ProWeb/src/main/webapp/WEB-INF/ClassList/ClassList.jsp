@@ -42,7 +42,8 @@
 }
 
 #main {
-	width: 1200px;
+	width: 1200px;	
+	height:100%;
 }
 
 #centerPage {
@@ -53,6 +54,14 @@
 	padding: 10px;
 	font-size: 16px;
 }
+		#EduFooter{
+				width:100%px;
+				margin:20px auto;
+				padding:20px;
+				background-color:#DDD;
+				text-align:right;
+				clear:both;
+		}
 
 #sideBarDiv {
 	float: left;
@@ -74,6 +83,7 @@
 	tbody tr td a:visited{
 		text-decoration: none;
 	}	
+	
 </style>
 
 </head>
@@ -187,10 +197,15 @@
 
 					</ul>
 				</div><!--  페이징 처리 끝 -->
-			</div><!--  게시글 테이블 끝 -->
-		</div><!--  센터페이지 -->		
+			</div><!--  게시글 테이블 끝 --><!--  센터 -->
+			
+			<!--  푸터 -->
+			<div id="EduFooter">
+				<jsp:include page="/MenuBar/footer.jsp" flush="true"/>
+			</div>
+		</div><!--  메인 -->		
 		
-		
+
 	</div><!--  전체 DIV -->
 
 </body>
