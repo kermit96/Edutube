@@ -317,6 +317,11 @@
 
 </head>
 <body>
+
+	<div id='top'>	
+		<jsp:include page="/MenuBar/Top.jsp" flush="false" />
+	</div>	
+
 <div class="container">
   <h2>${LANGDATA.member_usermodify}</h2>
   <ul class="nav nav-tabs">
