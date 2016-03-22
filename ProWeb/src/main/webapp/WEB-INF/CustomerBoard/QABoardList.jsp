@@ -52,6 +52,14 @@
 	left: 50%;
 	margin-left: -600px;
 }
+		#EduFooter{
+				width:100%px;
+				margin:20px auto;
+				padding:20px;
+				background-color:#DDD;
+				text-align:right;
+				clear:both;
+		}
 table {
 	border-collapse: collapse;
 	width: 100%;
@@ -176,7 +184,15 @@ tr>th {
 					</td>
 				</tr>
 			</table>
+			
+			<div id="EduFooter">
+				<jsp:include page="/MenuBar/footer.jsp" flush="true"/>
+			</div>
+	
+			
 		</div>
 	</div>
+		
+	
 </body>
 </html>

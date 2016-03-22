@@ -83,6 +83,15 @@
 				left: 50%;
 				margin-left:-600px;				
 		}
+		#EduFooter{
+				width:100%px;
+				margin:20px auto;
+				padding:20px;
+				background-color:#DDD;
+				text-align:right;
+				clear:both;
+		}		
+		
 		#main{
 				width:1200px;
 		}	
@@ -268,6 +277,11 @@
 		</div>
 
 		</div>
+		
+		<div id="EduFooter">
+			<jsp:include page="/MenuBar/footer.jsp" flush="true"/>
+		</div>
+		
 	</div>		 
  </div>
 </body>

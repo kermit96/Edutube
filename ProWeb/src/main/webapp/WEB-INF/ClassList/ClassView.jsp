@@ -253,6 +253,15 @@
 	left: 50%;
 	margin-left: -600px;
 }
+		#EduFooter{
+				width:100%px;
+				margin:20px auto;
+				padding:20px;
+				background-color:#DDD;
+				text-align:right;
+				clear:both;
+		}
+
 
 #main {
 	width: 1200px;
@@ -454,9 +463,15 @@ textarea#modibody{
 				</div><!--  viewmain 끝 -->
 			</div><!--  실제로 들어갈 내용 -->
 			
+				<div id="EduFooter">
+				<jsp:include page="/MenuBar/footer.jsp" flush="true"/>
+		</div>
+			
 		</div><!-- 메뉴바 밑 감싸기 -->
 
 	</div><!-- 전체 감싸기 -->
+	
+
 					 
 
 

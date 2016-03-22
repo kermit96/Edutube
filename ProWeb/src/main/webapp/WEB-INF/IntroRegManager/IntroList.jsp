@@ -38,6 +38,15 @@
 			padding:10px;
 			font-size:16px;					
 		}
+				#EduFooter{
+				width:100%px;
+				margin:20px auto;
+				padding:20px;
+				background-color:#DDD;
+				text-align:right;
+				clear:both;
+		}
+		
 		#sideBarDiv{
 			float:left;
 			border-top:solid 1px white;
@@ -199,6 +208,11 @@
 	  </table>
 <!-- 	기타 부가 기능 --> 
 			</div>
+			
+					<div id="EduFooter">
+				<jsp:include page="/MenuBar/footer.jsp" flush="true"/>
+		</div>
+			
 		</div>
 	</div>
 	
