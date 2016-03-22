@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main">
+	<!-- 공지사항 가져오기 -->
+	<select id="getnotice" resultType="mndata">
+		SELECT
+			NOTICE_TITLE,
+			NOTICE_DATE
+		FROM
+			NOTICE
+		WHERE
+			NOTICE_ISDELETED ='N'
+	</select>
+	<!-- QA 가져오기 -->
+	<select id="getqa" resultType="mndata">
+		SELECT
+			QA_TITLE,
+			QA_DATE
+		FROM
+			QA
+		WHERE
+			QA_ISDELETED ='N'
+	</select>
+	<!-- 강의 목록 가져오기 -->
+	<select id="getclass" resultType="mndata">
+		SELECT	
+			class_title,
+			class_date,
+			sub_code
+		FROM
+			CLASS
+		WHERE
+			CLASS_ISDELETED ='N'
+	</select>
+	<!-- 자료실 가져오기 -->
+	<select id="getdown" resultType="mndata">
+		SELECT
+			DOWN_TITLE,
+			DOWN_DATE
+		FROM
+			DOWNLOAD
+		WHERE
+			DOWN_ISDELETED='N'
+	</select>
+</mapper>
