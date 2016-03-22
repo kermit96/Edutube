@@ -57,7 +57,7 @@ public class MessageContoller {
 	}
 	@RequestMapping("Message/isMsg")
 	public ModelAndView isMsg(HttpServletRequest req){
-		System.out.println("sex들어옴");
+		
 		ModelAndView mv = new ModelAndView();
 		String id = req.getParameter("id");
 		System.out.println("메세지 검사 확인");
