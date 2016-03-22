@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wing.mainApp.dao.IntroInfoDAO;
+import com.wing.mainApp.dao.MainDAO;
 import com.wing.mainApp.data.IntroInfoData;
 import com.wing.mainApp.util.PageUtil;
 import com.wing.mainApp.util.StringUtil;
@@ -21,6 +22,8 @@ public class MainController {
 
 	@Autowired
 	IntroInfoDAO	iDao;
+	@Autowired
+	MainDAO maDao;
 	/** 
 	 *  메인페이지 (index.jsp 호출)
 	 * */
@@ -54,7 +57,15 @@ public class MainController {
 		map.put("end", end);
 		
 		ArrayList	list = iDao.getGood(map);
+		ArrayList nolist = maDao.getNotice();
+		ArrayList cllist = maDao.getClassd();
+		ArrayList qalist = maDao.getQaList();
+		ArrayList downlist = maDao.getDown();
 		
+		mv.addObject("DOWNLIST",downlist);
+		mv.addObject("QALIST",qalist);
+		mv.addObject("CLLIST",cllist);
+		mv.addObject("NOLIST",nolist);
 		mv.addObject("PINFO", pInfo);
 		mv.addObject("LIST", list);
 		
