@@ -36,7 +36,7 @@ public class Setup {
 	//	response.setContentType("text/html");
 	//	response.setCharacterEncoding("utf-8");
 
-		
+		response.setCharacterEncoding("UTF-8");
 		Globalconfig config = new Globalconfig();
 
 		Gson gson = new Gson();
@@ -54,7 +54,7 @@ public class Setup {
 		// TODO Auto-generated method stub
 	//	response.getWriter().append("Served at: ").append(request.getContextPath());
 		  
-		
+		response.setCharacterEncoding("UTF-8");
 		   
 		String savedir = request.getParameter("savedir");
 
@@ -91,7 +91,7 @@ public class Setup {
 		String smtpemail ;
 		String smtpsender;
 		
-		
+		response.setCharacterEncoding("UTF-8");
 		 smtphost = request.getParameter("smtphost");
 		 smtpuserid = request.getParameter("smtpuserid");
 		 smtppassword = request.getParameter("smtppassword");
@@ -144,7 +144,7 @@ public class Setup {
 		String userid ="" ;				
 		String password="";
 
-		
+		response.setCharacterEncoding("UTF-8");
 
 		
 		dbtype = Integer.parseInt(request.getParameter("dbtype") );
@@ -182,6 +182,8 @@ public class Setup {
 	@RequestMapping(value = "/Setup/smtptest")
 	public void smtptest(HttpServletRequest request, HttpServletResponse response)
 	{
+		
+		response.setCharacterEncoding("UTF-8");
 		
 	    int    smtpport;
 	    String smtphost;
@@ -250,6 +252,10 @@ public class Setup {
 	@RequestMapping(value = "/Setup/dbtest")
 	public void dbtest(HttpServletRequest request, HttpServletResponse response)
 	{	
+		
+		
+		response.setCharacterEncoding("UTF-8");
+		
 		int  dbtype = 0 ;
 		String dbname ="";
 		String host ="";
