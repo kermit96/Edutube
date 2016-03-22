@@ -141,7 +141,7 @@ body { background-image: url("resources/img/bg.jpg");}
 			<tr>
 			<c:forEach var="temp" items="${LIST}">
 				<td >
-					<img src="/edutube/gimgs/${temp.gimg2 }" width="100" height="100">
+					<img src="/edutube/gimgs/${temp.gimg2}" width="100" height="100">
 				</td>
 				</c:forEach>
 			</tr>
@@ -161,41 +161,6 @@ body { background-image: url("resources/img/bg.jpg");}
 				</td>
 				</c:forEach>
 			</tr>
-		
-		
-		<%-- 	<c:forEach var="temp" items="${LIST}">
-			<tr>
-				<td>
-					<img src="../gimgs/${temp.gimg2}" width="100" height="100">
-				</td>
-			</tr>
-			<tr>
-				<td>${temp.mem_id}</td>
-			</tr>
-			<tr>
-				<td>${temp.good}</td>
-			</tr> --%>
-  			<!-- <tr>
-    			<td><img src="resources/img/gg.jpg"></td>
-    			<td><img src="resources/img/ss.jpg"></td>
-    			<td><img src="resources/img/bb.jpg"></td>
-  			</tr>
-  			<tr>
-    			<td><img src="resources/img/yu.jpg"></td>
-    			<td><img src="resources/img/gu.jpg"></td>
-    			<td><img src="resources/img/oh.jpg"></td>
-  			</tr>
-			  <tr>
-			    <td>윤아입니당</td>
-			    <td>구혜선을구혜선안되</td>
-			    <td>천만의요정</td>
-			  </tr>
-			  <tr>
-			    <td>20367</td>
-			    <td>17623</td>
-			    <td>13027</td>
-			  </tr> -->
-			  <%-- </c:forEach> --%>
 			</table>
 		</div>
 	</div>
@@ -208,14 +173,12 @@ body { background-image: url("resources/img/bg.jpg");}
 	<h3><span><img src="resources/img/notice.jpg" alt="공지사항" /></span></h3>
 		<div class="title">
 		<dl>
-			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
-			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
-			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
-			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
-			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
+		<c:forEach var="no1" items="${NOLIST}">
+			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">${no1.notice_title}</a></dt><dd>${no1.notice_dates}</dd>
+		</c:forEach>
 		</dl>
 		</div>
-		<span class="more"><a href="/edutube/Notice/NoticeList.do"><img src="resources/img/more.jpg" alt="더보기(공지사항)" /></a></span>
+		
 	</div>
 	
 	<!-- 강의목록 -->
@@ -223,14 +186,12 @@ body { background-image: url("resources/img/bg.jpg");}
 	<h3><span><img src="resources/img/class.jpg" alt="강의목록" /></span></h3>
 		<div class="title">
 		<dl>
-			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
-			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
-			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
-			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
-			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
+			<c:forEach var="temp3" items="${CLLIST}">
+			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[${temp3.class_codek}]${temp3.class_title}</a></dt><dd>${temp3.class_dates}</dd>
+			</c:forEach>
 		</dl>
 		</div>
-		<span class="more"><a href="/edutube/ClassList/ClassList.do"><img src="resources/img/more.jpg" alt="더보기(강의게시물)" /></a></span>
+		
 	</div>
 	
 	<!-- 자료실 -->
@@ -238,14 +199,12 @@ body { background-image: url("resources/img/bg.jpg");}
 	<h3><span><img src="resources/img/data.jpg" alt="자료실" /></span></h3>
 		<div class="title">
 		<dl>
-			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
-			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
-			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
-			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
-			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
+			<c:forEach var="temp" items="${DOWNLIST}">
+			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">${temp.down_title}</a></dt><dd>${temp.down_dates}</dd>
+			</c:forEach>
 		</dl>
 		</div>
-		<span class="more"><a href="/edutube/DownLoad/DownMain.do"><img src="resources/img/more.jpg" alt="더보기(자료실)" /></a></span>
+		
 	</div>
 	
 	<!-- 질문게시판 -->
@@ -253,14 +212,12 @@ body { background-image: url("resources/img/bg.jpg");}
 	<h3><span><img src="resources/img/qa.jpg" alt="묻고답하기" /></span></h3>
 		<div class="title">
 		<dl>
-			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
-			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
-			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
-			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
-			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[한식]아 고등어여라</a></dt><dd>2016-03-15</dd>
+			<c:forEach var="temp2" items="${QALIST}">
+			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">${temp2.qa_title}</a></dt><dd>${temp2.qa_dates}</dd>
+			</c:forEach>
 		</dl>
 		</div>
-		<span class="more"><a href="/edutube/CustomerBoard/QABoardList.do"><img src="resources/img/more.jpg" alt="더보기(묻고답하기)" /></a></span>
+		
 	</div>
 	
 	</div>
