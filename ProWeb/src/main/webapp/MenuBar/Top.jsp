@@ -206,7 +206,9 @@ a.logC:hover {
 			<li><a href="JavaScript:goDownload()"><span>${LANGDATA.top_file}</span></a></li>
 			<li><a href="JavaScript:goFAQ()"><span>FAQ</span></a></li>
 			<li><a href="JavaScript:goQA()"><span>QA</span></a></li>	
-			
+			<c:if test="${isAdmin==true}">
+ 				<li class='last'><a href="/edutube/AdminPage/AdminMain.do"><span>${LANGDATA.top_admin}</span></a></li>	
+			</c:if>
 		</ul>
 	</div>
 
@@ -250,7 +252,40 @@ a.logC:hover {
 			
 	}
 	
+	var lang = "${sessionScope.LANG}";
+	
+	$("#lang").val(lang);
+	
+	
+	function goLanguage()
+	{		
+		var lang = $("#lang").val();
+        try {
+            $.ajax({
+                url:"/edutube/lang/changelang.do",
+                async:false,
+                type:'post',
+                dataType:'html',
+                cache:false,
+                data:{lang:lang},
+                success:function(data){
+                	// 재로딩
+                	location.href=location.href;         	              
+                },
+                error:function(request,status,error){
+                     alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                   }
+                	                                    
+            });
+    		
+            } catch (ex) {        	
+            	alert("ajax="+ex);
+            }
+		    
+	}
 
+	
+	
 	
 </script>
 

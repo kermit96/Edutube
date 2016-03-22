@@ -33,16 +33,16 @@
 
 		$("#login").click(login);
 
-		$("#makeid").click(make);
+//		$("#makeid").click(make);
 
-		$("#findmember").click(findmember);
+//		$("#findmember").click(findmember);
 
 	});
 
-	function make() {
+	function makeid() {
 
-		// location.href = ;
-//		 window.open('../member/joinmember.do', "_blank" );
+		location.href = "../member/joinmember.do";
+		 // window.open('../member/joinmember.do', "_blank" );
 	}
  
 	function findmember() {
@@ -135,9 +135,8 @@
           </div>
              
 
-
         <a href="JavaScript:findmember()" id="findmember">${LANGDATA.member_idpasswordfind} </a><br>
-        <a href="JavaScript:memberJoin()" class="text-center" id="makeid">${LANGDATA.member_join}</a>
+        <a href="JavaScript:makeid()" class="text-center" id="makeid">${LANGDATA.member_join}</a>
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->

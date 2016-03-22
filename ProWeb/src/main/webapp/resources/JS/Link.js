@@ -115,7 +115,7 @@
 		 var html = "/edutube/member/joinmember.do";
 		
 		 // location.href="/edutube/member/joinmember.do";
-		 window.open(html,"memberjoin","width=460, height=400,toolbar=no");
+		 window.open(html,"memberjoin","width=460, height=720,toolbar=no");
 		 
 	}	
 
