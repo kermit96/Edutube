@@ -29,7 +29,7 @@ public class DbInfoMap {
 	  String dir = getInitDirectory();
 	  filename = dir +File.separator +"dbinfo.xml";	  	  
 	  
-	  System.out.println("filename="+filename) ;
+
 	  
 	  ParseXml(filename);
 	  

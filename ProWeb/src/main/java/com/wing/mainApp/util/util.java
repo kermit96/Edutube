@@ -1,5 +1,6 @@
 package com.wing.mainApp.util;
 
+import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -19,7 +20,10 @@ import com.wing.mainApp.util.config.Globalconfig;
 
 public class util {
 	
-	   public static  String  GetSha512(String str) {
+	   private static InetAddress Inet6Address;
+
+
+	public static  String  GetSha512(String str) {
 
 			return GetSha(str,"SHA-512");			   
 	   }
@@ -187,6 +191,37 @@ public class util {
 	   }
 	   
 	   
+	   public static String  GetMyIp() throws SocketException
+	   {
+		
+			Enumeration<NetworkInterface> nienum = NetworkInterface.getNetworkInterfaces();
+
+	        while (nienum.hasMoreElements()) {
+	            NetworkInterface ni = nienum.nextElement();
+	            Enumeration<InetAddress> kk = ni.getInetAddresses();		            
+
+	            while (kk.hasMoreElements()) {
+
+	    			InetAddress inetAddress = (InetAddress) kk.nextElement();
+
+	    			if (inetAddress instanceof Inet6Address)
+	    			{
+	    					
+	    				continue;
+	    			}
+	    			
+	    			if ( inetAddress.isLinkLocalAddress() == false && inetAddress.isLoopbackAddress() ==false )
+	    			   return inetAddress.getHostAddress();
+
+	    		}
+
+	        }
+
+		   
+		   
+		   return "";
+	   }
+	   
 	   public static void main(String[] args) throws SocketException{
 
 		   /*
@@ -200,16 +235,37 @@ public class util {
 
 		    			InetAddress inetAddress = (InetAddress) kk.nextElement();
 
+		    			if (inetAddress instanceof Inet6Address)
+		    			{
+		    				System.out.println("inetv6");	
+		    				
+		    			}
+		    			
+		    			
+		    	//		inetAddress.
+		    			
+		    			System.out.println("isLinkLocalAddress==>"+ inetAddress.isLinkLocalAddress() );
+		    			System.out.println("isLoopbackAddress==>"+inetAddress.isLoopbackAddress() );
+		    			System.out.println("isAnyLocalAddress==>"+inetAddress.isAnyLocalAddress() );
+		    			System.out.println("isMCGlobal==>"+inetAddress.isMCGlobal() );
+		    			System.out.println("isMCLinkLocal==>"+inetAddress.isMCLinkLocal());
+		    			System.out.println("isMCSiteLocal==>"+inetAddress.isMCSiteLocal());
+		    			System.out.println("isMCNodeLocal==>"+inetAddress.isMCNodeLocal());
+		    			System.out.println("isMCOrgLocal==>"+inetAddress.isMCOrgLocal());
+		    			System.out.println("isMulticastAddress==>"+inetAddress.isMulticastAddress());
+		    			
 		    			System.out.println(inetAddress.getHostName()+" : "+inetAddress.getHostAddress());
 
 		    		}
 
 		        }
-		        */
+		     */
 		   		   
 		        System.out.println("is my ip check=="+IsMyIp("127.0.0.1"));
-		        		        
-		       	 
+		        System.out.println("is my ip check=="+IsMyIp(GetMyIp()));		        		        
+
+		        System.out.println("is my ip =="+GetMyIp());
+		        
 
 		        
 		}
