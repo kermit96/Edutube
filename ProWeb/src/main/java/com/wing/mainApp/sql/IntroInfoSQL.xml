@@ -384,13 +384,16 @@
 	   <select id="getgood" resultType="idata" parameterType="java.util.HashMap"> 
        SELECT * from    
     (SELECT
-        mem_id   ,
+        m.mem_nick AS mem_nick , 
         intro_path AS gimg2,
         intro_good   AS good
     FROM
-        introduce  
+        introduce i,member m
+    where
+        i.mem_id = m.mem_id     
    ORDER BY good DESC)
-   where rownum <![CDATA[<]]>= 3
+   where   
+   rownum <![CDATA[<]]>= 3
    </select>
 	
 </mapper>

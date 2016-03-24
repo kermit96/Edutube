@@ -48,6 +48,7 @@
 	});
 </script>
 <style>
+body { background-image: url("../resources/img/bg.jpg");}
 #EduContainer {
 	width: 1200px;
 	position: absolute;

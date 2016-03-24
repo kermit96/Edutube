@@ -6,7 +6,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
 	name="viewport" content="width=device-width, initial-scale=0">
-	<title>Insert title here</title>
+	<title>강사 소개</title>
 	<!--  Favicon (Main Icon) -->
 	<link rel="shortcut icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
 	<link rel="icon" href="/edutube/favicon.ico" type="image/x-icon"/> 
@@ -20,7 +20,7 @@
 		
 	<!--Never Delete "EduContainer" style tag-->
 	<style>
-	
+	body { background-image: url("../resources/img/bg.jpg");} 
 		#EduContainer{
 				width:1200px;
 				position: absolute;
@@ -53,7 +53,7 @@
 			clear:both;
 			width:150px;			
 		}
-		<!--JOON CSS-->
+		/*JOON CSS*/
 		th,td {
 			background:white;/*배경색*/
 		}
@@ -96,7 +96,12 @@
 			$("#sfrm").submit();
 		});
 		
+		
 	});
+	
+	function sex(no){
+		window.open("../Message/MsgForm.do?no="+no,"sexsex","width=200, height=260, resizable=no, toolbar=no, location=no,scrollbars=yes");
+	}
 	
 	</script>
 </head>
@@ -113,7 +118,7 @@
 				<jsp:include page="/MenuBar/IntroSide.jsp" flush="false" />
 			</div>
 			<div id="centerPage">
-				<h4 align="center" ><strong>강사 리스트</strong></h4>
+				<h4 align="center" ><strong><img src="../resources/img/강사리스트.png"></strong></h4>
 <!-- 	검색 기능 폼 
 
 	    <form method="POST" id="sFrm">
@@ -160,17 +165,14 @@
 	  		<c:forEach var="temp" items="${LIST}" varStatus="status">
 			    <div class="col-md-4">
 			      <a href="../IntroRegManager/IntroView.do?nowPage=${PINFO.nowPage}&oriNo=${temp.intro_no}">
-				  NICK :${temp.mem_nick}
-				  <c:if test="${empty temp.gimg2}">
-					<img src="../gimgs/noimgae.png" class="img-circle" width="100%" height="100">
-				  </c:if>
-				  <c:if test="${not empty temp.gimg2}">
+				  <img src="../resources/img/강사명.png">${temp.mem_nick}
 			      <img src="../gimgs/${temp.gimg2}" class="img-circle" width="100" height="100">
-			      </c:if>
 			      <!-- <td class="text-center">${temp.intro_body}</td>  -->
 			      </a>
 			      <br>
-			      <a href='#'>강의 일정</a>
+			      <c:if test="${temp.mem_nick ne sessionScope.NICKNAME}">
+			      <a href='JavaScript:sex(${temp.intro_no})'><img src="../resources/img/Mail.png"><img src="../resources/img/쪽지보내기.png"></a>
+			      </c:if>
 			      <br> <br> <br>  <br>  <br>
 			    </div>		
 		     </c:forEach>

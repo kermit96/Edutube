@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title</title>
+<title>QA</title>
 
 <!--  Favicon (Main Icon) -->
 <link rel="shortcut icon" href="/edutube/favicon.ico"
@@ -52,6 +52,7 @@
 	left: 50%;
 	margin-left: -600px;
 }
+body { background-image: url("../resources/img/bg.jpg");} 
 		#EduFooter{
 				width:100%px;
 				margin:20px auto;
@@ -118,7 +119,7 @@ tr>th {
 		</div>
 
 		<div id="Main">
-		<br><h1>QA 게시판</h1>
+		<br><h1><img src="../resources/img/QA.png"></h1>
 			<table border="1" align="center" width="80%">
 				<tr>
 					<th>제목</th>
@@ -131,7 +132,7 @@ tr>th {
 								<c:forEach var="test" begin="1" end="${temp.mid}">
 				&nbsp;&nbsp;
 			</c:forEach>
-				=>[답변]
+				<img src="/edutube/resources/img/reicon.gif">
 		</c:if> <a href="JavaScript:goDetail(${temp.no})">[${temp.qname}]${temp.title}</a></td>
 						<td>${temp.id}</td>
 						<td>${temp.datetime}</td>

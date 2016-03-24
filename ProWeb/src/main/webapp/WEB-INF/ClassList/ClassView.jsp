@@ -117,14 +117,14 @@
 	function writeReply(num) {				
 		var no=num;
 		$content=$("#relplybody").val();
-		
+		$("#relplybody").val("");
+				
 		$.ajax({
 			url:"../ClassList/ClassReplyWrite.do",
 			data:"relplybody="+$content+"&oriNo="+no+"&temp="+new Date(),
 			type:"POST",			
 			success: function(data){				
 				getReList("last");
-				$("#relplybody").value("");
 			},
 			error: function(){
 				alert("이거나오면 안되는데....");
@@ -232,11 +232,13 @@
 	fullUrl = encodeURI(fullUrl);
 	window.open(fullUrl,'','width='+ pWidth +',height='+ pHeight +',left='+ pLeft +',top='+ pTop +',location=no,menubar=no,status=no,scrollbars=no,resizable=no,titlebar=no,toolbar=no');
 }
-	
+		
+	 
 </script>
 
 <!--  스타일 -->
 <style>
+
 @font-face {
 	font-family: 'NanumGothic';
 	src: url('/edutube/resources/fonts/NanumGothic.eot');
@@ -246,6 +248,7 @@
 	font-weight: normal;
 	font-style: normal;
 }
+body { background-image: url("../resources/img/bg.jpg");} 
 
 #EduContainer {
 	width: 1200px;
@@ -447,7 +450,7 @@ textarea#modibody{
 							<p>&nbsp;</p>
 							<div id="FormRe">
 								<form id="reFrm" name="reFrm" method="POST">							
-								<textarea class="form-group" rows="4" id="relplybody"  name="relplybody" required></textarea>
+								<textarea class="form-group" rows="4" id="relplybody"   required></textarea>
 								</form>
 							</div>
 							<a class="button button-green" onClick="JavaScript:writeReply(${DATA.no});"><i class="fa fa-check"></i>

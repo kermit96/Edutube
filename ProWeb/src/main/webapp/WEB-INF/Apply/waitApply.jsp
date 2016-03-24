@@ -27,6 +27,7 @@
 	
 	<!--Never Delete "EduContainer" style tag-->
 	<style>
+	body { background-image: url("../resources/img/bg.jpg");} 
 	
 			#EduContainer{
 				width:1200px;
@@ -47,10 +48,12 @@
 	
 	<div id="Main">
 		<!-- This area is Body Part -->
-		<table width="80%" border="1" align="center">
+		<br><br>
+		<h3 align="center">승인 대기중..</h3>
+		<table width="80%" align="center">
 			<tr>
-				<td><h1>아직 승인이 완료되지 않았습니다ㅜㅜ</h1></td>
-				<td><h4>강사 승인이 될때까지 기다려 주세요:)</h4></td>
+				<td><img src="../resources/img/sungin.png"></td>
+			
 			</tr>
 		</table>
 	</div>

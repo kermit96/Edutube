@@ -69,6 +69,7 @@
 	left: 50%;
 	margin-left: -600px;
 }
+body { background-image: url("../resources/img/bg.jpg");} 
 
 #main {
 	width: 1200px;

@@ -33,7 +33,7 @@
 	$(document)
 			.ready(
 					function() {
-						self.resizeTo(200, 400);
+						self.resizeTo(300, 400);
 						$("#smsg")
 								.click(
 										function() {
@@ -41,7 +41,7 @@
 													.open(
 															"../Message/MsgSeList.do?id=${sessionScope.ID}",
 															"Edutube2",
-															"width=270, height=260, resizable=no, scrollbars=yes");
+															"width=300, height=400, resizable=no, scrollbars=yes");
 											//$("#sfrm").attr("action","../Message/MsgSeList.do?id=${sessionScope.ID}");
 											//$("#sfrm").submit();
 										});
@@ -49,7 +49,7 @@
 
 	function showDetail(no) {
 		window.open("../Message/MsgView.do?no=" + no + "&id=${sessionScope.ID}", "Edutube2",
-				"width=270, height=260, resizable=no");
+				"width=270 height=260, resizable=no");
 	}
 </script>
 

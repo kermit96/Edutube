@@ -20,7 +20,7 @@
 		
 	<!--Never Delete "EduContainer" style tag-->
 	<style>
-	
+	body { background-image: url("../resources/img/bg.jpg");} 
 		#EduContainer{
 				width:1200px;
 				position: absolute;
@@ -124,7 +124,7 @@
 		
 		
 		<div id="centerPage"> 
-	<h4 align="center" ><strong>공지사항</strong></h4>
+	<h4 align="center" ><strong><img src="../resources/img/공지사항.png"></strong></h4>
 <!-- 	검색기능 -->
 		<table border="1" align="center" >
 			<tr>

@@ -149,7 +149,7 @@ body { background-image: url("resources/img/bg.jpg");}
 			<tr>
 			<c:forEach var="temp" items="${LIST}">
 				<td>
-					${temp.mem_id}
+					${temp.mem_nick}
 				</td>
 				</c:forEach>
 			</tr>
@@ -173,7 +173,7 @@ body { background-image: url("resources/img/bg.jpg");}
 	<h3><span><img src="resources/img/notice.jpg" alt="공지사항" /></span></h3>
 		<div class="title">
 		<dl>
-		<c:forEach var="no1" items="${NOLIST}">
+		<c:forEach var="no1" items="${NOLIST}" end="4">
 			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">${no1.notice_title}</a></dt><dd>${no1.notice_dates}</dd>
 		</c:forEach>
 		</dl>
@@ -186,7 +186,7 @@ body { background-image: url("resources/img/bg.jpg");}
 	<h3><span><img src="resources/img/class.jpg" alt="강의목록" /></span></h3>
 		<div class="title">
 		<dl>
-			<c:forEach var="temp3" items="${CLLIST}">
+			<c:forEach var="temp3" items="${CLLIST}" end="4">
 			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">[${temp3.class_codek}]${temp3.class_title}</a></dt><dd>${temp3.class_dates}</dd>
 			</c:forEach>
 		</dl>
@@ -199,7 +199,7 @@ body { background-image: url("resources/img/bg.jpg");}
 	<h3><span><img src="resources/img/data.jpg" alt="자료실" /></span></h3>
 		<div class="title">
 		<dl>
-			<c:forEach var="temp" items="${DOWNLIST}">
+			<c:forEach var="temp" items="${DOWNLIST}" end="4">
 			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">${temp.down_title}</a></dt><dd>${temp.down_dates}</dd>
 			</c:forEach>
 		</dl>
@@ -212,7 +212,7 @@ body { background-image: url("resources/img/bg.jpg");}
 	<h3><span><img src="resources/img/qa.jpg" alt="묻고답하기" /></span></h3>
 		<div class="title">
 		<dl>
-			<c:forEach var="temp2" items="${QALIST}">
+			<c:forEach var="temp2" items="${QALIST}" end="4">
 			<dt><a href="http://localhost:8080/edutube/ClassList/ClassView.do?nowPage=1&oriNO=13&code=default">${temp2.qa_title}</a></dt><dd>${temp2.qa_dates}</dd>
 			</c:forEach>
 		</dl>

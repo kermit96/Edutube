@@ -133,11 +133,11 @@
 				</tr>
 				
 				<tr align="center">
-					<td id=#tr_top colspan="2" align="center">
+					<th id=#tr_top colspan="2" align="center">
 						<input type="button" value="소개 글 등록" id="wBtn" class="btn btn-primary btn-sm">
 						<input type="reset" value="다시작성"  class="btn btn-primary btn-sm">
 						<input type="button" value="목록" id="lBtn"   class="btn btn-primary btn-sm">
-					</td>
+					</th>
 				</tr>
 			</table>
 		</form>

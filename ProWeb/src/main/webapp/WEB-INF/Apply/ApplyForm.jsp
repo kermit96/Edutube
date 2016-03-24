@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title</title>
+<title>EduTube</title>
 
 <!--  Favicon (Main Icon) -->
 <link rel="shortcut icon" href="/edutube/favicon.ico"
@@ -31,7 +31,7 @@
 <script>
 	$(document).ready(function() {
 		$("#result").click(function() {
-			alert($("#code").val());
+			
 			if($("#code").val()==0){
 				alert("코드값 입력해줘")
 				return;
@@ -44,6 +44,7 @@
 
 <!--Never Delete "EduContainer" style tag-->
 <style>
+body { background-image: url("../resources/img/bg.jpg");} 
 #EduContainer {
 	width: 1200px;
 	position: absolute;

@@ -27,6 +27,7 @@
 	
 	<!--Never Delete "EduContainer" style tag-->
 	<style>
+	body { background-image: url("../resources/img/bg.jpg");}
 		@font-face { 
 		    font-family:'NanumGothic';
 		    src: url('/edutube/resources/fonts/NanumGothic.eot');

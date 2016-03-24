@@ -49,7 +49,7 @@ public class MessageContoller {
 		// 메세지 리스트
 		ArrayList list = mDao.selectMsgList(id);
 		ArrayList list2 = mDao.selectMsgListn(id);
-		System.out.println("sex");
+		
 		mv.addObject("LIST",list);
 		mv.addObject("LISTN",list2);
 		mv.setViewName("Message/MsgList");

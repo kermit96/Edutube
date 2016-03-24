@@ -34,6 +34,7 @@
 
 <!--Never Delete "EduContainer" style tag-->
 <style>
+body { background-image: url("../resources/img/bg.jpg");}  
 #EduContainer {
 	width: 1200px;
 	position: absolute;
@@ -105,7 +106,7 @@
 				<!-- 아래 부터 작성 -->
 				<p>&nbsp;</p>
 
-				<h3>강의</h3>
+				<h3><img src="../resources/img/강의.png"></h3>
 				<br>
 
 				<!--  선택박스 (그룹 선택) -->

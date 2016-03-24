@@ -64,7 +64,7 @@
 	font-weight: normal;
 	font-style: normal;
 }
-	
+	body { background-image: url("../resources/img/bg.jpg");} 
 		#EduContainer{
 				width:1200px;
 				position: absolute;

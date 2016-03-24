@@ -38,6 +38,7 @@
 	});
 </script>
 <style>
+body { background-image: url("../resources/img/bg.jpg");} 
 #EduContainer {
 	width: 1200px;
 	position: absolute;
@@ -100,7 +101,7 @@ tr>th {
 			<jsp:include page="/MenuBar/Top.jsp" flush="false" />
 		</div>
 		<div align="center">
-			<h1>자료실 입니다</h1>
+			<h1><img src="../resources/img/자료실.png"></h1>
 		</div>
 		<div id="main">
 			<table width="80%" border="1" align="center" id="rcorners2">
