@@ -15,24 +15,32 @@ import java.util.HashMap;
 public class Langxml {
     static private Langxml xml;
     static private Object obj = new Object();
-    private HashMap kolangmap = new HashMap(); // 한국어 map 	
-    private HashMap japanlangmap = new HashMap();  // 일본어 map
-    private HashMap enlangmap = new HashMap();  // 영어 map
-    private HashMap chlangmap = new HashMap();  // 중국어 번체
-    private HashMap ch_cnlangmap = new HashMap(); // 중국어 간체 
+    static private Object obj2 = new Object();
+    private HashMap kolangmap ; // 한국어 map 	
+    private HashMap japanlangmap;   // 일본어 map
+    private HashMap enlangmap ;  // 영어 map
+    private HashMap chlangmap ;  // 중국어 번체
+    private HashMap ch_cnlangmap ; // 중국어 간체 
     
     private String  lang = "ko";
     
-    static public Langxml getinstance() {       
-    	if (xml == null) {
-    		synchronized(obj) {
-    			if (xml == null) {
-    				xml = new Langxml();
-    				xml.LoadLang();
-    			}    			
-    		}    		    		
-    	}
-             	
+
+    
+    
+    static public Langxml getinstance() {
+    	
+    	
+	    	if (xml == null) {
+	    		synchronized(obj) {
+	    			if (xml == null) {
+	    				xml = new Langxml();
+	    				xml.LoadLang();
+	    			}    			    		
+	    		}    		    		
+	    	}
+	    	
+	    	 
+			    	
     	return xml;
     }
 	
@@ -127,16 +135,29 @@ public class Langxml {
     	
     }
     
+    
+    private void reload()
+    {
+    	synchronized(obj2) {
+    	 LoadLang();
+    	}
+    }
+    
+    
     public void LoadLang()
     {
+    	
+    	
     	String dir = getInitDirectory();
     	String files[] = GetXmlList(dir);
     	
-    	this.ch_cnlangmap.clear();
-    	this.chlangmap.clear();
-    	this.enlangmap.clear();
-    	this.japanlangmap.clear();
-    	this.kolangmap.clear();
+    	kolangmap = new HashMap(); // 한국어 map 	
+        japanlangmap = new HashMap();  // 일본어 map
+        enlangmap = new HashMap();  // 영어 map
+        chlangmap = new HashMap();  // 중국어 번체
+        ch_cnlangmap = new HashMap(); // 중국어 간체 
+    	
+    	
     	for(String file :files) {
     		String filename = dir + File.separator+ file;    		
     		ParseXml(filename);    		
@@ -172,20 +193,26 @@ public class Langxml {
 	}
 	
 	static public  HashMap load() {		
+	 	synchronized(obj2) { 
 		Langxml xml =  getinstance();				
-		return  xml.getMap(); 
+		return  xml.getMap();
+	 	}
 	}
 	
 	
 	public HashMap getMap()
 	{
+		synchronized(obj2) {
 		return getMap(this.lang);
+		}
 		
 	}
 	
 	
 	public HashMap getMap(String lang)
 	{
+		
+		synchronized(obj2) { 
 		
 		this.lang = lang;
 		
@@ -215,11 +242,16 @@ public class Langxml {
 		
 		
 		return kolangmap;
+		}
 	}
 	
 	static public  HashMap load(String lang) {		
 		Langxml xml =  getinstance();				
 		return  xml.getMap(lang); 
 	}
-	 
+	
+	static public void reloadxml( ) {
+		 getinstance().reload();						
+	}
+		
 }

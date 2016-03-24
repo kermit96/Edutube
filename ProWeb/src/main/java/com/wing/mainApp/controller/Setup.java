@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.google.gson.Gson;
+import com.wing.mainApp.util.Langxml;
 import com.wing.mainApp.util.MailSendInfo;
 import com.wing.mainApp.util.util;
 import com.wing.mainApp.util.config.Globalconfig;
@@ -34,6 +35,18 @@ public class Setup {
 		
 		return "Setup/setup";
 	}
+
+	
+	@RequestMapping(value = "/Setup/refreshmessage")
+	public void RefreshLang(HttpServletRequest request, HttpServletResponse response)   throws Exception {
+		
+		PrintWriter out = response.getWriter();
+		out.print(""); 		
+		
+		Langxml.reloadxml();
+		
+	}
+	
 	
 		
 	@RequestMapping(value = "/Setup/getglobalconfig")
