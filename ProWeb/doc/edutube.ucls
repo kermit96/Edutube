@@ -510,8 +510,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="57" language="java" name="com.wing.mainApp.util.ase256" project="ProWeb" 
-    file="/ProWeb/src/main/java/com/wing/mainApp/util/ase256.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="57" language="java" name="com.wing.mainApp.util.ase128" project="ProWeb" 
+    file="/ProWeb/src/main/java/com/wing/mainApp/util/ase128.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="4104" y="-245"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -548,43 +548,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="61" language="java" name="com.wing.mainApp.util.sql.DBTYPE" project="ProWeb" 
-    file="/ProWeb/src/main/java/com/wing/mainApp/util/sql/DBTYPE.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1017" y="512"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </enumeration>  
-  <class id="62" language="java" name="com.wing.mainApp.util.sql.MySqlJDBCDao" project="ProWeb" 
-    file="/ProWeb/src/main/java/com/wing/mainApp/util/sql/MySqlJDBCDao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="675" y="925"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="63" language="java" name="com.wing.mainApp.util.sql.OracleJDBCDao" project="ProWeb" 
-    file="/ProWeb/src/main/java/com/wing/mainApp/util/sql/OracleJDBCDao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="750" y="425"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="64" language="java" name="com.wing.mainApp.util.sql.MssqlSqlJDBCDao" project="ProWeb" 
-    file="/ProWeb/src/main/java/com/wing/mainApp/util/sql/MssqlSqlJDBCDao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="766" y="662"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="65" language="java" name="com.wing.mainApp.util.sql.BaseJDBCDao" project="ProWeb" 
+  <class id="61" language="java" name="com.wing.mainApp.util.sql.BaseJDBCDao" project="ProWeb" 
     file="/ProWeb/src/main/java/com/wing/mainApp/util/sql/BaseJDBCDao.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="391" y="544"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -593,64 +557,72 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="66">    
+  <association id="62">    
     <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="67" name="sDao"/>      
-      <multiplicity id="68" minimum="0" maximum="1"/>    
+      <attribute id="63" name="sDao"/>      
+      <multiplicity id="64" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="29" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="69">    
+  <association id="65">    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="70" name="maDao"/>      
-      <multiplicity id="71" minimum="0" maximum="1"/>    
+      <attribute id="66" name="maDao"/>      
+      <multiplicity id="67" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="26" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="72">    
-    <end type="SOURCE" refId="62"/>    
-    <end type="TARGET" refId="65"/>  
-  </generalization>  
-  <association id="73">    
+  <association id="68">    
     <end type="SOURCE" refId="59" navigable="false">      
-      <attribute id="74" name="fileLoadingInfo"/>      
-      <multiplicity id="75" minimum="0" maximum="1"/>    
+      <attribute id="69" name="fileLoadingInfo"/>      
+      <multiplicity id="70" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="60" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="76">    
+  <association id="71">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="77" name="nDao"/>      
-      <multiplicity id="78" minimum="0" maximum="1"/>    
+      <attribute id="72" name="nDao"/>      
+      <multiplicity id="73" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="21" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="79">    
+  <association id="74">    
     <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="80" name="aDao"/>      
-      <multiplicity id="81" minimum="0" maximum="1"/>    
+      <attribute id="75" name="aDao"/>      
+      <multiplicity id="76" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="28" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="82">    
+  <association id="77">    
     <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="83" name="bDao"/>      
-      <multiplicity id="84" minimum="0" maximum="1"/>    
+      <attribute id="78" name="bDao"/>      
+      <multiplicity id="79" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="20" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="85">    
-    <end type="SOURCE" refId="64"/>    
-    <end type="TARGET" refId="65"/>  
-  </generalization>  
-  <association id="86">    
+  <association id="80">    
     <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="81" name="iDao"/>      
+      <multiplicity id="82" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="83">    
+    <end type="SOURCE" refId="58" navigable="false">      
+      <attribute id="84" name="handler"/>      
+      <multiplicity id="85" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="59" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="86">    
+    <end type="SOURCE" refId="6" navigable="false">      
       <attribute id="87" name="iDao"/>      
       <multiplicity id="88" minimum="0" maximum="1"/>    
     </end>    
@@ -658,97 +630,77 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="89">    
-    <end type="SOURCE" refId="58" navigable="false">      
-      <attribute id="90" name="handler"/>      
-      <multiplicity id="91" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="59" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="92">    
-    <end type="SOURCE" refId="63"/>    
-    <end type="TARGET" refId="65"/>  
-  </generalization>  
-  <association id="93">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="94" name="iDao"/>      
-      <multiplicity id="95" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="23" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="96">    
     <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="97" name="lDao"/>      
-      <multiplicity id="98" minimum="0" maximum="1"/>    
+      <attribute id="90" name="lDao"/>      
+      <multiplicity id="91" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="22" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="99">    
+  <association id="92">    
     <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="100" name="dao"/>      
-      <multiplicity id="101" minimum="0" maximum="1"/>    
+      <attribute id="93" name="dao"/>      
+      <multiplicity id="94" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="25" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="102">    
+  <association id="95">    
     <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="103" name="mDao"/>      
-      <multiplicity id="104" minimum="0" maximum="1"/>    
+      <attribute id="96" name="mDao"/>      
+      <multiplicity id="97" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <nesting id="105">    
+  <nesting id="98">    
     <end type="SOURCE" refId="59"/>    
     <end type="TARGET" refId="60"/>  
   </nesting>  
-  <association id="106">    
+  <association id="99">    
     <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="107" name="mDao"/>      
-      <multiplicity id="108" minimum="0" maximum="1"/>    
+      <attribute id="100" name="mDao"/>      
+      <multiplicity id="101" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="18" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="109">    
+  <association id="102">    
     <end type="SOURCE" refId="50" navigable="false">      
-      <attribute id="110" name="xml"/>      
-      <multiplicity id="111" minimum="0" maximum="1"/>    
+      <attribute id="103" name="xml"/>      
+      <multiplicity id="104" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="50" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="112">    
+  <association id="105">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="113" name="lDao"/>      
-      <multiplicity id="114" minimum="0" maximum="1"/>    
+      <attribute id="106" name="lDao"/>      
+      <multiplicity id="107" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="22" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="115">    
+  <association id="108">    
     <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="116" name="schdao"/>      
-      <multiplicity id="117" minimum="0" maximum="1"/>    
+      <attribute id="109" name="schdao"/>      
+      <multiplicity id="110" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="27" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="118">    
+  <association id="111">    
     <end type="SOURCE" refId="57" navigable="false">      
-      <attribute id="119" name="INSTANCE"/>      
-      <multiplicity id="120" minimum="0" maximum="1"/>    
+      <attribute id="112" name="INSTANCE"/>      
+      <multiplicity id="113" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="57" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="121">    
+  <association id="114">    
     <end type="SOURCE" refId="59" navigable="false">      
-      <attribute id="122" name="InitialFileInfo"/>      
-      <multiplicity id="123" minimum="0" maximum="1"/>    
+      <attribute id="115" name="InitialFileInfo"/>      
+      <multiplicity id="116" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="60" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  

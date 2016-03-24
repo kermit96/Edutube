@@ -13,24 +13,24 @@ import java.security.NoSuchAlgorithmException;
 import java.security.InvalidAlgorithmParameterException;
 import org.apache.commons.codec.binary.Base64;
 
-public class ase256 {
+public class ase128 {
 
-	private static volatile ase256 INSTANCE;
+	private static volatile ase128 INSTANCE;
    
 	final static String secretKey   = "123456789012345678901234567A9012"; //32bit
 	static String IV                = ""; //16bit
 
-	public static ase256 getInstance(){
+	public static ase128 getInstance(){
 		if(INSTANCE==null){
-			synchronized(ase256.class){
+			synchronized(ase128.class){
 				if(INSTANCE==null)
-					INSTANCE=new ase256();
+					INSTANCE=new ase128();
 			}
 		}
 		return INSTANCE;
 	}
 
-	private ase256(){
+	private ase128(){
 		IV = secretKey.substring(0,16);
 	}
 

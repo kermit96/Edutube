@@ -15,7 +15,9 @@ import com.wing.mainApp.util.MailSendInfo;
 import com.wing.mainApp.util.util;
 import com.wing.mainApp.util.config.Globalconfig;
 import com.wing.mainApp.util.sql.BaseJDBCDao;
-import com.wing.mainApp.util.sql.DBTYPE;
+import com.wing.mainApp.util.sql.DbInfoMap;
+
+
 
 
 //  setup page setting 관련 루틴 
@@ -26,6 +28,10 @@ public class Setup {
 	@RequestMapping(value = "/Setup/setup")
 	public String Setup(Locale locale, Model model) {
 
+		// 
+		
+		model.addAttribute("DBLIST", new DbInfoMap().GetMap());
+		
 		return "Setup/setup";
 	}
 	
@@ -63,8 +69,7 @@ public class Setup {
 		config.setSavedir(savedir);
 		
 		config.Save();
-	//	response.setContentType("text/html");
-	//	response.setCharacterEncoding("utf-8");
+
 		
 		PrintWriter out = response.getWriter();
 		
@@ -115,9 +120,7 @@ public class Setup {
 		config.setEncryptedmethod(encryptedmethod);
 		config.setSmtpemail(smtpemail);
 		config.setSmtpsender(smtpsender);
-		
 
-		
 		config.Save();
 		response.setContentType("text/html");
 		response.setCharacterEncoding("utf-8");
@@ -134,29 +137,24 @@ public class Setup {
 	@RequestMapping(value = "/Setup/dbsave")
 	public void dbsave(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{	
-		// TODO Auto-generated method stub
-	//	response.getWriter().append("Served at: ").append(request.getContextPath());
-		  
-		int  dbtype = 0 ;
+
+		String   dbtype = "" ;
 		String dbname ="";
 		String host ="";
 		int     port = 0 ;
 		String userid ="" ;				
 		String password="";
 
-		response.setCharacterEncoding("UTF-8");
+  		 response.setCharacterEncoding("UTF-8");
 
-		
-		dbtype = Integer.parseInt(request.getParameter("dbtype") );
-		dbname = request.getParameter("dbname");
+		 // dbtype = Integer.parseInt(request.getParameter("dbtype") );
+  		dbtype = request.getParameter("dbtype");
+		 dbname = request.getParameter("dbname");
 		 host = request.getParameter("dbhost");
 		 port = Integer.parseInt(request.getParameter("dbport"));
 		 userid = request.getParameter("dbuser");
 		 password = request.getParameter("dbpassword");
 		 
-
-		 
-
 		 
 		Globalconfig config = new Globalconfig();
 		
@@ -252,18 +250,19 @@ public class Setup {
 	@RequestMapping(value = "/Setup/dbtest")
 	public void dbtest(HttpServletRequest request, HttpServletResponse response)
 	{	
-		
-		
+
 		response.setCharacterEncoding("UTF-8");
 		
-		int  dbtype = 0 ;
+		String   dbtype = "";
 		String dbname ="";
 		String host ="";
 		int     port = 0 ;
 		String userid ="" ;				
 		String password="";
 		
-		dbtype = Integer.parseInt(request.getParameter("dbtype") );
+	// 	dbtype = Integer.parseInt(request.getParameter("dbtype") );
+		dbtype= request.getParameter("dbtype");
+		
 		dbname = request.getParameter("dbname");
 		 host = request.getParameter("dbhost");
 		 port = Integer.parseInt(request.getParameter("dbport"));
@@ -286,19 +285,20 @@ public class Setup {
 		out.print(str);
 	}
 	
-	private  String getTestString(int dbtype,String dbname,String host,int port,
+	
+	private  String getTestString(String dbtype,String dbname,String host,int port,
 			  String userid,String password)
 	{		
-		 DBTYPE type = DBTYPE.fromInt(dbtype);     
+		      
 		 try {
-		    BaseJDBCDao dao = BaseJDBCDao.GetjdbcDao(type, host, port, dbname, userid, password);
+			 BaseJDBCDao dao = BaseJDBCDao.GetjdbcDao(dbtype, host, port, dbname, userid, password);
 		    dao.closeAll();
 		    return "Success";
 		 } catch(Exception ex) {			 
 			 return ex.toString(); 
 		 }
 	}
+	
 
 	
 }
-

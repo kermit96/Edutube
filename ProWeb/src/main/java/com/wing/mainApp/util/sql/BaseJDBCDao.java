@@ -8,12 +8,15 @@ import java.util.HashSet;
 
 import org.apache.commons.dbcp.BasicDataSource;
 
+
 import com.wing.mainApp.util.config.Globalconfig;
 
 
 public class BaseJDBCDao {
 	protected BasicDataSource ds = new BasicDataSource();
 	private  Connection con = null;
+	
+	private  String DatabaseProductName = "";
 
 	protected HashSet<Statement> statements = new HashSet<Statement>();
 	protected HashSet<PreparedStatement>  prestatements = new HashSet<PreparedStatement>();
@@ -25,20 +28,7 @@ public class BaseJDBCDao {
 	}
 	 
 	 
-	 public BaseJDBCDao(DBTYPE dbtype, String  url,String userid,String password )
-	 {
-		    
-	          switch(dbtype)
-	          {
-	             case ORACLE_TYPE:
-	            	    break;
-	             case  MSSQL_TYPE:
-	            	     break;
-	             case MYSQL_TYPE:
-	            	    break;
-	          }
-		 
-	 }
+
 	
 	public BaseJDBCDao(String drivename,String  url,String userid,String password,int initnum )  throws  Exception
 	{
@@ -56,14 +46,21 @@ public class BaseJDBCDao {
 		}
 
 		try { 
-
 			con =   getcon();
+			DatabaseProductName = con.getMetaData().getDatabaseProductName();
 		} catch (Exception ex) {
 			throw ex;		
 		}
 	}
 	
 	
+	public String getDatabaseProductName() {
+		return DatabaseProductName;
+	}
+
+
+
+
 	public void setAutoCommit(boolean autoCommit)
 	{
 	     	
@@ -268,40 +265,25 @@ public class BaseJDBCDao {
 	}
 
 	
-	
-	
-	public static  BaseJDBCDao GetjdbcDao(DBTYPE dbtype,String host,  int port, String  dbname,String userid,String password) throws Exception
+	public static  BaseJDBCDao GetjdbcDao(String dbid,String host,  int port, String  dbname,String userid,String password) throws Exception
 	{
-
-		BaseJDBCDao dao = null;
 		
-
-		if (dbtype==DBTYPE.ORACLE_TYPE) 
-		{
-					
-			if (port ==0) 
-				port = 1521;
-			dao = new OracleJDBCDao(userid,password,host,port,dbname  ) ;
-		}
-
-		if (dbtype==DBTYPE.MSSQL_TYPE) 
-		{
+		String drivename="";
+		String url = "";
 		
-			if (port ==0) 
-				port = 1433;
-			dao = new MssqlSqlJDBCDao(userid,password,host,port,dbname );
-
-		}
-
-		if (dbtype==DBTYPE.MYSQL_TYPE) 
-		{			
-			if (port ==0) 
-				port = 3306;
-
-			dao = new MySqlJDBCDao(userid,password,host,port,dbname );
-		}		                  
-
+		DbInfoMap map = new DbInfoMap();
+		
+		DbInfo info = map.GetDbInfo(dbid);
+		
+		if (info == null)
+			return null;
+		
+	    drivename = info.getDrivename();
+	    url = info.getUrl(host,port,dbname);
+   
+		BaseJDBCDao dao = new BaseJDBCDao(drivename,url,userid,password);
+	
 		return dao;
 	}
-	
+		
 }

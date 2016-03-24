@@ -10,12 +10,15 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
-import com.wing.mainApp.util.ase256;
-import com.wing.mainApp.util.sql.DBTYPE;
+import com.wing.mainApp.util.ase128;
+
+
+
+
 
 public class Globalconfig {
     private String dbname;
-    private int    dbtype;
+    private String    dbtype;
     
     private String  userid;
     private String  password;
@@ -98,14 +101,14 @@ public class Globalconfig {
 	/**
 	 * @return the dbtype
 	 */
-	public int getDbtype() {
+	public String getDbtype() {
 		return dbtype;
 	}
 
 	/**
 	 * @param dbtype the dbtype to set
 	 */
-	public void setDbtype(int dbtype) {
+	public void setDbtype(String dbtype) {
 		this.dbtype = dbtype;
 		handler.setValue("dbtype",dbtype );
 	}
@@ -141,7 +144,7 @@ public class Globalconfig {
 		this.password = password;
 				
 		try {
-			handler.setValue("password",		ase256.AES_Encode(password));
+			handler.setValue("password",		ase128.AES_Encode(password));
 		} catch (InvalidKeyException | UnsupportedEncodingException | NoSuchAlgorithmException | NoSuchPaddingException
 				| InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 			// TODO Auto-generated catch block
@@ -260,7 +263,7 @@ public class Globalconfig {
 			userid = "";
 		
 		 try {
-			password =   ase256.AES_Decode( handler.getValue("password"));
+			password =   ase128.AES_Decode( handler.getValue("password"));
 			
 		} catch (Exception	ex) {
 			ex.printStackTrace();
@@ -268,9 +271,11 @@ public class Globalconfig {
 		}
 		
 		 try {
-		   dbtype = Integer.parseInt( handler.getValue("dbtype"));		
+		 //   dbtype = Integer.parseInt( handler.getValue("dbtype"));
+			 dbtype = handler.getValue("dbtype");
+			 
 		 } catch (Exception ex) {
-			 dbtype =0;
+			 dbtype ="";
 		 }
 		 
 		
@@ -299,8 +304,7 @@ public class Globalconfig {
 			 } catch (Exception ex) {
 				 encryptedmethod =0;
 		 }
- 	   
-		 		 
+ 		 
 		 savedir = handler.getValue("savedir");
 		 if (savedir == null)
 			 savedir = "";
