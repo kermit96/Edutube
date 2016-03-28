@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Language>
+ <Lang>
+   <id>memberchecknickfail</id>
+   <ko>사용할수 없는 nickname 입니다. </ko>
+   <ja>使用できないnicknameです。 </ja>
+   <en>Unavailable nickname. </en>
+   <ch>不可用暱稱。</ch>
+   <ch_cn>不可用昵称。 </ch_cn>
+ </Lang>
+  
+ <Lang>
+ <id>memberchecknicksuccess</id>
+   <ko>사용할수 있는 nickname 입니다.</ko>
+   <ja>使用できるnicknameです。</ja>
+   <en>You can use a nickname.</en>
+   <ch>使用できる暱稱です。</ch>
+   <ch_cn>使用できる昵称です。</ch_cn>
+ </Lang>
+ 
+ <Lang>
+   <id>membercheckidfail</id>
+   <ko>사용할수 없는 ID 입니다.</ko>
+   <ja>使用できないIDです。 </ja>
+   <en>Unavailable ID. </en>
+   <ch>不可用的ID。</ch>
+   <ch_cn>不可用的ID。</ch_cn>
+ </Lang>
+ 
+ <Lang>
+   <id>membercheckidsuccess</id>
+   <ko>사용할수 있는 ID 입니다. </ko>
+   <ja>使用できるIDです。 </ja>
+   <en>The available ID.</en>
+   <ch>可用的ID。</ch>
+   <ch_cn>可用的ID。</ch_cn>
+ </Lang>
+ 
+ 
+  <Lang>
+   <id>member_samepassword</id>
+   <ko>같은 password 를 입력해 주시기 바랍니다.</ko>
+   <ja>同じpasswordを入力してください。 </ja>
+   <en>Please enter the same password. </en>
+   <ch>請輸入相同的密碼。</ch>
+   <ch_cn>请输入相同的密码。 </ch_cn>
+ </Lang>
+ 
+   <Lang>
+   <id>member_changepassword</id>
+   <ko>암호를 수정했습니다.</ko>
+   <ja>パスワードを修正しました。 </ja>
+   <en>Fixed a password.</en>
+   <ch>修正了一個密碼。</ch>
+   <ch_cn>修正了一个密码。 </ch_cn>
+ </Lang>
+
+    <Lang>
+   <id>member_inputid</id>
+   <ko>아이디를 입력해 주시기 바랍니다.</ko>
+   <ja>IDを入力してください。 </ja>
+   <en>Please enter your userid</en>
+   <ch>請輸入您的用戶名。</ch>
+   <ch_cn>请输入您的用户名。 </ch_cn>
+ </Lang>
+
+ 
+    <Lang>
+   <id>member_inputname</id>
+   <ko>이름을 입력해 주시기 바랍니다.</ko>
+   <ja>名前を入力してください。 </ja>
+   <en>Please enter your name. </en>
+   <ch>請輸入您的姓名。</ch>
+   <ch_cn>请输入您的姓名。 </ch_cn>
+ </Lang>
+ 
+   <Lang>
+   <id>member_inputnickname</id>
+   <ko>닉네임을 입력해 주시기 바랍니다.</ko>
+   <ja>使用できないnicknameです。 </ja>
+   <en>Unavailable nickname. </en>
+   <ch>不可用暱稱。</ch>
+   <ch_cn>不可用昵称。 </ch_cn>
+ </Lang>
+ 
+ 
+   <Lang>
+   <id>member_inputpassword</id>
+   <ko>password 를 입력해 주시기 바랍니다.</ko>
+   <ja>passwordを入力してください。 </ja>
+   <en>Please enter your password. </en>
+   <ch>請輸入您的密碼。</ch>
+   <ch_cn>请输入您的密码。 </ch_cn>
+ </Lang>
+ 
+ 
+   <Lang>
+   <id>member_joinmember</id>
+   <ko>EduTube 회원 가입</ko>
+   <ja>EduTube会員登録 </ja>
+   <en>EduTube Register</en>
+   <ch>EduTube註冊</ch>
+   <ch_cn>EduTube注册 </ch_cn>
+ </Lang>
+ 
+ 
+ 
+    <Lang>
+   <id>member_inputemail</id>
+   <ko>이 메일을 입력해 주시기 바랍니다.</ko>
+   <ja>このメールアドレスを入力してください。</ja>
+   <en>Please enter your email. </en>
+   <ch>請輸入您的電子郵件。</ch>
+   <ch_cn>请输入您的电子邮件。 </ch_cn>
+ </Lang>
+ 
+    <Lang>
+   <id>member_inputtel</id>
+   <ko>전화 번호를 입력해 주시기 바랍니다.</ko>
+   <ja>電話番号を入力してください。 </ja>
+   <en>Please enter your phone number. </en>
+   <ch>請輸入您的手機號碼。</ch>
+   <ch_cn>请输入您的手机号码。 </ch_cn>
+ </Lang>
+ 
+ 
+    <Lang>
+   <id>member_modify</id>
+   <ko>수정 했습니다.</ko>
+   <ja>修正しました。 </ja>
+   <en>It's corrected. </en>
+   <ch>糾正。</ch>
+   <ch_cn>纠正。 </ch_cn>
+ </Lang>
+ 
+ 
+   <Lang>
+   <id>member_usermodify</id>
+   <ko>유저 정보 변경.</ko>
+   <ja>ーザー情報を変更します。 </ja>
+   <en>Change user information.</en>
+   <ch>更改用戶信息。</ch>
+   <ch_cn>更改用户信息。 </ch_cn>
+ </Lang>
+ 
+    <Lang>
+   <id>member_personalmodify</id>
+   <ko>개인 정보 변경</ko>
+   <ja>個人情報の変更 </ja>
+   <en>Privacy Change</en>
+   <ch>隱私更改。</ch>
+   <ch_cn>隐私更改 </ch_cn>
+ </Lang>
+ 
+    <Lang>
+   <id>member_changepassword</id>
+   <ko>유저 정보 변경</ko>
+   <ja>ーザ情報の変更 </ja>
+   <en>Change user information </en>
+   <ch>更改用戶信息</ch>
+   <ch_cn>更改用户信息 </ch_cn>
+ </Lang>
+ 
+     <Lang>
+   <id>member_nickname</id>
+   <ko>닉네임</ko>
+   <ja>ニックネーム </ja>
+   <en>nickname </en>
+   <ch>綽號</ch>
+   <ch_cn>绰号</ch_cn>
+ </Lang>
+ 
+  <Lang>
+   <id>member_name</id>
+   <ko>이름</ko>
+   <ja>名前 </ja>
+   <en>nickname</en>
+   <ch>名</ch>
+   <ch_cn>名</ch_cn>
+ </Lang>
+ 
+ 
+ <Lang>
+   <id>member_tel</id>
+   <ko>전화 번호</ko>
+   <ja>電話番号</ja>
+   <en>Phone number</en>
+   <ch>电话号码</ch>
+   <ch_cn>電話號碼</ch_cn>
+ </Lang>
+ 
+   <Lang>
+   <id>member_addr</id>
+   <ko>주소</ko>
+   <ja>アドレス</ja>
+   <en>address</en>
+   <ch>地址</ch>
+   <ch_cn>地址 </ch_cn>
+ </Lang>
+ 
+   <Lang>
+   <id>member_addrmore</id>
+   <ko>상세 주소</ko>
+   <ja>詳細住所 </ja>
+   <en>Detailed Address</en>
+   <ch>街道地址</ch>
+   <ch_cn>街道地址 </ch_cn>
+ </Lang>
+ 
+ 
+  <Lang>
+   <id>member_post</id>
+   <ko>우편번호</ko>
+   <ja>郵便番号 </ja>
+   <en>Zip code</en>
+   <ch>郵政編碼 </ch>
+   <ch_cn>邮政编码</ch_cn>
+ </Lang>
+ 
+ 
+   <Lang>
+   <id>member_postfind</id>
+   <ko>우편번호 찾기</ko>
+   <ja>郵便番号検索 </ja>
+   <en>Find a postal code </en>
+   <ch>查找郵政編碼</ch>
+   <ch_cn>查找邮政编码 </ch_cn>
+ </Lang>
+ 
+   <Lang>
+   <id>member_change</id>
+   <ko>변경</ko>
+   <ja>変更 </ja>
+   <en>change</en>
+   <ch>變化</ch>
+   <ch_cn>变化</ch_cn>
+ </Lang>
+ 
+ 
+   <Lang>
+    <id>member_passwordchange</id>
+    <ko>비밀 번호 변경</ko>
+    <ja>パスワードの変更 </ja>
+    <en>Change Password</en>
+    <ch>更改密碼</ch>
+    <ch_cn>更改密码 </ch_cn>
+ </Lang>
+ 
+ 
+ <Lang>
+    <id>member_samepassword</id>
+    <ko>password 는 일치 해야 합니다.</ko>
+    <ja>passwordは一致する必要があります。 </ja>
+    <en>password must match. </en>
+    <ch>密碼必須匹配。</ch>
+    <ch_cn>密码必须匹配。</ch_cn>
+ </Lang>
+ 
+ 
+ 
+ <Lang>
+    <id>member_memberjoin</id>
+    <ko>EduTube 회원 가입</ko>
+    <ja>EduTube会員登録 </ja>
+    <en>EduTube Register </en>
+    <ch>EduTube註冊</ch>
+    <ch_cn>EduTube注册</ch_cn>
+ </Lang>
+ 
+ 
+ <Lang>
+    <id>member_idinputmsg</id>
+    <ko>ID입력</ko>
+    <ja>使用できないnicknameです。 </ja>
+    <en>Enter ID </en>
+    <ch>輸入ID</ch>
+    <ch_cn>输入ID</ch_cn>
+ </Lang>
+
+   <Lang>
+   <id>member_newpassword</id>
+   <ko>새 password</ko>
+   <ja>new  password </ja>
+   <en>new  password </en>
+   <ch>密碼</ch>
+   <ch_cn>密码 </ch_cn>
+ </Lang>
+ 
+   <Lang>
+   <id>member_verifypassword</id>
+   <ko>password 확인</ko>
+   <ja>password確認 </ja>
+   <en>password confirmation </en>
+   <ch>確認密碼</ch>
+   <ch_cn>确认密码</ch_cn>
+ </Lang>
+ 
+   <Lang>
+   <id>member_passwordstr</id>
+   <ko>비밀 번호</ko>
+   <ja>パスワード</ja>
+   <en>password</en>
+   <ch>密碼</ch>
+   <ch_cn>密码 </ch_cn>
+ </Lang>
+ 
+    <Lang>
+   <id>member_verypasswordstr</id>
+   <ko>비밀 번호 확인</ko>
+   <ja>パスワードの確認 </ja>
+   <en>Confirm Password</en>
+   <ch>确认密码</ch>
+   <ch_cn>確認密碼</ch_cn>
+ </Lang>
+ 
+ 
+   <Lang>
+   <id>member_verifypassword</id>
+   <ko>비밀 번호 확인</ko>
+   <ja>パスワードの確認 </ja>
+   <en>Confirm Password</en>
+   <ch>确认密码</ch>
+   <ch_cn>確認密碼</ch_cn>
+ </Lang>
+ 
+   <Lang>
+   <id>member_changemsg</id>
+   <ko>수정 했습니다.</ko>
+   <ja>修正しました。 </ja>
+   <en>It's corrected.</en>
+   <ch>纠正。</ch>
+   <ch_cn>糾正。 </ch_cn>
+ </Lang>
+ 
+    <Lang>
+   <id>member_idpasswordfind</id>
+   <ko>ID / PASSWORD 찾기</ko>
+   <ja>ID/ PASSWORDを検索 </ja>
+   <en>ID / PASSWORD Find </en>
+   <ch>ID /密碼查詢</ch>
+   <ch_cn>ID /密码查询 </ch_cn>
+ </Lang>
+ 
+     <Lang>
+   <id>member_join</id>
+   <ko>가입</ko>
+   <ja>登録</ja>
+   <en>Join</en>
+   <ch>報名</ch>
+   <ch_cn>报名 </ch_cn>
+ </Lang>
+ 
+ 
+  
+    <Lang>
+   <id>member_idfind</id>
+   <ko>ID 찾기</ko>
+   <ja>ID検索 </ja>
+   <en>Find ID </en>
+   <ch>查找ID</ch>
+   <ch_cn>查找ID </ch_cn>
+ </Lang>
+ 
+ <Lang>
+   <id>member_passwordfind</id>
+   <ko>PASSWORD 찾기</ko>
+   <ja>PASSWORD検索</ja>
+   <en>Find PASSWORD</en>
+   <ch>找回密碼</ch>
+   <ch_cn>找回密码</ch_cn>
+ </Lang>
+ 
+  <Lang>
+   <id>member_find</id>
+   <ko>찾기</ko>
+   <ja>検索 </ja>
+   <en>finding </en>
+   <ch>找到</ch>
+   <ch_cn>不可用昵称。 </ch_cn>
+ </Lang>
+ 
+  <Lang>
+   <id>member_reg</id>
+   <ko>등록</ko>
+   <ja>登録 </ja>
+   <en>Enrollment </en>
+   <ch>註冊</ch>
+   <ch_cn>注册 </ch_cn>
+ </Lang>
+ 
+   <Lang>
+   <id>member_cancel</id>
+   <ko>취소</ko>
+   <ja>キャンセル </ja>
+   <en>cancel </en>
+   <ch>取消</ch>
+   <ch_cn>取消 </ch_cn>
+ </Lang>
+ 
+    <Lang>
+   <id>member_login</id>
+   <ko>로그인</ko>
+   <ja>Login </ja>
+   <en>Login </en>
+   <ch>Login </ch>
+   <ch_cn>Login </ch_cn>
+ </Lang>
+ 
+ 
+ <Lang>
+   <id>member_joinstr</id>
+   <ko>가입했습니다.</ko>
+   <ja>加入しました。 </ja>
+   <en>Joined.</en>
+   <ch>他加入。</ch>
+   <ch_cn>他加入。 </ch_cn>
+ </Lang>
+
+ <Lang>
+   <id>member_ok</id>
+   <ko>확인</ko>
+   <ja>確認 </ja>
+   <en>Confirm</en>
+   <ch>確認</ch>
+   <ch_cn>确认 </ch_cn>
+ </Lang>
+ 
+ 
+ <Lang>
+   <id>member_loginmsg</id>
+   <ko>Sign in to start your session</ko>
+   <ja>Sign in to start your session</ja>
+   <en>Sign in to start your session</en>
+   <ch>Sign in to start your session</ch>
+   <ch_cn>Sign in to start your session </ch_cn>
+ </Lang>
+ 
+ 
+ <Lang>
+   <id>member_badpassword</id>
+   <ko>7자이상 40자 이하  그리고 영문자 1이상 숫자 1이상  특수문자 1이상 입력해야 합니다</ko>
+   <ja>7文字以上40文字以下とアルファベット1以上の数字1以上の特殊文字1以上入力する必要があります </ja>
+   <en>7 characters over 40 characters or less, and one or more letters at least one number must be entered at least one special character</en>
+   <ch>7個字符超過40個字符或更少，並且一個或多個字母至少一個數字必須輸入至少一個特殊字符</ch>
+   <ch_cn>7个字符超过40个字符或更少，并且一个或多个字母至少一个数字必须输入至少一个特殊字符</ch_cn>
+ </Lang>
+
+</Language>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Language>
+ <Lang>
+   <id>side_all</id>
+   <ko>전체 목록</ko>
+   <ja>全リスト </ja>
+   <en>All List </en>
+   <ch>全部列表</ch>
+   <ch_cn>全部列表</ch_cn>
+ </Lang>
+ 
+ <Lang>
+ <id>side_lang</id>
+   <ko>언어</ko>
+   <ja>言語</ja>
+   <en>language</en>
+   <ch>语言</ch>
+   <ch_cn>语言</ch_cn>
+ </Lang>
+
+ <Lang>
+ <id>side_kor</id>
+   <ko>한국어</ko>
+   <ja>韓国語</ja>
+   <en>Korean</en>
+   <ch>朝鲜的</ch>
+   <ch_cn>朝鲜的</ch_cn>
+ </Lang>
+
+
+ <Lang>
+ <id>side_jap</id>
+   <ko>일본어</ko>
+   <ja>日本語</ja>
+   <en>Japanese</en>
+   <ch>日本</ch>
+   <ch_cn>日本</ch_cn>
+ </Lang>
+
+
+ <Lang>
+ <id>side_chn</id>
+   <ko>중국어</ko>
+   <ja>中国語</ja>
+   <en>Chinese</en>
+   <ch>中国</ch>
+   <ch_cn>中国</ch_cn>
+ </Lang>
+ 
+ 
+ <Lang>
+ <id>side_eng</id>
+   <ko>영어</ko>
+   <ja>英語</ja>
+   <en>English</en>
+   <ch>英语</ch>
+   <ch_cn>英语</ch_cn>
+ </Lang>
+ 
+  <Lang>
+ <id>side_prog</id>
+   <ko>프로그래밍</ko>
+   <ja>プログラミング</ja>
+   <en>programming</en>
+   <ch>程序设计</ch>
+   <ch_cn>程序设计</ch_cn>
+ </Lang> 
+ 
+ <Lang>
+ <id>side_java</id>
+   <ko>자바</ko>
+   <ja>Javaの</ja>
+   <en>Java</en>
+   <ch>Java的</ch>
+   <ch_cn>Java的</ch_cn>
+ </Lang> 
+ 
+ 
+ <Lang>
+ <id>side_clang</id>
+   <ko>C언어</ko>
+   <ja>C言語</ja>
+   <en>C Language</en>
+   <ch>c语言</ch>
+   <ch_cn>c语言</ch_cn>
+ </Lang> 
+ 
+ <Lang>
+ <id>side_php</id>
+   <ko>PHP</ko>
+   <ja>PHP</ja>
+   <en>PHP</en>
+   <ch>PHP</ch>
+   <ch_cn>PHP</ch_cn>
+ </Lang> 
+ 
+ <Lang>
+ <id>side_cook</id>
+   <ko>요리</ko>
+   <ja>クック</ja>
+   <en>Cook</en>
+   <ch>厨师</ch>
+   <ch_cn>厨师</ch_cn>
+ </Lang> 
+ 
+   
+ <Lang>
+ <id>side_ckor</id>
+   <ko>한식</ko>
+   <ja>韓国食品</ja>
+   <en>Korean food</en>
+   <ch>韩国食品</ch>
+   <ch_cn>韩国食品</ch_cn>
+ </Lang> 
+ 
+  
+ <Lang>
+ <id>side_cchn</id>
+   <ko>중식</ko>
+   <ja>中華料理</ja>
+   <en>Chinese Food</en>
+   <ch>中国菜</ch>
+   <ch_cn>中国菜</ch_cn>
+ </Lang> 
+
+ 
+  <Lang>
+ <id>side_cjap</id>
+   <ko>일식</ko>
+   <ja>日本料理</ja>
+   <en>Japaness Food</en>
+   <ch>日本料理</ch>
+   <ch_cn>日本料理</ch_cn>
+ </Lang> 
+ 
+  <Lang>
+ <id>side_cwest</id>
+   <ko>양식</ko>
+   <ja>洋食</ja>
+   <en>Western food</en>
+   <ch>西方食物</ch>
+   <ch_cn>西方食物</ch_cn>
+ </Lang> 
+ 
+</Language>

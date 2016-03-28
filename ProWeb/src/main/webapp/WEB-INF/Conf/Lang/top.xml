@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Language>
+ <Lang>
+   <id>top_edu</id>
+   <ko>Edu Tube </ko>
+   <ja>Edu Tube </ja>
+   <en>Edu Tube </en>
+   <ch>Edu Tube</ch>
+   <ch_cn>Edu Tube</ch_cn>
+ </Lang>
+ 
+ <Lang>
+ <id>top_login</id>
+   <ko>로그인</ko>
+   <ja>login</ja>
+   <en>login</en>
+   <ch>login</ch>
+   <ch_cn>login</ch_cn>
+ </Lang>
+
+ <Lang>
+ <id>top_logout</id>
+   <ko>로그아웃</ko>
+   <ja>logout</ja>
+   <en>logout</en>
+   <ch>logout</ch>
+   <ch_cn>logout</ch_cn>
+ </Lang>
+
+
+ <Lang>
+ <id>top_member</id>
+   <ko>회원가입</ko>
+   <ja>Join</ja>
+   <en>Join</en>
+   <ch>Join</ch>
+   <ch_cn>Join</ch_cn>
+ </Lang>
+
+
+ <Lang>
+ <id>top_mypage</id>
+   <ko>마이페이지</ko>
+   <ja>MyPage</ja>
+   <en>MyPage</en>
+   <ch>MyPage</ch>
+   <ch_cn>MyPage</ch_cn>
+ </Lang>
+ 
+ 
+ <Lang>
+ <id>top_intro</id>
+   <ko>에듀튜브 소개</ko>
+   <ja>エデュチューブ紹介</ja>
+   <en>About Edu tube</en>
+   <ch>關於埃杜管</ch>
+   <ch_cn>关于埃杜管</ch_cn>
+ </Lang>
+ 
+ <Lang>
+ <id>top_notify</id>
+   <ko>공지 사항</ko>
+   <ja>お知らせ</ja>
+   <en>Notice</en>
+   <ch>通知</ch>
+   <ch_cn>通知</ch_cn>
+ </Lang> 
+ 
+ 
+ <Lang>
+ <id>top_instructor</id>
+   <ko>강사 소개</ko>
+   <ja>講師紹介</ja>
+   <en>About the instructor</en>
+   <ch>關於教練</ch>
+   <ch_cn>关于教练</ch_cn>
+ </Lang> 
+ 
+ <Lang>
+ <id>top_instructor_dir</id>
+   <ko>강의 목록</ko>
+   <ja>講義リスト</ja>
+   <en>Lecture List</en>
+   <ch>講座列表</ch>
+   <ch_cn>讲座列表</ch_cn>
+ </Lang> 
+ 
+ <Lang>
+ <id>top_file</id>
+   <ko>자료실</ko>
+   <ja>アーカイブ</ja>
+   <en>Resources</en>
+   <ch>資源</ch>
+   <ch_cn>资源</ch_cn>
+ </Lang> 
+ 
+   
+ <Lang>
+ <id>top_test</id>
+   <ko>테스트</ko>
+   <ja>Test</ja>
+   <en>Test</en>
+   <ch>Test</ch>
+   <ch_cn>Test</ch_cn>
+ </Lang> 
+ 
+ 
+ <Lang>
+ <id>top_admin</id>
+   <ko>관리자</ko>
+   <ja>admin</ja>
+   <en>admin</en>
+   <ch>admin</ch>
+   <ch_cn>admin</ch_cn>
+ </Lang> 
+ 
+ <Lang>
+ <id>top_search</id>
+   <ko>검색어를 입력해주세요</ko>
+   <ja>検索用語を入力してください</ja>
+   <en>Please enter a search term</en>
+   <ch>請輸入搜索詞</ch>
+   <ch_cn>请输入搜索词</ch_cn>
+ </Lang> 
+ 
+</Language>
