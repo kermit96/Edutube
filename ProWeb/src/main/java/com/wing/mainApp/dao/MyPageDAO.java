@@ -48,7 +48,7 @@ public class MyPageDAO {
 	public void visionREP(MyPageData data) {
 		sqlSession.update("mypage.repvision", data);
 	}
-	
+	 
 	/*
 =======
 >>>>>>> branch 'master' of https://github.com/Nepro73/EduTube.git

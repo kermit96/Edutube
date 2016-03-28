@@ -12,10 +12,6 @@ import javax.crypto.NoSuchPaddingException;
 
 import com.wing.mainApp.util.ase128;
 
-
-
-
-
 public class Globalconfig {
     private String dbname;
     private String    dbtype;

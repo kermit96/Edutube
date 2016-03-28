@@ -282,7 +282,7 @@ public class BaseJDBCDao {
 	    url = info.getUrl(host,port,dbname);
    
 		BaseJDBCDao dao = new BaseJDBCDao(drivename,url,userid,password);
-	
+	 
 		return dao;
 	}
 		

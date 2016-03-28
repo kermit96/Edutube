@@ -28,7 +28,7 @@
 <script language="javascript">
 var id = "${sessionScope.ID}";
 $(document).ready(function(){
-	setInterval(msg,3000); 
+	setInterval(msg,7000); 
 });
 function msg(){
 	if(id==null|| id==""){
@@ -138,6 +138,11 @@ a.logC:hover {
 	outline-style: none;
 	width: 350px;
 } 
+#idstate{
+	width:200px;
+	height:20px;
+}
+
 </Style>
 
 <div id="topcontainer">
@@ -193,6 +198,11 @@ a.logC:hover {
 					</c:if>	
 
 			</div>
+			<c:if test="${sessionScope.ID ne null}">
+			<div id="idstate">
+				${sessionScope.NICKNAME} 님 환영합니다.
+			</div>
+			</c:if>
 		</div>
 	</div>
 
@@ -205,10 +215,7 @@ a.logC:hover {
 			<li><a href="JavaScript:goClasses()"><span>${LANGDATA.top_instructor_dir}</span></a></li>
 			<li><a href="JavaScript:goDownload()"><span>${LANGDATA.top_file}</span></a></li>
 			<li><a href="JavaScript:goFAQ()"><span>FAQ</span></a></li>
-			<li><a href="JavaScript:goQA()"><span>QA</span></a></li>	
-			<c:if test="${isAdmin==true}">
- 				<li class='last'><a href="/edutube/AdminPage/AdminMain.do"><span>${LANGDATA.top_admin}</span></a></li>	
-			</c:if>
+			<li class='last'><a href="JavaScript:goQA()"><span>QA</span></a></li>
 		</ul>
 	</div>
 

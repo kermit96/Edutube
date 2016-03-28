@@ -1,16 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
- <%@page import="com.wing.mainApp.util.*" %>
-
-   
+ <%@page import="com.wing.mainApp.util.* " %>  
 <%
    boolean isview = false;
     //  local 에서  실행하지 않으면 실행되지 않게 한다.    
     String ip=  request.getRemoteAddr();      
     if (util.IsMyIp(ip) )
-     	isview = true;     		
+   	isview = true;     		
 %>    
 <!DOCTYPE html >
 
@@ -403,15 +399,9 @@ function myclose()
       
          <select id="dbselect" > 
   
-
-
-<c:forEach var="list" items="${DBLIST}">
-    <option value="${list.key}">${list.value.dbname}</option>
-  </c:forEach>
-  <!-- 
      <option value="0">Oracle</option>
      <option value="1">Ms-sql</option>
-      <option value="2">Mysql</option>  -->
+      <option value="2">Mysql</option>
           </select>
       </td>
       

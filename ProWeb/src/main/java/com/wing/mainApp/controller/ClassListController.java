@@ -583,12 +583,12 @@ public class ClassListController {
 		
 		/*총댓글수 구해서 페이징 정보 구하기*/
 		int retotal = lDao.getReTotal(oriNo);
-		PagingUtil	pInfo = new PagingUtil(rePage, retotal, 10, 5);
+		PagingUtil	pInfo = new PagingUtil(rePage, retotal, 5, 5);
 		pInfo.pagingProc();
 		
 		if(isInit == true){
 			rePage = pInfo.pageNum;
-			pInfo = new PagingUtil(rePage, retotal,10,5);
+			pInfo = new PagingUtil(rePage, retotal,5,5);
 			pInfo.pagingProc();
 		}
 				

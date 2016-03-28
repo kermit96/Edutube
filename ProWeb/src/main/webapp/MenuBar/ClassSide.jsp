@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 
 <!--CSS-->
@@ -17,28 +18,28 @@
 
 <div id='cssmenu2'>
 <ul>
-   <li><a href='/edutube/ClassList/ClassList.do'>전체 목록</a></li>
-   <li class='active has-sub'><a href='#'>언어</a>
+   <li><a href='/edutube/ClassList/ClassList.do'>${LANGDATA.side_all}</a></li>
+   <li class='active has-sub'><a href='#'>${LANGDATA.side_lang}</a>
       <ul>
-         <li><a href="../ClassList/ClassList.do?code=langkor">한국어</a></li>
-         <li><a href='../ClassList/ClassList.do?code=langjap'>일본어</a></li>
-         <li><a href='../ClassList/ClassList.do?code=langchn'>중국어</a></li>
-         <li><a href='../ClassList/ClassList.do?code=langeng'>영어</a></li>
+         <li><a href="../ClassList/ClassList.do?code=langkor">${LANGDATA.side_kor}</a></li>
+         <li><a href='../ClassList/ClassList.do?code=langjap'>${LANGDATA.side_jap}</a></li>
+         <li><a href='../ClassList/ClassList.do?code=langchn'>${LANGDATA.side_chn}</a></li>
+         <li><a href='../ClassList/ClassList.do?code=langeng'>${LANGDATA.side_eng}</a></li>
       </ul>
    </li>
-   <li class='active has-sub'><a href='#'>프로그래밍</a>
+   <li class='active has-sub'><a href='#'>${LANGDATA.side_prog}</a>
       <ul>
-         <li><a href='../ClassList/ClassList.do?code=progjava'>자바</a></li>
-         <li><a href='../ClassList/ClassList.do?code=progclang'>C언어</a></li>
-         <li><a href='../ClassList/ClassList.do?code=progphp'>PHP</a></li>
+         <li><a href='../ClassList/ClassList.do?code=progjava'>${LANGDATA.side_java}</a></li>
+         <li><a href='../ClassList/ClassList.do?code=progclang'>${LANGDATA.side_clang}</a></li>
+         <li><a href='../ClassList/ClassList.do?code=progphp'>${LANGDATA.side_php}</a></li>
       </ul>
    </li>
-   <li class='active has-sub'><a href='#'>요리</a>
+   <li class='active has-sub'><a href='#'>${LANGDATA.side_cook}</a>
       <ul>
-         <li><a href='../ClassList/ClassList.do?code=cookkor'>한식</a></li>
-         <li><a href='../ClassList/ClassList.do?code=cookchn'>중식</a></li>
-         <li><a href='../ClassList/ClassList.do?code=cookjap'>일식</a></li>
-       	 <li><a href='../ClassList/ClassList.do?code=cookwest'>양식</a></li>
+         <li><a href='../ClassList/ClassList.do?code=cookkor'>${LANGDATA.side_ckor}</a></li>
+         <li><a href='../ClassList/ClassList.do?code=cookchn'>${LANGDATA.side_cchn}</a></li>
+         <li><a href='../ClassList/ClassList.do?code=cookjap'>${LANGDATA.side_cjap}</a></li>
+       	 <li><a href='../ClassList/ClassList.do?code=cookwest'>${LANGDATA.side_cwest}</a></li>
       </ul>
    </li>
 
