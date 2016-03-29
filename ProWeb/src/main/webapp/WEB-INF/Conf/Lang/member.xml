@@ -136,7 +136,7 @@
  
    <Lang>
    <id>member_usermodify</id>
-   <ko>유저 정보 변경.</ko>
+   <ko> 유저 정보 변경.</ko>
    <ja>ーザー情報を変更します。 </ja>
    <en>Change user information.</en>
    <ch>更改用戶信息。</ch>
@@ -154,7 +154,7 @@
  
     <Lang>
    <id>member_changepassword</id>
-   <ko>유저 정보 변경</ko>
+   <ko>비밀 번호 변경</ko>
    <ja>ーザ情報の変更 </ja>
    <en>Change user information </en>
    <ch>更改用戶信息</ch>

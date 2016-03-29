@@ -10,7 +10,8 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
-import com.wing.mainApp.util.ase128;
+import com.wing.mainApp.util.SeedUtil;
+
 
 public class Globalconfig {
     private String dbname;
@@ -140,9 +141,9 @@ public class Globalconfig {
 		this.password = password;
 				
 		try {
-			handler.setValue("password",		ase128.AES_Encode(password));
-		} catch (InvalidKeyException | UnsupportedEncodingException | NoSuchAlgorithmException | NoSuchPaddingException
-				| InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
+			// handler.setValue("password",		ase128.AES_Encode(password));
+			handler.setValue("password",		SeedUtil.encrypt(password));
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -241,7 +242,8 @@ public class Globalconfig {
 	
 	public Globalconfig(String filename)
 	{
-		
+	
+		// System.out.println(filename);
 	    handler = ConfigFileHandler.getConfigFileHandler(filename);
     	
     	host = handler.getValue("host");
@@ -259,7 +261,8 @@ public class Globalconfig {
 			userid = "";
 		
 		 try {
-			password =   ase128.AES_Decode( handler.getValue("password"));
+	//		password =   ase128.AES_Decode( handler.getValue("password"));
+				password =   SeedUtil.decrypt( handler.getValue("password"));
 			
 		} catch (Exception	ex) {
 			ex.printStackTrace();

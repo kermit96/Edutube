@@ -220,7 +220,8 @@ public class util {
 			return GetSha(str,"SHA-256");
 							   
    }
-   
+
+    
     
    
 }

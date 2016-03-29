@@ -10,7 +10,24 @@
 <title>Edu Tube</title>
 
 <!--CSS-->
-<link rel="stylesheet" href="../resources/CSS/bootstrap.min.css">
+
+
+<link
+	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/edutube/resources/CSS/bootstrap.min.css">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css">
+ <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+     <link rel="stylesheet" href="/edutube/resources/CSS/AdminLTE.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="/edutube/resources/CSS/blue.css">
+ 
+<!--  파피콘 넣기 -->
+<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+<link rel="icon" href="../favicon.ico" type="image/x-icon" />
+<!--  검색바 -->
+
+
 <!--  파피콘 넣기 -->
 <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
 <link rel="icon" href="../favicon.ico" type="image/x-icon" />
@@ -19,6 +36,7 @@
 <!--JS-->
 <script src="../resources/JS/jquery-2.1.4.min.js"></script>
 <script src="../resources/JS/bootstrap.min.js"></script>
+
 
 
 <!--스크립트-->
@@ -356,7 +374,7 @@ body {
 					<ul class="nav nav-tabs">
 						<li class="active"><a data-toggle="tab"
 							href="#changeuserinfo">${LANGDATA.member_personalmodify}</a></li>
-						<li><a data-toggle="tab" href="#changepassword">${LANGDATA.member_changepassword}<</a></li>
+						<li><a data-toggle="tab" href="#changepassword">${LANGDATA.member_changepassword}</a></li>
 					</ul>
 
 					<div class="tab-content">
@@ -370,7 +388,7 @@ body {
 										<div id="checknickname"></div></td>
 								</tr>
 								<tr>
-									<td>${LANGDATA.member_nickname}</td>
+									<td>${LANGDATA.member_name}</td>
 									<td><input type="text" id="mem_name"
 										value="${member.mem_name}"></td>
 								</tr>
@@ -389,7 +407,7 @@ body {
 								<tr>
 									<td>${LANGDATA.member_addr}</td>
 									<td><input type="text" id="mem_addrCode"
-										name="mem_addrCode" value=""
+										name="mem_addrCode" value="${member.mem_addrCode}"
 										placeholder="${LANGDATA.member_post}"> <input
 										type="button" id="addrfind"
 										value="${LANGDATA.member_postfind}"><br> <input

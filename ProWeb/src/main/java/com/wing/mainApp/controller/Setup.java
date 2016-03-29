@@ -303,7 +303,7 @@ public class Setup {
 			  String userid,String password)
 	{		
 		      
-		 try {
+		 try {			 
 			 BaseJDBCDao dao = BaseJDBCDao.GetjdbcDao(dbtype, host, port, dbname, userid, password);
 		    dao.closeAll();
 		    return "Success";
