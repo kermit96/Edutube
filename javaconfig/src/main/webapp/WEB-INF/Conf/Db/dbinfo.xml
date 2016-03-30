@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dblist>
+ <DB>
+   <dbid>MSSQL</dbid>
+   <dbname>MS-sqlserver</dbname>
+   <drivename>com.microsoft.sqlserver.jdbc.SQLServerDriver</drivename>
+   <url>jdbc:sqlserver://{HOSTNAME}:{PORT};databaseName={DBNAME}</url>
+   <defaultport>1433</defaultport>
+ </DB>
+ 
+ <DB>
+   <dbid>ORACLE</dbid>
+   <dbname>Oracle</dbname>
+   <drivename>oracle.jdbc.driver.OracleDriver</drivename>
+   <url>jdbc:oracle:thin:@{HOSTNAME}:{PORT}:{DBNAME}</url>
+   <defaultport>1521</defaultport>
+ </DB>
+ 
+ <DB>
+   <dbid>MYSQL</dbid>
+   <dbname>mysql</dbname>
+   <drivename>com.mysql.jdbc.Driver</drivename>
+   <url>jdbc:mysql://{HOSTNAME}:{PORT}/{DBNAME}?useSSL=false</url>
+   <defaultport>3306</defaultport>
+ </DB>
+ 
+ 
+</Dblist>
