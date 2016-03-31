@@ -10,6 +10,7 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
+import com.iedu.util.SeedUtil;
 import com.iedu.util.ase256;
 
 public class Globalconfig {
@@ -140,11 +141,11 @@ public class Globalconfig {
 		this.password = password;
 				
 		try {
-			handler.setValue("password",		ase256.AES_Encode(password));
-		} catch (InvalidKeyException | UnsupportedEncodingException | NoSuchAlgorithmException | NoSuchPaddingException
-				| InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
+// 			handler.setValue("password",		ase256.AES_Encode(password));
+			handler.setValue("password",		SeedUtil.encrypt(password));
+		} catch (Exception ex ) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			ex.printStackTrace();
 		}
 	}
 
@@ -259,7 +260,8 @@ public class Globalconfig {
 			userid = "";
 		
 		 try {
-			password =   ase256.AES_Decode( handler.getValue("password"));
+			// password =   ase256.AES_Decode( handler.getValue("password"));
+			 password =   SeedUtil.decrypt(handler.getValue("password"));			 
 			
 		} catch (Exception	ex) {
 			ex.printStackTrace();
