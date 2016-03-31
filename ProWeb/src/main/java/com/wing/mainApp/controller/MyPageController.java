@@ -150,7 +150,7 @@ public class MyPageController {
 		email.recipient = emadd;
 		try {
 			email.emailsend();
-		} catch (MessagingException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		data = aDao.selectAll(id);
@@ -179,7 +179,7 @@ public class MyPageController {
 		email.recipient = emadd;
 		try {
 			email.emailno();
-		} catch (MessagingException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		

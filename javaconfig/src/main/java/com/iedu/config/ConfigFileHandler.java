@@ -201,31 +201,7 @@ public class ConfigFileHandler {
 		}
 		
 		return sConfPath;
-	
 		
-	/*
-		
-		String sConfPath="";
-		sConfPath = sPath + File.separator + "conf" + File.separator+"init.property";
-		
-		
-		System.out.println("confpath="+sConfPath);
-		if (InitialFileInfo ==null ) {
-			
-			
-			
-    	   InitialFileInfo =  new  FileLoadingInfo(new File(sConfPath));
-    	 
-    	   LoadInitailDir();
-		} else {
-			
-			if (InitialFileInfo.isUpdated()) {
-				LoadInitailDir();
-			}			
-		}
-		
-		return m_defaultprops.getProperty("DIR");
-		*/
 	}
 	
 	public  static  synchronized boolean SaveInitDirectory(String Dir)
@@ -335,7 +311,7 @@ public class ConfigFileHandler {
 	 * 
 	 * @return if success, return true. else return false
 	 */
-	// written by YuKwangmin
+	
 	protected synchronized boolean loadFile() {
 		
 		if (fileLoadingInfo == null || !fileLoadingInfo.getFile().isFile()) {
