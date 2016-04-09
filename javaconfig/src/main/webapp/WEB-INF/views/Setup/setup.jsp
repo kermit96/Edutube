@@ -101,6 +101,13 @@ ul.tabs li.active {
 
 <%if (isview)  { %> 
 <script>
+
+var select = 0; 
+
+var dbinfoarray = [];
+
+
+
 $(document).ready(function() {
 	
 
@@ -113,8 +120,33 @@ $(document).ready(function() {
 	   $("#etcsave").click(etcsave);
 	   $("#end").click(myclose);	   
 	   $("#smtptest").click(smtptest);
+	   
+	   $("#dbnum").click(dbnumchange);
 	  
 });
+
+
+function dbnumchange()
+{
+	// 현재 선택된 값을 배열에 저장한다.
+	
+	dbinfoarray[select].dbname =$("#dbname").val;
+	dbinfoarray[select].dbtype =$("#dbtype").val;
+	dbinfoarray[select].dbuser =$("#dbuser").val;
+	dbinfoarray[dbhost].dbuser =$("#dbhost").val;
+	dbinfoarray[dbport].dbuser =$("#dbport").val;
+	dbinfoarray[dbpassword].dbuser =$("#dbpassword").val;
+	
+	  select = $('#dbnum option:selected').val();
+	  
+      $("#dbname").val(dbinfoarray[select].dbname);
+      $("#dbtype").val(dbinfoarray[select].dbtype);
+      $("#dbuser").val(dbinfoarray[select].userid);
+      $("#dbhost").val(dbinfoarray[select].host);
+      $("#dbport").val(dbinfoarray[select].port);
+      $("#dbpassword").val(dbinfoarray[select].password);
+	  
+}
 
 
 function init()
@@ -157,6 +189,8 @@ function init()
 	    });
 	
 	
+	
+	
     $.ajax({
         url:'../Setup/getglobalconfig.do',
         async:false,
@@ -164,13 +198,41 @@ function init()
         dataType:'json',
         success:function(data){
         	
-       
+       /*
           $("#dbname").val(data.dbname);
           $("#dbselect").val(data.dbtype);
           $("#dbuser").val(data.userid);
           $("#dbhost").val(data.host);
           $("#dbport").val(data.port);
           $("#dbpassword").val(data.password);
+          */
+          
+          
+          
+          for(i=0;i<data.dbinfo.length;i++) {
+        	  var dbinfo = new Object(); 
+        	  dbinfo.dbname = data.dbinfo[i].dbname;
+        	  dbinfo.dbtype = data.dbinfo[i].dbtype;
+        	  dbinfo.userid = data.dbinfo[i].userid;
+        	  dbinfo.port = data.dbinfo[i].port;
+        	  dbinfo.password = data.dbinfo[i].password;
+        	  dbinfoarray[i] =dbinfo;        	  
+          }
+          
+          select = 0;
+
+          for(i=-0;i<dbinfoarray.length;i++) {
+        	  
+        	  $("#dbnum").append(new Option("DB #"+i, i));
+          }
+          
+          $("#dbname").val(dbinfoarray[0].dbname);
+          $("#dbtype").val(dbinfoarray[0].dbtype);
+          $("#dbuser").val(dbinfoarray[0].userid);
+          $("#dbhost").val(dbinfoarray[0].host);
+          $("#dbport").val(dbinfoarray[0].port);
+          $("#dbpassword").val(dbinfoarray[0].password);
+          
           
           $("#smtpport").val(data.smtpport);
           $("#smtphost").val(data.smtphost);
@@ -332,6 +394,15 @@ function smtpsave()
 
 function dbsave()
 {
+
+	dbinfoarray[select].dbname =$("#dbname").val;
+	dbinfoarray[select].dbtype =$("#dbtype").val;
+	dbinfoarray[select].dbuser =$("#dbuser").val;
+	dbinfoarray[dbhost].dbuser =$("#dbhost").val;
+	dbinfoarray[dbport].dbuser =$("#dbport").val;
+	dbinfoarray[dbpassword].dbuser =$("#dbpassword").val;
+	
+	var str = JSON.stringify(dbinfoarray);
 	
 	var encryted = $('input:radio[name="checkset"]:checked').val();
     try {
@@ -340,12 +411,7 @@ function dbsave()
         async:false,
         type:'post',
         dataType:'html',
-        data:{dbtype:$("#dbselect").val(),
-        	dbname:$("#dbname").val(),
-        	dbuser:$("#dbuser").val(),
-        	dbhost:$("#dbhost").val(),
-        	dbport:$("#dbport").val(),
-        	dbpassword:$("#dbpassword").val()  
+        data:{dbjson:str  
         },
         
         success:function(data){            	
@@ -391,9 +457,15 @@ function myclose()
         <li rel="ectsetting">기타 설정</li>
     </ul>
     <div class="tab_container">
-        <div id="dbsetting" class="tab_content">
-        <h2 align="center"> DB 설정 </h1>    <br> 
-  
+   <div id="dbsetting" class="tab_content">
+   
+
+         <br>
+   
+      <h2 align="center"> DB 설정 </h1>          <select id="dbnum" >
+     
+         </select> 
+     
   <table align="center">
    <tr> 
       <td>
@@ -401,7 +473,7 @@ function myclose()
       </td>
       <td>
       
-         <select id="dbselect" > 
+    <select id="dbselect" > 
   
 
 
@@ -464,7 +536,7 @@ function myclose()
   <tr>
   <td colspan="2"  align="center">
     <p>
-      <button id="test"> DB 테스트</button>     <button  id="dbsave">적용</button>
+      <button id="test"> DB 테스트</button>     <button  id="dbsave1">적용</button>
   </td>
   </tr>    
   </table>    
@@ -472,7 +544,9 @@ function myclose()
       
    </div>
   
-          </div>
+  </div>
+   
+   </div>
           
           
         <!-- #tab1 -->

@@ -1,4 +1,4 @@
-package com.iedu.util;
+﻿package com.iedu.util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +67,7 @@ public class SeedUtil{
 			decByteList.add(tempDecByte);
 		}
 		
-		return getByteListStr(decByteList, true);
+		return getByteListStr(decByteList, false);
 	}
 	
 	/**
@@ -80,7 +80,7 @@ public class SeedUtil{
 	public static String getSeedEncrypt(String strVal, int[] seedKey) throws Exception{
 		
 		// 원문을 byte[] list로 변환
-		List<byte[]> byteList = getByteList(strVal, true);
+		List<byte[]> byteList = getByteList(strVal, false);
 		
 //		System.out.println("원본 바이트 시작");
 //		for(int i=0; i<byteList.size(); i++){
@@ -167,7 +167,13 @@ public class SeedUtil{
 		
 		if(isDecode){
 			BASE64Decoder base64Dec = new BASE64Decoder();
-			tempByte = base64Dec.decodeBuffer(nomal);
+
+//                        byte[] normalbyte =  nomal.getBytes(CHARACTER_SET);
+
+		tempByte = base64Dec.decodeBuffer(nomal);
+         //                tempByte = base64Dec.decodeBuffer(normalbyte);
+               //         tempByte = base64Dec.de``
+                        
 		}else{
 			tempByte = nomal.getBytes(CHARACTER_SET);
 		}
@@ -751,6 +757,7 @@ public class SeedUtil{
 	    pdwRoundKey[nCount++] = K[0];	pdwRoundKey[nCount++] = K[1];
 		}
 		
+		
 		public static String encrypt(String normalStr)
 		{
 			
@@ -785,6 +792,7 @@ public class SeedUtil{
 			 
 		}
 		
+		// default key 가지고 decrypt 
 		
 		public static String decrypt(String encStr)
 		{
@@ -799,7 +807,11 @@ public class SeedUtil{
 //			// 암복호화에 사용할 키 배열생성
 			int[] seedKey = getSeedRoundKey("1234567890123456");
 			
-			String nomalStr = "이때 이 물음에 답이 서버 루트에 clientaccesspolicy.xml 파일이다.)(*&^%$#@!,./;',./l;'[]=-";
+		//	String nomalStr = "이때 이 물음에 답이 서버 루트에 clientaccesspolicy.xml 파일이다.)(*&^%$#@!,./;',./l;'[]=-";
+			
+//			String nomalStr ="이떄 말한다,";
+			
+			String nomalStr ="한글";
 			
              String encStr = encrypt(nomalStr);
 			

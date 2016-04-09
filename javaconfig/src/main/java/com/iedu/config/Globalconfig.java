@@ -5,11 +5,13 @@ import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
+import com.iedu.util.DbInfo;
 import com.iedu.util.SeedUtil;
 import com.iedu.util.ase256;
 
@@ -31,11 +33,37 @@ public class Globalconfig {
     
     private String  smtpsender;
     
-    private int    encryptedmethod; // 0 : 없음 1: tls 2: ssl   
+    private int    encryptedmethod; // 0 : 없음 1: tls 2: ssl
+    
+    private final  int MAX_DB_NUM = 9;  // max db 설정 
     
     
     
-    public String getSmtpemail() {
+    private dbconfiginfo[] dbsaveinfoarray; // dbsetting array
+
+
+	public dbconfiginfo[] getDbsaveinfoarray() {
+		return dbsaveinfoarray;
+	}
+
+	public void setDbsaveinfoarray(dbconfiginfo[] dbsaveinfoarray) {
+		this.dbsaveinfoarray = dbsaveinfoarray;
+		
+		for(int i=0;i<dbsaveinfoarray.length;i++) {
+			
+			handler.setValue("port"+i,dbsaveinfoarray[i].getPort());
+			handler.setValue("dbname"+i,dbsaveinfoarray[i].getDbname());
+			handler.setValue("userid"+i,dbsaveinfoarray[i].getUserid());
+			handler.setValue("password"+i,dbsaveinfoarray[i].getPassword());
+			handler.setValue("dbtype"+i,dbsaveinfoarray[i].getDbtype());
+			handler.setValue("host"+i,dbsaveinfoarray[i].getHost());
+			
+		}
+		
+		
+	}
+
+	public String getSmtpemail() {
 		return smtpemail;
 	}
 
@@ -243,41 +271,58 @@ public class Globalconfig {
 	public Globalconfig(String filename)
 	{
 		
-	    handler = ConfigFileHandler.getConfigFileHandler(filename);
-    	
-    	host = handler.getValue("host");
-		port = 0;
+		dbsaveinfoarray = new dbconfiginfo[MAX_DB_NUM];
 		
-		try {
-		  port = 	Integer.parseInt( handler.getValue("port"));
+	    handler = ConfigFileHandler.getConfigFileHandler(filename);
+	    
+	    
+	    
+	    
+	    for(int i=0;i<MAX_DB_NUM;i++) {
+	    	
+	    	dbconfiginfo info = new dbconfiginfo();
+    	   String host = handler.getValue("host"+i);
+    	   info.setHost(host);
+		   int port = 0;
+		    
+		   
+		   try {
+		     port = 	Integer.parseInt( handler.getValue("port"+i));
 
 		} catch (Exception ex ) {}
-		
-		dbname =  handler.getValue("dbname");
-		userid =  handler.getValue("userid");
+		    info.setPort(port);
+		      
+		    
+		    String dbname =  handler.getValue("dbname"+i);
+		    String  userid =  handler.getValue("userid"+i);
 				
-		if (userid == null)
-			userid = "";
+		    
+		   if (userid == null)
+			  userid = "";
 		
-		 try {
+		   info.setDbname(dbname);
+		   
+		   String  password;
+		    try {
 			// password =   ase256.AES_Decode( handler.getValue("password"));
-			 password =   SeedUtil.decrypt(handler.getValue("password"));			 
+			 password =   SeedUtil.decrypt(handler.getValue("password"+1));			 
 			
-		} catch (Exception	ex) {
-			ex.printStackTrace();
-			password = handler.getValue("password");
-		}
+		    	} catch (Exception	ex) {
+		    		ex.printStackTrace();
+		    		password = handler.getValue("password"+1);
+		    	}
 		
-		 try {
-		 //   dbtype = Integer.parseInt( handler.getValue("dbtype"));
-			 dbtype = handler.getValue("dbtype");
-			 
-		 } catch (Exception ex) {
-			 dbtype ="";
-		 }
+		    info.setPassword(password);
+		    
+		 String dbtype;
 		 
-		
+		 dbtype = handler.getValue("dbtype")+1;
 		 
+		 info.setDbtype(dbtype);
+		 dbsaveinfoarray[i] = info;
+		 
+	    }
+
 		 try {
 			   this.smtpport = Integer.parseInt( handler.getValue("smtpport"));		
 			 } catch (Exception ex) {
@@ -285,6 +330,7 @@ public class Globalconfig {
 		 }
 			 
 		
+ 
  	    this.smtphost = handler.getValue("smtphost");		
        	
  	    this.smtpuserid = handler.getValue("smtpuserid");

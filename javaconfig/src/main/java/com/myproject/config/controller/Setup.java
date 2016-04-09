@@ -1,6 +1,7 @@
 package com.myproject.config.controller;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,11 +12,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.reflect.TypeToken;
 import com.iedu.config.Globalconfig;
+import com.iedu.config.dbconfiginfo;
 import com.iedu.sql.BaseJDBCDao;
 import com.iedu.util.DbInfoMap;
 import com.iedu.util.MailSendInfo;
 import com.iedu.util.util;
+
+import oracle.jdbc.driver.DBConversion;
 
 
 
@@ -137,35 +143,26 @@ public class Setup {
 	public void dbsave(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{	
 
-		String   dbtype = "" ;
-		String dbname ="";
-		String host ="";
-		int     port = 0 ;
-		String userid ="" ;				
-		String password="";
 
   		 response.setCharacterEncoding("UTF-8");
 
-		 // dbtype = Integer.parseInt(request.getParameter("dbtype") );
-  		dbtype = request.getParameter("dbtype");
-		 dbname = request.getParameter("dbname");
-		 host = request.getParameter("dbhost");
-		 port = Integer.parseInt(request.getParameter("dbport"));
-		 userid = request.getParameter("dbuser");
-		 password = request.getParameter("dbpassword");
-		 
+
+  		 
 		 
 		Globalconfig config = new Globalconfig();
 		
-		config.setDbtype(dbtype);
-		config.setDbname(dbname);
-		config.setHost(host);
-		config.setPort(port);;
-		config.setUserid(userid);
-		config.setPassword(password);
-		
 
+		String jsonstr = request.getParameter("jsonstr");
 		
+		Gson gson = new Gson();
+		
+		ArrayList<dbconfiginfo> list= (ArrayList<dbconfiginfo>) gson.fromJson(jsonstr,
+                new TypeToken<ArrayList<String>>() {
+                }.getType());
+		
+		
+		
+		config.setDbsaveinfoarray((dbconfiginfo[])list.toArray());
 		config.Save();
 	//	response.setContentType("text/html");
 		response.setCharacterEncoding("utf-8");
