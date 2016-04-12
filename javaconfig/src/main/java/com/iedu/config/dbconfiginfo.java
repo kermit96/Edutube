@@ -2,10 +2,10 @@ package com.iedu.config;
 
 public class dbconfiginfo {
   private String dbtype;
-  private String host;
-  private int port;
-  private String userid;
-  private String password;
+  private String dbhost;
+  private int dbport;
+  private String dbuserid;
+  private String dbpassword;
   private String dbname;
   
   public String getDbname() {
@@ -22,29 +22,29 @@ public String getDbtype() {
 public void setDbtype(String dbtype) {
 	this.dbtype = dbtype;
 }
-public String getHost() {
-	return host;
+public String getDbhost() {
+	return dbhost;
 }
-public void setHost(String host) {
-	this.host = host;
+public void setDbhost(String host) {
+	this.dbhost = host;
 }
-public int getPort() {
-	return port;
+public int getDbport() {
+	return dbport;
 }
-public void setPort(int port) {
-	this.port = port;
+public void setDbport(int port) {
+	this.dbport = port;
 }
-public String getUserid() {
-	return userid;
+public String getDbuserid() {
+	return dbuserid;
 }
-public void setUserid(String userid) {
-	this.userid = userid;
+public void setDbuserid(String userid) {
+	this.dbuserid = userid;
 }
-public String getPassword() {
-	return password;
+public String getDbpassword() {
+	return dbpassword;
 }
-public void setPassword(String password) {
-	this.password = password;
+public void setDbpassword(String password) {
+	this.dbpassword = password;
 }
   
 }

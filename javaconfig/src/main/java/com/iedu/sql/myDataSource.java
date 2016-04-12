@@ -1,13 +1,21 @@
 package com.iedu.sql;
 
 import com.iedu.config.Globalconfig;
+import com.iedu.config.dbconfiginfo;
 import com.iedu.util.DbInfo;
 import com.iedu.util.DbInfoMap;
 
 
 // Globalconfig 에서 값을 읽어와서 db 설정
 public class myDataSource extends  org.apache.commons.dbcp.BasicDataSource  {
-   public myDataSource()
+	
+	public myDataSource()
+	{		
+		this(0);
+	}
+	
+	
+   public myDataSource(int index)
    {
 	   super();
 	   
@@ -18,6 +26,9 @@ public class myDataSource extends  org.apache.commons.dbcp.BasicDataSource  {
 	   
 	   String userid ="";
 	   String password ="";
+	  
+	   
+	   /*	   
 	   try {
 		    userid = config.getUserid();			   
 	   } catch(Exception ex) { 			   			   
@@ -33,6 +44,18 @@ public class myDataSource extends  org.apache.commons.dbcp.BasicDataSource  {
 	   int port = config.getPort();
 	   
 	   String dbtype = config.getDbtype();
+	   
+	   */
+	   
+	   dbconfiginfo info =  config.getDbconfig(index) ;
+	   
+	  if (info == null)
+		  return;
+	   
+	  userid = info.getDbuserid();
+	  password = info.getDbpassword();
+	  int port  = info.getDbport();
+	  String dbtype = info.getDbtype();
 	   
 	   DbInfo  dbinfo =  new DbInfoMap().GetDbInfo(dbtype);
 	   

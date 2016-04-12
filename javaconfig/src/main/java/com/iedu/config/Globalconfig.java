@@ -51,12 +51,12 @@ public class Globalconfig {
 		
 		for(int i=0;i<dbsaveinfoarray.length;i++) {
 			
-			handler.setValue("port"+i,dbsaveinfoarray[i].getPort());
+			handler.setValue("port"+i,dbsaveinfoarray[i].getDbport());
 			handler.setValue("dbname"+i,dbsaveinfoarray[i].getDbname());
-			handler.setValue("userid"+i,dbsaveinfoarray[i].getUserid());
-			handler.setValue("password"+i,dbsaveinfoarray[i].getPassword());
+			handler.setValue("userid"+i,dbsaveinfoarray[i].getDbuserid());
+			handler.setValue("password"+i,dbsaveinfoarray[i].getDbpassword());
 			handler.setValue("dbtype"+i,dbsaveinfoarray[i].getDbtype());
-			handler.setValue("host"+i,dbsaveinfoarray[i].getHost());
+			handler.setValue("host"+i,dbsaveinfoarray[i].getDbhost());
 			
 		}
 		
@@ -268,6 +268,13 @@ public class Globalconfig {
 		
 	}
 	
+	public dbconfiginfo getDbconfig(int index) 
+	{		
+		if (index<0 || index >= MAX_DB_NUM)
+			return null;		
+		return  dbsaveinfoarray[index];
+	}
+	
 	public Globalconfig(String filename)
 	{
 		
@@ -282,7 +289,7 @@ public class Globalconfig {
 	    	
 	    	dbconfiginfo info = new dbconfiginfo();
     	   String host = handler.getValue("host"+i);
-    	   info.setHost(host);
+    	   info.setDbhost(host);
 		   int port = 0;
 		    
 		   
@@ -290,7 +297,7 @@ public class Globalconfig {
 		     port = 	Integer.parseInt( handler.getValue("port"+i));
 
 		} catch (Exception ex ) {}
-		    info.setPort(port);
+		    info.setDbport(port);
 		      
 		    
 		    String dbname =  handler.getValue("dbname"+i);
@@ -312,7 +319,7 @@ public class Globalconfig {
 		    		password = handler.getValue("password"+1);
 		    	}
 		
-		    info.setPassword(password);
+		    info.setDbpassword(password);
 		    
 		 String dbtype;
 		 

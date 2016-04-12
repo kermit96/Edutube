@@ -213,25 +213,23 @@ function init()
         	  var dbinfo = new Object(); 
         	  dbinfo.dbname = data.dbinfo[i].dbname;
         	  dbinfo.dbtype = data.dbinfo[i].dbtype;
-        	  dbinfo.userid = data.dbinfo[i].userid;
-        	  dbinfo.port = data.dbinfo[i].port;
-        	  dbinfo.password = data.dbinfo[i].password;
-        	  dbinfoarray[i] =dbinfo;        	  
+        	  dbinfo.userid = data.dbinfo[i].dbuserid;
+        	  dbinfo.port = data.dbinfo[i].dbport;
+        	  dbinfo.password = data.dbinfo[i].dbpassword;
+        	  dbinfoarray[i] =dbinfo;
+        	  $("#dbnum").append(new Option("DB #"+i, i));
           }
           
           select = 0;
 
-          for(i=-0;i<dbinfoarray.length;i++) {
-        	  
-        	  $("#dbnum").append(new Option("DB #"+i, i));
-          }
+         
           
           $("#dbname").val(dbinfoarray[0].dbname);
           $("#dbtype").val(dbinfoarray[0].dbtype);
-          $("#dbuser").val(dbinfoarray[0].userid);
-          $("#dbhost").val(dbinfoarray[0].host);
-          $("#dbport").val(dbinfoarray[0].port);
-          $("#dbpassword").val(dbinfoarray[0].password);
+          $("#dbuser").val(dbinfoarray[0].dbuserid);
+          $("#dbhost").val(dbinfoarray[0].dbhost);
+          $("#dbport").val(dbinfoarray[0].dbport);
+          $("#dbpassword").val(dbinfoarray[0].dbpassword);
           
           
           $("#smtpport").val(data.smtpport);
