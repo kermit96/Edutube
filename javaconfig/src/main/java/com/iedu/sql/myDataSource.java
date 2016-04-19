@@ -28,24 +28,8 @@ public class myDataSource extends  org.apache.commons.dbcp.BasicDataSource  {
 	   String password ="";
 	  
 	   
-	   /*	   
-	   try {
-		    userid = config.getUserid();			   
-	   } catch(Exception ex) { 			   			   
-	   }
-	   		   
-	   try {
-		   password = config.getPassword();
-		   
-	   } catch(Exception ex) { 
-		   			   
-	   }
-	   
-	   int port = config.getPort();
-	   
-	   String dbtype = config.getDbtype();
-	   
-	   */
+
+	   System.out.println("index="+index);
 	   
 	   dbconfiginfo info =  config.getDbconfig(index) ;
 	   
@@ -57,11 +41,13 @@ public class myDataSource extends  org.apache.commons.dbcp.BasicDataSource  {
 	  int port  = info.getDbport();
 	  String dbtype = info.getDbtype();
 	   
+	  String dbname = info.getDbname();
+	  String dbhost = info.getDbhost();
 	   DbInfo  dbinfo =  new DbInfoMap().GetDbInfo(dbtype);
 	   
 	   if (dbinfo != null) {
 		   classname = dbinfo.getDrivename();
-		   url = dbinfo.getUrl(config.getHost(),port , config.getDbname());
+		   url = dbinfo.getUrl(dbhost,port , dbname);
 	   }
 	   
         this.setDriverClassName(classname);

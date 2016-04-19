@@ -4,7 +4,11 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		<bean id="dataSource" class="com.iedu.sql.myDataSource">
+	<bean id="dataSource" class="com.iedu.sql.myDataSource">
+	  <constructor-arg>
+		<value>2</value>
+        </constructor-arg>
+
 	</bean>   
 	
 	<!-- SQL --> 

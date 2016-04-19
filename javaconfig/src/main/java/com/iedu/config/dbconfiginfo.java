@@ -6,9 +6,24 @@ public class dbconfiginfo {
   private int dbport;
   private String dbuserid;
   private String dbpassword;
-  private String dbname;
+  private String dbname; 
+  private String dbdesc; // 설명 
   
-  public String getDbname() {
+  /**
+ * @return the dbdesc
+ */
+public String getDbdesc() {
+	return dbdesc;
+}
+/**
+ * @param dbdesc the dbdesc to set
+ */
+public void setDbdesc(String dbdesc) {
+	this.dbdesc = dbdesc;
+}
+
+
+public String getDbname() {
 	return dbname;
 }
 public void setDbname(String dbname) {

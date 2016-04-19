@@ -96,6 +96,9 @@ public class DbInfoMap {
 
             }
             
+            System.out.print("url=");
+            System.out.println(url);
+            
           
             if (StringUtil.isNull(dbid)) 
           	    continue;

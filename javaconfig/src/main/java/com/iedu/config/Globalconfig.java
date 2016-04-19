@@ -16,13 +16,6 @@ import com.iedu.util.SeedUtil;
 import com.iedu.util.ase256;
 
 public class Globalconfig {
-    private String dbname;
-    private String    dbtype;
-    
-    private String  userid;
-    private String  password;
-    private String  host;
-    private int    port;
     
     private int    smtpport;
     private String smtphost;
@@ -50,17 +43,30 @@ public class Globalconfig {
 		this.dbsaveinfoarray = dbsaveinfoarray;
 		
 		for(int i=0;i<dbsaveinfoarray.length;i++) {
-			
-			handler.setValue("port"+i,dbsaveinfoarray[i].getDbport());
+		
+			handler.setValue("dbport"+i,dbsaveinfoarray[i].getDbport());
 			handler.setValue("dbname"+i,dbsaveinfoarray[i].getDbname());
-			handler.setValue("userid"+i,dbsaveinfoarray[i].getDbuserid());
-			handler.setValue("password"+i,dbsaveinfoarray[i].getDbpassword());
+			handler.setValue("dbuserid"+i,dbsaveinfoarray[i].getDbuserid());
+			handler.setValue("dbpassword"+i,
+					SeedUtil.encrypt(dbsaveinfoarray[i].getDbpassword()));
+					
 			handler.setValue("dbtype"+i,dbsaveinfoarray[i].getDbtype());
-			handler.setValue("host"+i,dbsaveinfoarray[i].getDbhost());
 			
+			handler.setValue("dbhost"+i,dbsaveinfoarray[i].getDbhost());
+			handler.setValue("dbdesc"+i,dbsaveinfoarray[i].getDbdesc());
+			
+		}				
+	}
+	
+	public void setDbsaveinfoarray(ArrayList<dbconfiginfo>  list) {
+		dbconfiginfo[]  dbsaveinfoarray ;
+		dbsaveinfoarray  = new dbconfiginfo[list.size()];
+		for(int i=0;i<list.size();i++) {			
+			dbsaveinfoarray[i] = list.get(i);			
 		}
 		
 		
+		setDbsaveinfoarray(dbsaveinfoarray);
 	}
 
 	public String getSmtpemail() {
@@ -108,105 +114,7 @@ public class Globalconfig {
 	}
 
 	ConfigFileHandler handler;
-    /**
-	 * @return the dbname
-	 */
-	public String getDbname() {
-		return dbname;
-	}
 
-	/**
-	 * @param dbname the dbname to set
-	 */
-	public void setDbname(String dbname) {
-		this.dbname = dbname;
-		handler.setValue("dbname",dbname );
-	}
-
-	/**
-	 * @return the dbtype
-	 */
-	public String getDbtype() {
-		return dbtype;
-	}
-
-	/**
-	 * @param dbtype the dbtype to set
-	 */
-	public void setDbtype(String dbtype) {
-		this.dbtype = dbtype;
-		handler.setValue("dbtype",dbtype );
-	}
-
-	/**
-	 * @return the userid
-	 */
-	public String getUserid() {
-		
-		
-		return userid;
-	}
-
-	/**
-	 * @param userid the userid to set
-	 */
-	public void setUserid(String userid) {
-		this.userid = userid;
-		handler.setValue("userid",userid );
-	}
-
-	/**
-	 * @return the password
-	 */
-	public String getPassword() {
-		return password;
-	}
-
-	/**
-	 * @param password the password to set
-	 */
-	public void setPassword(String password) {
-		this.password = password;
-				
-		try {
-// 			handler.setValue("password",		ase256.AES_Encode(password));
-			handler.setValue("password",		SeedUtil.encrypt(password));
-		} catch (Exception ex ) {
-			// TODO Auto-generated catch block
-			ex.printStackTrace();
-		}
-	}
-
-	/**
-	 * @return the host
-	 */
-	public String getHost() {
-		return host;
-	}
-
-	/**
-	 * @param host the host to set
-	 */
-	public void setHost(String host) {
-		this.host = host;
-		handler.setValue("host",host );
-	}
-
-	/**
-	 * @return the port
-	 */
-	public int getPort() {
-		return port;
-	}
-
-	/**
-	 * @param port the port to set
-	 */
-	public void setPort(int port) {
-		this.port = port;
-		
-		handler.setValue("port",port );
-	}
 
 
 	public int getSmtpport() {
@@ -289,41 +197,56 @@ public class Globalconfig {
 	    	
 	    	dbconfiginfo info = new dbconfiginfo();
     	   String host = handler.getValue("host"+i);
+    	   
+    	   if (host == null)
+    		   host="";
+    	   
+    	   System.out.println(host);
     	   info.setDbhost(host);
-		   int port = 0;
+    	   
+    	   
+		   int dbport = 0;
 		    
 		   
 		   try {
-		     port = 	Integer.parseInt( handler.getValue("port"+i));
+		     dbport = 	Integer.parseInt( handler.getValue("dbport"+i));
 
-		} catch (Exception ex ) {}
-		    info.setDbport(port);
+		   } catch (Exception ex ) {}
+		   
+		   
+		    info.setDbport(dbport);
 		      
 		    
 		    String dbname =  handler.getValue("dbname"+i);
-		    String  userid =  handler.getValue("userid"+i);
+		    String  dbuserid =  handler.getValue("dbuserid"+i);
 				
 		    
-		   if (userid == null)
-			  userid = "";
+		   if (dbuserid == null)
+			  dbuserid = "";
 		
+
+		   String dbdesc = handler.getValue("dbdesc"+i);
+		   
+		   
+		   info.setDbdesc(dbdesc);
+		   info.setDbuserid(dbuserid);
 		   info.setDbname(dbname);
 		   
 		   String  password;
 		    try {
 			// password =   ase256.AES_Decode( handler.getValue("password"));
-			 password =   SeedUtil.decrypt(handler.getValue("password"+1));			 
+			 password =   SeedUtil.decrypt(handler.getValue("dbpassword"+i));			 
 			
 		    	} catch (Exception	ex) {
 		    		ex.printStackTrace();
-		    		password = handler.getValue("password"+1);
+		    		password = handler.getValue("dbpassword"+1);
 		    	}
 		
 		    info.setDbpassword(password);
 		    
 		 String dbtype;
 		 
-		 dbtype = handler.getValue("dbtype")+1;
+		 dbtype = handler.getValue("dbtype"+i);
 		 
 		 info.setDbtype(dbtype);
 		 dbsaveinfoarray[i] = info;

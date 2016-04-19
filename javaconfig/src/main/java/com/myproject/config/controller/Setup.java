@@ -156,13 +156,15 @@ public class Setup {
 		
 		Gson gson = new Gson();
 		
+	
+		
 		ArrayList<dbconfiginfo> list= (ArrayList<dbconfiginfo>) gson.fromJson(jsonstr,
-                new TypeToken<ArrayList<String>>() {
+                new TypeToken<ArrayList<dbconfiginfo>>() {
                 }.getType());
-		
-		
-		
-		config.setDbsaveinfoarray((dbconfiginfo[])list.toArray());
+		 
+
+		  
+		config.setDbsaveinfoarray(list);
 		config.Save();
 	//	response.setContentType("text/html");
 		response.setCharacterEncoding("utf-8");

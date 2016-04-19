@@ -130,22 +130,25 @@ function dbnumchange()
 {
 	// 현재 선택된 값을 배열에 저장한다.
 	
-	dbinfoarray[select].dbname =$("#dbname").val;
-	dbinfoarray[select].dbtype =$("#dbtype").val;
-	dbinfoarray[select].dbuser =$("#dbuser").val;
-	dbinfoarray[dbhost].dbuser =$("#dbhost").val;
-	dbinfoarray[dbport].dbuser =$("#dbport").val;
-	dbinfoarray[dbpassword].dbuser =$("#dbpassword").val;
+	dbinfoarray[select].dbname =$("#dbname").val();
+	dbinfoarray[select].dbtype =$("#dbselect").val();
+	dbinfoarray[select].dbuserid =$("#dbuser").val();
+	dbinfoarray[select].dbhost =$("#dbhost").val();
+	dbinfoarray[select].dbport =$("#dbport").val();
+	dbinfoarray[select].dbpassword =$("#dbpassword").val();
+	dbinfoarray[select].dbdesc =$("#dbdesc").val();
+	
 	
 	  select = $('#dbnum option:selected').val();
+        	  
 	  
       $("#dbname").val(dbinfoarray[select].dbname);
-      $("#dbtype").val(dbinfoarray[select].dbtype);
-      $("#dbuser").val(dbinfoarray[select].userid);
-      $("#dbhost").val(dbinfoarray[select].host);
-      $("#dbport").val(dbinfoarray[select].port);
-      $("#dbpassword").val(dbinfoarray[select].password);
-	  
+      $("#dbselect").val(dbinfoarray[select].dbtype);
+      $("#dbuser").val(dbinfoarray[select].dbuserid);
+      $("#dbhost").val(dbinfoarray[select].dbhost);
+      $("#dbport").val(dbinfoarray[select].dbport);
+      $("#dbpassword").val(dbinfoarray[select].dbpassword);
+      $("#dbdesc").val(dbinfoarray[select].dbdesc);
 }
 
 
@@ -207,29 +210,35 @@ function init()
           $("#dbpassword").val(data.password);
           */
           
+
           
-          
-          for(i=0;i<data.dbinfo.length;i++) {
+          for(i=0;i<data.dbsaveinfoarray.length;i++) {
         	  var dbinfo = new Object(); 
-        	  dbinfo.dbname = data.dbinfo[i].dbname;
-        	  dbinfo.dbtype = data.dbinfo[i].dbtype;
-        	  dbinfo.userid = data.dbinfo[i].dbuserid;
-        	  dbinfo.port = data.dbinfo[i].dbport;
-        	  dbinfo.password = data.dbinfo[i].dbpassword;
+        	  dbinfo.dbname = data.dbsaveinfoarray[i].dbname;
+        	  dbinfo.dbtype = data.dbsaveinfoarray[i].dbtype;
+        	  dbinfo.dbuserid = data.dbsaveinfoarray[i].dbuserid;
+        	  dbinfo.dbport = data.dbsaveinfoarray[i].dbport;
+        	  dbinfo.dbpassword = data.dbsaveinfoarray[i].dbpassword;
+        	  dbinfo.dbhost = data.dbsaveinfoarray[i].dbhost;
+        	  dbinfo.dbdesc = data.dbsaveinfoarray[i].dbdesc;
+        	  
+//        	  alert("data.dbsaveinfoarray[i].dbuserid="+data.dbsaveinfoarray[i].dbuserid)
+        	  
         	  dbinfoarray[i] =dbinfo;
         	  $("#dbnum").append(new Option("DB #"+i, i));
           }
           
           select = 0;
 
-         
+
           
           $("#dbname").val(dbinfoarray[0].dbname);
-          $("#dbtype").val(dbinfoarray[0].dbtype);
+          $("#dbselect").val(dbinfoarray[0].dbtype);
           $("#dbuser").val(dbinfoarray[0].dbuserid);
           $("#dbhost").val(dbinfoarray[0].dbhost);
           $("#dbport").val(dbinfoarray[0].dbport);
           $("#dbpassword").val(dbinfoarray[0].dbpassword);
+          $("#dbdesc").val(dbinfoarray[0].dbdesc);
           
           
           $("#smtpport").val(data.smtpport);
@@ -393,23 +402,29 @@ function smtpsave()
 function dbsave()
 {
 
-	dbinfoarray[select].dbname =$("#dbname").val;
-	dbinfoarray[select].dbtype =$("#dbtype").val;
-	dbinfoarray[select].dbuser =$("#dbuser").val;
-	dbinfoarray[dbhost].dbuser =$("#dbhost").val;
-	dbinfoarray[dbport].dbuser =$("#dbport").val;
-	dbinfoarray[dbpassword].dbuser =$("#dbpassword").val;
+
+	dbinfoarray[select].dbname =$("#dbname").val();
+	dbinfoarray[select].dbtype =$("#dbselect").val();
+	dbinfoarray[select].dbuserid =$("#dbuser").val();
+	dbinfoarray[select].dbhost =$("#dbhost").val();
+	dbinfoarray[select].dbport =parseInt($("#dbport").val());
+	dbinfoarray[select].dbpassword =$("#dbpassword").val();
+	dbinfoarray[select].dbdesc =$("#dbdesc").val();
+	
+   
+
 	
 	var str = JSON.stringify(dbinfoarray);
+
+
 	
-	var encryted = $('input:radio[name="checkset"]:checked').val();
     try {
 	$.ajax({
         url:'../Setup/dbsave.do',
         async:false,
         type:'post',
         dataType:'html',
-        data:{dbjson:str  
+        data:{jsonstr:str  
         },
         
         success:function(data){            	
@@ -460,10 +475,12 @@ function myclose()
 
          <br>
    
-      <h2 align="center"> DB 설정 </h1>          <select id="dbnum" >
-     
-         </select> 
-     
+  <h2 align="center" > DB 설정 </h1>
+  <div style="float:right">  
+   <select id="dbnum" ></select> 
+  </div>
+  <br>
+  
   <table align="center">
    <tr> 
       <td>
@@ -530,11 +547,20 @@ function myclose()
       <td>
        <input type="password"  id="dbpassword"  value="">   
       </td>     
+   </tr>
+   <tr> 
+      <td>
+          설명  
+      </td>
+      <td>
+       <textarea cols="40" rows="6" id="dbdesc"></textarea>   
+      </td>     
    </tr>   
+      
   <tr>
   <td colspan="2"  align="center">
     <p>
-      <button id="test"> DB 테스트</button>     <button  id="dbsave1">적용</button>
+      <button id="test"> DB 테스트</button>     <button  id="dbsave">적용</button>
   </td>
   </tr>    
   </table>    

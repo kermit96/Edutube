@@ -31,6 +31,15 @@ public class DbInfo {
 		
 		String ret = Url;
 	    
+		System.out.print("url=");
+       System.out.println(Url);
+       System.out.print("host=");
+       System.out.println(host);
+       System.out.print("port=");
+       System.out.println(port);
+       System.out.print("dbname=");
+       System.out.println(dbname);
+		
 		ret = ret.replace("{HOSTNAME}",host);
 		
 		if (port == 0 ) 
