@@ -19,8 +19,8 @@
  <DB>
    <dbid>MYSQL</dbid>
    <dbname>mysql</dbname>
-   <drivename>com.mysql.jdbc.Driver</drivename>
-   <url>jdbc:mysql://{HOSTNAME}:{PORT}/{DBNAME}?useSSL=false</url>
+   <drivename>com.mysql.cj.jdbc.Driver</drivename>
+   <url>jdbc:mysql://{HOSTNAME}:{PORT}/{DBNAME}?useSSL=false&amp;useTimezone=true&amp;serverTimezone=GMT</url>
    <defaultport>3306</defaultport>
  </DB>
  

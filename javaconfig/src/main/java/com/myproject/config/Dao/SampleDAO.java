@@ -39,8 +39,20 @@ public class SampleDAO {//extends	SqlSessionDaoSupport{
 	//	이주어야 한다.
 	//	그렇지 않으면 setXxx()를 이용해서 DI로 사용하는 모든것을
 	//	받도록 처리해야한다.
+	
+	@Autowired
+	SqlSessionTemplate sqlSession2;
+	
 	public int getTotal() {
+	
 		int	total = sqlSession.selectOne("sample.total");
+		
+		return total;
+	}
+	
+	public int getTotal2() {
+		
+		int	total = sqlSession2.selectOne("sample.total2");
 		
 		return total;
 	}

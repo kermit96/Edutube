@@ -18,6 +18,12 @@
 		
 	</typeAliases>
 	
+	<databaseIdProvider type="DB_VENDOR">
+  <property name="SQL Server" value="sqlserver"/>
+  <property name="DB2" value="db2"/>
+  <property name="Oracle" value="oracle" />
+</databaseIdProvider>
+	
 	<mappers>		
 		<mapper resource="/com/myproject/config/sql/SampleSQL.xml" />
 	</mappers>

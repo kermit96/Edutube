@@ -10,5 +10,8 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
+<p>  sql1 = ${total1} </p>
+<p>  sql2 = ${total2} </p>
+
 </body>
 </html>

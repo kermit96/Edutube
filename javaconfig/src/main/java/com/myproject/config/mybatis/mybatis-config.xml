@@ -8,6 +8,10 @@
 		<setting name="defaultExecutorType" value="REUSE" />	
 	</settings>	
 
+    
+    
+    
+
 	<typeAliases>
 		<!--  이 안에는 SQL 이 사용할 데이터 타입의 별칭을 등록 한다. -->
 		<typeAlias alias="int" type="java.lang.Integer" />
@@ -17,6 +21,9 @@
 
 		
 	</typeAliases>
+	
+	
+
 	
 	<mappers>		
 

@@ -196,7 +196,7 @@ public class Globalconfig {
 	    for(int i=0;i<MAX_DB_NUM;i++) {
 	    	
 	    	dbconfiginfo info = new dbconfiginfo();
-    	   String host = handler.getValue("host"+i);
+    	   String host = handler.getValue("dbhost"+i);
     	   
     	   if (host == null)
     		   host="";
