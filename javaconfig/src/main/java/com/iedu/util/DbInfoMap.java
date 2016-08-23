@@ -33,7 +33,7 @@ public class DbInfoMap {
 	  
   }
   
-  
+  // 설정 파일 위치를 알아낸다 
 	public  String getInitDirectory() 
 	{
 
@@ -50,12 +50,12 @@ public class DbInfoMap {
 
 
 		String sConfPath="";
-		sConfPath = sPath + File.separator + "Conf"+File.separator +"DB";				
+		sConfPath = sPath + File.separator + "conf"+File.separator +"db";				
 
 		return sConfPath;		
 	}
   
-  
+  // xml 파일에서 db 정보를 알아낸다 
   public void ParseXml(String filename) 
   {
          
@@ -95,10 +95,7 @@ public class DbInfoMap {
                   }
 
             }
-            
-            System.out.print("url=");
-            System.out.println(url);
-            
+
           
             if (StringUtil.isNull(dbid)) 
           	    continue;

@@ -51,7 +51,7 @@
 	
 	<bean id="dataSource2" class="com.iedu.sql.myDataSource">
 	  <constructor-arg>
-		<value>2</value>
+		<value>1</value>
         </constructor-arg>
 	</bean>   
 	

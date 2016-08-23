@@ -349,7 +349,7 @@ public class ConfigFileHandler {
 	}
 
 	/**
-	 * @author YuKwangmin
+	 * 
 	 * 
 	 * 설정파일에 저장된 Property들의 이름을 반환한다.
 	 * 
