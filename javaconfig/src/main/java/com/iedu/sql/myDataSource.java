@@ -26,17 +26,13 @@ public class myDataSource extends  org.apache.commons.dbcp.BasicDataSource  {
 	   
 	   String userid ="";
 	   String password ="";
-	  
-	   
-
-	   System.out.println("index="+index);
-	   
+	  	   
 	   dbconfiginfo info =  config.getDbconfig(index) ;
 	   
 	  if (info == null)
 		  return;
 	   
-	  userid = info.getDbuserid();
+	  userid =  info.getDbuserid();
 	  password = info.getDbpassword();
 	  int port  = info.getDbport();
 	  String dbtype = info.getDbtype();

@@ -2,9 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.wing</groupId>
+	<groupId>ccom.myproject.config</groupId>
 	<artifactId>mainApp</artifactId>
-	<name>ProWeb</name>
+	<name>config</name>
     <packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
@@ -19,7 +19,13 @@
         <id>mesir-repo</id>
         <url>http://mesir.googlecode.com/svn/trunk/mavenrepo</url>
     </repository>
-    
+
+
+	<repository>  
+ 		<id>CUBRID</id>
+ 		<name>CUBRID-releases</name>
+ 		<url>http://maven.cubrid.org</url> 
+ 	</repository>    
      
   </repositories>
 		
@@ -209,9 +215,20 @@
 	<version>6.0.2</version>
 </dependency>
 
+<!--  postgress sql  -->
+<dependency>
+	<groupId>org.postgresql</groupId>
+	<artifactId>postgresql</artifactId>
+	<version>9.4.1208.jre7</version>
+</dependency>
 
+<dependency>
+	<groupId>cubrid</groupId>
+	<artifactId>cubrid-jdbc</artifactId>
+	<version>10.0.0.1376</version>
+</dependency>	
 		
-	</dependencies>
+</dependencies>
     <build>
         <plugins>
             <plugin>

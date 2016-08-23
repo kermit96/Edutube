@@ -23,6 +23,21 @@
    <url>jdbc:mysql://{HOSTNAME}:{PORT}/{DBNAME}?useSSL=false&amp;useTimezone=true&amp;serverTimezone=GMT</url>
    <defaultport>3306</defaultport>
  </DB>
+  
+ <DB>
+   <dbid>PostgreSQL</dbid>
+   <dbname>postgres</dbname>
+   <drivename>org.postgresql.Driver</drivename>
+   <url>jdbc:postgresql://{HOSTNAME}:{PORT}/{DBNAME}</url>
+   <defaultport>5432</defaultport>
+ </DB>
  
- 
+ <DB>
+   <dbid>CUBRID</dbid>
+   <dbname>CUBRID</dbname>
+   <drivename>cubrid.jdbc.driver.CUBRIDDriver</drivename>
+   <url>jdbc:CUBRID:{HOSTNAME}:{PORT}:{DBNAME}:public::</url>
+   <defaultport>30000</defaultport>
+ </DB>
+  
 </Dblist>

@@ -197,8 +197,11 @@ public class Setup {
 	    smtpuserid = request.getParameter("smtpuserid");
 	    encryptedmethod = Integer.parseInt(request.getParameter("encryptedmethod"));
 	    smtpemail = request.getParameter("smtpemail");
+	    String smtpto= request.getParameter("smtpto");
 	    smtpsender = request.getParameter("smtpsender");
-	    smtppassword 	= request.getParameter("smtppassword");	
+	    smtppassword 	= request.getParameter("smtppassword");
+	    String body = "메일 보내기 테스트입니다.<br> 확인 부틱  드립니다.";
+	    String subject = "메일 보내기 테스트";
 		response.setContentType("text/html");
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out= null;
@@ -213,15 +216,15 @@ public class Setup {
 		
 		MailSendInfo info = new MailSendInfo();
 		
-		info.body = "테스트 메일 본문입니다.";
-		info.subject = "테스트 메일입니다.";
+		info.body =body;
+		info.subject = subject;
 		info.from = smtpemail;
 		info.fromname = smtpsender;
 		info.userid  = smtpuserid;
 		info.password  = smtppassword;
 		info.port =  smtpport;
 		info.smtpserver = smtphost;
-		info.to = smtpemail;
+		info.to = smtpto;
 
        switch(encryptedmethod)
        {
@@ -233,7 +236,7 @@ public class Setup {
          	 break;       
        }		
 		
-		String str = "메일 발송 테스트 성공 했습니다.";
+		String str = smtpto + " 로 메일 발송  했습니다.";
 		try {
 		util.SendMail(info);
 		} catch(Exception ex) {
@@ -258,7 +261,6 @@ public class Setup {
 		String userid ="" ;				
 		String password="";
 		
-	// 	dbtype = Integer.parseInt(request.getParameter("dbtype") );
 		dbtype= request.getParameter("dbtype");
 		
 		dbname = request.getParameter("dbname");
@@ -289,15 +291,14 @@ public class Setup {
 	{		
 		      
 		 try {
-		    BaseJDBCDao dao = BaseJDBCDao.GetjdbcDao(dbtype, host, port, dbname, userid, password);
+		    BaseJDBCDao dao = new BaseJDBCDao(dbtype, host, port, dbname, userid, password);
 		    dao.closeAll();
-		    return "Success";
+		    return "Success"+"(제품명:"+dao.getDatabaseProductName()+")";
+		    
 		 } catch(Exception ex) {			 
 			 return ex.toString(); 
 		 }
 	}
-	
-
 	
 }
 

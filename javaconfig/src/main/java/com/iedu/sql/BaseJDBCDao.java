@@ -9,6 +9,7 @@ import java.util.HashSet;
 import org.apache.commons.dbcp.BasicDataSource;
 
 import com.iedu.config.Globalconfig;
+import com.iedu.config.dbconfiginfo;
 import com.iedu.util.DbInfo;
 import com.iedu.util.DbInfoMap;
 
@@ -25,14 +26,22 @@ public class BaseJDBCDao {
 
 	 public BaseJDBCDao(String drivename,String  url,String userid,String password )  throws  Exception
 	{
-		this(drivename,url,userid,password,4);	
+			
+		 SetBaseJDBCDao(drivename,url,userid,password,4);
 	}
 	 
 	 
-
 	
 	public BaseJDBCDao(String drivename,String  url,String userid,String password,int initnum )  throws  Exception
 	{
+
+		SetBaseJDBCDao(drivename,url,userid,password,initnum);
+	}
+	
+	
+	private void SetBaseJDBCDao(String drivename,String  url,String userid,String password,int initnum) throws  Exception
+	{
+		
 		try {					
 			ds.setDriverClassName(drivename);
 			ds.setUrl(url);
@@ -51,9 +60,9 @@ public class BaseJDBCDao {
 			DatabaseProductName = con.getMetaData().getDatabaseProductName();
 		} catch (Exception ex) {
 			throw ex;		
-		}
+		}		
+		
 	}
-	
 	
 	public String getDatabaseProductName() {
 		return DatabaseProductName;
@@ -266,7 +275,41 @@ public class BaseJDBCDao {
 	}
 
 	
-	public static  BaseJDBCDao GetjdbcDao(String dbid,String host,  int port, String  dbname,String userid,String password) throws Exception
+	public  BaseJDBCDao(int index) throws Exception
+	{
+
+		 Globalconfig config = new Globalconfig();  
+
+		   String classname = "";
+		   String url = "";
+		   
+		   String userid ="";
+		   String password ="";
+		  	   
+		   dbconfiginfo info =  config.getDbconfig(index) ;
+		   
+		  if (info == null)
+			  throw new Exception();
+		   
+		  userid = info.getDbuserid();
+		  password = info.getDbpassword();
+		  int port  = info.getDbport();
+		  String dbtype = info.getDbtype();
+		   
+		  String dbname = info.getDbname();
+		  String dbhost = info.getDbhost();
+		   DbInfo  dbinfo =  new DbInfoMap().GetDbInfo(dbtype);
+		   
+		   if (dbinfo != null) {
+			   classname = dbinfo.getDrivename();
+			   url = dbinfo.getUrl(dbhost,port , dbname);
+		   }
+		
+		SetBaseJDBCDao(classname,url,userid,password,4);
+		
+	}
+	
+	public  BaseJDBCDao (String dbid,String host,  int port, String  dbname,String userid,String password) throws Exception
 	{
 		
 		String drivename="";
@@ -276,15 +319,16 @@ public class BaseJDBCDao {
 		
 		DbInfo info = map.GetDbInfo(dbid);
 		
-		if (info == null)
-			return null;
+		 if (info == null)
+			  throw new Exception();
+		   
 		
 	    drivename = info.getDrivename();
 	    url = info.getUrl(host,port,dbname);
    
-		BaseJDBCDao dao = new BaseJDBCDao(drivename,url,userid,password);
-	
-		return dao;
+		SetBaseJDBCDao(drivename,url,userid,password,4);
+
+
 	}
 		
 }

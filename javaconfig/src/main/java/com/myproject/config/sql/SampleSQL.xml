@@ -12,7 +12,7 @@
 	<if test="_databaseId == 'oracle'">
       select 2 from dual
     </if>
-    <if test="_databaseId == 'sqlserver' or _databaseId == 'mysql' " >
+    <if test="_databaseId == 'sqlserver' or _databaseId == 'mysql' or  _databaseId == 'postgres' " >
       select 2 
     </if>
 	 
@@ -22,8 +22,8 @@
 	<select id="total2" resultType="int">
 	<if test="_databaseId == 'oracle'">
       select 3 from dual
-    </if>
-    <if test="_databaseId == 'sqlserver' or _databaseId == 'mysql' " >
+    </if>    
+    <if test="_databaseId == 'sqlserver' or _databaseId == 'mysql' or  _databaseId == 'postgres' " >
       select 3 
     </if>
 	

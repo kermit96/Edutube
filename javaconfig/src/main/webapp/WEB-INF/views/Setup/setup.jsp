@@ -291,6 +291,7 @@ function smtptest()
         	smtpemail:$("#smtpemail").val(),
         	smtpsender:$("#smtpsender").val(),
         	encryptedmethod:encryted,
+        	smtpto:$("#smtpto").val()
         },
         success:function(data){            	
             $("#smtpresult").html(data);
@@ -614,6 +615,11 @@ function myclose()
          <tr> 
       <td>보내는 사람 이름 </td>
         <td><input type="input"   id="smtpsender"  /> </td>
+      </tr>        
+
+
+      <td>Test 메일 주소 </td>
+        <td><input type="input"   id="smtpto"  /> </td>
       </tr>        
 
 
